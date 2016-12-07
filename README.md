@@ -19,11 +19,11 @@ e.g. `sky_model/README.md` contains a description of the sky model
 we generated.
 
 - [sky_model](sky_model) - The sky model (sources and diffuse emission components)
-- `observations` - Simulated list of observations for the GPS and EGS
-- `irf` - CTA instrument response functions
-- `data` - Generated data (event lists and more)
-- `ctadc` - Python package with helper functions / classes
-- `make.py` - Main script, that can run all steps (e.g. generate sky model and data)
+- [observations](observations) - Simulated list of observations for the GPS and EGS
+- [irf](irf) - CTA instrument response functions
+- [data](data) - Generated data (event lists and more)
+- [ctadc](ctadc) - Python package with helper functions / classes
+- [make.py](make.py) - Main script, that can run all steps (e.g. generate sky model and data)
 
 ## How to use this?
 
