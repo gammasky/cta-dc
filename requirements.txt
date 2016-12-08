@@ -6,6 +6,7 @@ pyyaml
 pytest
 numpy
 scipy
+matplotlib
 astropy
 git+https://github.com/regions/regions.git#egg=regions
 git+https://github.com/gammapy/gammapy.git#egg=gammapy
