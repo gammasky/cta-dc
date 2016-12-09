@@ -30,5 +30,14 @@ def make_obslists():
     ctadc.observations.make_all_obslists()
 
 
+@cli.command('data')
+def make_data():
+    """Make simulated data.
+
+    (Event lists and other files.)
+    """
+    ctadc.data.make_all_data()
+
+
 if __name__ == '__main__':
     cli()
