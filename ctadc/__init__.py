@@ -5,4 +5,4 @@ CTA = Cherenkov Telescope Array
 DC = data challenge
 """
 
-from .observations import *
+from . import observations

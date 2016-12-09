@@ -16,11 +16,11 @@ def cli():
     """
 
 
-@cli.command('make-obslists')
+@cli.command('obslists')
 def make_obslists():
     """Make observation lists.
     """
-    ctadc.make_obslists()
+    ctadc.observations.make_all_obslists()
 
 
 if __name__ == '__main__':
