@@ -25,6 +25,25 @@ description of the sky model we generated.
 - [ctadc](ctadc) - Python package with helper functions / classes
 - [make.py](make.py) - Main script, that can run all steps (e.g. generate sky model and data)
 
+## Data formats
+
+The following data formats are used:
+
+* `FITS` - "Flexible Image Transport System",
+  see [here](https://en.wikipedia.org/wiki/FITS)
+* `ECSV` - "Enhanced Character Separated Values table format",
+  see [here](https://github.com/astropy/astropy-APEs/blob/master/APE6.rst)
+* `YAML` - a human and machine readable data format
+  see [here](https://en.wikipedia.org/wiki/YAML)
+* `XML` - "Extensible Markup Language",
+  see [here](https://en.wikipedia.org/wiki/XML)
+
+Note that these are only "container" formats that can hold almost any data and
+information. The specification of data formats for gamma-ray astronomy is work
+in progress at http://gamma-astro-data-formats.readthedocs.io/ .
+Some of the formats we use (e.g. event lists) are already described there.
+
+
 ## How to run the scripts?
 
 We use Python scripts to produce the sky model and data.
@@ -79,3 +98,4 @@ Commonly used abbreviations:
 - `GPS` - Galactic plane survey
 - `EGS` - Extragalactic survey
 - `ST` - Science tools
+- `IRF` - Instrument response function
