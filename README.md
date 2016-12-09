@@ -95,6 +95,7 @@ Here's some links to the documentation pages for these packages:
 Commonly used abbreviations:
 
 - `CTA` - Cherenkov telescope array
+- `DC` - Data challenge
 - `GPS` - Galactic plane survey
 - `EGS` - Extragalactic survey
 - `ST` - Science tools

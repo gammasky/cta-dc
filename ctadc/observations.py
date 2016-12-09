@@ -1,6 +1,8 @@
+# Licensed under a 3-clause BSD style license - see LICENSE.rst
 """
 Make observation lists.
 """
+from __future__ import absolute_import, division, print_function, unicode_literals
 import logging
 import numpy as np
 from astropy.table import Table, Column
@@ -63,7 +65,7 @@ def make_obslist_gps(t_obs, n_obs_per_grid_position, glon, glat):
 
 
 def make_all_obslists():
-    """Make all obsevation lists.
+    """Make all observation lists.
     """
     glon = np.arange(start=-100, stop=100.1, step=2)
     glat = np.arange(start=-2, stop=+2.1, step=2)
