@@ -6,3 +6,4 @@ DC = data challenge
 """
 
 from . import observations
+from . import sky_model

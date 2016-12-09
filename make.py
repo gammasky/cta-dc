@@ -16,6 +16,13 @@ def cli():
     """
 
 
+@cli.command('skymodels')
+def make_skymodels():
+    """Make sky models.
+    """
+    ctadc.sky_model.make_all_sky_models()
+
+
 @cli.command('obslists')
 def make_obslists():
     """Make observation lists.
