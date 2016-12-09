@@ -31,11 +31,6 @@ We use Python scripts to produce the sky model and data.
 
 You can access the files with whatever software you like.
 
-To run the scripts, you have to install Python 2.7 or 3.4 or later
-and the packages listed in `requirements.txt` via `conda` or `pip`
-
-    pip install -r requirements.txt
-
 E.g. the sky model and data generation is fully scripted and reproducible.
 Anyone can use the [make.py](make.py) script to run them.
 To see what's available type:
@@ -44,7 +39,26 @@ To see what's available type:
 
 There's no `setup.py` file, i.e. you can't install `ctadc` into your `site-packages`.
 Just execute scripts from the top-level repo folder (where `make.py` is located),
-and all scripts shoul work.
+and all scripts should work.
+
+### Installation
+
+To run the scripts, you have to install Python 2.7 or 3.4 or later
+and the packages listed in `requirements.txt` via `pip`
+
+    pip install -r requirements.txt
+
+The following packages are also available via `conda` (or other package managers,
+like `brew` or `macports` on macOS, or `apt-get` or `yum` on Linux):
+
+    conda install click pyyaml pytest numpy scipy matplotlib astropy
+
+And then you can install the rest with `pip`:
+
+    pip install git+https://github.com/regions/regions.git#egg=regions
+    pip install git+https://github.com/gammapy/gammapy.git#egg=gammapy
+    pip install git+https://github.com/naima/naima.git#egg=naima
+
 
 Here's some links to the documentation pages for these packages:
 
