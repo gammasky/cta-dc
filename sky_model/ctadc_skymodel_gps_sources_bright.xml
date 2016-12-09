@@ -1,1 +1,43 @@
-<sources></sources>
+<?xml version="1.0" ?>
+
+<!-- Bright sources for CTA-1DC from gamma-cat -->
+
+<source_library title="gammacat">
+
+<source name="CTA 1" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="42"/>
+        <parameter name="Index" value="99"/>
+        <parameter name="Scale" value="1"/>
+    </spectrum>
+    <spatialModel type="SkyDirFunction">
+        <parameter name="GLON" value="119.58025360107422 deg"/>
+        <parameter name="GLAT" value="10.203681945800781 deg"/>
+    </spatialModel>
+</source>
+
+<source name="SHBL J001355.9-185406" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="42"/>
+        <parameter name="Index" value="99"/>
+        <parameter name="Scale" value="1"/>
+    </spectrum>
+    <spatialModel type="SkyDirFunction">
+        <parameter name="GLON" value="74.63201141357422 deg"/>
+        <parameter name="GLAT" value="-78.0869369506836 deg"/>
+    </spatialModel>
+</source>
+
+<source name="Tycho SNR" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="42"/>
+        <parameter name="Index" value="99"/>
+        <parameter name="Scale" value="1"/>
+    </spectrum>
+    <spatialModel type="SkyDirFunction">
+        <parameter name="GLON" value="120.09236145019531 deg"/>
+        <parameter name="GLAT" value="1.4129304885864258 deg"/>
+    </spatialModel>
+</source>
+
+</source_library>

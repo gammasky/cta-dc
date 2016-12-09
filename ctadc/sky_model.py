@@ -4,7 +4,7 @@ Make sky model.
 """
 from __future__ import absolute_import, division, print_function, unicode_literals
 import logging
-from gammapy.catalog import SourceCatalogGammaCat
+from collections import OrderedDict
 
 __all__ = [
     'GPSSkyModelSourcesBright',
@@ -21,6 +21,7 @@ class SkyModelMixin:
 
     This way of structuring code is called a "mix-in" class in Python.
     """
+
     def write_xml(self):
         xml = self.xml
         filename = self.filename
@@ -42,10 +43,17 @@ class GPSSkyModelSourcesBright(SkyModelMixin):
         pass
 
     def make(self):
+        self.read_gammacat()
         self.make_xml()
 
+    def read_gammacat(self):
+        from gammapy.catalog import SourceCatalogGammaCat
+        self.gammacat = SourceCatalogGammaCat()
+
     def make_xml(self):
-        self.xml = '<sources></sources>'  # a dummy
+        """Make XML version of sky model."""
+        from .extern.xml import gammacat_to_xml
+        self.xml = gammacat_to_xml(self.gammacat)
 
 
 class GPSSkyModelSourcesFaint(SkyModelMixin):
@@ -63,7 +71,6 @@ class GPSSkyModelSourcesFaint(SkyModelMixin):
 
     def make_xml(self):
         self.xml = '<sources></sources>'  # a dummy
-
 
 
 def make_all_sky_models():
