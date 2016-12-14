@@ -89,3 +89,6 @@ ENV/
 .ropeproject
 
 .idea
+
+sky_model/images/*.fits
+
