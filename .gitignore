@@ -90,5 +90,5 @@ ENV/
 
 .idea
 
-sky_model/images/*.fits
+sky_model/images/*.fits.gz
 

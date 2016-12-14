@@ -16,23 +16,36 @@ def cli():
     """
 
 
-@cli.command('skymodels')
-def make_skymodels():
-    """Make sky models.
+@cli.group('skymodels')
+def cli_skymodels():
+    """Make files in `sky_model` folder.
     """
-    ctadc.sky_model.make_all_sky_models()
 
 
-@cli.command('obslists')
-def make_obslists():
-    """Make observation lists.
+@cli_skymodels.command('xml')
+def make_skymodels_xml():
+    """Make sky model XML files.
+    """
+    ctadc.sky_model.make_sky_models_xml()
+
+
+@cli_skymodels.command('images')
+def make_skymodels_images():
+    """Make sky model images.
+    """
+    ctadc.sky_model.make_sky_models_images()
+
+
+@cli.command('observations')
+def make_observations():
+    """Make files in `observations` folder.
     """
     ctadc.observations.make_all_obslists()
 
 
 @cli.command('data')
 def make_data():
-    """Make simulated data.
+    """Make files in `data` folder.
 
     (Event lists and other files.)
     """
