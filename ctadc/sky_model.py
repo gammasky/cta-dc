@@ -5,9 +5,10 @@ Make sky model.
 from __future__ import absolute_import, division, print_function, unicode_literals
 import logging
 from collections import OrderedDict
+import numpy as np
 from astropy import units as u
-from astropy.coordinates import SkyCoord
-from gammapy.image import SkyImage, SkyImageList
+from astropy.coordinates import SkyCoord, Angle
+from gammapy.image import SkyImage
 from gammapy.catalog import select_sky_box, SourceCatalogGammaCat
 from .extern.xml import gammacat_to_xml
 
@@ -91,6 +92,43 @@ class SkyModelImageMaker:
         for image_spec in self.image_specs:
             self.make_flux_image(image_spec)
 
+    def make_rgb_image(self, smooth_radius='0.1 deg'):
+        from astropy.visualization import make_lupton_rgb
+
+        image_r = SkyImage.read(self._filename('red'))
+        image_g = SkyImage.read(self._filename('green'))
+        image_b = SkyImage.read(self._filename('blue'))
+        images = [image_r, image_g, image_b]
+
+        for image in images:
+
+            # TODO: for now, we need to flip in y direction
+            # https://github.com/astropy/astropy/pull/5535#issuecomment-267127610
+            image.data = np.flipud(image.data)
+
+            image.data = image.smooth(radius=Angle(smooth_radius)).data
+            image.data /= image.data.max()
+            image.data = np.power(image.data, 0.15)
+            log.info('RGB max values: {}'.format(image.data.max()))
+
+        minimum = min([_.data.min() for _ in images])
+        log.info('RGB minimum: {}'.format(minimum))
+
+        filename = 'sky_model/images/ctadc_skymodel_gps_sources_bright_rgb.png'
+        log.info('Writing {}'.format(filename))
+        rgb = make_lupton_rgb(
+            image_r=image_r.data,
+            image_g=image_g.data,
+            image_b=image_b.data,
+            minimum=-0,
+            stretch=1,
+            Q=0,
+            filename=filename,
+        )
+        means = rgb.mean(axis=0).mean(axis=0)
+        log.info('RBG image means: {}'.format(means))
+        # import IPython; IPython.embed()
+
     def make_flux_image(self, image_spec):
         name = image_spec['name']
         energy_band = image_spec['energy_band']
@@ -110,9 +148,13 @@ class SkyModelImageMaker:
         for source in gammacat:
             self.add_source_to_image(image, source, energy_band)
 
-        filename = 'sky_model/images/ctadc_skymodel_gps_sources_bright_{}.fits.gz'.format(name)
+        filename = self._filename(name)
         log.info('Writing {}'.format(filename))
         image.write(filename, clobber=True)
+
+    @staticmethod
+    def _filename(name):
+        return 'sky_model/images/ctadc_skymodel_gps_sources_bright_{}.fits.gz'.format(name)
 
     @staticmethod
     def add_source_to_image(image, source, energy_band):
@@ -132,9 +174,8 @@ class SkyModelImageMaker:
 
         pos = SkyCoord(x, y, unit='deg', frame='galactic')
 
-        # TODO: handle bounding box according to source size, now just
-        # use default of 4 x 4 deg
-        size = (4 * u.deg, 4 * u.deg)
+        # TODO: handle bounding box according to source size, now just use a large constant bbox
+        size = (5 * u.deg, 5 * u.deg)
         cutout = image.cutout(pos, size=size)
 
         c = cutout.coordinates()
@@ -176,6 +217,5 @@ def make_sky_models_images():
     """Make all sky model image files.
     """
     maker = SkyModelImageMaker()
-    maker.make_all_images()
-
-    # TODO: combined RGB image.
+    # maker.make_all_images()
+    maker.make_rgb_image()
