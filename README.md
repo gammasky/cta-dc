@@ -62,7 +62,7 @@ and all scripts should work.
 
 ### Installation
 
-To run the scripts, you have to install Python 2.7 or 3.4 or later
+To run the scripts, you have to install Python 3.5 or later
 and the packages listed in `requirements.txt` via `pip`
 
     pip install -r requirements.txt
