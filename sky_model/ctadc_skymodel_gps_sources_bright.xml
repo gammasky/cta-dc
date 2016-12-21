@@ -4,6 +4,19 @@
 
 <source_library title="gammacat">
 
+<source name="CTB 37B" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="6.500000190867716e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.6500000953674316" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="285.68988037109375" unit="deg"/>
+        <parameter name="GLAT" value="-78.33631896972656" unit="deg"/>
+        <parameter name="Sigma" value="0.04333333298563957" unit="deg"/>
+    </spatialModel>
+</source>
+
 <source name="HESS J0632+057" type="PointSource">
     <spectrum type="PowerLaw">
         <parameter name="Prefactor" value="9.100000484055237e-13" unit="1 / (cm2 s TeV)"/>
@@ -41,7 +54,7 @@
         <parameter name="GLON" value="266.2588806152344" unit="deg"/>
         <parameter name="GLAT" value="-1.219645380973816" unit="deg"/>
         <parameter name="Radius" value="1.0" unit="deg"/>
-        <parameter name="Width" value="0" unit="deg"/>
+        <parameter name="Width" value="0.0" unit="deg"/>
     </spatialModel>
 </source>
 
@@ -150,7 +163,7 @@
         <parameter name="GLON" value="315.09271240234375" unit="deg"/>
         <parameter name="GLAT" value="-2.376516580581665" unit="deg"/>
         <parameter name="Radius" value="0.1899999976158142" unit="deg"/>
-        <parameter name="Width" value="0" unit="deg"/>
+        <parameter name="Width" value="0.0" unit="deg"/>
     </spatialModel>
 </source>
 
@@ -310,7 +323,7 @@
         <parameter name="GLON" value="347.2694396972656" unit="deg"/>
         <parameter name="GLAT" value="-0.25691288709640503" unit="deg"/>
         <parameter name="Radius" value="0.5" unit="deg"/>
-        <parameter name="Width" value="0" unit="deg"/>
+        <parameter name="Width" value="0.0" unit="deg"/>
     </spatialModel>
 </source>
 
@@ -364,7 +377,7 @@
         <parameter name="GLON" value="353.5650634765625" unit="deg"/>
         <parameter name="GLAT" value="-0.6221904158592224" unit="deg"/>
         <parameter name="Radius" value="0.27000001072883606" unit="deg"/>
-        <parameter name="Width" value="0" unit="deg"/>
+        <parameter name="Width" value="0.0" unit="deg"/>
     </spatialModel>
 </source>
 
