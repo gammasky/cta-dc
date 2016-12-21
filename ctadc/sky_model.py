@@ -4,13 +4,13 @@ Make sky model.
 """
 from __future__ import absolute_import, division, print_function, unicode_literals
 import logging
+import textwrap
 from collections import OrderedDict
 import numpy as np
 from astropy import units as u
 from astropy.coordinates import SkyCoord, Angle
 from gammapy.image import SkyImage
 from gammapy.catalog import select_sky_box, SourceCatalogGammaCat
-from .extern.xml import gammacat_to_xml
 
 __all__ = [
     'GPSSkyModelSourcesBright',
@@ -51,14 +51,33 @@ class GPSSkyModelSourcesBright(SkyModelMixin):
 
     def make(self):
         self.read_gammacat()
+        self.apply_selections()
         self.make_xml()
 
     def read_gammacat(self):
         self.gammacat = SourceCatalogGammaCat()
 
+    def apply_selections(self):
+        return
+        # TODO: Select on source_class = Galactic once available in gamma-cat
+        # For now do a quick selection in GLAT
+        # import IPython; IPython.embed(); 1/0
+        # if np.abs(source.data['glat']) > 5 * u.deg:
+        #     continue
+
+        # For debugging, just do a few sources:
+        # if source_idx == 3: break
+
     def make_xml(self):
         """Make XML version of sky model."""
-        self.xml = gammacat_to_xml(self.gammacat)
+        source_library = self.gammacat.to_source_library()
+        header = textwrap.dedent("""
+        <!-- Bright sources for CTA-1DC from gamma-cat -->
+        """)
+        self.xml = source_library.to_xml(
+            title='gammacat',
+            header=header,
+        )
 
 
 class SkyModelImageMaker:
@@ -101,8 +120,8 @@ class SkyModelImageMaker:
         images = [image_r, image_g, image_b]
 
         for image in images:
-
             # TODO: for now, we need to flip in y direction
+            # https://github.com/matplotlib/matplotlib/issues/7656
             # https://github.com/astropy/astropy/pull/5535#issuecomment-267127610
             image.data = np.flipud(image.data)
 
