@@ -9,8 +9,11 @@ from collections import OrderedDict
 import numpy as np
 from astropy import units as u
 from astropy.coordinates import SkyCoord, Angle
+from astropy.table import Table
+from astropy.table import vstack as table_vstack
 from gammapy.image import SkyImage
 from gammapy.catalog import select_sky_box, SourceCatalogGammaCat
+from gammapy.astro.population import make_base_catalog_galactic, add_observed_parameters
 
 __all__ = [
     'GPSSkyModelSourcesBright',
@@ -214,10 +217,51 @@ class GPSSkyModelSourcesFaint(SkyModelMixin):
         pass
 
     def make(self):
+        self.make_pwn()
+        self.make_snr()
+        self.make_total()
         self.make_xml()
+
+    def make_pwn(self):
+        max_age = 1E6 * u.yr
+        SN_rate = 3. / (100. * u.yr)
+        n_sources = max_age * SN_rate
+        table = make_base_catalog_galactic(
+            n_sources=n_sources,
+            rad_dis='L06',
+            vel_dis='F06B',
+            max_age=max_age,
+            spiralarms=True,
+        )
+        add_observed_parameters(table)
+
+        # Example how to make a selection using a boolean mask
+        # TODO: put something useful!
+        mask = table['distance'] < 3 * u.kpc
+        table = table[mask]
+
+        # Example how to make a selection using row indices
+        idx = [0, 42, 99]
+        table = table[idx]
+
+        self.table_pwn = table
+
+    def make_snr(self):
+        self.table_snr = Table()
+
+    def make_total(self):
+        self.table_total = table_vstack([
+            self.table_pwn,
+            self.table_snr,
+        ])
 
     def make_xml(self):
         self.xml = '<sources></sources>'  # a dummy
+
+    def write_table(self):
+        filename = 'sky_model/ctadc_skymodel_gps_sources_faint.ecsv'
+        log.info('Writing {}'.format(filename))
+        self.table_total.write(filename, format='ascii.ecsv')
 
 
 def make_sky_models_xml():
@@ -230,6 +274,7 @@ def make_sky_models_xml():
     gps_sources_faint = GPSSkyModelSourcesFaint()
     gps_sources_faint.make()
     gps_sources_faint.write_xml()
+    gps_sources_faint.write_table()
 
 
 def make_sky_models_images():
