@@ -43,7 +43,6 @@ information. The specification of data formats for gamma-ray astronomy is work
 in progress at http://gamma-astro-data-formats.readthedocs.io/ .
 Some of the formats we use (e.g. event lists) are already described there.
 
-
 ## How to run the scripts?
 
 We use Python scripts to produce the sky model and data.
@@ -62,24 +61,19 @@ and all scripts should work.
 
 ### Installation
 
-To run the scripts, you have to install Python 3.5 or later
-and the packages listed in `requirements.txt` via `pip`
+To run the scripts, you have to install some software.
 
-    pip install -r requirements.txt
+One simple recommended way is to get https://www.continuum.io/downloads
+and then install extra packages using 
 
-The following packages are also available via `conda` (or other package managers,
-like `brew` or `macports` on macOS, or `apt-get` or `yum` on Linux):
+    conda env create --file environment.yml 
 
-    conda install click pyyaml pytest numpy scipy matplotlib astropy
+If there's some issue (e.g. with HTTPS access for the pip install part),
+you can `conda install` or `pip install` the packages listed in that file
+individually. And of course, if you prefer, there's other ways to install the software,
+e.g. using Linux or Mac package managers.
 
-And then you can install the rest with `pip`:
-
-    pip install git+https://github.com/regions/regions.git#egg=regions
-    pip install git+https://github.com/gammapy/gammapy.git#egg=gammapy
-    pip install git+https://github.com/naima/naima.git#egg=naima
-
-
-Here's some links to the documentation pages for these packages:
+Here's some links to the documentation pages for the packages we use:
 
 - pytest (http://docs.pytest.org/), optional, for automated tests
 - Numpy (https://docs.scipy.org/doc/numpy/reference/)
@@ -100,5 +94,3 @@ Commonly used abbreviations:
 - `EGS` - Extragalactic survey
 - `ST` - Science tools
 - `IRF` - Instrument response function
-
-## Hello world!

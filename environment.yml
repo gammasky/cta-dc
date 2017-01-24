@@ -1,0 +1,19 @@
+name: cta-dc
+
+channels:
+  - conda-forge
+  - astropy
+
+dependencies:
+  - python=3
+  - pytest
+  - click
+  - pyyaml
+  - numpy
+  - scipy
+  - matplotlib
+  - astropy
+
+  - pip:
+    - git+https://github.com/regions/regions.git#egg=regions
+    - git+https://github.com/gammapy/gammapy.git#egg=gammapy
