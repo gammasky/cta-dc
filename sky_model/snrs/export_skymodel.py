@@ -45,6 +45,7 @@ def read_txt_files():
         dict(name='xi', value=0.1, description='CR efficiency'),
     ]
 
+    # import IPython; IPython.embed()
     # TODO: add this back as Python list!
     # t.meta['energy_array'] = EGRID
 

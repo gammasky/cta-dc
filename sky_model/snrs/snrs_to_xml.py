@@ -44,9 +44,11 @@ SPECTRUM_NODE_TEMPLATE = """\
 """
 
 
-def make_table_spectrum_xml(energy_list, dnde_list):
+def make_table_spectrum_xml(sed_energy, sed_dnde):
+    print(sed_energy.shape)
+    print(sed_dnde.shape)
     xml_spectrum_nodes = ''
-    for energy, dnde in zip(energy_list, dnde_list):
+    for energy, dnde in zip(sed_energy, sed_dnde):
         xml_spectrum_nodes += SPECTRUM_NODE_TEMPLATE.format(
             energy=energy,
             dnde=dnde,
@@ -55,18 +57,17 @@ def make_table_spectrum_xml(energy_list, dnde_list):
     return SPECTRUM_TEMPLATE.format(xml_spectrum_nodes=xml_spectrum_nodes)
 
 
-def make_snr_xml(data):
-    table = data['table']
+def make_snr_xml(table):
     # print(table.colnames)
     # table.info()
     # table.info('stats')
 
     xml_sources = ''
-    for row in table:
+    for row in table[:2]:
 
         xml_spectral = make_table_spectrum_xml(
-            energy_list=data['energy'],
-            dnde_list=data['dnde'],
+            sed_energy=row['sed_energy'],
+            sed_dnde=row['sed_dnde'],
         )
 
         # Arbitrary assumption on width of the SNR shell
@@ -113,14 +114,15 @@ def read_snr_data():
     table['glat'] = glat
     table['glon'] = glon
 
-    data = dict(
-        table=table,
-        energy=np.linspace(1, 3, 5),
-        dnde=np.logspace(-10, -8, 5),
-    )
-    return data
+    sed_energy = np.tile([1, 2, 3], reps=(len(table), 1))
+    table['sed_energy'] = sed_energy
+
+    sed_dnde = np.tile([1, 2, 3], reps=(len(table), 1))
+    table['sed_dnde'] = sed_dnde
+
+    return table
 
 
 if __name__ == '__main__':
-    data = read_snr_data()
-    make_snr_xml(data)
+    table = read_snr_data()
+    make_snr_xml(table)
