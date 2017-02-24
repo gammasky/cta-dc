@@ -36,17 +36,27 @@ SPECTRUM_TEMPLATE = """\
 {xml_spectrum_nodes}\
     </spectrum>"""
 
-SPECTRUM_NODE_TEMPLATE = """\
+# Multi-line, more readable version
+SPECTRUM_NODE_TEMPLATE_READABLE = """\
       <node>
         <parameter name="Energy" value="{energy:.5f}" unit="TeV"/>
         <parameter name="Intensity" value="{dnde:.5g}" unit="cm-2 s-1 TeV-1"/>
       </node>
 """
 
+# Single line, more compact version
+SPECTRUM_NODE_TEMPLATE_COMPACT = """\
+<node>\
+<parameter name="Energy" value="{energy:.5f}" unit="TeV"/>\
+<parameter name="Intensity" value="{dnde:.5g}" unit="cm-2 s-1 TeV-1"/>\
+</node>
+"""
+
+# Here you can select which one you want
+SPECTRUM_NODE_TEMPLATE = SPECTRUM_NODE_TEMPLATE_READABLE
+
 
 def make_table_spectrum_xml(sed_energy, sed_dnde):
-    print(sed_energy.shape)
-    print(sed_dnde.shape)
     xml_spectrum_nodes = ''
     for energy, dnde in zip(sed_energy, sed_dnde):
         xml_spectrum_nodes += SPECTRUM_NODE_TEMPLATE.format(
@@ -58,13 +68,9 @@ def make_table_spectrum_xml(sed_energy, sed_dnde):
 
 
 def make_snr_xml(table):
-    # print(table.colnames)
-    # table.info()
-    # table.info('stats')
 
     xml_sources = ''
-    for row in table[:2]:
-
+    for row in table:
         xml_spectral = make_table_spectrum_xml(
             sed_energy=row['sed_energy'],
             sed_dnde=row['sed_dnde'],
@@ -103,6 +109,7 @@ def make_snr_xml(table):
 
 def read_snr_data():
     filename = 'ctadc_skymodel_gps_sources_snr.ecsv'
+    print('Reading {}'.format(filename))
     table = Table.read(filename, format='ascii.ecsv')
 
     distance, glon, glat = compute_galactic_coordinates(
@@ -114,10 +121,15 @@ def read_snr_data():
     table['glat'] = glat
     table['glon'] = glon
 
-    sed_energy = np.tile([1, 2, 3], reps=(len(table), 1))
+    energy_array = np.array(table.meta['energy_array'])
+    sed_energy = np.tile(energy_array, reps=(len(table), 1))
     table['sed_energy'] = sed_energy
 
-    sed_dnde = np.tile([1, 2, 3], reps=(len(table), 1))
+    # Copy over fluxes into array column
+    sed_dnde = np.empty_like(sed_energy)
+    for col_idx in range(50):
+        sed_dnde[:, col_idx] = table.columns[9 + col_idx]
+
     table['sed_dnde'] = sed_dnde
 
     return table
