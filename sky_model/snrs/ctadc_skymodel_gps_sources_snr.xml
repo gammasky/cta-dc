@@ -1,0 +1,100 @@
+<?xml version="1.0" standalone="no"?>
+
+<source_library title="CTA 1DC simulated supernova remnants">
+
+
+ <source name="snr_0" type="ExtendedSource">
+    <spectrum type="NodeFunction">
+      <node>
+        <parameter name="Energy" value="1.00000" unit="TeV"/>
+        <parameter name="Intensity" value="1e-10" unit="cm-2 s-1 TeV-1"/>
+      </node>
+      <node>
+        <parameter name="Energy" value="1.50000" unit="TeV"/>
+        <parameter name="Intensity" value="3.1623e-10" unit="cm-2 s-1 TeV-1"/>
+      </node>
+      <node>
+        <parameter name="Energy" value="2.00000" unit="TeV"/>
+        <parameter name="Intensity" value="1e-09" unit="cm-2 s-1 TeV-1"/>
+      </node>
+      <node>
+        <parameter name="Energy" value="2.50000" unit="TeV"/>
+        <parameter name="Intensity" value="3.1623e-09" unit="cm-2 s-1 TeV-1"/>
+      </node>
+      <node>
+        <parameter name="Energy" value="3.00000" unit="TeV"/>
+        <parameter name="Intensity" value="1e-08" unit="cm-2 s-1 TeV-1"/>
+      </node>
+    </spectrum>
+    <spatialModel type="RadialShell">
+        <parameter name="GLON" value="42.00000" unit="deg"/>
+        <parameter name="GLAT" value="43.00000" unit="deg"/>
+        <parameter name="Radius" value="0.06294" unit="deg"/>
+        <parameter name="Width" value="0.00000" unit="deg"/>
+    </spatialModel>
+ </source>
+
+ <source name="snr_1" type="ExtendedSource">
+    <spectrum type="NodeFunction">
+      <node>
+        <parameter name="Energy" value="1.00000" unit="TeV"/>
+        <parameter name="Intensity" value="1e-10" unit="cm-2 s-1 TeV-1"/>
+      </node>
+      <node>
+        <parameter name="Energy" value="1.50000" unit="TeV"/>
+        <parameter name="Intensity" value="3.1623e-10" unit="cm-2 s-1 TeV-1"/>
+      </node>
+      <node>
+        <parameter name="Energy" value="2.00000" unit="TeV"/>
+        <parameter name="Intensity" value="1e-09" unit="cm-2 s-1 TeV-1"/>
+      </node>
+      <node>
+        <parameter name="Energy" value="2.50000" unit="TeV"/>
+        <parameter name="Intensity" value="3.1623e-09" unit="cm-2 s-1 TeV-1"/>
+      </node>
+      <node>
+        <parameter name="Energy" value="3.00000" unit="TeV"/>
+        <parameter name="Intensity" value="1e-08" unit="cm-2 s-1 TeV-1"/>
+      </node>
+    </spectrum>
+    <spatialModel type="RadialShell">
+        <parameter name="GLON" value="42.00000" unit="deg"/>
+        <parameter name="GLAT" value="43.00000" unit="deg"/>
+        <parameter name="Radius" value="0.07059" unit="deg"/>
+        <parameter name="Width" value="0.00000" unit="deg"/>
+    </spatialModel>
+ </source>
+
+ <source name="snr_2" type="ExtendedSource">
+    <spectrum type="NodeFunction">
+      <node>
+        <parameter name="Energy" value="1.00000" unit="TeV"/>
+        <parameter name="Intensity" value="1e-10" unit="cm-2 s-1 TeV-1"/>
+      </node>
+      <node>
+        <parameter name="Energy" value="1.50000" unit="TeV"/>
+        <parameter name="Intensity" value="3.1623e-10" unit="cm-2 s-1 TeV-1"/>
+      </node>
+      <node>
+        <parameter name="Energy" value="2.00000" unit="TeV"/>
+        <parameter name="Intensity" value="1e-09" unit="cm-2 s-1 TeV-1"/>
+      </node>
+      <node>
+        <parameter name="Energy" value="2.50000" unit="TeV"/>
+        <parameter name="Intensity" value="3.1623e-09" unit="cm-2 s-1 TeV-1"/>
+      </node>
+      <node>
+        <parameter name="Energy" value="3.00000" unit="TeV"/>
+        <parameter name="Intensity" value="1e-08" unit="cm-2 s-1 TeV-1"/>
+      </node>
+    </spectrum>
+    <spatialModel type="RadialShell">
+        <parameter name="GLON" value="42.00000" unit="deg"/>
+        <parameter name="GLAT" value="43.00000" unit="deg"/>
+        <parameter name="Radius" value="0.77077" unit="deg"/>
+        <parameter name="Width" value="0.00000" unit="deg"/>
+    </spatialModel>
+ </source>
+
+
+</source_library>
