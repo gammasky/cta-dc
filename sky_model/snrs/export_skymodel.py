@@ -7,7 +7,7 @@ from astropy.table import Table
 
 
 def read_txt_files():
-    filename = 'test_skymodel.txt'
+    filename = 'ctadc_skymodel_gps_sources_snr.txt'
     print('Reading {}'.format(filename))
     data = np.genfromtxt(filename, defaultfmt='%0.6f', names=True)
 
