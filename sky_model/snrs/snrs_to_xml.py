@@ -4,6 +4,7 @@ Convert SNRs to XML format.
 import numpy as np
 import astropy.units as u
 from astropy.table import Table
+from gammapy.utils.coordinates import galactic as compute_galactic_coordinates
 
 SOURCE_LIBRARY_TEMPLATE = """\
 <?xml version="1.0" standalone="no"?>
@@ -61,7 +62,7 @@ def make_snr_xml(data):
     # table.info('stats')
 
     xml_sources = ''
-    for row in table[:3]:
+    for row in table:
 
         xml_spectral = make_table_spectrum_xml(
             energy_list=data['energy'],
@@ -74,9 +75,10 @@ def make_snr_xml(data):
         width_fraction = 0
         radius = u.Quantity(row['size'], 'arcmin').to('deg')
         width = width_fraction * radius
+
         xml_spatial = SPATIAL_TEMPLATE.format(
-            glon=42,
-            glat=43,
+            glon=row['glon'],
+            glat=row['glat'],
             radius=radius.value,
             width=width.value,
         )
@@ -101,6 +103,16 @@ def make_snr_xml(data):
 def read_snr_data():
     filename = 'ctadc_skymodel_gps_sources_snr.ecsv'
     table = Table.read(filename, format='ascii.ecsv')
+
+    distance, glon, glat = compute_galactic_coordinates(
+        x=table['POS_X'].quantity,
+        y=table['POS_Y'].quantity,
+        z=table['POS_Z'].quantity,
+    )
+    table['distance'] = distance
+    table['glat'] = glat
+    table['glon'] = glon
+
     data = dict(
         table=table,
         energy=np.linspace(1, 3, 5),
