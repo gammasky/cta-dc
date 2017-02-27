@@ -1,49 +1,49 @@
 <temporal type="PhaseCurve" file="LS_DC.fits">
   <parameter name="Normalization" scale="1" value="2.48"     min="0.0" max="1000.0"   free="0"/>
-  <parameter name="MJD"           scale="1" value="51544.5" min="0.0" max="100000.0" free="0"/>
-  <parameter name="Phase"         scale="1" value="0.0"     min="0.0" max="1.0"      free="0"/>
-  <parameter name="F0"            scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-  <parameter name="F1"            scale="1" value="0.1"     min="0.0" max="1000.0"   free="0"/>
-  <parameter name="F2"            scale="1" value="0.01"    min="0.0" max="1000.0"   free="0"/>
+  <parameter name="MJD"           scale="1" value="51943.09" min="0.0" max="100000.0" free="0"/>
+  <parameter name="Phase"         scale="1" value="0.0"      min="0.0" max="1.0"      free="0"/>
+  <parameter name="F0"            scale="1" value="0.0"      min="0.0" max="1000.0"   free="0"/>
+  <parameter name="F1"            scale="1" value="3.90603"  min="0.0" max="1000.0"   free="0"/>
+  <parameter name="F2"            scale="1" value="0.01"     min="0.0" max="1000.0"   free="0"/>
 </temporal>
 <temporal type="PhaseCurve" file="PSRB1259_DC.fits">
   <parameter name="Normalization" scale="1" value="2.38"     min="0.0" max="1000.0"   free="0"/>
-  <parameter name="MJD"           scale="1" value="51544.5" min="0.0" max="100000.0" free="0"/>
+  <parameter name="MJD"           scale="1" value="53071.24473" min="0.0" max="100000.0" free="0"/>
   <parameter name="Phase"         scale="1" value="0.0"     min="0.0" max="1.0"      free="0"/>
-  <parameter name="F0"            scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-  <parameter name="F1"            scale="1" value="0.1"     min="0.0" max="1000.0"   free="0"/>
+  <parameter name="F0"            scale="1" value="0.0"     min="0.0" max="1000.0"   free="0"/>
+  <parameter name="F1"            scale="1" value="1236.72452"     min="0.0" max="1000.0"   free="0"/>
   <parameter name="F2"            scale="1" value="0.01"    min="0.0" max="1000.0"   free="0"/>
 </temporal>
 <temporal type="PhaseCurve" file="HESSJ1832_DC.fits">
-  <parameter name="Normalization" scale="1" value="0.708"     min="0.0" max="1000.0"   free="0"/>
-  <parameter name="MJD"           scale="1" value="51544.5" min="0.0" max="100000.0" free="0"/>
+  <parameter name="Normalization" scale="1" value="0.708"   min="0.0" max="1000.0"   free="0"/>
+  <parameter name="MJD"           scale="1" value="55000"   min="0.0" max="100000.0" free="0"/>
   <parameter name="Phase"         scale="1" value="0.0"     min="0.0" max="1.0"      free="0"/>
-  <parameter name="F0"            scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
+  <parameter name="F0"            scale="1" value="60"      min="0.0" max="1000.0"   free="0"/>
   <parameter name="F1"            scale="1" value="0.1"     min="0.0" max="1000.0"   free="0"/>
   <parameter name="F2"            scale="1" value="0.01"    min="0.0" max="1000.0"   free="0"/>
 </temporal>
 <temporal type="PhaseCurve" file="LSI_DC.fits">
-  <parameter name="Normalization" scale="1" value="5.2"     min="0.0" max="1000.0"   free="0"/>
-  <parameter name="MJD"           scale="1" value="51544.5" min="0.0" max="100000.0" free="0"/>
-  <parameter name="Phase"         scale="1" value="0.0"     min="0.0" max="1.0"      free="0"/>
-  <parameter name="F0"            scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-  <parameter name="F1"            scale="1" value="0.1"     min="0.0" max="1000.0"   free="0"/>
-  <parameter name="F2"            scale="1" value="0.01"    min="0.0" max="1000.0"   free="0"/>
+  <parameter name="Normalization" scale="1" value="5.2"       min="0.0" max="1000.0"   free="0"/>
+  <parameter name="MJD"           scale="1" value="43366.275" min="0.0" max="100000.0" free="0"/>
+  <parameter name="Phase"         scale="1" value="0.0"       min="0.0" max="1.0"      free="0"/>
+  <parameter name="F0"            scale="1" value="0.0"       min="0.0" max="1000.0"   free="0"/>
+  <parameter name="F1"            scale="1" value="26.496"    min="0.0" max="1000.0"   free="0"/>
+  <parameter name="F2"            scale="1" value="0.01"      min="0.0" max="1000.0"   free="0"/>
 </temporal>
 <temporal type="PhaseCurve" file="HESSJ0632_DC.fits">
   <parameter name="Normalization" scale="1" value="1.5"     min="0.0" max="1000.0"   free="0"/>
-  <parameter name="MJD"           scale="1" value="51544.5" min="0.0" max="100000.0" free="0"/>
+  <parameter name="MJD"           scale="1" value="54857" min="0.0" max="100000.0" free="0"/>
   <parameter name="Phase"         scale="1" value="0.0"     min="0.0" max="1.0"      free="0"/>
-  <parameter name="F0"            scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-  <parameter name="F1"            scale="1" value="0.1"     min="0.0" max="1000.0"   free="0"/>
+  <parameter name="F0"            scale="1" value="0.0"     min="0.0" max="1000.0"   free="0"/>
+  <parameter name="F1"            scale="1" value="315"     min="0.0" max="1000.0"   free="0"/>
   <parameter name="F2"            scale="1" value="0.01"    min="0.0" max="1000.0"   free="0"/>
 </temporal>
 <temporal type="PhaseCurve" file="HESSJ1018_DC.fits">
   <parameter name="Normalization" scale="1" value="0.884"     min="0.0" max="1000.0"   free="0"/>
-  <parameter name="MJD"           scale="1" value="51544.5" min="0.0" max="100000.0" free="0"/>
+  <parameter name="MJD"           scale="1" value="55403.3" min="0.0" max="100000.0" free="0"/>
   <parameter name="Phase"         scale="1" value="0.0"     min="0.0" max="1.0"      free="0"/>
-  <parameter name="F0"            scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-  <parameter name="F1"            scale="1" value="0.1"     min="0.0" max="1000.0"   free="0"/>
+  <parameter name="F0"            scale="1" value="0.0"     min="0.0" max="1000.0"   free="0"/>
+  <parameter name="F1"            scale="1" value="16.58"     min="0.0" max="1000.0"   free="0"/>
   <parameter name="F2"            scale="1" value="0.01"    min="0.0" max="1000.0"   free="0"/>
 </temporal>
 <source name="Binary_N1" type="PointSource" tscalc="1">
@@ -58,10 +58,10 @@
     </spatialModel>
     <temporal type="PhaseCurve" file="Binary_N1.fits">
     <parameter name="Normalization" scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-    <parameter name="MJD"           scale="1" value="51544.5" min="0.0" max="100000.0" free="0"/>
+    <parameter name="MJD"           scale="1" value="55000" min="0.0" max="100000.0" free="0"/>
     <parameter name="Phase"         scale="1" value="0.0"     min="0.0" max="1.0"      free="0"/>
-    <parameter name="F0"            scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-    <parameter name="F1"            scale="1" value="0.1"     min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F0"            scale="1" value="0.0"     min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F1"            scale="1" value="710"     min="0.0" max="1000.0"   free="0"/>
     <parameter name="F2"            scale="1" value="0.01"    min="0.0" max="1000.0"   free="0"/>
     </temporal>
 </source>
@@ -77,10 +77,10 @@
     </spatialModel>
     <temporal type="PhaseCurve" file="Binary_N2.fits">
     <parameter name="Normalization" scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-    <parameter name="MJD"           scale="1" value="51544.5" min="0.0" max="100000.0" free="0"/>
+    <parameter name="MJD"           scale="1" value="55000" min="0.0" max="100000.0" free="0"/>
     <parameter name="Phase"         scale="1" value="0.0"     min="0.0" max="1.0"      free="0"/>
-    <parameter name="F0"            scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-    <parameter name="F1"            scale="1" value="0.1"     min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F0"            scale="1" value="0.0"     min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F1"            scale="1" value="193"     min="0.0" max="1000.0"   free="0"/>
     <parameter name="F2"            scale="1" value="0.01"    min="0.0" max="1000.0"   free="0"/>
     </temporal>
 </source>
@@ -96,10 +96,10 @@
     </spatialModel>
     <temporal type="PhaseCurve" file="Binary_N3.fits">
     <parameter name="Normalization" scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-    <parameter name="MJD"           scale="1" value="51544.5" min="0.0" max="100000.0" free="0"/>
+    <parameter name="MJD"           scale="1" value="55000" min="0.0" max="100000.0" free="0"/>
     <parameter name="Phase"         scale="1" value="0.0"     min="0.0" max="1.0"      free="0"/>
-    <parameter name="F0"            scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-    <parameter name="F1"            scale="1" value="0.1"     min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F0"            scale="1" value="0.0"     min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F1"            scale="1" value="57"     min="0.0" max="1000.0"   free="0"/>
     <parameter name="F2"            scale="1" value="0.01"    min="0.0" max="1000.0"   free="0"/>
     </temporal>
 </source>
@@ -115,10 +115,10 @@
     </spatialModel>
     <temporal type="PhaseCurve" file="Binary_N4.fits">
     <parameter name="Normalization" scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-    <parameter name="MJD"           scale="1" value="51544.5" min="0.0" max="100000.0" free="0"/>
+    <parameter name="MJD"           scale="1" value="55000" min="0.0" max="100000.0" free="0"/>
     <parameter name="Phase"         scale="1" value="0.0"     min="0.0" max="1.0"      free="0"/>
-    <parameter name="F0"            scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-    <parameter name="F1"            scale="1" value="0.1"     min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F0"            scale="1" value="0.0"     min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F1"            scale="1" value="12.6"     min="0.0" max="1000.0"   free="0"/>
     <parameter name="F2"            scale="1" value="0.01"    min="0.0" max="1000.0"   free="0"/>
     </temporal>
 </source>
@@ -134,10 +134,10 @@
     </spatialModel>
     <temporal type="PhaseCurve" file="Binary_N5.fits">
     <parameter name="Normalization" scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-    <parameter name="MJD"           scale="1" value="51544.5" min="0.0" max="100000.0" free="0"/>
+    <parameter name="MJD"           scale="1" value="55000" min="0.0" max="100000.0" free="0"/>
     <parameter name="Phase"         scale="1" value="0.0"     min="0.0" max="1.0"      free="0"/>
-    <parameter name="F0"            scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
-    <parameter name="F1"            scale="1" value="0.1"     min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F0"            scale="1" value="0.0"     min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F1"            scale="1" value="2.59"     min="0.0" max="1000.0"   free="0"/>
     <parameter name="F2"            scale="1" value="0.01"    min="0.0" max="1000.0"   free="0"/>
     </temporal>
 </source>
