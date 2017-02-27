@@ -59,6 +59,7 @@ def make_pwn_xml(table):
     remove_or_not_4 = 0
     remove_or_not_5 = 0
     xml_sources = ''
+
     #for row in table[:2]:
     for row in table:
         if (row['spec_norm_crab']>0.1):
@@ -96,7 +97,6 @@ def make_pwn_xml(table):
                 remove_or_not_5 += 1
                 print(remove_or_not_5, row.index, row['spec_norm_crab'])
                 continue;
-
 
         xml_spectral = SPECTRUM_TEMPLATE.format(
             norm=row['spec_norm'],
