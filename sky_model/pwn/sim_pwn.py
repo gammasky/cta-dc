@@ -1,21 +1,33 @@
+import numpy as np
 import astropy.units as u
+from astropy.coordinates import Angle
 from astropy.table import Table, Column
-from astropy.units import Quantity
-from astropy.coordinates import SkyCoord, spherical_to_cartesian
-
-from gammapy.astro.population.simulate import astrometry
-from gammapy.astro.population import Exponential, FaucherSpiral, RMIN, RMAX, ZMIN, ZMAX, radial_distributions
 from astropy.modeling.models import Gaussian2D
+from gammapy.astro.population import make_base_catalog_galactic, add_observed_parameters
 from gammapy.utils.random import get_random_state
-from gammapy.spectrum import SpectrumObservation, SpectrumFit, models
+from gammapy.spectrum.models import LogParabola
+
+def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
+    spec = LogParabola(
+        amplitude=1 * u.Unit('cm-2 s-1 TeV-1'),
+        reference=1 * u.TeV,
+        alpha=alpha,
+        beta=beta,
+    )
+
+    # Assumption before for `energy_flux` was energy band 1 to 10 TeV
+    energy_flux_standard_candle = spec.energy_flux(emin=1 * u.TeV, emax=10 * u.TeV)
+    amplitude = energy_flux / energy_flux_standard_candle * spec.parameters['amplitude'].quantity
+    return amplitude
 
 
-def make_base_pwn_catalog(n_sources = 375, spiral_arms=True, rad_dis='YK04',
-                          mean_extension=0.13, sigma_extension=0.2, intrinsic_extension = 50,
-                          mean_index_alpha=1.8, sigma_index_alpha=0.27, max_index_beta):
-
-    """
-        Make a catalog of PWN
+def make_pwn_table(
+        n_sources=375, random_state=0,
+        mean_extension=0.13, sigma_extension=0.2, intrinsic_extension=50,
+        mean_index_alpha=1.8, sigma_index_alpha=0.27, max_index_beta=0.8,
+        mean_logluminosity=33.5, sigma_logluminosity=1,
+):
+    """Make a catalog of PWN.
 
     to be defined
     1. how many from LogN-LogS
@@ -25,106 +37,77 @@ def make_base_pwn_catalog(n_sources = 375, spiral_arms=True, rad_dis='YK04',
     the the Gaus distribution of the size of the known PWNe
     5. spectral: logparabola (how to choose the parameters)
 
-
-
-
-
     Parameters
     -----------
-
     n_sources: int
         number of sources defined from the logN-logS of the PWN population
-
     rad_dis : callable
         Radial surface density distribution of sources.
         YusifovKucuk2004 is radial distribution of the surface density of pulsars in the galaxy
-
-
-
     mean_extension: float deg
         mean of the Gaussian distribution of the angular extension of the known PWN
     sigma_extension: float deg
         sigma of the Gaussian distribution of the angular extension of the known PWN
-
     intrinsic_extension: int in pc
         this is needed to compute the distance
-
     mean_index_alpha: float
         mean of the Gaus distribution of the alpha index under the assumption of a logparabola spectral model
-
     sigma_index_alpha: float
         mean of the Gaus distribution of the alpha index under the assumption of a logparabola spectral model
-
     max_index_beta: float
         maximum value of the beta index under the assumption of a logparabola spectral model.
         Assuming an uniform distribution for beta
-
-
-
     """
-
-
-
-    ### simulate position. Returns x, y in cartesian coordinates
-    if isinstance(rad_dis, str):
-        rad_dis = radial_distributions[rad_dis]
-
-    # Draw r from the radial distribution
-    r = Quantity(draw(RMIN.value, RMAX.value, n_sources, pdf(rad_dis())), 'kpc')
-
-    # Apply spiralarm modelling, if not something else should be added
-    if spiral_arms:
-        r, theta, spiralarm = FaucherSpiral()(r)
-
-    #Compute cartesian coordinates
-    x, y = astrometry.cartesian(r, theta)
+    table = make_base_catalog_galactic(
+        n_sources=n_sources,
+        max_age=0 * u.year,
+    )
+    table = add_observed_parameters(table)
 
     random_state = get_random_state(random_state)
 
-    # Define spectral model. I want a logparabola.
+    # Draw angular extension, then compute physical extension
+    angular_extension = random_state.normal(mean_extension, sigma_extension, n_sources)
+    angular_extension = np.clip(angular_extension, a_min=0.05, a_max=None)
 
+    # intrinsic_extension = intrinsic_extension * u.pc
+    angular_extension_arcmin = Angle(angular_extension, 'deg').to('arcmin')
+    # like this it is not an array!
+    constant = 0.000291 / u.arcmin
+    intrinsic_extension = table['distance'] * (angular_extension_arcmin * constant)
+
+    # Draw log parabola spectral model parameters
     alpha = random_state.normal(mean_index_alpha, sigma_index_alpha, n_sources)
     beta = random_state.uniform(0, max_index_beta, n_sources)
 
+    # Define the luminosity
 
-    #Define the luminosity
+    logluminosity = random_state.normal(mean_logluminosity, sigma_logluminosity, n_sources)
+    luminosity = (10 ** logluminosity) * u.erg / u.second
 
-    logluminosity = random_state.normal(mean_logluminosity,sigma_logluminosity,n_sources)
+    distance = table['distance'].quantity
 
-    luminosity = power(10,logluminosity)
+    # integral sed between 1 and 10 TeV
+    energy_flux = luminosity / (4 * np.pi * distance ** 2)
+    energy_flux = energy_flux.to('TeV cm-2 s-1')
 
-    luminosity = luminosity * u.erg / u.second
+    vals = []
+    for idx in range(len(table)):
+        val = flux_amplitude_from_energy_flux(
+            alpha[idx], beta[idx], energy_flux[idx],
+        )
+        vals.append(val)
+    norm = u.Quantity(vals)
 
+    # import IPython; IPython.embed()
+    table = table[['x', 'y', 'z', 'spiralarm', 'GLON', 'GLAT', 'RA', 'DEC', 'distance']]
+    table['spec_alpha'] = Column(alpha, description='Spectral model parameter (log parabola)')
 
-    #Define a 2DGauss morphology
-    angular_extension = random_state.normal(mean_extension, sigma_extension, n_sources)
-    #how do I define the unit?
-    angular_extension = angular_extension[angular_extension < 0] = 0.005
-    #### SIGMA NEEDS TO BE POSITIVE
+    return table
 
-    intrinsic_extension = intrinsic_extension * u.pc
-    angular_extension_arcmin = angular_extension.to('arcmin')
-    # like this it is not an array!
-    constant = 0.000291 / u.arcmin
-    distance = intrinsic_extension / (angular_extension_arcmin * constant)
+if __name__ == '__main__':
+    table = make_pwn_table()
 
-    #integral sed between 1 and 10 TeV
-    sed = luminosity / (4 * np.pi * (distance ** 2))
-    sed =  sed.to('TeV cm**-2 s**-1')
-
-
-    #ampl = 1. / (2 * np.pi * (sigma) ** 2)
-    ampl = draw(flux_min, flux_max, n_sources, power_law,
-                index=flux_index)
-
-    spatial_model = Gaussian2D(ampl, x, y, x_stddev=sigma, y_stddev=sigma)
-
-
-
-
-
-
-    table = Table()
-    table['x'] = Column(x, unit='kpc', description='Galactocentric x coordinate')
-    table['y'] = Column(y, unit='kpc', description='Galactocentric y coordinate')
-
+    filename = 'ctadc_skymodel_gps_sources_pwn.ecsv'
+    print('Writing {}'.format(filename))
+    table.write(filename, format='ascii.ecsv', overwrite=True)
