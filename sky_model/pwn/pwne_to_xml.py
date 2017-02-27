@@ -53,12 +53,49 @@ SPECTRUM_TEMPLATE = """\
 
 
 def make_pwn_xml(table):
-
+    remove_or_not = 0
+    remove_or_not_2 = 0
+    remove_or_not_3 = 0
+    remove_or_not_4 = 0
+    remove_or_not_5 = 0
     xml_sources = ''
     #for row in table[:2]:
     for row in table:
-        if (row['sigma']>0.5):
-            print(row['sigma'])
+        if (row['spec_norm_crab']>0.1):
+            #print(row['spec_norm_crab'])
+            continue;
+
+
+        if (row['spec_norm_crab'] > 0.08):
+            if (remove_or_not < 2):
+                remove_or_not+=1
+                print(remove_or_not, row.index, row['spec_norm_crab'])
+                continue;
+
+        if (row['spec_norm_crab'] < 0.08 and row['spec_norm_crab'] > 0.06):
+            if (remove_or_not_2 < 2):
+                remove_or_not_2+=1
+                print(remove_or_not_2, row.index, row['spec_norm_crab'])
+                continue;
+
+
+        if (row['spec_norm_crab'] < 0.06 and row['spec_norm_crab'] > 0.04):
+            if (remove_or_not_3 < 2):
+                remove_or_not_3 += 1
+                print(remove_or_not_3, row.index, row['spec_norm_crab'])
+                continue;
+
+        if (row['spec_norm_crab'] < 0.04 and row['spec_norm_crab'] > 0.02):
+            if (remove_or_not_4 < 2):
+                remove_or_not_4 += 1
+                print(remove_or_not_4, row.index, row['spec_norm_crab'])
+                continue;
+
+        if (row['spec_norm_crab'] < 0.02 and row['spec_norm_crab'] > 0.01):
+            if (remove_or_not_5 < 2):
+                remove_or_not_5 += 1
+                print(remove_or_not_5, row.index, row['spec_norm_crab'])
+                continue;
 
 
         xml_spectral = SPECTRUM_TEMPLATE.format(
