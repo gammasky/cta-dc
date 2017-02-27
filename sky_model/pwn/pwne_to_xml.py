@@ -57,12 +57,10 @@ def make_pwn_xml(table):
     xml_sources = ''
     #for row in table[:2]:
     for row in table:
-        print(row)
+        if (row['sigma']>0.5):
+            print(row['sigma'])
 
 
-
-        #import IPython;
-        #IPython.embed();
         xml_spectral = SPECTRUM_TEMPLATE.format(
             norm=row['spec_norm'],
             index=row['spec_alpha'],
@@ -70,7 +68,6 @@ def make_pwn_xml(table):
             energy = 1e06
             )
 
-        
         # Arbitrary assumption on width of the  shell
         # TODO: ask Pierre what we should put!
         # Also check if radius is inner or outer!
@@ -79,14 +76,14 @@ def make_pwn_xml(table):
         #width = width_fraction * radius
 
         xml_spatial = SPATIAL_TEMPLATE.format(
-             glon=row['GLON'],
-             glat=row['GLAT'],
-             sigma=row['sigma']
+            glon=row['GLON'],
+            glat=row['GLAT'],
+            sigma=row['sigma']
             )
 
        # import IPython; IPython.embed();
         source_name='pwn_{}'.format(row.index)
-        print(source_name)
+        #print(source_name)
 
         xml_source = SOURCE_TEMPLATE.format(
              source_name=source_name,
@@ -95,7 +92,7 @@ def make_pwn_xml(table):
              )
 
         xml_sources += xml_source
-        print(xml_sources)
+        #print(xml_sources)
 
     xml = SOURCE_LIBRARY_TEMPLATE.format(xml_sources=xml_sources)
 
