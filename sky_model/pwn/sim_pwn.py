@@ -17,15 +17,15 @@ def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
 
     # Assumption before for `energy_flux` was energy band 1 to 10 TeV
     energy_flux_standard_candle = spec.energy_flux(emin=1 * u.TeV, emax=10 * u.TeV)
-    amplitude = energy_flux / energy_flux_standard_candle * spec.parameters['amplitude'].quantity
+    amplitude = energy_flux / energy_flux_standard_candle * u.Unit('cm-2 s-1 MeV-1')#* spec.parameters['amplitude'].quantity
     return amplitude
 
 
 def make_pwn_table(
         n_sources=375, random_state=0,
-        mean_extension=0.13, sigma_extension=0.2, intrinsic_extension=50,
-        mean_index_alpha=1.8, sigma_index_alpha=0.27, max_index_beta=0.8,
-        mean_logluminosity=33.5, sigma_logluminosity=1,
+        mean_extension=0.13, sigma_extension=0.1, intrinsic_extension=50,
+        mean_index_alpha=1.8, sigma_index_alpha=0.27, max_index_beta=0.5,
+        mean_logluminosity=34, sigma_logluminosity=1,
 ):
     """Make a catalog of PWN.
 
@@ -99,9 +99,13 @@ def make_pwn_table(
         vals.append(val)
     norm = u.Quantity(vals)
 
+
     # import IPython; IPython.embed()
     table = table[['x', 'y', 'z', 'spiralarm', 'GLON', 'GLAT', 'RA', 'DEC', 'distance']]
+    table['sigma'] = Column(angular_extension, description='Angular extension (deg)', unit='deg')
     table['spec_alpha'] = Column(alpha, description='Spectral model parameter (log parabola)')
+    table['spec_beta'] = Column(beta, description='Spectral model parameter (log parabola)')
+    table['spec_norm'] = Column(norm, description='Spectral model norm parameter (log parabola)', unit='TeV-1 s-1 cm-2')
 
     return table
 

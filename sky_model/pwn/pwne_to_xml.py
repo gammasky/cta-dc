@@ -33,7 +33,7 @@ SPATIAL_TEMPLATE = """\
 
 SPECTRUM_TEMPLATE = """\
     <spectrum type="LogParabola">
-        <parameter name="Prefactor" value="{energy:.5f}" unit="MeV-1 cm-2 s-1"/>
+        <parameter name="Prefactor" value="{norm:.3e}" unit="MeV-1 cm-2 s-1"/>
         <parameter name="Index" value="{index:.3f}" />
         <parameter name="Curvature" value="{curvature:.3f}"/>
         <parameter name="PivotEnergy" value="{energy:.5f}" unit="MeV"/>
@@ -55,71 +55,86 @@ SPECTRUM_TEMPLATE = """\
 def make_pwn_xml(table):
 
     xml_sources = ''
-    for row in table[:2]:
-        xml_spectral = make_table_spectrum_xml(
-            sed_energy=row['sed_energy'],
-            sed_dnde=row['sed_dnde'],
-        )
+    #for row in table[:2]:
+    for row in table:
+        print(row)
 
-        # Arbitrary assumption on width of the SNR shell
+
+
+        #import IPython;
+        #IPython.embed();
+        xml_spectral = SPECTRUM_TEMPLATE.format(
+            norm=row['spec_norm'],
+            index=row['spec_alpha'],
+            curvature = row['spec_beta'],
+            energy = 1e06
+            )
+
+        
+        # Arbitrary assumption on width of the  shell
         # TODO: ask Pierre what we should put!
         # Also check if radius is inner or outer!
-        width_fraction = 0
-        radius = u.Quantity(row['size'], 'arcmin').to('deg')
-        width = width_fraction * radius
+        #width_fraction = 0
+        #radius = u.Quantity(row['size'], 'arcmin').to('deg')
+        #width = width_fraction * radius
 
         xml_spatial = SPATIAL_TEMPLATE.format(
-            glon=row['glon'],
-            glat=row['glat'],
-            radius=radius.value,
-            width=width.value,
-        )
+             glon=row['GLON'],
+             glat=row['GLAT'],
+             sigma=row['sigma']
+            )
 
-        source_name = 'snr_{}'.format(row.index)
+       # import IPython; IPython.embed();
+        source_name='pwn_{}'.format(row.index)
+        print(source_name)
+
         xml_source = SOURCE_TEMPLATE.format(
-            source_name=source_name,
-            xml_spectral=xml_spectral,
-            xml_spatial=xml_spatial,
-        )
+             source_name=source_name,
+             xml_spectral=xml_spectral,
+             xml_spatial=xml_spatial
+             )
 
         xml_sources += xml_source
+        print(xml_sources)
 
     xml = SOURCE_LIBRARY_TEMPLATE.format(xml_sources=xml_sources)
 
-    filename = 'ctadc_skymodel_gps_sources_snr.xml'
+    #print(xml)
+    filename = 'ctadc_skymodel_gps_sources_pwn.xml'
     print('Writing {}'.format(filename))
     with open(filename, 'w') as fh:
-        fh.write(xml)
+         fh.write(xml)
 
 
-def read_snr_data():
-    filename = 'ctadc_skymodel_gps_sources_snr.ecsv'
-    print('Reading {}'.format(filename))
-    table = Table.read(filename, format='ascii.ecsv')
-
-    distance, glon, glat = compute_galactic_coordinates(
-        x=table['POS_X'].quantity,
-        y=table['POS_Y'].quantity,
-        z=table['POS_Z'].quantity,
-    )
-    table['distance'] = distance
-    table['glat'] = glat
-    table['glon'] = glon
-
-    energy_array = np.array(table.meta['energy_array'])
-    sed_energy = np.tile(energy_array, reps=(len(table), 1))
-    table['sed_energy'] = sed_energy
-
-    # Copy over fluxes into array column
-    sed_dnde = np.empty_like(sed_energy)
-    for col_idx in range(50):
-        sed_dnde[:, col_idx] = table.columns[9 + col_idx]
-
-    table['sed_dnde'] = sed_dnde
-
-    return table
+# def read__data():
+#     filename = 'ctadc_skymodel_gps_sources_.esv'
+#     print('Reading {}'.format(filename))
+#     table = Table.read(filename, format='ascii.ecsv')
+#
+#     distance, glon, glat = compute_galactic_coordinates(
+#         x=table['POS_X'].quantity,
+#         y=table['POS_Y'].quantity,
+#         z=table['POS_Z'].quantity,
+#     )
+#     table['distance'] = distance
+#     table['glat'] = glat
+#     table['glon'] = glon
+#
+#     energy_array = np.array(table.meta['energy_array'])
+#     sed_energy = np.tile(energy_array, reps=(len(table), 1))
+#     table['sed_energy'] = sed_energy
+#
+#     # Copy over fluxes into array column
+#     sed_dnde = np.empty_like(sed_energy)
+#     for col_idx in range(50):
+#         sed_dnde[:, col_idx] = table.columns[9 + col_idx]
+#
+#     table['sed_dnde'] = sed_dnde
+#
+#     return table
 
 
 if __name__ == '__main__':
-    table = Table.read('', format='ascii.daophot')
-    make_snr_xml(table)
+    table = Table.read('ctadc_skymodel_gps_sources_pwn.ecsv', format='ascii.ecsv')
+    table.pprint()
+    make_pwn_xml(table)
