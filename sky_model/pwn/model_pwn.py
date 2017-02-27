@@ -6,6 +6,7 @@ from astropy.modeling.models import Gaussian2D
 from gammapy.astro.population import make_base_catalog_galactic, add_observed_parameters
 from gammapy.utils.random import get_random_state
 from gammapy.spectrum.models import LogParabola
+from gammapy.spectrum import CrabSpectrum
 
 def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
     spec = LogParabola(
@@ -17,15 +18,23 @@ def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
 
     # Assumption before for `energy_flux` was energy band 1 to 10 TeV
     energy_flux_standard_candle = spec.energy_flux(emin=1 * u.TeV, emax=10 * u.TeV)
-    amplitude = energy_flux / energy_flux_standard_candle * u.Unit('cm-2 s-1 MeV-1')#* spec.parameters['amplitude'].quantity
-    return amplitude
+    amplitude = energy_flux / energy_flux_standard_candle * u.Unit('cm-2 s-1 TeV-1')#* spec.parameters['amplitude'].quantity
+    amplitude = amplitude.to('cm-2 s-1 MeV-1')
+    crab = CrabSpectrum('meyer').model
+    crab_energy = 1*u.TeV
+    crab_flux_at_1TeV =  crab(crab_energy).to('MeV-1 cm-2 s-1')
+    amplitude_crab = amplitude/crab_flux_at_1TeV
+
+    print(energy_flux_standard_candle, energy_flux, amplitude, crab_flux_at_1TeV,amplitude_crab)
+
+    return amplitude, amplitude_crab
 
 
 def make_pwn_table(
-        n_sources=375, random_state=0,
+        n_sources=385, random_state=0,
         mean_extension=0.13, sigma_extension=0.1, intrinsic_extension=50,
         mean_index_alpha=1.8, sigma_index_alpha=0.27, max_index_beta=0.5,
-        mean_logluminosity=34, sigma_logluminosity=1,
+        mean_logluminosity=33.9, sigma_logluminosity=0.5,
 ):
     """Make a catalog of PWN.
 
@@ -86,15 +95,20 @@ def make_pwn_table(
 
     # integral sed between 1 and 10 TeV
     energy_flux = luminosity / (4 * np.pi * distance ** 2)
+    #print(energy_flux)
     energy_flux = energy_flux.to('TeV cm-2 s-1')
 
     vals = []
+    vals_crab = []
     for idx in range(len(table)):
-        val = flux_amplitude_from_energy_flux(
+        val, val_crab = flux_amplitude_from_energy_flux(
             alpha[idx], beta[idx], energy_flux[idx],
         )
         vals.append(val)
+        vals_crab.append(val_crab)
     norm = u.Quantity(vals)
+    norm_crab = u.Quantity(vals_crab)
+
 
 
     # import IPython; IPython.embed()
@@ -102,8 +116,8 @@ def make_pwn_table(
     table['sigma'] = Column(angular_extension, description='Angular extension (deg)', unit='deg')
     table['spec_alpha'] = Column(alpha, description='Spectral model parameter (log parabola)')
     table['spec_beta'] = Column(beta, description='Spectral model parameter (log parabola)')
-    table['spec_norm'] = Column(norm, description='Spectral model norm parameter (log parabola)', unit='TeV-1 s-1 cm-2')
-
+    table['spec_norm'] = Column(norm, description='Spectral model norm parameter (log parabola)', unit='MeV-1 s-1 cm-2')
+    table['spec_norm_crab'] = Column(norm_crab, description='Spectral model norm parameter (log parabola) in crab units')
     return table
 
 if __name__ == '__main__':
