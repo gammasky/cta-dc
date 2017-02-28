@@ -23,7 +23,7 @@ def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
     crab = CrabSpectrum('meyer').model
     crab_energy = 1*u.TeV
     crab_flux_at_1TeV =  crab(crab_energy).to('MeV-1 cm-2 s-1')
-    amplitude_crab = amplitude/crab_flux_at_1TeV
+    amplitude_crab = amplitude/crab_flux_at_1TeV * 100
 
     print(energy_flux_standard_candle, energy_flux, amplitude, crab_flux_at_1TeV,amplitude_crab)
 
@@ -100,12 +100,15 @@ def make_pwn_table(
 
     vals = []
     vals_crab = []
+    name = []
     for idx in range(len(table)):
         val, val_crab = flux_amplitude_from_energy_flux(
             alpha[idx], beta[idx], energy_flux[idx],
         )
         vals.append(val)
         vals_crab.append(val_crab)
+        source_name = 'pwn_{}'.format(idx)
+        name.append(source_name)
     norm = u.Quantity(vals)
     norm_crab = u.Quantity(vals_crab)
 
@@ -118,6 +121,7 @@ def make_pwn_table(
     table['spec_beta'] = Column(beta, description='Spectral model parameter (log parabola)')
     table['spec_norm'] = Column(norm, description='Spectral model norm parameter (log parabola)', unit='MeV-1 s-1 cm-2')
     table['spec_norm_crab'] = Column(norm_crab, description='Spectral model norm parameter (log parabola) in crab units')
+    table['source_name'] = Column(name, description='source name')
     return table
 
 if __name__ == '__main__':

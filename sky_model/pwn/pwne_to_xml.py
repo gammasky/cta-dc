@@ -62,41 +62,41 @@ def make_pwn_xml(table):
 
     #for row in table[:2]:
     for row in table:
-        if (row['spec_norm_crab']>0.1):
-            #print(row['spec_norm_crab'])
+        if (row['spec_norm_crab']>10):
+            print('crab: ', row['spec_norm_crab'])
             continue;
 
 
-        if (row['spec_norm_crab'] > 0.08):
+        if (row['spec_norm_crab'] > 8):
             if (remove_or_not < 2):
                 remove_or_not+=1
-                print(remove_or_not, row.index, row['spec_norm_crab'])
+                print('8-10    ',remove_or_not, row.index, row['spec_norm_crab'])
                 continue;
 
-        if (row['spec_norm_crab'] < 0.08 and row['spec_norm_crab'] > 0.06):
-            if (remove_or_not_2 < 2):
+        if (row['spec_norm_crab'] < 8 and row['spec_norm_crab'] > 6):
+            if (remove_or_not_2 < 3):
                 remove_or_not_2+=1
-                print(remove_or_not_2, row.index, row['spec_norm_crab'])
+                print('6-8: ',remove_or_not_2, row.index, row['spec_norm_crab'])
                 continue;
 
 
-        if (row['spec_norm_crab'] < 0.06 and row['spec_norm_crab'] > 0.04):
-            if (remove_or_not_3 < 2):
+        if (row['spec_norm_crab'] < 6 and row['spec_norm_crab'] > 4):
+            if (remove_or_not_3 < 5):
                 remove_or_not_3 += 1
-                print(remove_or_not_3, row.index, row['spec_norm_crab'])
+                print('4-6: ',remove_or_not_3, row.index, row['spec_norm_crab'])
                 continue;
 
-        if (row['spec_norm_crab'] < 0.04 and row['spec_norm_crab'] > 0.02):
-            if (remove_or_not_4 < 2):
+        if (row['spec_norm_crab'] < 4 and row['spec_norm_crab'] > 2):
+            if (remove_or_not_4 < 6):
                 remove_or_not_4 += 1
-                print(remove_or_not_4, row.index, row['spec_norm_crab'])
+                print('2-4: ',remove_or_not_4, row.index, row['spec_norm_crab'])
                 continue;
 
-        if (row['spec_norm_crab'] < 0.02 and row['spec_norm_crab'] > 0.01):
-            if (remove_or_not_5 < 2):
-                remove_or_not_5 += 1
-                print(remove_or_not_5, row.index, row['spec_norm_crab'])
-                continue;
+        #if (row['spec_norm_crab'] < 2 and row['spec_norm_crab'] > 1):
+        #    if (remove_or_not_5 < 2):
+        #        remove_or_not_5 += 1
+        #        print('1-2: ',remove_or_not_5, row.index, row['spec_norm_crab'])
+        #        continue;
 
         xml_spectral = SPECTRUM_TEMPLATE.format(
             norm=row['spec_norm'],
