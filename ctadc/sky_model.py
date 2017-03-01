@@ -73,7 +73,14 @@ class GPSSkyModelSourcesBright(SkyModelMixin):
 
     def make_xml(self):
         """Make XML version of sky model."""
-        source_library = self.gammacat.to_source_library()
+        cat = self.gammacat
+
+        # TODO: temp hack. Remove or move to gamma-cat creation.
+        # import IPython; IPython.embed()
+        idx = np.where(cat.table['morph_type'] == '')[0]
+        cat.table.remove_rows(idx)
+
+        source_library = cat.to_source_library()
         header = textwrap.dedent("""
         <!-- Bright sources for CTA-1DC from gamma-cat -->
         """)
@@ -223,6 +230,7 @@ class GPSSkyModelSourcesFaint(SkyModelMixin):
         self.make_xml()
 
     def make_pwn(self):
+        # TODO: the PWN code is at the moment elsewhere. Merge!
         max_age = 1E6 * u.yr
         SN_rate = 3. / (100. * u.yr)
         n_sources = max_age * SN_rate
@@ -271,10 +279,10 @@ def make_sky_models_xml():
     gps_sources_bright.make()
     gps_sources_bright.write_xml()
 
-    gps_sources_faint = GPSSkyModelSourcesFaint()
-    gps_sources_faint.make()
-    gps_sources_faint.write_xml()
-    gps_sources_faint.write_table()
+    # gps_sources_faint = GPSSkyModelSourcesFaint()
+    # gps_sources_faint.make()
+    # gps_sources_faint.write_xml()
+    # gps_sources_faint.write_table()
 
 
 def make_sky_models_images():
