@@ -96,9 +96,9 @@ class ObservationDefinition:
         rows.append(self.make_hdu_index_entry_events())
         rows.append(self.make_hdu_index_entry_gti())
         rows.append(self.make_hdu_index_entry_aeff())
-        # rows.append(self.make_hdu_index_entry_edisp())
-        # rows.append(self.make_hdu_index_entry_psf())
-        # rows.append(self.make_hdu_index_entry_bkg())
+        rows.append(self.make_hdu_index_entry_edisp())
+        rows.append(self.make_hdu_index_entry_psf())
+        rows.append(self.make_hdu_index_entry_bkg())
         return rows
 
     def make_hdu_index_entry_events(self):
@@ -125,6 +125,36 @@ class ObservationDefinition:
             FILE_DIR=self.irf_dir,
             FILE_NAME=self.irf_filename,
             HDU_NAME='EFFECTIVE AREA',
+        )
+
+    def make_hdu_index_entry_edisp(self):
+        return OrderedDict(
+            OBS_ID=self.obs_id,
+            HDU_TYPE='edisp',
+            HDU_CLASS='edisp_2d',
+            FILE_DIR=self.irf_dir,
+            FILE_NAME=self.irf_filename,
+            HDU_NAME='ENERGY DISPERSION',
+        )
+
+    def make_hdu_index_entry_psf(self):
+        return OrderedDict(
+            OBS_ID=self.obs_id,
+            HDU_TYPE='psf',
+            HDU_CLASS='psf_3gauss',
+            FILE_DIR=self.irf_dir,
+            FILE_NAME=self.irf_filename,
+            HDU_NAME='POINT SPREAD FUNCTION',
+        )
+
+    def make_hdu_index_entry_bkg(self):
+        return OrderedDict(
+            OBS_ID=self.obs_id,
+            HDU_TYPE='bkg',
+            HDU_CLASS='bkg_3d',
+            FILE_DIR=self.irf_dir,
+            FILE_NAME=self.irf_filename,
+            HDU_NAME='BACKGROUND',
         )
 
     @property
@@ -234,5 +264,5 @@ def make_hdu_index_table():
 
 
 if __name__ == '__main__':
-    make_observation_index_table()
+    # make_observation_index_table()
     make_hdu_index_table()
