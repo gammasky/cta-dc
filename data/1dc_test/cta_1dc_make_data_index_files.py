@@ -12,6 +12,7 @@ from glob import glob
 from pprint import pprint
 import numpy as np
 from astropy.table import Table
+from astropy.coordinates import SkyCoord
 
 logging.basicConfig(level='DEBUG')
 log = logging.getLogger()
@@ -27,8 +28,8 @@ def make_observation_index_table():
     The only reason we make one here is because none was provided so far.
     """
     rows = []
-    filenames = glob('data/*.fits')
-    for filename in filenames[:]:
+    filenames = glob('data/baseline/gc/*.fits.gz')
+    for filename in filenames:
         log.debug('Reading {}'.format(filename))
 
         events = Table.read(filename, hdu='EVENTS')
@@ -40,36 +41,45 @@ def make_observation_index_table():
         # pprint(gti.meta)
         # print(gti)
 
-        row = OrderedDict(
-            OBS_ID=events.meta['OBS_ID'],
-            RA_PNT=events.meta['RA_PNT'],
-            DEC_PNT=events.meta['DEC_PNT'],
-            ZEN_PNT=90 - float(events.meta['ALT_PNT']),
-            ALT_PNT=events.meta['ALT_PNT'],
-            AZ_PNT=events.meta['AZ_PNT'],
-            ONTIME=events.meta['ONTIME'],
-            LIVETIME=events.meta['LIVETIME'],
-            DEADC=events.meta['DEADC'],
-            TSTART=events.meta['TSTART'],
-            TSTOP=events.meta['TSTOP'],
-            DATE_OBS=events.meta['DATE_OBS'],
-            TIME_OBS=events.meta['TIME_OBS'],
-            DATE_END=events.meta['DATE_END'],
-            TIME_END=events.meta['TIME_END'],
-        )
+        row = OrderedDict()
+        row['OBS_ID'] = events.meta['OBS_ID']
+        row['RA_PNT'] = events.meta['RA_PNT']
+        row['DEC_PNT'] = events.meta['DEC_PNT']
+
+        pos = SkyCoord(row['RA_PNT'], row['DEC_PNT'], unit='deg').galactic
+        row['GLON_PNT'] = pos.l.deg
+        row['GLAT_PNT'] = pos.b.deg
+
+        row['ZEN_PNT'] = 90 - float(events.meta['ALT_PNT'])
+        row['ALT_PNT'] = events.meta['ALT_PNT']
+        row['AZ_PNT'] = events.meta['AZ_PNT']
+        row['ONTIME'] = events.meta['ONTIME']
+        row['LIVETIME'] = events.meta['LIVETIME']
+        row['DEADC'] = events.meta['DEADC']
+        row['TSTART'] = events.meta['TSTART']
+        row['TSTOP'] = events.meta['TSTOP']
+        row['DATE_OBS'] = events.meta['DATE_OBS']
+        row['TIME_OBS'] = events.meta['TIME_OBS']
+        row['DATE_END'] = events.meta['DATE_END']
+        row['TIME_END'] = events.meta['TIME_END']
 
         # Not part of the spec, but good to know from which file the info comes
-        row['EVENTS_FILENME'] = filename
+        row['EVENTS_FILENAME'] = filename
+        row['EVENT_COUNT'] = len(events)
+        row['EVENT_TIME_MIN'] = events['TIME'].min()
+        row['EVENT_TIME_MAX'] = events['TIME'].max()
+        row['EVENT_ENERGY_MIN'] = events['ENERGY'].min()
+        row['EVENT_ENERGY_MAX'] = events['ENERGY'].max()
 
         rows.append(row)
 
     names = list(rows[0].keys())
     obs_table = Table(rows=rows, names=names)
     obs_table.meta['dataset'] = 'CTA 1DC test data'
-    obs_table.info()
+    # obs_table.info()
 
     # TODO: remove this temp hack as soon as OBS_ID is filled by Jürgen in a good way.
-    obs_table['OBS_ID'] = 362 + np.arange(len(obs_table))
+    # obs_table['OBS_ID'] = 362 + np.arange(len(obs_table))
 
     filename = 'obs-index.fits.gz'
     log.info('Writing {}'.format(filename))
@@ -87,7 +97,6 @@ class ObservationDefinition:
 
     @classmethod
     def from_xml_dict(cls, xml_dict):
-        # TODO: reformat xml_dict here
         data = xml_dict
         return cls(data=data)
 
@@ -113,8 +122,8 @@ class ObservationDefinition:
 
     def make_hdu_index_entry_gti(self):
         row = self.make_hdu_index_entry_events()
-        row['HDU_TYPE'] = 'GTI'
-        row['HDU_CLASS'] = 'GTI'
+        row['HDU_TYPE'] = 'gti'
+        row['HDU_CLASS'] = 'gti'
         return row
 
     def make_hdu_index_entry_aeff(self):
@@ -159,15 +168,20 @@ class ObservationDefinition:
 
     @property
     def obs_id(self):
-        return int(self.data['@id'])
+        # return int(self.data['@id'])
+        return self.data['obs_id']
 
     @property
     def events_dir(self):
-        return 'data'
+        return 'data/baseline/gc'
 
     @property
     def events_filename(self):
-        return self.data['parameter'][0]['@file'].split('/')[-1]
+        # return self.data['parameter'][0]['@file'].split('/')[-1]
+        return '{}_{:06d}.fits.gz'.format(
+            self.data['events_tag'],
+            self.data['obs_id']
+        )
 
     @property
     def irf_dir(self):
@@ -176,21 +190,6 @@ class ObservationDefinition:
     @property
     def irf_filename(self):
         return 'irf_file.fits'
-
-
-# caldb/data/cta/prod3b/bcf/South_z20_50h
-
-"""
-  <observation name="GPS" id="000362" instrument="CTA">
-    <parameter name="EventList" file="../data/gps_baseline_000001.fits" />
-    <parameter name="Calibration" database="prod3b" response="South_z20_50h" />
-  </observation>
-"""
-
-
-# tag = 'gps_baseline'
-# database = 'prod3b'
-# response = 'South_z20_50h'
 
 
 class ObservationDefinitionList:
@@ -236,9 +235,29 @@ class ObservationDefinitionList:
         names = list(rows[0].keys())
         table = Table(rows=rows, names=names)
         table.meta['dataset'] = 'CTA 1DC test data'
-        # table.info()
-        # table[:10].pprint()
         return table
+
+
+def make_hdu_index_table_from_obs_table(obs_table):
+    """
+    Make HDU index table from obs table.
+    This is not a general solution, it has some hard-coded stuff.
+    """
+    rows = []
+    for obs_table_row in obs_table:
+        obs_def = ObservationDefinition(data=dict(
+            events_tag='gc_baseline',
+            obs_id=obs_table_row['OBS_ID']
+        ))
+
+        rows.extend(obs_def.make_hdu_index_rows())
+
+    # names = list(rows[0].keys())
+    names = ['OBS_ID', 'HDU_TYPE', 'HDU_CLASS', 'FILE_DIR', 'FILE_NAME', 'HDU_NAME']
+
+    table = Table(rows=rows, names=names)
+    table.meta['dataset'] = 'CTA 1DC test data'
+    return table
 
 
 def make_hdu_index_table():
@@ -248,15 +267,18 @@ def make_hdu_index_table():
     TODO: the observation table should really be provided as an input to 1DC.
     The only reason we make one here is because none was provided so far.
     """
-    # TODO: should we go via the obs index table or the ctools XML obsdef list?
     filename = 'obs-index.fits.gz'
     log.info('Reading {}'.format(filename))
     obs_table = Table.read(filename)
 
-    filename = 'data/obs_gps_baseline.xml'
-    log.info('Reading {}'.format(filename))
-    obs_def_list = ObservationDefinitionList.read(filename)
-    hdu_table = obs_def_list.make_hdu_index_table()
+    # Create HDU index table via obsdef XML file
+    # filename = 'obs/obs_gc_baseline.xml'
+    # log.info('Reading {}'.format(filename))
+    # obs_def_list = ObservationDefinitionList.read(filename)
+    # hdu_table = obs_def_list.make_hdu_index_table()
+
+    # Create HDU index table via obs index file
+    hdu_table = make_hdu_index_table_from_obs_table(obs_table)
 
     filename = 'hdu-index.fits.gz'
     log.info('Writing {}'.format(filename))
@@ -264,5 +286,5 @@ def make_hdu_index_table():
 
 
 if __name__ == '__main__':
-    # make_observation_index_table()
+    make_observation_index_table()
     make_hdu_index_table()
