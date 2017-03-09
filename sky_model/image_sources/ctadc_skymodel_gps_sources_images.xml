@@ -55,10 +55,14 @@
     </spatialModel>
 </source>
 <!-- map from Planck 44 GHz map and spectrum from Grondin et al 2011-->
-<!--
 <source name="Vela X soft" type="DiffuseSource">
-    <spectrum type="FileFunction" file="smoothly_broken_powerlaw.txt">
-        <parameter scale="1.0" name="Normalization" min="0.0" max="1000.0" value="1.0" free="1"/>
+    <spectrum type="SmoothBrokenPowerLaw">
+        <parameter name="Prefactor"       scale="1e-7"  value="8.00"  min="1e-07" max="1000.0" free="1"/>
+        <parameter name="Index1"          scale="-1"    value="1.83" min="0.0"   max="+5.0"   free="1"/>
+        <parameter name="Index2"          scale="-1"    value="2.87" min="0.0"   max="+5.0"   free="1"/>
+        <parameter name="PivotEnergy"     scale="1e2"   value="2.0"  min="0.01"  max="1000.0" free="0"/>
+        <parameter name="BreakValue"      scale="1e3"   value="2.1"  min="0.01"  max="1000.0" free="1"/>
+        <parameter name="Beta"            scale="1.0"   value="0.2"  min="0.01"  max="1000.0" free="0"/>
     </spectrum>
     <spatialModel type="Diffuse" file="VelaX_soft.fits">
         <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
@@ -95,7 +99,7 @@
         <parameter name="Index"         scale="-1"    value="2.66" min="0.0"   max="+5.0"   free="1"/>
         <parameter name="PivotEnergy"   scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
     </spectrum>
-    <spatialModel type="Diffuse" file="w28_excess_smooth.fits">
+    <spatialModel type="Diffuse" file="HESSJ1801-233.fits">
         <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
     </spatialModel>
 <source name="HESS J1800-240A" type="DiffuseSource">
@@ -104,7 +108,7 @@
         <parameter name="Index"        scale="-1"    value="2.55" min="0.0"   max="+5.0"   free="1"/>
         <parameter name="PivotEnergy"  scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
     </spectrum>
-    <spatialModel type="Diffuse" file="w28_excess_smooth.fits">
+    <spatialModel type="Diffuse" file="HESSJ1800-240A.fits">
         <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
     </spatialModel>
 </source>
@@ -114,7 +118,7 @@
         <parameter name="Index"         scale="-1"    value="2.50" min="0.0"   max="+5.0"   free="1"/>
         <parameter name="PivotEnergy"   scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
     </spectrum>
-    <spatialModel type="Diffuse" file="w28_excess_smooth.fits">
+    <spatialModel type="Diffuse" file="HESSJ1800-240B.fits">
         <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
     </spatialModel>
 </source>
@@ -124,7 +128,7 @@
         <parameter name="Index"         scale="-1"    value="2.31" min="0.0"   max="+5.0"   free="1"/>
         <parameter name="PivotEnergy"   scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
     </spectrum>
-    <spatialModel type="Diffuse" file="w28_excess_smooth.fits">
+    <spatialModel type="Diffuse" file="HESSJ1800-240C.fits">
         <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
     </spatialModel>
 </source>
