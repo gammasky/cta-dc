@@ -1,0 +1,130 @@
+<?xml version="1.0" ?>
+
+<!-- Bright sources for CTA-1DC from gamma-cat -->
+
+<source_library title="image_sources">
+
+<!-- Westerlund 1 -->
+<source name="Westerlund1_gas" type="DiffuseSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor"    scale="1e-18" value="9.0"  min="1e-07" max="1000.0" free="1"/>
+      <parameter name="Index"        scale="-1"    value="2.2" min="0.0"   max="+5.0"   free="1"/>
+      <parameter name="PivotEnergy"  scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="SpatialMap" file="G339.5-0.707.10_flattened.fits">
+      <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
+    </spatialModel>
+  </source>
+  <source name="Westerlund1_Fermi" type="ExtendedSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+      <parameter name="Prefactor"       scale="1e-11" value="13.37"  min="1e-07" max="1000.0" free="1"/>
+      <parameter name="Index"           scale="-1"    value="2.07" min="0.0"   max="+5.0"   free="1"/>
+      <parameter name="PivotEnergy"     scale="1e2"   value="4.3621"  min="0.01"  max="1000.0" free="0"/>
+      <parameter name="CutoffEnergy"    scale="1e3"   value="200.0"  min="0.01"  max="1000.0" free="1"/>
+    </spectrum>
+    <spatialModel type="GaussFunction">
+      <parameter name="RA"    scale="1.0" value="252.9" min="-360" max="360" free="1"/>
+      <parameter name="DEC"   scale="1.0" value="-46.35" min="-90"  max="90"  free="1"/>
+      <parameter name="Sigma" scale="1.0" value="0.475"    min="0.01" max="10"  free="1"/>
+    </spatialModel>
+  </source>
+<!-- Vela region -->
+<!-- Puppis A from ROSAT E>0.4 keV, spectrum from Hewitt+ 2012 -->
+<source name="PuppisA" type="DiffuseSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+      <parameter name="Prefactor"       scale="1e-11" value="9.18"  min="1e-07" max="1000.0" free="1"/>
+      <parameter name="Index"           scale="-1"    value="2.09" min="0.0"   max="+5.0"   free="1"/>
+      <parameter name="PivotEnergy"     scale="1e2"   value="2.0"  min="0.01"  max="1000.0" free="0"/>
+      <parameter name="CutoffEnergy"    scale="1e3"   value="200.0"  min="0.01"  max="1000.0" free="1"/>
+    </spectrum>
+    <spatialModel type="Diffuse" file="PuppisA.fits">
+      <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
+    </spatialModel>
+  </source>
+
+<!-- maps from ROSAT > 0.4 KeV and spectrum from HESS publication in 2012 extraction region: inner region-->
+<source name="Vela X hard" type="DiffuseSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+         <parameter name="Prefactor"       scale="1e-18" value="11.6"  min="1e-07" max="1000.0" free="1"/>
+         <parameter name="Index"           scale="-1"    value="1.36" min="0.0"   max="+5.0"   free="1"/>
+         <parameter name="PivotEnergy"     scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
+         <parameter name="CutoffEnergy"    scale="1e6"   value="13.9"  min="0.01"  max="1000.0" free="1"/>
+    </spectrum>
+    <spatialModel type="Diffuse" file="VelaX_hard.fits">
+        <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
+    </spatialModel>
+</source>
+<!-- map from Planck 44 GHz map and spectrum from Grondin et al 2011-->
+<!--
+<source name="Vela X soft" type="DiffuseSource">
+    <spectrum type="FileFunction" file="smoothly_broken_powerlaw.txt">
+        <parameter scale="1.0" name="Normalization" min="0.0" max="1000.0" value="1.0" free="1"/>
+    </spectrum>
+    <spatialModel type="Diffuse" file="VelaX_soft.fits">
+        <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
+    </spatialModel>
+</source> -->
+<!-- map from ROSAT > 1.3 KeV  and spectrum from the HESS 2016 publication-->
+<source name="Vela Junior" type="DiffuseSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+         <parameter name="Prefactor"       scale="1e-18" value="32.2"  min="1e-07" max="1000.0" free="1"/>
+         <parameter name="Index"           scale="-1"    value="1.81" min="0.0"   max="+5.0"   free="1"/>
+         <parameter name="PivotEnergy"     scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
+         <parameter name="CutoffEnergy"    scale="1e6"   value="6.6"  min="0.01"  max="1000.0" free="1"/>
+    </spectrum>
+    <spatialModel type="Diffuse" file="VelaJr.fits">
+         <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
+    </spatialModel>
+</source>
+<!-- RX J1713.7 from 2016 HESS publication -->
+<source name="RX J1713.7-3946" type="DiffuseSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+         <parameter name="Prefactor"       scale="1e-17" value="2.3"  min="1e-07" max="1000.0" free="1"/>
+         <parameter name="Index"           scale="-1"    value="2.06" min="0.0"   max="+5.0"   free="1"/>
+         <parameter name="PivotEnergy"     scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
+         <parameter name="CutoffEnergy"    scale="1e6"   value="12.9"  min="0.01"  max="1000.0" free="1"/>
+    </spectrum>
+    <spatialModel type="SpatialMap" file="RXJ1713_above2TeV_2016.fits.gz">
+        <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
+    </spatialModel>
+</source>
+<!-- W28 from 2016 HESS publication -->
+<source name="HESS J1801-233" type="DiffuseSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor"     scale="1e-19" value="7.5"  min="1e-07" max="1000.0" free="1"/>
+        <parameter name="Index"         scale="-1"    value="2.66" min="0.0"   max="+5.0"   free="1"/>
+        <parameter name="PivotEnergy"   scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="Diffuse" file="w28_excess_smooth.fits">
+        <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
+    </spatialModel>
+<source name="HESS J1800-240A" type="DiffuseSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor"    scale="1e-19" value="7.65"  min="1e-07" max="1000.0" free="1"/>
+        <parameter name="Index"        scale="-1"    value="2.55" min="0.0"   max="+5.0"   free="1"/>
+        <parameter name="PivotEnergy"  scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="Diffuse" file="w28_excess_smooth.fits">
+        <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
+    </spatialModel>
+</source>
+<source name="HESS J1800-240B" type="DiffuseSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor"     scale="1e-19" value="7.58"  min="1e-07" max="1000.0" free="1"/>
+        <parameter name="Index"         scale="-1"    value="2.50" min="0.0"   max="+5.0"   free="1"/>
+        <parameter name="PivotEnergy"   scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="Diffuse" file="w28_excess_smooth.fits">
+        <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
+    </spatialModel>
+</source>
+<source name="HESS J1800-240C" type="DiffuseSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor"     scale="1e-19" value="4.59"  min="1e-07" max="1000.0" free="1"/>
+        <parameter name="Index"         scale="-1"    value="2.31" min="0.0"   max="+5.0"   free="1"/>
+        <parameter name="PivotEnergy"   scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="Diffuse" file="w28_excess_smooth.fits">
+        <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0" />
+    </spatialModel>
+</source>

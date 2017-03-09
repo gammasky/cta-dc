@@ -21,6 +21,7 @@ def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
     amplitude = energy_flux / energy_flux_standard_candle * u.Unit('cm-2 s-1 TeV-1')#* spec.parameters['amplitude'].quantity
     amplitude = amplitude.to('cm-2 s-1 MeV-1')
     crab = CrabSpectrum('meyer').model
+    crab = CrabSpectrum('meyer').model
     crab_energy = 1*u.TeV
     crab_flux_at_1TeV =  crab(crab_energy).to('MeV-1 cm-2 s-1')
     amplitude_crab = amplitude/crab_flux_at_1TeV * 100
@@ -31,8 +32,8 @@ def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
 
 
 def make_pwn_table(
-        n_sources=385, random_state=0,
-        mean_extension=0.13, sigma_extension=0.1, intrinsic_extension=50,
+        n_sources=450, random_state=0,
+        mean_extension=0.13, sigma_extension=0.1, mean_intrinsic = 20, sigma_intrinsic=10, #intrinsic_extension=50,
         mean_index_alpha=1.8, sigma_index_alpha=0.27, max_index_beta=0.5,
         mean_logluminosity=33.9, sigma_logluminosity=0.5,
 ):
@@ -76,11 +77,13 @@ def make_pwn_table(
     random_state = get_random_state(random_state)
 
     # Draw angular extension, then compute physical extension
+    intrinsic_extension = random_state.normal(mean_intrinsic,sigma_intrinsic,n_sources)
     intrinsic_extension = intrinsic_extension * u.pc
     constant = 0.000291 / u.arcmin
     angular_extension = intrinsic_extension/(table['distance'] * constant)
     angular_extension = angular_extension.to('deg')/2.0
 
+    print('size ', intrinsic_extension, angular_extension, table['distance'])
 
     # Draw log parabola spectral model parameters
     alpha = random_state.normal(mean_index_alpha, sigma_index_alpha, n_sources)
@@ -121,6 +124,7 @@ def make_pwn_table(
     table['spec_beta'] = Column(beta, description='Spectral model parameter (log parabola)')
     table['spec_norm'] = Column(norm, description='Spectral model norm parameter (log parabola)', unit='MeV-1 s-1 cm-2')
     table['spec_norm_crab'] = Column(norm_crab, description='Spectral model norm parameter (log parabola) in crab units')
+
     table['source_name'] = Column(name, description='source name')
     return table
 
