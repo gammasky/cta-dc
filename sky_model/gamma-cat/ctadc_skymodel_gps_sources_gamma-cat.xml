@@ -42,6 +42,42 @@
     </spatialModel>
 </source>
 
+<source name="LMC N132D" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="1.300000011068489e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.4000000953674316" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Point">
+        <parameter name="GLON" value="280.3069763183594" unit="deg"/>
+        <parameter name="GLAT" value="-32.78403854370117" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="30 Dor C" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="1.599999971922672e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.5999999046325684" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Point">
+        <parameter name="GLON" value="279.6239929199219" unit="deg"/>
+        <parameter name="GLAT" value="-31.911823272705078" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="N 157B" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="1.3000000381735433e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.799999952316284" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Point">
+        <parameter name="GLON" value="279.5587158203125" unit="deg"/>
+        <parameter name="GLAT" value="-31.74585723876953" unit="deg"/>
+    </spatialModel>
+</source>
+
 <source name="HESS J0632+057" type="PointSource">
     <spectrum type="PowerLaw">
         <parameter name="Prefactor" value="9.100000484055237e-13" unit="1 / (cm2 s TeV)"/>

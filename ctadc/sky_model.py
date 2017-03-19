@@ -61,24 +61,28 @@ class GPSSkyModelSourcesBright(SkyModelMixin):
         self.gammacat = SourceCatalogGammaCat()
 
     def apply_selections(self):
-        return
+        # Indices of rows to remove
+        row_idxs = []
+
+        # Remove
+
+        # row_idxs.append(2)
+
         # TODO: Select on source_class = Galactic once available in gamma-cat
         # For now do a quick selection in GLAT
         # import IPython; IPython.embed(); 1/0
         # if np.abs(source.data['glat']) > 5 * u.deg:
         #     continue
 
-        # For debugging, just do a few sources:
-        # if source_idx == 3: break
+        # TODO: temp hack. Remove or move to gamma-cat creation.
+        # import IPython; IPython.embed()
+        # idx = np.where(cat.table['morph_type'] == '')[0]
+
+        self.gammacat.table.remove_rows(row_idxs)
 
     def make_xml(self):
         """Make XML version of sky model."""
         cat = self.gammacat
-
-        # TODO: temp hack. Remove or move to gamma-cat creation.
-        # import IPython; IPython.embed()
-        idx = np.where(cat.table['morph_type'] == '')[0]
-        cat.table.remove_rows(idx)
 
         source_library = cat.to_source_library()
         header = textwrap.dedent("""
@@ -143,7 +147,7 @@ class SkyModelImageMaker:
         minimum = min([_.data.min() for _ in images])
         log.info('RGB minimum: {}'.format(minimum))
 
-        filename = 'sky_model/images/ctadc_skymodel_gps_sources_bright_rgb.png'
+        filename = 'sky_model_checks/images/ctadc_skymodel_gps_sources_bright_rgb.png'
         log.info('Writing {}'.format(filename))
         rgb = make_lupton_rgb(
             image_r=image_r.data,
@@ -183,7 +187,7 @@ class SkyModelImageMaker:
 
     @staticmethod
     def _filename(name):
-        return 'sky_model/images/ctadc_skymodel_gps_sources_bright_{}.fits.gz'.format(name)
+        return 'sky_model_checks/images/ctadc_skymodel_gps_sources_bright_{}.fits.gz'.format(name)
 
     @staticmethod
     def add_source_to_image(image, source, energy_band):
