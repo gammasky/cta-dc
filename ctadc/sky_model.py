@@ -47,7 +47,7 @@ class GPSSkyModelSourcesBright(SkyModelMixin):
 
     https://github.com/gammapy/gamma-cat/
     """
-    filename = 'sky_model/ctadc_skymodel_gps_sources_bright.xml'
+    filename = 'sky_model/gamma-cat/ctadc_skymodel_gps_sources_gamma-cat.xml'
 
     def __init__(self):
         pass
