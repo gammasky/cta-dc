@@ -17,19 +17,6 @@
     </spatialModel>
 </source>
 
-<source name="CTB 37B" type="ExtendedSource">
-    <spectrum type="PowerLaw">
-        <parameter name="Prefactor" value="6.500000190867716e-13" unit="1 / (cm2 s TeV)"/>
-        <parameter name="Index" value="-2.6500000953674316" unit=""/>
-        <parameter name="Scale" value="1.0" unit="TeV"/>
-    </spectrum>
-    <spatialModel type="Gauss">
-        <parameter name="GLON" value="285.68988037109375" unit="deg"/>
-        <parameter name="GLAT" value="-78.33631896972656" unit="deg"/>
-        <parameter name="Sigma" value="0.04333333298563957" unit="deg"/>
-    </spatialModel>
-</source>
-
 <source name="3C 58" type="PointSource">
     <spectrum type="PowerLaw">
         <parameter name="Prefactor" value="1.99999996490334e-13" unit="1 / (cm2 s TeV)"/>
@@ -464,6 +451,19 @@
         <parameter name="GLAT" value="-0.25691288709640503" unit="deg"/>
         <parameter name="Radius" value="0.5" unit="deg"/>
         <parameter name="Width" value="0" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="CTB 37B" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="6.500000190867716e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.6500000953674316" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="348.6415100097656" unit="deg"/>
+        <parameter name="GLAT" value="0.4345632493495941" unit="deg"/>
+        <parameter name="Sigma" value="0.04333333298563957" unit="deg"/>
     </spatialModel>
 </source>
 
