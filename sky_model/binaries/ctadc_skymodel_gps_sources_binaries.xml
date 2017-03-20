@@ -1,228 +1,217 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" standalone="no"?>
 
-<!-- Binaries for CTA-1DC -->
+<source_library title="CTA 1DC GPS sky model binaries">
 
-<source_library title="image_sources">
 
-    <source name="LS 5039" type="PointSource">
-        <spectrum type="ExponentialCutoffPowerLaw">
-            <parameter name="Prefactor" scale="1e-18" value="2.48" min="1e-07" max="1000.0" free="1"/>
-            <parameter name="Index" scale="-1" value="2.2" min="0.0" max="+5.0" free="1"/>
-            <parameter name="CutoffEnergy" scale="1e6" value="6.6" min="0.01" max="1000.0" free="1"/>
-            <parameter name="PivotEnergy" scale="1e6" value="1.0" min="0.01" max="1000.0" free="0"/>
-        </spectrum>
-        <spatialModel type="PointSource">
-            <parameter name="RA" scale="1.0" value="276.562500" min="-360" max="360" free="1"/>
-            <parameter name="DEC" scale="1.0" value="-14.825000" min="-90" max="90" free="1"/>
-        </spatialModel>
-        <temporal type="PhaseCurve" file="LS_DC.fits">
-            <parameter name="Normalization" scale="1" value="1.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="MJD" scale="1" value="51943.09" min="0.0" max="100000.0" free="0"/>
-            <parameter name="Phase" scale="1" value="0.0" min="0.0" max="1.0" free="0"/>
-            <parameter name="F0" scale="1" value="0.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F1" scale="1" value="3.90603" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F2" scale="1" value="0.01" min="0.0" max="1000.0" free="0"/>
+<source name="LS 5039" type="PointSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+        <parameter name="Prefactor"    scale="1e-18" value="2.48"  min="1e-07" max="1000.0" free="1"/>
+        <parameter name="Index"        scale="-1"    value="2.2" min="0.0"   max="+5.0"   free="1"/>
+        <parameter name="CutoffEnergy" scale="1e6"   value="6.6"  min="0.01"  max="1000.0" free="1"/>
+        <parameter name="PivotEnergy"  scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="PointSource">
+        <parameter name="RA"  scale="1.0" value="276.562500" min="-360" max="360" free="1"/>
+        <parameter name="DEC" scale="1.0" value="-14.825000" min="-90"  max="90"  free="1"/>
+    </spatialModel>
+    <temporal type="PhaseCurve" file="LS_DC.fits">
+        <parameter name="Normalization" scale="1"     value="1.0"      min="0.0" max="1000.0"   free="0"/>
+        <parameter name="MJD"           scale="1"     value="51943.09" min="0.0" max="100000.0" free="0"/>
+        <parameter name="Phase"         scale="1"     value="0.0"      min="0.0" max="1.0"      free="0"/>
+        <parameter name="F0"            scale="1e-06" value="2.967711" min="0.0" max="1000.0"   free="0"/>
+        <parameter name="F1"            scale="1"     value="0.0"      min="0.0" max="1000.0"   free="0"/>
+        <parameter name="F2"            scale="1"     value="0.0"      min="0.0" max="1000.0"   free="0"/>
+    </temporal>
+</source>
+<source name="PSR B1259-63" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor"    scale="1e-18" value="2.38"  min="1e-07" max="1000.0" free="1"/>
+        <parameter name="Index"        scale="-1"    value="2.7" min="0.0"   max="+5.0"   free="1"/>
+        <parameter name="PivotEnergy"  scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="PointSource">
+        <parameter name="RA"  scale="1.0" value="195.705417" min="-360" max="360" free="1"/>
+        <parameter name="DEC" scale="1.0" value="-63.831389" min="-90"  max="90"  free="1"/>
+    </spatialModel>
+    <temporal type="PhaseCurve" file="PSRB1259_DC.fits">
+        <parameter name="Normalization" scale="1" value="1.0"     min="0.0" max="1000.0"   free="0"/>
+        <parameter name="MJD"           scale="1" value="53071.24473" min="0.0" max="100000.0" free="0"/>
+        <parameter name="Phase"         scale="1" value="0.0"        min="0.0" max="1.0"      free="0"/>
+        <parameter name="F0"            scale="1-09" value="9.35865" min="0.0" max="1000.0"   free="0"/>
+        <parameter name="F1"            scale="1" value="0.0"        min="0.0" max="1000.0"   free="0"/>
+        <parameter name="F2"            scale="1" value="0.0"        min="0.0" max="1000.0"   free="0"/>
+    </temporal>
+</source>
+<source name="HESS J1832-093" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor"   scale="1e-18" value="0.708"  min="1e-07" max="1000.0" free="1"/>
+        <parameter name="Index"       scale="-1"    value="2.60" min="0.0"   max="+5.0"   free="1"/>
+        <parameter name="PivotEnergy" scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="PointSource">
+        <parameter name="RA"  scale="1.0" value="278.208333" min="-360" max="360" free="1"/>
+        <parameter name="DEC" scale="1.0" value="-9.376667" min="-90"  max="90"  free="1"/>
+    </spatialModel>
+    <temporal type="PhaseCurve" file="HESSJ1832_DC.fits">
+        <parameter name="Normalization" scale="1" value="1.0"         min="0.0" max="1000.0"   free="0"/>
+        <parameter name="MJD"           scale="1" value="55000"       min="0.0" max="100000.0" free="0"/>
+        <parameter name="Phase"         scale="1" value="0.0"         min="0.0" max="1.0"      free="0"/>
+        <parameter name="F0"            scale="1-07" value="1.929012" min="0.0" max="1000.0"   free="0"/>
+        <parameter name="F1"            scale="1" value="0.0"         min="0.0" max="1000.0"   free="0"/>
+        <parameter name="F2"            scale="1" value="0.0"         min="0.0" max="1000.0"   free="0"/>
         </temporal>
-    </source>
-
-    <source name="PSR B1259-63" type="PointSource">
-        <spectrum type="PowerLaw">
-            <parameter name="Prefactor" scale="1e-18" value="2.38" min="1e-07" max="1000.0" free="1"/>
-            <parameter name="Index" scale="-1" value="2.7" min="0.0" max="+5.0" free="1"/>
-            <parameter name="PivotEnergy" scale="1e6" value="1.0" min="0.01" max="1000.0" free="0"/>
-        </spectrum>
-        <spatialModel type="PointSource">
-            <parameter name="RA" scale="1.0" value="195.705417" min="-360" max="360" free="1"/>
-            <parameter name="DEC" scale="1.0" value="-63.831389" min="-90" max="90" free="1"/>
-        </spatialModel>
-        <temporal type="PhaseCurve" file="PSRB1259_DC.fits">
-            <parameter name="Normalization" scale="1" value="1.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="MJD" scale="1" value="53071.24473" min="0.0" max="100000.0" free="0"/>
-            <parameter name="Phase" scale="1" value="0.0" min="0.0" max="1.0" free="0"/>
-            <parameter name="F0" scale="1" value="0.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F1" scale="1" value="1236.72452" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F2" scale="1" value="0.01" min="0.0" max="1000.0" free="0"/>
-        </temporal>
-    </source>
-
-    <source name="HESS J1832-093" type="PointSource">
-        <spectrum type="PowerLaw">
-            <parameter name="Prefactor" scale="1e-18" value="0.708" min="1e-07" max="1000.0" free="1"/>
-            <parameter name="Index" scale="-1" value="2.60" min="0.0" max="+5.0" free="1"/>
-            <parameter name="PivotEnergy" scale="1e6" value="1.0" min="0.01" max="1000.0" free="0"/>
-        </spectrum>
-        <spatialModel type="PointSource">
-            <parameter name="RA" scale="1.0" value="278.208333" min="-360" max="360" free="1"/>
-            <parameter name="DEC" scale="1.0" value="-9.376667" min="-90" max="90" free="1"/>
-        </spatialModel>
-        <temporal type="PhaseCurve" file="HESSJ1832_DC.fits">
-            <parameter name="Normalization" scale="1" value="1.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="MJD" scale="1" value="55000" min="0.0" max="100000.0" free="0"/>
-            <parameter name="Phase" scale="1" value="0.0" min="0.0" max="1.0" free="0"/>
-            <parameter name="F0" scale="1" value="60" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F1" scale="1" value="0.1" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F2" scale="1" value="0.01" min="0.0" max="1000.0" free="0"/>
-        </temporal>
-    </source>
-
-    <source name="LS I 61+303" type="PointSource">
-        <spectrum type="PowerLaw">
-            <parameter name="Prefactor" scale="1e-18" value="5.2" min="1e-07" max="1000.0" free="1"/>
-            <parameter name="Index" scale="-1" value="2.4" min="0.0" max="+5.0" free="1"/>
-            <parameter name="PivotEnergy" scale="1e6" value="1.0" min="0.01" max="1000.0" free="0"/>
-        </spectrum>
-        <spatialModel type="PointSource">
-            <parameter name="RA" scale="1.0" value="40.141667" min="-360" max="360" free="1"/>
-            <parameter name="DEC" scale="1.0" value="61.256944" min="-90" max="90" free="1"/>
-        </spatialModel>
-        <temporal type="PhaseCurve" file="LSI_DC.fits">
-            <parameter name="Normalization" scale="1" value="1.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="MJD" scale="1" value="43366.275" min="0.0" max="100000.0" free="0"/>
-            <parameter name="Phase" scale="1" value="0.0" min="0.0" max="1.0" free="0"/>
-            <parameter name="F0" scale="1" value="0.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F1" scale="1" value="26.496" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F2" scale="1" value="0.01" min="0.0" max="1000.0" free="0"/>
-        </temporal>
-    </source>
-
-    <source name="HESS J0632+057" type="PointSource">
-        <spectrum type="PowerLaw">
-            <parameter name="Prefactor" scale="1e-18" value="1.5" min="1e-07" max="1000.0" free="1"/>
-            <parameter name="Index" scale="-1" value="2.53" min="0.0" max="+5.0" free="1"/>
-            <parameter name="PivotEnergy" scale="1e6" value="1.0" min="0.01" max="1000.0" free="0"/>
-        </spectrum>
-        <spatialModel type="PointSource">
-            <parameter name="RA" scale="1.0" value="98.242917" min="-360" max="360" free="1"/>
-            <parameter name="DEC" scale="1.0" value="5.805556" min="-90" max="90" free="1"/>
-        </spatialModel>
-        <temporal type="PhaseCurve" file="HESSJ0632_DC.fits">
-            <parameter name="Normalization" scale="1" value="1.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="MJD" scale="1" value="54857" min="0.0" max="100000.0" free="0"/>
-            <parameter name="Phase" scale="1" value="0.0" min="0.0" max="1.0" free="0"/>
-            <parameter name="F0" scale="1" value="0.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F1" scale="1" value="315" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F2" scale="1" value="0.01" min="0.0" max="1000.0" free="0"/>
-        </temporal>
-    </source>
-
-    <source name="HESS J1018-589 A" type="PointSource">
-        <spectrum type="PowerLaw">
-            <parameter name="Prefactor" scale="1e-18" value="0.884" min="1e-07" max="1000.0" free="1"/>
-            <parameter name="Index" scale="-1" value="2.2" min="0.0" max="+5.0" free="1"/>
-            <parameter name="PivotEnergy" scale="1e6" value="1.0" min="0.01" max="1000.0" free="0"/>
-        </spectrum>
-        <spatialModel type="Point">
-            <parameter name="RA" scale="1.0" value="154.741667" min="-360" max="360" free="1"/>
-            <parameter name="DEC" scale="1.0" value="-58.945278" min="-90" max="90" free="1"/>
-        </spatialModel>
-        <temporal type="PhaseCurve" file="HESSJ1018_DC.fits">
-            <parameter name="Normalization" scale="1" value="1.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="MJD" scale="1" value="55403.3" min="0.0" max="100000.0" free="0"/>
-            <parameter name="Phase" scale="1" value="0.0" min="0.0" max="1.0" free="0"/>
-            <parameter name="F0" scale="1" value="0.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F1" scale="1" value="16.58" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F2" scale="1" value="0.01" min="0.0" max="1000.0" free="0"/>
-        </temporal>
-    </source>
-
-    <source name="Binary_N1" type="PointSource">
-        <spectrum type="PowerLaw">
-            <parameter name="Prefactor" scale="1e-18" value="1.3" min="1e-07" max="1000.0" free="1"/>
-            <parameter name="Index" scale="-1" value="2.6" min="0.0" max="+5.0" free="1"/>
-            <parameter name="PivotEnergy" scale="1e3" value="1000.0" min="0.01" max="1000.0" free="0"/>
-        </spectrum>
-        <spatialModel type="SkyDirFunction">
-            <parameter free="0" max="360" min="-360" name="RA" scale="1" value="278.344646"/>
-            <parameter free="0" max="90" min="-90" name="DEC" scale="1" value="-7.390601"/>
-        </spatialModel>
-        <temporal type="PhaseCurve" file="Binary_N1.fits">
-            <parameter name="Normalization" scale="1" value="1.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="MJD" scale="1" value="55000" min="0.0" max="100000.0" free="0"/>
-            <parameter name="Phase" scale="1" value="0.0" min="0.0" max="1.0" free="0"/>
-            <parameter name="F0" scale="1" value="0.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F1" scale="1" value="710" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F2" scale="1" value="0.01" min="0.0" max="1000.0" free="0"/>
-        </temporal>
-    </source>
-
-    <source name="Binary_N2" type="PointSource">
-        <spectrum type="PowerLaw">
-            <parameter name="Prefactor" scale="1e-19" value="3.3" min="1e-07" max="1000.0" free="1"/>
-            <parameter name="Index" scale="-1" value="2.5" min="0.0" max="+5.0" free="1"/>
-            <parameter name="PivotEnergy" scale="1e3" value="1000.0" min="0.01" max="1000.0" free="0"/>
-        </spectrum>
-        <spatialModel type="SkyDirFunction">
-            <parameter free="0" max="360" min="-360" name="RA" scale="1" value="290.698354"/>
-            <parameter free="0" max="90" min="-90" name="DEC" scale="1" value="+13.165820"/>
-        </spatialModel>
-        <temporal type="PhaseCurve" file="Binary_N2.fits">
-            <parameter name="Normalization" scale="1" value="1.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="MJD" scale="1" value="55000" min="0.0" max="100000.0" free="0"/>
-            <parameter name="Phase" scale="1" value="0.0" min="0.0" max="1.0" free="0"/>
-            <parameter name="F0" scale="1" value="0.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F1" scale="1" value="193" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F2" scale="1" value="0.01" min="0.0" max="1000.0" free="0"/>
-        </temporal>
-    </source>
-
-    <source name="Binary_N3" type="PointSource" tscalc="1">
-        <spectrum type="PowerLaw">
-            <parameter name="Prefactor" scale="1e-19" value="1.6" min="1e-07" max="1000.0" free="1"/>
-            <parameter name="Index" scale="-1" value="2.3" min="0.0" max="+5.0" free="1"/>
-            <parameter name="PivotEnergy" scale="1e3" value="1000.0" min="0.01" max="1000.0" free="0"/>
-        </spectrum>
-        <spatialModel type="SkyDirFunction">
-            <parameter free="0" max="360" min="-360" name="RA" scale="1" value="267.86004"/>
-            <parameter free="0" max="90" min="-90" name="DEC" scale="1" value="-25.97816"/>
-        </spatialModel>
-        <temporal type="PhaseCurve" file="Binary_N3.fits">
-            <parameter name="Normalization" scale="1" value="1.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="MJD" scale="1" value="55000" min="0.0" max="100000.0" free="0"/>
-            <parameter name="Phase" scale="1" value="0.0" min="0.0" max="1.0" free="0"/>
-            <parameter name="F0" scale="1" value="0.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F1" scale="1" value="57" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F2" scale="1" value="0.01" min="0.0" max="1000.0" free="0"/>
-        </temporal>
-    </source>
-
-    <source name="Binary_N4" type="PointSource" tscalc="1">
-        <spectrum type="PowerLaw">
-            <parameter name="Prefactor" scale="1e-19" value="1.0" min="1e-07" max="1000.0" free="1"/>
-            <parameter name="Index" scale="-1" value="2.3" min="0.0" max="+5.0" free="1"/>
-            <parameter name="PivotEnergy" scale="1e3" value="1000.0" min="0.01" max="1000.0" free="0"/>
-        </spectrum>
-        <spatialModel type="SkyDirFunction">
-            <parameter free="0" max="360" min="-360" name="RA" scale="1" value="267.86005"/>
-            <parameter free="0" max="90" min="-90" name="DEC" scale="1" value="-25.978161"/>
-        </spatialModel>
-        <temporal type="PhaseCurve" file="Binary_N4.fits">
-            <parameter name="Normalization" scale="1" value="1.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="MJD" scale="1" value="55000" min="0.0" max="100000.0" free="0"/>
-            <parameter name="Phase" scale="1" value="0.0" min="0.0" max="1.0" free="0"/>
-            <parameter name="F0" scale="1" value="0.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F1" scale="1" value="12.6" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F2" scale="1" value="0.01" min="0.0" max="1000.0" free="0"/>
-        </temporal>
-    </source>
-
-    <source name="Binary_N5" type="PointSource" tscalc="1">
-        <spectrum type="PowerLaw">
-            <parameter name="Prefactor" scale="1e-20" value="3.3" min="1e-07" max="1000.0" free="1"/>
-            <parameter name="Index" scale="-1" value="2.4" min="0.0" max="+5.0" free="1"/>
-            <parameter name="PivotEnergy" scale="1e3" value="1000.0" min="0.01" max="1000.0" free="0"/>
-        </spectrum>
-        <spatialModel type="SkyDirFunction">
-            <parameter free="0" max="360" min="-360" name="RA" scale="1" value="87.832424"/>
-            <parameter free="0" max="90" min="-90" name="DEC" scale="1" value="+26.196066"/>
-        </spatialModel>
-        <temporal type="PhaseCurve" file="Binary_N5.fits">
-            <parameter name="Normalization" scale="1" value="1.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="MJD" scale="1" value="55000" min="0.0" max="100000.0" free="0"/>
-            <parameter name="Phase" scale="1" value="0.0" min="0.0" max="1.0" free="0"/>
-            <parameter name="F0" scale="1" value="0.0" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F1" scale="1" value="2.59" min="0.0" max="1000.0" free="0"/>
-            <parameter name="F2" scale="1" value="0.01" min="0.0" max="1000.0" free="0"/>
-        </temporal>
-    </source>
+</source>
+<source name="LS I 61+303" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor"   scale="1e-18" value="5.2"  min="1e-07" max="1000.0" free="1"/>
+        <parameter name="Index"       scale="-1"    value="2.4" min="0.0"   max="+5.0"   free="1"/>
+        <parameter name="PivotEnergy" scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="PointSource">
+        <parameter name="RA"  scale="1.0" value="40.141667" min="-360" max="360" free="1"/>
+        <parameter name="DEC" scale="1.0" value="61.256944" min="-90"  max="90"  free="1"/>
+    </spatialModel>
+    <temporal type="PhaseCurve" file="LSI_DC.fits">
+        <parameter name="Normalization" scale="1" value="1.0"        min="0.0" max="1000.0"   free="0"/>
+        <parameter name="MJD"           scale="1" value="43366.275"  min="0.0" max="100000.0" free="0"/>
+        <parameter name="Phase"         scale="1" value="0.0"        min="0.0" max="1.0"      free="0"/>
+        <parameter name="F0"            scale="1-07" value="4.36823" min="0.0" max="1000.0"   free="0"/>
+        <parameter name="F1"            scale="1" value="0.0"        min="0.0" max="1000.0"   free="0"/>
+        <parameter name="F2"            scale="1" value="0.0"        min="0.0" max="1000.0"   free="0"/>
+    </temporal>
+</source>
+<source name="HESS J0632+057" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor"   scale="1e-18" value="1.5"  min="1e-07" max="1000.0" free="1"/>
+        <parameter name="Index"       scale="-1"    value="2.53" min="0.0"   max="+5.0"   free="1"/>
+        <parameter name="PivotEnergy" scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="PointSource">
+        <parameter name="RA"  scale="1.0" value="98.242917" min="-360" max="360" free="1"/>
+        <parameter name="DEC" scale="1.0" value="5.805556" min="-90"  max="90"  free="1"/>
+    </spatialModel>
+    <temporal type="PhaseCurve" file="HESSJ0632_DC.fits">
+        <parameter name="Normalization" scale="1" value="1.0"            min="0.0" max="1000.0"   free="0"/>
+        <parameter name="MJD"           scale="1" value="54857"          min="0.0" max="100000.0" free="0"/>
+        <parameter name="Phase"         scale="1" value="0.0"            min="0.0" max="1.0"      free="0"/>
+        <parameter name="F0"            scale="1-08" value="3.67430922"  min="0.0" max="1000.0"   free="0"/>
+        <parameter name="F1"            scale="1" value="0.0"            min="0.0" max="1000.0"   free="0"/>
+        <parameter name="F2"            scale="1" value="0"              min="0.0" max="1000.0"   free="0"/>
+    </temporal>
+</source>
+<source name="HESS J1018-589 A" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" scale="1e-18" value="0.884"  min="1e-07" max="1000.0" free="1"/>
+        <parameter name="Index"     scale="-1"    value="2.2" min="0.0"   max="+5.0"   free="1"/>
+        <parameter name="PivotEnergy" scale="1e6"   value="1.0"  min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="PointSource">
+        <parameter name="RA"  scale="1.0" value="154.741667" min="-360" max="360" free="1"/>
+        <parameter name="DEC" scale="1.0" value="-58.945278" min="-90"  max="90"  free="1"/>
+    </spatialModel>
+    <temporal type="PhaseCurve" file="HESSJ1018_DC.fits">
+        <parameter name="Normalization" scale="1" value="1.0"          min="0.0" max="1000.0"   free="0"/>
+        <parameter name="MJD"           scale="1" value="55403.3"      min="0.0" max="100000.0" free="0"/>
+        <parameter name="Phase"         scale="1" value="0.0"          min="0.0" max="1.0"      free="0"/>
+        <parameter name="F0"            scale="1-07" value="6.980744"  min="0.0" max="1000.0"   free="0"/>
+        <parameter name="F1"            scale="1" value="0.0"          min="0.0" max="1000.0"   free="0"/>
+        <parameter name="F2"            scale="1" value="0"            min="0.0" max="1000.0"   free="0"/>
+    </temporal>
+</source>
+<source name="Binary_N1" type="PointSource">
+    <spectrum type="PowerLaw">
+       <parameter name="Prefactor"   scale="1e-18" value="1.3"  min="1e-07" max="1000.0" free="1"/>
+       <parameter name="Index"       scale="-1"    value="2.6"  min="0.0"   max="+5.0"   free="1"/>
+       <parameter name="PivotEnergy" scale="1e3"   value="1000.0" min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="SkyDirFunction">
+      <parameter free="0" max="360" min="-360" name="RA"  scale="1" value="278.344646" />
+      <parameter free="0" max="90"  min="-90"  name="DEC" scale="1" value="-7.390601" />
+    </spatialModel>
+    <temporal type="PhaseCurve" file="Binary_N1.fits">
+    <parameter name="Normalization" scale="1"    value="1.0"     min="0.0" max="1000.0"   free="0"/>
+    <parameter name="MJD"           scale="1"    value="55000"   min="0.0" max="100000.0" free="0"/>
+    <parameter name="Phase"         scale="1"    value="0.0"     min="0.0" max="1.0"      free="0"/>
+    <parameter name="F0"            scale="1-08" value="1.63015" min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F1"            scale="1"    value="0"     min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F2"            scale="1"    value="0"    min="0.0" max="1000.0"   free="0"/>
+    </temporal>
+</source>
+<source name="Binary_N2" type="PointSource">
+    <spectrum type="PowerLaw">
+       <parameter name="Prefactor"   scale="1e-19" value="3.3"  min="1e-07" max="1000.0" free="1"/>
+       <parameter name="Index"       scale="-1"    value="2.5"  min="0.0"   max="+5.0"   free="1"/>
+       <parameter name="PivotEnergy" scale="1e3"   value="1000.0" min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="SkyDirFunction">
+      <parameter free="0" max="360" min="-360" name="RA"  scale="1" value="290.698354" />
+      <parameter free="0" max="90"  min="-90"  name="DEC" scale="1" value="+13.165820" />
+    </spatialModel>
+    <temporal type="PhaseCurve" file="Binary_N2.fits">
+    <parameter name="Normalization" scale="1"    value="1.0"     min="0.0" max="1000.0"   free="0"/>
+    <parameter name="MJD"           scale="1"    value="55000"   min="0.0" max="100000.0" free="0"/>
+    <parameter name="Phase"         scale="1"    value="0.0"     min="0.0" max="1.0"      free="0"/>
+    <parameter name="F0"            scale="1-08" value="5.99692" min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F1"            scale="1"    value="0"       min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F2"            scale="1"    value="0"    min="0.0" max="1000.0"   free="0"/>
+    </temporal>
+</source>
+<source name="Binary_N3" type="PointSource" tscalc="1">
+    <spectrum type="PowerLaw">
+       <parameter name="Prefactor"   scale="1e-19" value="1.6"  min="1e-07" max="1000.0" free="1"/>
+       <parameter name="Index"       scale="-1"    value="2.3"  min="0.0"   max="+5.0"   free="1"/>
+       <parameter name="PivotEnergy" scale="1e3"   value="1000.0" min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="SkyDirFunction">
+      <parameter free="0" max="360" min="-360" name="RA"  scale="1" value="267.86004" />
+      <parameter free="0" max="90"  min="-90"  name="DEC" scale="1" value="-25.97816" />
+    </spatialModel>
+    <temporal type="PhaseCurve" file="Binary_N3.fits">
+    <parameter name="Normalization" scale="1"    value="1.0"      min="0.0" max="1000.0"   free="0"/>
+    <parameter name="MJD"           scale="1"    value="55000"    min="0.0" max="100000.0" free="0"/>
+    <parameter name="Phase"         scale="1"    value="0.0"      min="0.0" max="1.0"      free="0"/>
+    <parameter name="F0"            scale="1-07" value="2.030539" min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F1"            scale="1"    value="0"        min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F2"            scale="1"    value="0"     min="0.0" max="1000.0"   free="0"/>
+    </temporal>
+</source>
+<source name="Binary_N4" type="PointSource" tscalc="1">
+    <spectrum type="PowerLaw">
+       <parameter name="Prefactor"   scale="1e-19" value="1.0"  min="1e-07" max="1000.0" free="1"/>
+       <parameter name="Index"       scale="-1"    value="2.3"  min="0.0"   max="+5.0"   free="1"/>
+       <parameter name="PivotEnergy" scale="1e3"   value="1000.0" min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="SkyDirFunction">
+      <parameter free="0" max="360" min="-360" name="RA"  scale="1" value="267.86005" />
+      <parameter free="0" max="90"  min="-90"  name="DEC" scale="1" value="-25.978161" />
+    </spatialModel>
+    <temporal type="PhaseCurve" file="Binary_N4.fits">
+    <parameter name="Normalization" scale="1"    value="1.0"      min="0.0" max="1000.0"   free="0"/>
+    <parameter name="MJD"           scale="1"    value="55000"    min="0.0" max="100000.0" free="0"/>
+    <parameter name="Phase"         scale="1"    value="0.0"      min="0.0" max="1.0"      free="0"/>
+    <parameter name="F0"            scale="1-07" value="9.18577"  min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F1"            scale="1"    value="0"        min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F2"            scale="1"    value="0"     min="0.0" max="1000.0"   free="0"/>
+    </temporal>
+</source>
+<source name="Binary_N5" type="PointSource" tscalc="1">
+    <spectrum type="PowerLaw">
+       <parameter name="Prefactor"   scale="1e-20" value="3.3"  min="1e-07" max="1000.0" free="1"/>
+       <parameter name="Index"       scale="-1"    value="2.4"  min="0.0"   max="+5.0"   free="1"/>
+       <parameter name="PivotEnergy" scale="1e3"   value="1000.0" min="0.01"  max="1000.0" free="0"/>
+    </spectrum>
+    <spatialModel type="SkyDirFunction">
+      <parameter free="0" max="360" min="-360" name="RA"  scale="1" value="87.832424" />
+      <parameter free="0" max="90"  min="-90"  name="DEC" scale="1" value="+26.196066" />
+    </spatialModel>
+    <temporal type="PhaseCurve" file="Binary_N5.fits">
+    <parameter name="Normalization" scale="1"    value="1.0"       min="0.0" max="1000.0"   free="0"/>
+    <parameter name="MJD"           scale="1"    value="55000"     min="0.0" max="100000.0" free="0"/>
+    <parameter name="Phase"         scale="1"    value="0.0"       min="0.0" max="1.0"      free="0"/>
+    <parameter name="F0"            scale="1-06" value="4.4687544" min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F1"            scale="1"    value="0"         min="0.0" max="1000.0"   free="0"/>
+    <parameter name="F2"            scale="1"    value="0"      min="0.0" max="1000.0"   free="0"/>
+    </temporal>
+</source>
 
 </source_library>
