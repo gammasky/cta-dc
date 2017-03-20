@@ -25,19 +25,21 @@ SOURCE_TEMPLATE = """
 
 SPATIAL_TEMPLATE = """\
     <spatialModel type="RadialGaussian">
-        <parameter name="GLON" value="{glon:.5f}" unit="deg"/>
-        <parameter name="GLAT" value="{glat:.5f}" unit="deg"/>
-        <parameter name="Sigma" value="{sigma:.5f}" unit="deg"/>
+        <parameter name="GLON" scale="1.0" value="{glon:.5f}" min="-360" max="360" free="0"/>
+        <parameter name="GLAT" scale="1.0" value="{glat:.5f}" min="-90" max="90" free="0"/>
+        <parameter name="Sigma" scale="1.0" value="{sigma:.5f}" min="0.01" max="10"  free="1"/>
     </spatialModel>"""
 
 
 SPECTRUM_TEMPLATE = """\
     <spectrum type="LogParabola">
-        <parameter name="Prefactor" value="{norm:.3e}" unit="MeV-1 cm-2 s-1"/>
-        <parameter name="Index" value="{index:.3f}" />
-        <parameter name="Curvature" value="{curvature:.3f}"/>
-        <parameter name="PivotEnergy" value="{energy:.5f}" unit="MeV"/>
-      </node>
+        <parameter name="Prefactor" scale="1e-20" value="{norm:.3f}"  min="1e-07" max="1000.0" free="1"/>
+        <parameter name="Index"     scale="-1"    value="{index:.3f}"  min="0.0"   max="+5.0"   free="1"/>
+        <parameter name="Curvature" scale="-1"    value="{curvature:.3f}"  min="-5.0"   max="+5.0"   free="1"/>
+        <parameter name="PivotEnergy" scale="1e6"   value="{energy:.1f}" min="0.01"  max="1000.0" free="0"/>
+      </spectrum>
+
+
 """
 
 
@@ -62,47 +64,48 @@ def make_pwn_xml(table):
 
     #for row in table[:2]:
     for row in table:
-        if (row['spec_norm_crab']>10):
-            print('crab: ', row['spec_norm_crab'])
+        if (row['int_flux_above_1TeV_cu']>10):
+            print('crab: ', row['int_flux_above_1TeV_cu'])
             continue;
 
 
-        if (row['spec_norm_crab'] > 8):
-            if (remove_or_not < 2):
+        if (row['int_flux_above_1TeV_cu'] > 8 and row['int_flux_above_1TeV_cu'] < 10):
+            if (remove_or_not < 3):
                 remove_or_not+=1
-                print('8-10    ',remove_or_not, row.index, row['spec_norm_crab'])
+                print('8-10    ',remove_or_not, row.index, row['int_flux_above_1TeV_cu'])
                 continue;
 
-        if (row['spec_norm_crab'] < 8 and row['spec_norm_crab'] > 6):
+        if (row['int_flux_above_1TeV_cu'] < 8 and row['int_flux_above_1TeV_cu'] > 6):
             if (remove_or_not_2 < 3):
                 remove_or_not_2+=1
-                print('6-8: ',remove_or_not_2, row.index, row['spec_norm_crab'])
+                print('6-8: ',remove_or_not_2, row.index, row['int_flux_above_1TeV_cu'])
                 continue;
 
 
-        if (row['spec_norm_crab'] < 6 and row['spec_norm_crab'] > 4):
-            if (remove_or_not_3 < 5):
+        if (row['int_flux_above_1TeV_cu'] < 6 and row['int_flux_above_1TeV_cu'] > 4):
+            if (remove_or_not_3 < 0):
                 remove_or_not_3 += 1
-                print('4-6: ',remove_or_not_3, row.index, row['spec_norm_crab'])
+                print('4-6: ',remove_or_not_3, row.index, row['int_flux_above_1TeV_cu'])
                 continue;
 
-        if (row['spec_norm_crab'] < 4 and row['spec_norm_crab'] > 2):
+        if (row['int_flux_above_1TeV_cu'] < 4 and row['int_flux_above_1TeV_cu'] > 2):
             if (remove_or_not_4 < 6):
                 remove_or_not_4 += 1
-                print('2-4: ',remove_or_not_4, row.index, row['spec_norm_crab'])
+                print('2-4: ',remove_or_not_4, row.index, row['int_flux_above_1TeV_cu'])
+                continue;
+        if (row['int_flux_above_1TeV_cu'] < 2 and row['int_flux_above_1TeV_cu'] > 1):
+            if (remove_or_not_5 < 8):
+                remove_or_not_5 += 1
+                print('1-2: ',remove_or_not_5, row.index, row['int_flux_above_1TeV_cu'])
                 continue;
 
-        #if (row['spec_norm_crab'] < 2 and row['spec_norm_crab'] > 1):
-        #    if (remove_or_not_5 < 2):
-        #        remove_or_not_5 += 1
-        #        print('1-2: ',remove_or_not_5, row.index, row['spec_norm_crab'])
-        #        continue;
+
 
         xml_spectral = SPECTRUM_TEMPLATE.format(
-            norm=row['spec_norm'],
+            norm=row['spec_norm']/1e-20,
             index=row['spec_alpha'],
             curvature = row['spec_beta'],
-            energy = 1e06
+            energy = 1.0
             )
 
         # Arbitrary assumption on width of the  shell
