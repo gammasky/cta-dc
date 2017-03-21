@@ -7,11 +7,12 @@ from gammapy.astro.population import make_base_catalog_galactic, add_observed_pa
 from gammapy.utils.random import get_random_state
 from gammapy.spectrum.models import LogParabola
 from gammapy.spectrum import CrabSpectrum
+import matplotlib.pyplot as plt
 
 
 def define_flux_crab_above_energy(emin=1* u.TeV, emax=10* u.TeV):
     crab = CrabSpectrum('meyer').model
-    crabMAGIC = LogParabola(amplitude=3.23e-11 * u.Unit('cm-2 s-1 TeV-1'), reference=1 * u.TeV, alpha=2.47, beta=-0.24)
+    crabMAGIC = LogParabola(amplitude=3.23e-11 * u.Unit('cm-2 s-1 TeV-1'), reference=1 * u.TeV, alpha=2.47, beta=0.24)
     crab_flux_above_1TeV = crabMAGIC.integral(emin=emin, emax=emax)
     crab_flux_above_1TeV_model = crab.integral(emin=emin, emax=emax)
     return crab_flux_above_1TeV, crab_flux_above_1TeV_model
@@ -32,12 +33,15 @@ def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
     flux_at_1TeV = energy_flux / energy_flux_standard_candle * u.Unit('cm-2 s-1 TeV-1')#* spec.parameters['amplitude'].quantity
     flux_at_1TeV = flux_at_1TeV.to('cm-2 s-1 MeV-1')
 
-    flux_above_1TeV = LogParabola(amplitude=flux_at_1TeV,reference=pivot_energy, alpha=alpha, beta=-beta)
+    flux_above_1TeV = LogParabola(amplitude=flux_at_1TeV,reference=pivot_energy, alpha=alpha, beta=beta)
     flux_above_1TeV = flux_above_1TeV.integral(emin=emin_int, emax=10*u.TeV)
     flux_above_1TeV  = flux_above_1TeV.to('cm-2 s-1')
     #evaluating Crab flux at and above 1 TeV by using MAGIC Crab spectrum from JHEA 2015
     crab_flux_above_1TeV, crab_flux_above_1TeV_model = define_flux_crab_above_energy(emin=1*u.TeV, emax = 10*u.TeV)
-    crabMAGIC = LogParabola(amplitude=3.23e-11* u.Unit('cm-2 s-1 TeV-1'), reference=1*u.TeV, alpha=2.47, beta=-0.24)
+    crabMAGIC = LogParabola(amplitude=3.23e-11* u.Unit('cm-2 s-1 TeV-1'), reference=1*u.TeV, alpha=2.47, beta=0.24)
+    # plt.figure()
+    # min, max = [50*u.GeV,50*u.TeV]
+    # crabMAGIC.plot(min,max)
     # crab = CrabSpectrum('meyer').model
     crab_flux_above_1TeV = crab_flux_above_1TeV.to('cm-2 s-1')
     crab_flux_above_1TeV_model = crab_flux_above_1TeV_model.to('cm-2 s-1')
@@ -56,11 +60,10 @@ def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
 
 
 def make_pwn_table(
-        n_sources=500, random_state=0,
-        mean_extension=0.13, sigma_extension=0.1, mean_intrinsic = 60, sigma_intrinsic=30, #intrinsic_extension=50,
-        mean_index_alpha=2.0, sigma_index_alpha=0.27, max_index_beta=0.5,
-        mean_logluminosity=33.9, sigma_logluminosity=0.5,
-):
+        n_sources=400, random_state=0,
+        mean_extension=0.13, sigma_extension=0.1, mean_intrinsic = 20, sigma_intrinsic=5, #intrinsic_extension=50,
+        mean_index_alpha=2.1, sigma_index_alpha=0.3, max_index_beta=0.5,
+        mean_logluminosity=33.5, sigma_logluminosity=1.0,):
     """Make a catalog of PWN.
 
     to be defined
@@ -102,6 +105,7 @@ def make_pwn_table(
 
     # Draw angular extension, then compute physical extension
     intrinsic_extension = random_state.normal(mean_intrinsic,sigma_intrinsic,n_sources)
+    # intrinsic_extension = random_state.uniform(3, 60, n_sources)
 
     intrinsic_extension = intrinsic_extension * u.pc
     constant = 0.000291 / u.arcmin
@@ -109,7 +113,7 @@ def make_pwn_table(
     angular_extension = angular_extension.to('deg')/2.0
     for idx in range(len(table)):
         if (angular_extension[idx] < 0.01*u.Unit('deg') ):
-            print('PROBLEM: ', angular_extension[idx])
+            # print('PROBLEM: ', angular_extension[idx])
             angular_extension[idx] = 0.01 *u.Unit('deg')
 
     for idx in range(len(table)):
@@ -119,6 +123,7 @@ def make_pwn_table(
 
     # Draw log parabola spectral model parameters
     alpha = random_state.normal(mean_index_alpha, sigma_index_alpha, n_sources)
+    # random_state.uniform(1.5, 2.6, n_sources)
     beta = random_state.uniform(0, max_index_beta, n_sources)
 
     # Define the luminosity

@@ -145,39 +145,34 @@ def prepare_the_pwn_table():
     flux_above_1TeV_cuu = u.Quantity(flux_above_1TeV_cu)
     sigma_d = u.Quantity(sigma)
     hgpscat_pwn_extended['flux_above_1TeV_cu'] = Column(flux_above_1TeV_cuu,
-                                                        description='Flux above 1 TeV in crab units')
+                                                        description='Integral flux above 1 TeV in crab units')
     hgpscat_pwn_extended['sigma'] = Column(sigma_d, description='radius of angular extension')
     # print(hgpscat_pwn_extended['flux_crab'])
 
-    how_many_above_10 = 0
-    how_many_8to10 = 0
-    how_many_6to8 = 0
-    how_many_4to6 = 0
-    how_many_2to4 = 0
-    how_many_1to2 = 0
-    how_many_below1 = 0
+    how_many_above_10, how_many_8to10, how_many_6to8, how_many_4to6, how_many_2to4, how_many_1to2, how_many_below1 = 0, 0, 0, 0, 0, 0, 0
+
     for row in range(len(hgpscat_pwn_extended)):
         if (hgpscat_pwn_extended[row]['flux_above_1TeV_cu'] > 10):
-             print('CC crab>10: ', row, hgpscat_pwn_extended[row]['flux_above_1TeV_cu'], hgpscat_pwn_extended[row]['Source_Name'])
+             #print('CC crab>10: ', row, hgpscat_pwn_extended[row]['flux_above_1TeV_cu'], hgpscat_pwn_extended[row]['Source_Name'])
              how_many_above_10 += 1
         if (hgpscat_pwn_extended[row]['flux_above_1TeV_cu'] > 8 and hgpscat_pwn_extended[row]['flux_above_1TeV_cu'] < 10 ):
-             print('CC 8-10: ', row, hgpscat_pwn_extended[row]['flux_above_1TeV_cu'], hgpscat_pwn_extended[row]['Source_Name'])
+             #print('CC 8-10: ', row, hgpscat_pwn_extended[row]['flux_above_1TeV_cu'], hgpscat_pwn_extended[row]['Source_Name'])
              how_many_8to10 += 1
 
         if (hgpscat_pwn_extended[row]['flux_above_1TeV_cu'] > 6 and hgpscat_pwn_extended[row]['flux_above_1TeV_cu'] < 8):
-            print('CC 6-8: ', row, hgpscat_pwn_extended[row]['flux_above_1TeV_cu'], hgpscat_pwn_extended[row]['Source_Name'])
+            #print('CC 6-8: ', row, hgpscat_pwn_extended[row]['flux_above_1TeV_cu'], hgpscat_pwn_extended[row]['Source_Name'])
             how_many_6to8 += 1
         if (hgpscat_pwn_extended[row]['flux_above_1TeV_cu'] > 4 and hgpscat_pwn_extended[row]['flux_above_1TeV_cu'] < 6):
-            print('CC 4-6: ', row, hgpscat_pwn_extended[row]['flux_above_1TeV_cu'], hgpscat_pwn_extended[row]['Source_Name'])
+            #print('CC 4-6: ', row, hgpscat_pwn_extended[row]['flux_above_1TeV_cu'], hgpscat_pwn_extended[row]['Source_Name'])
             how_many_6to8 += 1
         if (hgpscat_pwn_extended[row]['flux_above_1TeV_cu'] > 2 and hgpscat_pwn_extended[row]['flux_above_1TeV_cu'] < 4):
-            print('CC 2-4: ', row, hgpscat_pwn_extended[row]['flux_above_1TeV_cu'], hgpscat_pwn_extended[row]['Source_Name'])
+            #print('CC 2-4: ', row, hgpscat_pwn_extended[row]['flux_above_1TeV_cu'], hgpscat_pwn_extended[row]['Source_Name'])
             how_many_2to4 += 1
         if (hgpscat_pwn_extended[row]['flux_above_1TeV_cu'] < 2 and hgpscat_pwn_extended[row]['flux_above_1TeV_cu'] > 1):
-            print('CC 1-2: ', row, hgpscat_pwn_extended[row]['flux_above_1TeV_cu'], hgpscat_pwn_extended[row]['Source_Name'])
+            #print('CC 1-2: ', row, hgpscat_pwn_extended[row]['flux_above_1TeV_cu'], hgpscat_pwn_extended[row]['Source_Name'])
             how_many_1to2 += 1
         if (hgpscat_pwn_extended[row]['flux_above_1TeV_cu'] < 1 ):
-            print('CC below1: ', row, hgpscat_pwn_extended[row]['flux_above_1TeV_cu'], hgpscat_pwn_extended[row]['Source_Name'])
+            #print('CC below1: ', row, hgpscat_pwn_extended[row]['flux_above_1TeV_cu'], hgpscat_pwn_extended[row]['Source_Name'])
             how_many_below1 += 1
 
     print('how_many_above_10: ', how_many_above_10)
@@ -229,8 +224,9 @@ def plot_logN_logS(table_pwn, new_table_sim_pwn, merged_table, flux_min, flux_ma
     # logyerr = y_hgps_err / y_hgps
 
 
-    p0 = 2.28
-    p1 = 1.1
+    p0 = 2.5
+    p1 = 1.24
+    # p0 = 2.28
     #p1 = 1.24
 
     x0 = np.log10(53)
@@ -241,7 +237,6 @@ def plot_logN_logS(table_pwn, new_table_sim_pwn, merged_table, flux_min, flux_ma
 
     y2 = p0 - x2 * p1
 
-    #plotting
     plt.figure()
     plt.step(bins[::-1], y, color='r',lw=2)
     plt.step(bins[::-1], y_sim, color='black',lw=1)
@@ -261,44 +256,66 @@ def plot_logN_logS(table_pwn, new_table_sim_pwn, merged_table, flux_min, flux_ma
 
 def remove_bright_pwn(table_sim_pwn):
 
-    remove_or_not, remove_or_not_2,remove_or_not_3, remove_or_not_4, remove_or_not_5 = 0, 0, 0, 0, 0
+
+
+
+    remove_or_not_6, remove_or_not, remove_or_not_2,remove_or_not_3, remove_or_not_4, remove_or_not_5 = 0, 0, 0, 0, 0, 0
+    how_many_above_10,how_many_8to10,how_many_6to8, how_many_4to6,  how_many_2to4, how_many_1to2, how_many_01to1, how_many_001to01 = 0, 0, 0, 0, 0, 0, 0, 0
 
     lenght_table = len(table_sim_pwn)
     # print('len table: ', len(table_sim_pwn))
     remove_idx = []
     for row in range(1, lenght_table):
-        if (table_sim_pwn[row]['int_flux_above_1TeV_cu']>10):
-            print('crab>10: ', row, table_sim_pwn[row]['int_flux_above_1TeV_cu'], table_sim_pwn[row]['source_name'])
-            remove_idx.append(row)
+        if (table_sim_pwn[row]['int_flux_above_1TeV_cu'] > 10):
+            how_many_above_10 += 1
+        if (table_sim_pwn[row]['int_flux_above_1TeV_cu'] < 10 and table_sim_pwn[row]['int_flux_above_1TeV_cu'] >8):
+            how_many_8to10 += 1
+        if (table_sim_pwn[row]['int_flux_above_1TeV_cu'] < 8 and table_sim_pwn[row]['int_flux_above_1TeV_cu'] > 6):
+            how_many_6to8 += 1
+        if (table_sim_pwn[row]['int_flux_above_1TeV_cu'] < 6 and table_sim_pwn[row]['int_flux_above_1TeV_cu'] > 4):
+            how_many_4to6 += 1
+        if (table_sim_pwn[row]['int_flux_above_1TeV_cu'] < 4 and table_sim_pwn[row]['int_flux_above_1TeV_cu'] > 2):
+            how_many_2to4 += 1
+        if (table_sim_pwn[row]['int_flux_above_1TeV_cu'] < 2 and table_sim_pwn[row]['int_flux_above_1TeV_cu'] > 1):
+            how_many_1to2 += 1
+        if (table_sim_pwn[row]['int_flux_above_1TeV_cu'] < 1 and table_sim_pwn[row]['int_flux_above_1TeV_cu'] > 0.1):
+            how_many_01to1 += 1
+        if (table_sim_pwn[row]['int_flux_above_1TeV_cu'] < 0.1 and table_sim_pwn[row]['int_flux_above_1TeV_cu'] > 0.01):
+            how_many_001to01 += 1
 
+        if (table_sim_pwn[row]['int_flux_above_1TeV_cu']>10):
+           # if (remove_or_not_6 < 15):
+                #print('crab>10: ', row, table_sim_pwn[row]['int_flux_above_1TeV_cu'], table_sim_pwn[row]['source_name'])
+                remove_idx.append(row)
+             #   remove_or_not_6 += 1
 
         if table_sim_pwn[row]['int_flux_above_1TeV_cu']>8 and table_sim_pwn[row]['int_flux_above_1TeV_cu'] < 10:
             if (remove_or_not < 3):
-                print('8-10: ', row, table_sim_pwn[row]['int_flux_above_1TeV_cu'], table_sim_pwn[row]['int_flux_above_1TeV_cu'])
+                #print('8-10: ', row, table_sim_pwn[row]['int_flux_above_1TeV_cu'], table_sim_pwn[row]['int_flux_above_1TeV_cu'])
                 remove_idx.append(row)
                 remove_or_not += 1
 
         if (table_sim_pwn[row]['int_flux_above_1TeV_cu'] > 6 and table_sim_pwn[row]['int_flux_above_1TeV_cu'] < 8):
             if (remove_or_not_3 < 3):
-                print('6-8: ', row, table_sim_pwn[row]['int_flux_above_1TeV_cu'], table_sim_pwn[row]['source_name'])
+                #print('6-8: ', row, table_sim_pwn[row]['int_flux_above_1TeV_cu'], table_sim_pwn[row]['source_name'])
                 remove_idx.append(row)
                 remove_or_not_3 += 1
 
         if (table_sim_pwn[row]['int_flux_above_1TeV_cu'] > 4 and table_sim_pwn[row]['int_flux_above_1TeV_cu'] < 6):
             if (remove_or_not_4 < 1):
-                print('4-6: ', row, table_sim_pwn[row]['int_flux_above_1TeV_cu'], table_sim_pwn[row]['source_name'])
+                #print('4-6: ', row, table_sim_pwn[row]['int_flux_above_1TeV_cu'], table_sim_pwn[row]['source_name'])
                 remove_idx.append(row)
                 remove_or_not_4 += 1
 
         if (table_sim_pwn[row]['int_flux_above_1TeV_cu'] > 2 and table_sim_pwn[row]['int_flux_above_1TeV_cu'] < 4):
             if (remove_or_not_5 < 6):
-                print('2-4: ', row, table_sim_pwn[row]['int_flux_above_1TeV_cu'], table_sim_pwn[row]['source_name'])
+                #print('2-4: ', row, table_sim_pwn[row]['int_flux_above_1TeV_cu'], table_sim_pwn[row]['source_name'])
                 remove_idx.append(row)
                 remove_or_not_5 += 1
 
         if (table_sim_pwn[row]['int_flux_above_1TeV_cu'] > 1 and table_sim_pwn[row]['int_flux_above_1TeV_cu'] < 2):
             if (remove_or_not_2 < 8):
-                print('1-2: ', row, table_sim_pwn[row]['int_flux_above_1TeV_cu'], table_sim_pwn[row]['source_name'])
+                #print('1-2: ', row, table_sim_pwn[row]['int_flux_above_1TeV_cu'], table_sim_pwn[row]['source_name'])
                 remove_idx.append(row)
                 remove_or_not_2 += 1
 
@@ -308,18 +325,27 @@ def remove_bright_pwn(table_sim_pwn):
        #         remove_idx.append(row)
        #         remove_or_not_2 += 1
 
-
-    print('quanti: ',len(remove_idx))
+    print('how many bright srcs: ',len(remove_idx))
+    print('how many >10', how_many_above_10)
+    print('how many 8to10', how_many_8to10)
+    print('how many 6tp8', how_many_6to8)
+    print('how many 4to6', how_many_4to6)
+    print('how many 2to4', how_many_2to4)
+    print('how many 1to2', how_many_1to2)
+    print('how many 01to1', how_many_01to1)
+    print('how many 001to01', how_many_001to01)
     print(remove_idx)
     for idx in range(0, len(remove_idx)):
         source_name = 'pwn_{}'.format(remove_idx[idx])
         id = np.where(table_sim_pwn['source_name']== source_name)[0]
-        print(remove_idx[idx],source_name, id)
+        # print(remove_idx[idx],source_name, id)
         table_sim_pwn.remove_row(int(id[0]))
 
 
     table_sim_pwn_reduced = table_sim_pwn['source_name','spec_norm','spec_norm_cu',
                                           'int_flux_above_1TeV','int_flux_above_1TeV_cu','sigma']
+
+
 
     return table_sim_pwn, table_sim_pwn_reduced
 
@@ -329,8 +355,6 @@ def plot_size_distrib(table_pwn, table_sim, merged_table):
     bins_size = np.linspace(0, 1.0, num=100)
     bin_center = (bins_size[:-1] + bins_size[1:]) / 2
 
-    print('here')
-    table_pwn.pprint()
 
     #for row in range(1, len(table_pwn) ):
      #   if (table_pwn[row]['sigma'] > 0.1):
@@ -341,7 +365,6 @@ def plot_size_distrib(table_pwn, table_sim, merged_table):
     # np.isnan
     table_pwn_size = table_pwn[mask_nan_hgps]
 
-    table_pwn_size.pprint()
     mask_nan_merged = np.isfinite(merged_table['sigma'])
     # np.isnan
     merged_table_size = merged_table[mask_nan_merged]
@@ -393,7 +416,7 @@ if __name__ == '__main__':
     table_sim_pwn = Table.read('ctadc_skymodel_gps_sources_pwn.ecsv', format='ascii.ecsv')
     new_table_sim_pwn, new_table_sim_pwn_reduced = remove_bright_pwn(table_sim_pwn)
     merged_table = vstack([table_pwn_reduced, new_table_sim_pwn_reduced])
-    merged_table.pprint()
+    #merged_table.pprint()
     plot_logN_logS(table_pwn_reduced, new_table_sim_pwn_reduced, merged_table, flux_min=0.07, flux_max=100)
 
     plot_size_distrib(table_pwn=table_pwn_reduced, table_sim=new_table_sim_pwn_reduced, merged_table=merged_table)

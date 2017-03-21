@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 
-<!-- Bright sources for CTA-1DC from gamma-cat -->
+<!-- Bright extended sources for CTA-1DC from gamma-cat -->
 
 <source_library title="image_sources">
 
@@ -59,13 +59,12 @@
 
     <!-- map from Planck 44 GHz map and spectrum from Grondin et al 2011-->
     <source name="Vela X soft" type="DiffuseSource">
-        <spectrum type="SmoothBrokenPowerLaw">
-            <parameter name="Prefactor" scale="1e-7" value="8.00" min="1e-07" max="1000.0" free="1"/>
-            <parameter name="Index1" scale="-1" value="1.83" min="0.0" max="+5.0" free="1"/>
-            <parameter name="Index2" scale="-1" value="2.87" min="0.0" max="+5.0" free="1"/>
+        <spectrum type="BrokenPowerLaw">
+            <parameter name="Prefactor" scale="1e-12" value="9.82" min="1e-07" max="1000.0" free="1"/>
+            <parameter name="Index1" scale="-1" value="1.88" min="0.0" max="+5.0" free="1"/>
+            <parameter name="Index2" scale="-1" value="2.89" min="0.0" max="+5.0" free="1"/>
             <parameter name="PivotEnergy" scale="1e2" value="2.0" min="0.01" max="1000.0" free="0"/>
             <parameter name="BreakValue" scale="1e3" value="2.1" min="0.01" max="1000.0" free="1"/>
-            <parameter name="Beta" scale="1.0" value="0.2" min="0.01" max="1000.0" free="0"/>
         </spectrum>
         <spatialModel type="DiffuseMap" file="VelaX_soft.fits">
             <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0"/>
