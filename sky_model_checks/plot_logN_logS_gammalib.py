@@ -57,7 +57,7 @@ def make_plot(num_plot, color_scale, fluxes_cu,fluxes_cu_2,fluxes_cu_3,fluxes_cu
     plt.ylim(0.8, 5000)
     plt.xlim(0.05, 100)
     plt.ylabel('#')
-    plt.xlabel('F [1-10] TeV [cu]')
+    plt.xlabel('F (1-10 TeV) [cu]')
 
     plt.plot([10, 10], [flux_min, 100], 'k-', lw=1, color='black')
     plt.plot([0.2, 0.2], [flux_min, 5000], 'k--', lw=1, color='black')
