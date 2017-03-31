@@ -98,13 +98,15 @@ def make_pwn_table(
         maximum value of the beta index under the assumption of a logparabola spectral model.
         Assuming an uniform distribution for beta
     """
+    random_state = get_random_state(random_state)
+
     table = make_base_catalog_galactic(
         n_sources=n_sources,
         max_age=0 * u.year,
+        random_state=random_state,
     )
     table = add_observed_parameters(table)
 
-    random_state = get_random_state(random_state)
 
     # Draw angular extension, then compute physical extension
     # intrinsic_extension = random_state.normal(mean_intrinsic,sigma_intrinsic,n_sources)
