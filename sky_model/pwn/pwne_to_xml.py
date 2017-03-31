@@ -55,6 +55,7 @@ SPECTRUM_TEMPLATE = """\
 
 
 def make_pwn_xml(table):
+    remove_or_not0 = 0
     remove_or_not = 0
     remove_or_not_2 = 0
     remove_or_not_3 = 0
@@ -65,7 +66,9 @@ def make_pwn_xml(table):
     #for row in table[:2]:
     for row in table:
         if (row['int_flux_above_1TeV_cu']>10):
-            print('crab: ', row['int_flux_above_1TeV_cu'])
+            if (remove_or_not0 < 20):
+                remove_or_not0+=1
+                print('crab: ', row['int_flux_above_1TeV_cu'])
             continue;
 
 
@@ -83,7 +86,7 @@ def make_pwn_xml(table):
 
 
         if (row['int_flux_above_1TeV_cu'] < 6 and row['int_flux_above_1TeV_cu'] > 4):
-            if (remove_or_not_3 < 0):
+            if (remove_or_not_3 < 1):
                 remove_or_not_3 += 1
                 print('4-6: ',remove_or_not_3, row.index, row['int_flux_above_1TeV_cu'])
                 continue;
@@ -94,7 +97,7 @@ def make_pwn_xml(table):
                 print('2-4: ',remove_or_not_4, row.index, row['int_flux_above_1TeV_cu'])
                 continue;
         if (row['int_flux_above_1TeV_cu'] < 2 and row['int_flux_above_1TeV_cu'] > 1):
-            if (remove_or_not_5 < 8):
+            if (remove_or_not_5 < 9):
                 remove_or_not_5 += 1
                 print('1-2: ',remove_or_not_5, row.index, row['int_flux_above_1TeV_cu'])
                 continue;

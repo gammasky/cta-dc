@@ -60,7 +60,7 @@ def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
 
 
 def make_pwn_table(
-        n_sources=400, random_state=0,
+        n_sources=650, random_state=0,
         mean_extension=0.13, sigma_extension=0.1, mean_intrinsic = 20, sigma_intrinsic=5, #intrinsic_extension=50,
         mean_index_alpha=2.1, sigma_index_alpha=0.3, max_index_beta=0.5,
         mean_logluminosity=33.5, sigma_logluminosity=1.0,):
@@ -78,6 +78,7 @@ def make_pwn_table(
     -----------
     n_sources: int
         number of sources defined from the logN-logS of the PWN population
+    rad_dis : callable
     rad_dis : callable
         Radial surface density distribution of sources.
         YusifovKucuk2004 is radial distribution of the surface density of pulsars in the galaxy
@@ -104,8 +105,8 @@ def make_pwn_table(
     random_state = get_random_state(random_state)
 
     # Draw angular extension, then compute physical extension
-    intrinsic_extension = random_state.normal(mean_intrinsic,sigma_intrinsic,n_sources)
-    # intrinsic_extension = random_state.uniform(3, 60, n_sources)
+    #intrinsic_extension = random_state.normal(mean_intrinsic,sigma_intrinsic,n_sources)
+    intrinsic_extension = random_state.uniform(3, 60, n_sources)
 
     intrinsic_extension = intrinsic_extension * u.pc
     constant = 0.000291 / u.arcmin
@@ -129,6 +130,9 @@ def make_pwn_table(
     # Define the luminosity
 
     logluminosity = random_state.normal(mean_logluminosity, sigma_logluminosity, n_sources)
+    for idx in range(len(table)):
+        if (logluminosity[idx] >35 ):
+            logluminosity[idx] = random_state.normal(mean_logluminosity, sigma_logluminosity, 1)
     luminosity = (10 ** logluminosity) * u.erg / u.second
 
     distance = table['distance'].quantity

@@ -60,64 +60,65 @@ def prepare_the_pwn_table():
     # hgpscat_unid.pprint()
     # print(hgpscat_unid['Source_Name','Flux_Spec_Int_1TeV'])
 
-    idx1 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1018-589B')[0]
+    idx1 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1852-000')[0]
     hgpscat_unid.remove_row(int(idx1[0]))
-    idx2 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1708-410')[0]
+    idx2 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1457-593')[0]
     hgpscat_unid.remove_row(int(idx2[0]))
-    idx2 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1852-000')[0]
-    hgpscat_unid.remove_row(int(idx2[0]))
-    idx3 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1457-593')[0]
+    idx3 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1503-582')[0]
     hgpscat_unid.remove_row(int(idx3[0]))
-    idx4 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1503-582')[0]
+    idx4 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1646-458')[0]
     hgpscat_unid.remove_row(int(idx4[0]))
-    idx5 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1614-518')[0]
+    idx5 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1641-463')[0]
     hgpscat_unid.remove_row(int(idx5[0]))
-    idx6 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1634-472')[0]
+    idx6 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1729-345')[0]
     hgpscat_unid.remove_row(int(idx6[0]))
-    idx7 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1646-458')[0]
+    idx7 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1747-248')[0]
     hgpscat_unid.remove_row(int(idx7[0]))
-    idx8 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1641-463')[0]
+    idx8 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1800-240')[0]
     hgpscat_unid.remove_row(int(idx8[0]))
-    idx9 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1729-345')[0]
+    idx9 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1808-204')[0]
     hgpscat_unid.remove_row(int(idx9[0]))
-    idx10 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1747-248')[0]
+    idx10 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1832-085')[0]
     hgpscat_unid.remove_row(int(idx10[0]))
-    idx11 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1800-240')[0]
+    idx11 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1832-093')[0]
     hgpscat_unid.remove_row(int(idx11[0]))
-    idx12 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1808-204')[0]
+    idx12 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1848-018')[0]
     hgpscat_unid.remove_row(int(idx12[0]))
-    idx13 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1832-085')[0]
+    idx13 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1923+141')[0]
     hgpscat_unid.remove_row(int(idx13[0]))
-    idx14 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1832-093')[0]
+    idx14 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1943+213')[0]
     hgpscat_unid.remove_row(int(idx14[0]))
-    idx15 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1843-033')[0]
+    idx15 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1702-420')[0]
     hgpscat_unid.remove_row(int(idx15[0]))
-    idx16 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1848-018')[0]
+    idx16 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1844-030')[0]
     hgpscat_unid.remove_row(int(idx16[0]))
-    idx17 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1923+141')[0]
+    idx17 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1746-285')[0]
     hgpscat_unid.remove_row(int(idx17[0]))
-    idx18 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1943+213')[0]
+    idx18 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1745-303')[0]
     hgpscat_unid.remove_row(int(idx18[0]))
-    idx19 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1702-420')[0]
+    idx19 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1741-302')[0]
     hgpscat_unid.remove_row(int(idx19[0]))
-    idx20 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1713-381')[0]
+    idx20 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1745-290')[0]
     hgpscat_unid.remove_row(int(idx20[0]))
-    idx21 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1507-622')[0]
+    idx21 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1626-490')[0]
     hgpscat_unid.remove_row(int(idx21[0]))
-    idx22 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1844-030')[0]
-    hgpscat_unid.remove_row(int(idx22[0]))
-    idx23 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1746-285')[0]
-    hgpscat_unid.remove_row(int(idx23[0]))
-    idx24 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1745-303')[0]
-    hgpscat_unid.remove_row(int(idx24[0]))
-    idx25 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1741-302')[0]
-    hgpscat_unid.remove_row(int(idx25[0]))
-    idx26 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1745-290')[0]
-    hgpscat_unid.remove_row(int(idx26[0]))
-    idx27 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1841-055')[0]
-    hgpscat_unid.remove_row(int(idx27[0]))
-    idx28 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1626-490')[0]
-    hgpscat_unid.remove_row(int(idx28[0]))
+
+   # idx2 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1708-410')[0]
+   # hgpscat_unid.remove_row(int(idx2[0]))
+   # idx1 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1018-589B')[0]
+   # hgpscat_unid.remove_row(int(idx1[0]))
+   # idx15 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1843-033')[0]
+   # hgpscat_unid.remove_row(int(idx15[0]))
+   # idx5 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1614-518')[0]
+   # hgpscat_unid.remove_row(int(idx5[0]))
+   # idx21 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1507-622')[0]
+   # hgpscat_unid.remove_row(int(idx21[0]))
+   # idx27 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1841-055')[0]
+   # hgpscat_unid.remove_row(int(idx27[0]))
+   # idx20 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1713-381')[0]
+   # hgpscat_unid.remove_row(int(idx20[0]))
+   # idx6 = np.where(hgpscat_unid['Source_Name'] == 'HESS J1634-472')[0]
+   # hgpscat_unid.remove_row(int(idx6[0]))
 
     # print(hgpscat_unid['Source_Name','Flux_Spec_Int_1TeV'])
     num_unid = len(hgpscat_unid)
@@ -224,10 +225,10 @@ def plot_logN_logS(table_pwn, new_table_sim_pwn, merged_table, flux_min, flux_ma
     # logyerr = y_hgps_err / y_hgps
 
 
-    p0 = 2.5
-    p1 = 1.24
-    # p0 = 2.28
+    #p0 = 2.5
     #p1 = 1.24
+    p0 = 2.4
+    p1 = 1.12
 
     x0 = np.log10(53)
     x1 = np.log10(10)
@@ -284,10 +285,10 @@ def remove_bright_pwn(table_sim_pwn):
             how_many_001to01 += 1
 
         if (table_sim_pwn[row]['int_flux_above_1TeV_cu']>10):
-           # if (remove_or_not_6 < 15):
+           if (remove_or_not_6 < 20):
                 #print('crab>10: ', row, table_sim_pwn[row]['int_flux_above_1TeV_cu'], table_sim_pwn[row]['source_name'])
                 remove_idx.append(row)
-             #   remove_or_not_6 += 1
+                remove_or_not_6 += 1
 
         if table_sim_pwn[row]['int_flux_above_1TeV_cu']>8 and table_sim_pwn[row]['int_flux_above_1TeV_cu'] < 10:
             if (remove_or_not < 3):
@@ -314,7 +315,7 @@ def remove_bright_pwn(table_sim_pwn):
                 remove_or_not_5 += 1
 
         if (table_sim_pwn[row]['int_flux_above_1TeV_cu'] > 1 and table_sim_pwn[row]['int_flux_above_1TeV_cu'] < 2):
-            if (remove_or_not_2 < 8):
+            if (remove_or_not_2 < 9):
                 #print('1-2: ', row, table_sim_pwn[row]['int_flux_above_1TeV_cu'], table_sim_pwn[row]['source_name'])
                 remove_idx.append(row)
                 remove_or_not_2 += 1
