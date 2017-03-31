@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<source_library title="source library">
+  <source name="CTA 1" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="9.10000021300469e-20" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.20000004768372" min="-4.54545444693447" max="4.54545444693447" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="3000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="1.65002800745558" scale="1" free="0" />
+      <parameter name="DEC" value="72.7830033718597" scale="1" free="0" />
+      <parameter name="Sigma" value="0.300000011920929" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="3C 58" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="1.99999996490334e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.40000009536743" min="-4.16666650109822" max="4.16666650109822" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="31.4043214512026" scale="1" free="0" />
+      <parameter name="DEC" value="64.828300066959" scale="1" free="0" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="LMC N132D" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="1.30000001106849e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.40000009536743" min="-4.16666650109822" max="4.16666650109822" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="81.2591724303086" scale="1" free="0" />
+      <parameter name="DEC" value="-69.6441584089365" scale="1" free="0" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="30 Dor C" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="1.59999997192267e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.59999990463257" min="-3.84615398722993" max="3.84615398722993" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="83.96169060431" scale="1" free="0" />
+      <parameter name="DEC" value="-69.2061075755534" scale="1" free="0" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="N 157B" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="1.30000003817354e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.79999995231628" min="-3.57142863224964" max="3.57142863224964" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="84.4444286414843" scale="1" free="0" />
+      <parameter name="DEC" value="-69.1714030800779" scale="1" free="0" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J0632+057" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="9.10000048405524e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.52999997138977" min="-3.95256921465767" max="3.95256921465767" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="98.2468965923398" scale="1" free="0" />
+      <parameter name="DEC" value="5.80032650244345" scale="1" free="0" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="Vela X" type="ExtendedSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="1.46000000283975e-17" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="1.32000005245209" min="-7.57575727472403" max="7.57575727472403" free="1" />
+      <parameter name="CutoffEnergy" value="1" error="0" scale="14000000" min="7.14285714285714e-09" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="128.287015246582" scale="1" free="0" />
+      <parameter name="DEC" value="-45.1900155320936" scale="1" free="0" />
+      <parameter name="Sigma" value="0.479999989271164" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="Vela Junior" type="ExtendedSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="3.2163001428831e-17" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="1.81180000305176" min="-5.51937298993057" max="5.51937298993057" free="1" />
+      <parameter name="CutoffEnergy" value="1" error="0" scale="6680029.86907959" min="1.49699929431271e-08" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialShell">
+      <parameter name="RA" value="133.000000424546" scale="1" free="0" />
+      <parameter name="DEC" value="-46.3330015536495" scale="1" free="0" />
+      <parameter name="Radius" value="0.8" error="0" scale="1" min="0" free="1" />
+      <parameter name="Width" value="0.2" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1018-589 B" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="4.19999999405965e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.90000009536743" min="-3.44827574867131" max="3.44827574867131" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="154.088199226647" scale="1" free="0" />
+      <parameter name="DEC" value="-58.95337413972" scale="1" free="0" />
+      <parameter name="Sigma" value="0.150000005960464" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1018-589 A" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="2.90000011851643e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.20000004768372" min="-4.54545444693447" max="4.54545444693447" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="154.574997029594" scale="1" free="0" />
+      <parameter name="DEC" value="-59.0000009588029" scale="1" free="0" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="Westerlund 2" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="3.25000009543386e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.57999992370605" min="-3.87596910686549" max="3.87596910686549" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="155.750008687568" scale="1" free="0" />
+      <parameter name="DEC" value="-57.5000049607443" scale="1" free="0" />
+      <parameter name="Sigma" value="0.180000007152557" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1026-582" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="9.89999965686494e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="1.94000005722046" min="-5.15463902322123" max="5.15463902322123" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="157.165835843457" scale="1" free="0" />
+      <parameter name="DEC" value="-58.2919438936741" scale="1" free="0" />
+      <parameter name="Sigma" value="0.140000000596046" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1303-631" type="ExtendedSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="5.60000006435968e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="1.5" min="-6.66666666666667" max="6.66666666666667" free="1" />
+      <parameter name="CutoffEnergy" value="1" error="0" scale="7699999.80926514" min="1.29870133087112e-08" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="195.751682732339" scale="1" free="0" />
+      <parameter name="DEC" value="-63.1986122103296" scale="1" free="0" />
+      <parameter name="Sigma" value="0.194000005722046" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1356-645" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="2.69999994584325e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.20000004768372" min="-4.54545444693447" max="4.54545444693447" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="208.999992800798" scale="1" free="0" />
+      <parameter name="DEC" value="-64.5000034524569" scale="1" free="0" />
+      <parameter name="Sigma" value="0.200000002980232" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1418-609" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="PhotonFlux" value="2.17000007372847e-12" error="0" scale="1" min="0" max="10" free="1" />
+      <parameter name="Index" value="2.22000002861023" error="0" scale="1" min="-10" max="10" free="1" />
+      <parameter name="LowerLimit" value="1000000" scale="1" min="0.001" max="1e+15" free="0" />
+      <parameter name="UpperLimit" value="1e+16" scale="1" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="214.516700223442" scale="1" free="0" />
+      <parameter name="DEC" value="-60.9752777771312" scale="1" free="0" />
+      <parameter name="Sigma" value="0.0816666632890701" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1420-607" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="PhotonFlux" value="2.96999989705948e-12" error="0" scale="1" min="0" max="10" free="1" />
+      <parameter name="Index" value="2.17000007629395" error="0" scale="1" min="-10" max="10" free="1" />
+      <parameter name="LowerLimit" value="1000000" scale="1" min="0.001" max="1e+15" free="0" />
+      <parameter name="UpperLimit" value="1e+16" scale="1" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="214.691707901769" scale="1" free="0" />
+      <parameter name="DEC" value="-60.9783015298378" scale="1" free="0" />
+      <parameter name="Sigma" value="0.0549999997019768" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1427-608" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="1.30000003817354e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.16000008583069" min="-4.62962944566468" max="4.62962944566468" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="216.966689134556" scale="1" free="0" />
+      <parameter name="DEC" value="-60.8499993108254" scale="1" free="0" />
+      <parameter name="Sigma" value="0.0399999991059303" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="RCW 86" type="ExtendedSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="2.99999998801259e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="1.5900000333786" min="-6.28930804407025" max="6.28930804407025" free="1" />
+      <parameter name="CutoffEnergy" value="1" error="0" scale="3470000.02861023" min="2.88184435664259e-08" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialShell">
+      <parameter name="RA" value="220.120787353147" scale="1" free="0" />
+      <parameter name="DEC" value="-62.6450056476476" scale="1" free="0" />
+      <parameter name="Radius" value="0.151999998092651" error="0" scale="1" min="0" free="1" />
+      <parameter name="Width" value="0.0379999995231628" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1503-582" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="1.59999997192267e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.40000009536743" min="-4.16666650109822" max="4.16666650109822" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="225.750020624631" scale="1" free="0" />
+      <parameter name="DEC" value="-58.1999972594053" scale="1" free="0" />
+      <parameter name="Sigma" value="0.259999990463257" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1507-622" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="3.10000007434919e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.49000000953674" min="-4.01606424164652" max="4.01606424164652" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="226.875021871552" scale="1" free="0" />
+      <parameter name="DEC" value="-62.4169974480492" scale="1" free="0" />
+      <parameter name="Sigma" value="0.150000005960464" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="MSH 15-5-02" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="5.69999993385584e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.26999998092651" min="-4.40528638062739" max="4.40528638062739" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="228.3208083735" scale="1" free="0" />
+      <parameter name="DEC" value="-59.0817007878937" scale="1" free="0" />
+      <parameter name="Sigma" value="0.106666669249535" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="SNR G327.1-1.1" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="1.70000000404916e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.09999990463257" min="-4.76190497815745" max="4.76190497815745" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1389999.98569489" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="238.634640473949" scale="1" free="0" />
+      <parameter name="DEC" value="-55.0622542079604" scale="1" free="0" />
+      <parameter name="Sigma" value="0.0299999993294477" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1614-518" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="PhotonFlux" value="5.78000008966129e-11" error="0" scale="1" min="0" max="10" free="1" />
+      <parameter name="Index" value="2.46000003814697" error="0" scale="1" min="-10" max="10" free="1" />
+      <parameter name="LowerLimit" value="200000.002980232" scale="1" min="0.001" max="1e+15" free="0" />
+      <parameter name="UpperLimit" value="1e+16" scale="1" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="243.562493342389" scale="1" free="0" />
+      <parameter name="DEC" value="-51.8190910847815" scale="1" free="0" />
+      <parameter name="Sigma" value="0.230000004172325" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1616-508" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="PhotonFlux" value="4.32999990029881e-11" error="0" scale="1" min="0" max="10" free="1" />
+      <parameter name="Index" value="2.34999990463257" error="0" scale="1" min="-10" max="10" free="1" />
+      <parameter name="LowerLimit" value="200000.002980232" scale="1" min="0.001" max="1e+15" free="0" />
+      <parameter name="UpperLimit" value="1e+16" scale="1" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="244.059998704957" scale="1" free="0" />
+      <parameter name="DEC" value="-50.9100049917297" scale="1" free="0" />
+      <parameter name="Sigma" value="0.136000007390976" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1626-490" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="4.90000011052483e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.1800000667572" min="-4.58715582283225" max="4.58715582283225" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="246.516689290113" scale="1" free="0" />
+      <parameter name="DEC" value="-49.0869313682503" scale="1" free="0" />
+      <parameter name="Sigma" value="0.0700000002980232" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1632-478" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="PhotonFlux" value="2.87000007093141e-11" error="0" scale="1" min="0" max="10" free="1" />
+      <parameter name="Index" value="2.11999988555908" error="0" scale="1" min="-10" max="10" free="1" />
+      <parameter name="LowerLimit" value="200000.002980232" scale="1" min="0.001" max="1e+15" free="0" />
+      <parameter name="UpperLimit" value="1e+16" scale="1" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="248.007797118468" scale="1" free="0" />
+      <parameter name="DEC" value="-47.87451218627" scale="1" free="0" />
+      <parameter name="Sigma" value="0.209999993443489" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1634-472" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="PhotonFlux" value="1.33999998597201e-11" error="0" scale="1" min="0" max="10" free="1" />
+      <parameter name="Index" value="2.38000011444092" error="0" scale="1" min="-10" max="10" free="1" />
+      <parameter name="LowerLimit" value="200000.002980232" scale="1" min="0.001" max="1e+15" free="0" />
+      <parameter name="UpperLimit" value="1e+16" scale="1" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="248.499999048183" scale="1" free="0" />
+      <parameter name="DEC" value="-47.2000052079689" scale="1" free="0" />
+      <parameter name="Sigma" value="0.109999999403954" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1640-465" type="ExtendedSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="3.30000003018194e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.10999989509583" min="-4.73933672851953" max="4.73933672851953" free="1" />
+      <parameter name="CutoffEnergy" value="1" error="0" scale="6000000" min="1.66666666666667e-08" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="250.125018676297" scale="1" free="0" />
+      <parameter name="DEC" value="-46.5499901026553" scale="1" free="0" />
+      <parameter name="Sigma" value="0.0716666653752327" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1641-463" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="3.91000003641811e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.0699999332428" min="-4.83091803019255" max="4.83091803019255" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="250.257091590263" scale="1" free="0" />
+      <parameter name="DEC" value="-46.3030555426935" scale="1" free="0" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="Westerlund 1" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="9.00000039771864e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.19000005722046" min="-4.56620992635588" max="4.56620992635588" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="251.50000814592" scale="1" free="0" />
+      <parameter name="DEC" value="-45.7999980700948" scale="1" free="0" />
+      <parameter name="Sigma" value="nan" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1702-420" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="9.1000002672148e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.0699999332428" min="-4.83091803019255" max="4.83091803019255" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="255.683348618362" scale="1" free="0" />
+      <parameter name="DEC" value="-42.0158170639151" scale="1" free="0" />
+      <parameter name="Sigma" value="0.300000011920929" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1708-443" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="4.20000015668998e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2" min="-5" max="5" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="257.000011739357" scale="1" free="0" />
+      <parameter name="DEC" value="-44.2999936916729" scale="1" free="0" />
+      <parameter name="Sigma" value="0.28999999165535" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1708-410" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="2.69999994584325e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.46000003814697" min="-4.06504058737033" max="4.06504058737033" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="257.099997054006" scale="1" free="0" />
+      <parameter name="DEC" value="-41.0900080711849" scale="1" free="0" />
+      <parameter name="Sigma" value="0.0599999986588955" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="RX J1713.7-3946" type="ExtendedSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="2.01999996590763e-17" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.3199999332428" min="-4.3103449516149" max="4.3103449516149" free="1" />
+      <parameter name="CutoffEnergy" value="1" error="0" scale="12899999.6185303" min="7.75193821373099e-09" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialShell">
+      <parameter name="RA" value="258.11251566777" scale="1" free="0" />
+      <parameter name="DEC" value="-39.686688582363" scale="1" free="0" />
+      <parameter name="Radius" value="0.4" error="0" scale="1" min="0" free="1" />
+      <parameter name="Width" value="0.1" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="CTB 37B" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="6.50000019086772e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.65000009536743" min="-3.7735847698577" max="3.7735847698577" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="258.429212155933" scale="1" free="0" />
+      <parameter name="DEC" value="-38.1701128225906" scale="1" free="0" />
+      <parameter name="Sigma" value="0.0433333329856396" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="SNR G349.7+0.2" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="PhotonFlux" value="6.50000019086772e-13" error="0" scale="1" min="0" max="10" free="1" />
+      <parameter name="Index" value="2.79999995231628" error="0" scale="1" min="-10" max="10" free="1" />
+      <parameter name="LowerLimit" value="400000.005960465" scale="1" min="0.001" max="1e+15" free="0" />
+      <parameter name="UpperLimit" value="1e+16" scale="1" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="259.49600531013" scale="1" free="0" />
+      <parameter name="DEC" value="-37.4269992681933" scale="1" free="0" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1718-385" type="ExtendedSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="2.99999987959237e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="0.699999988079071" min="-14.2857145289986" max="14.2857145289986" free="1" />
+      <parameter name="CutoffEnergy" value="1" error="0" scale="6000000" min="1.66666666666667e-08" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="259.529205116044" scale="1" free="0" />
+      <parameter name="DEC" value="-38.5499995955955" scale="1" free="0" />
+      <parameter name="Sigma" value="0.150000005960464" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1729-345" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="4.40000005831262e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.24000000953674" min="-4.46428569527913" max="4.46428569527913" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="861000.001430512" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="262.250006565734" scale="1" free="0" />
+      <parameter name="DEC" value="-34.4999972438851" scale="1" free="0" />
+      <parameter name="Sigma" value="0.119999997317791" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1731-347" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="4.67000006373897e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.3199999332428" min="-4.3103449516149" max="4.3103449516149" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="782999.992370606" free="0" />
+    </spectrum>
+    <spatialModel type="RadialShell">
+      <parameter name="RA" value="262.979177537114" scale="1" free="0" />
+      <parameter name="DEC" value="-34.7099960125566" scale="1" free="0" />
+      <parameter name="Radius" value="0.216000008583069" error="0" scale="1" min="0" free="1" />
+      <parameter name="Width" value="0.0540000021457672" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1745-303" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="2.83999993661022e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.71000003814697" min="-3.69003684842667" max="3.69003684842667" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="266.29699978676" scale="1" free="0" />
+      <parameter name="DEC" value="-30.1990059065777" scale="1" free="0" />
+      <parameter name="Sigma" value="nan" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="Galactic Centre" type="ExtendedSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="2.54999992475857e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.14000010490417" min="-4.67289696719327" max="4.67289696719327" free="1" />
+      <parameter name="CutoffEnergy" value="1" error="0" scale="10699999.8092651" min="9.34579455911858e-09" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="266.416830613989" scale="1" free="0" />
+      <parameter name="DEC" value="-29.0078149622511" scale="1" free="0" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="SNR G0.9+0.1" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="PhotonFlux" value="5.69999993385584e-12" error="0" scale="1" min="0" max="10" free="1" />
+      <parameter name="Index" value="2.40000009536743" error="0" scale="1" min="-10" max="10" free="1" />
+      <parameter name="LowerLimit" value="200000.002980232" scale="1" min="0.001" max="1e+15" free="0" />
+      <parameter name="UpperLimit" value="1e+16" scale="1" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="266.825006428334" scale="1" free="0" />
+      <parameter name="DEC" value="-28.1499961795314" scale="1" free="0" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="Terzan 5" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="5.20000004427396e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.5" min="-4" max="4" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="267.02083910497" scale="1" free="0" />
+      <parameter name="DEC" value="-24.77999621476" scale="1" free="0" />
+      <parameter name="Sigma" value="0.159999996423721" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1800-240B" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="7.57999999573267e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.5" min="-4" max="4" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="270.10830608562" scale="1" free="0" />
+      <parameter name="DEC" value="-24.0382958422343" scale="1" free="0" />
+      <parameter name="Sigma" value="0.150000005960464" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="W28" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="7.49999975319104e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.66000008583069" min="-3.75939837493543" max="3.75939837493543" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="270.344586067263" scale="1" free="0" />
+      <parameter name="DEC" value="-23.2888857655105" scale="1" free="0" />
+      <parameter name="Sigma" value="0.170000001788139" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1804-216" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="PhotonFlux" value="5.31999999608956e-11" error="0" scale="1" min="0" max="10" free="1" />
+      <parameter name="Index" value="2.72000002861023" error="0" scale="1" min="-10" max="10" free="1" />
+      <parameter name="LowerLimit" value="200000.002980232" scale="1" min="0.001" max="1e+15" free="0" />
+      <parameter name="UpperLimit" value="1e+16" scale="1" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="271.123755868312" scale="1" free="0" />
+      <parameter name="DEC" value="-21.7325518387236" scale="1" free="0" />
+      <parameter name="Sigma" value="0.200000002980232" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1809-193" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="4.60000006835548e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.20000004768372" min="-4.54545444693447" max="4.54545444693447" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="272.629205479218" scale="1" free="0" />
+      <parameter name="DEC" value="-19.2999960774396" scale="1" free="0" />
+      <parameter name="Sigma" value="0.533333361148834" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1813-178" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="PhotonFlux" value="1.41999996830511e-11" error="0" scale="1" min="0" max="10" free="1" />
+      <parameter name="Index" value="2.08999991416931" error="0" scale="1" min="-10" max="10" free="1" />
+      <parameter name="LowerLimit" value="200000.002980232" scale="1" min="0.001" max="1e+15" free="0" />
+      <parameter name="UpperLimit" value="1e+16" scale="1" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="273.362925594873" scale="1" free="0" />
+      <parameter name="DEC" value="-17.8488856514007" scale="1" free="0" />
+      <parameter name="Sigma" value="0.0359999984502792" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="SNR G15.4+0.1" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="9.00000018087821e-20" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.29999995231628" min="-4.34782617709587" max="4.34782617709587" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1899999.97615814" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="274.500005395833" scale="1" free="0" />
+      <parameter name="DEC" value="-15.4499956336538" scale="1" free="0" />
+      <parameter name="Sigma" value="nan" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1825-137" type="ExtendedSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="2.1000000349769e-17" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.25999999046326" min="-4.42477877973362" max="4.42477877973362" free="1" />
+      <parameter name="CutoffEnergy" value="1" error="0" scale="24799999.2370605" min="4.03225818856326e-09" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="276.554415083004" scale="1" free="0" />
+      <parameter name="DEC" value="-13.580035820312" scale="1" free="0" />
+      <parameter name="Sigma" value="0.239999994635582" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="LS 5039" type="ExtendedSource">
+    <spectrum type="ExponentialCutoffPowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="2.27999997354233e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="1.85000002384186" min="-5.40540533574329" max="5.40540533574329" free="1" />
+      <parameter name="CutoffEnergy" value="1" error="0" scale="8699999.80926514" min="1.1494253125558e-08" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="276.56274284765" scale="1" free="0" />
+      <parameter name="DEC" value="-14.8484009773699" scale="1" free="0" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1831-098" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="1.09999997392057e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.09999990463257" min="-4.76190497815745" max="4.76190497815745" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="277.850005304581" scale="1" free="0" />
+      <parameter name="DEC" value="-9.89999496364413" scale="1" free="0" />
+      <parameter name="Sigma" value="0.150000005960464" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1834-087" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="PhotonFlux" value="1.86999998819104e-11" error="0" scale="1" min="0" max="10" free="1" />
+      <parameter name="Index" value="2.45000004768372" error="0" scale="1" min="-10" max="10" free="1" />
+      <parameter name="LowerLimit" value="200000.002980232" scale="1" min="0.001" max="1e+15" free="0" />
+      <parameter name="UpperLimit" value="1e+16" scale="1" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="278.715838047084" scale="1" free="0" />
+      <parameter name="DEC" value="-8.74393926908388" scale="1" free="0" />
+      <parameter name="Sigma" value="0.0900000035762787" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1837-069" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="PhotonFlux" value="3.03999984907488e-11" error="0" scale="1" min="0" max="10" free="1" />
+      <parameter name="Index" value="2.26999998092651" error="0" scale="1" min="-10" max="10" free="1" />
+      <parameter name="LowerLimit" value="200000.002980232" scale="1" min="0.001" max="1e+15" free="0" />
+      <parameter name="UpperLimit" value="1e+16" scale="1" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="279.427924926965" scale="1" free="0" />
+      <parameter name="DEC" value="-6.92749529598043" scale="1" free="0" />
+      <parameter name="Sigma" value="0.119999997317791" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1841-055" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="1.27999997753814e-17" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.41000008583069" min="-4.14937744558343" max="4.14937744558343" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="280.229174629904" scale="1" free="0" />
+      <parameter name="DEC" value="-5.54999567055017" scale="1" free="0" />
+      <parameter name="Sigma" value="0.409999996423721" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1848-018" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="3.69999994184744e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.79999995231628" min="-3.57142863224964" max="3.57142863224964" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="282.120004415847" scale="1" free="0" />
+      <parameter name="DEC" value="-1.79199565955057" scale="1" free="0" />
+      <parameter name="Sigma" value="0.319999992847443" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1857+026" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="6.09999984552134e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.39000010490417" min="-4.1841002347575" max="4.1841002347575" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="284.295834986333" scale="1" free="0" />
+      <parameter name="DEC" value="2.66667588824448" scale="1" free="0" />
+      <parameter name="Sigma" value="0.109999999403954" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1858+020" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="5.99999975918475e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.17000007629395" min="-4.60829476885484" max="4.60829476885484" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="284.583334564313" scale="1" free="0" />
+      <parameter name="DEC" value="2.09000501623012" scale="1" free="0" />
+      <parameter name="Sigma" value="0.0799999982118607" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="MGRO J1908+06" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="4.13999997478376e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.09999990463257" min="-4.76190497815745" max="4.76190497815745" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="287.17500516043" scale="1" free="0" />
+      <parameter name="DEC" value="6.18300652509927" scale="1" free="0" />
+      <parameter name="Sigma" value="0.340000003576279" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="W 49B" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="3.15000006330737e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="3.14000010490417" min="-3.18471326939818" max="3.18471326939818" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="287.7458037039" scale="1" free="0" />
+      <parameter name="DEC" value="9.10170396567256" scale="1" free="0" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1912+101" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="3.49999998601469e-18" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.70000004768372" min="-3.70370363829394" max="3.70370363829394" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="288.334759002267" scale="1" free="0" />
+      <parameter name="DEC" value="10.1897200049431" scale="1" free="0" />
+      <parameter name="Sigma" value="0.259999990463257" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="SNR G054.1+00.3" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="7.49999997003148e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="2.39000010490417" min="-4.1841002347575" max="4.1841002347575" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="292.629204029609" scale="1" free="0" />
+      <parameter name="DEC" value="18.8670051610595" scale="1" free="0" />
+      <parameter name="Sigma" value="0.0549999997019768" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1943+213" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="1" error="0" scale="5.60000017277989e-19" min="0" free="1" />
+      <parameter name="Index" value="1" error="0" scale="3.09999990463257" min="-3.22580655085061" max="3.22580655085061" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="295.979203700646" scale="1" free="0" />
+      <parameter name="DEC" value="21.302224614766" scale="1" free="0" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+</source_library>
