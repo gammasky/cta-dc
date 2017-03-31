@@ -88,8 +88,8 @@ def make_spectral_point_selection(row):
         keep=keep,
     )
 
-def make_snr_xml(table):
 
+def make_snr_xml(table, version):
     print('Number of SNRs from Pierre: {}'.format(len(table)))
 
     snr_in_output = 0
@@ -136,17 +136,16 @@ def make_snr_xml(table):
 
     print('Number of SNRs in output XML: {}'.format(snr_in_output))
 
-    filename = 'ctadc_skymodel_gps_sources_snr_2.xml'
+    filename = 'ctadc_skymodel_gps_sources_snr_{}.xml'.format(version)
     print('Writing {}'.format(filename))
     with open(filename, 'w') as fh:
         fh.write(xml)
 
 
-def read_snr_data():
-    filename = 'ctadc_skymodel_gps_sources_snr_2.ecsv'
+def read_snr_data(version):
+    filename = 'ctadc_skymodel_gps_sources_snr_{}.ecsv'.format(version)
     print('Reading {}'.format(filename))
     table = Table.read(filename, format='ascii.ecsv')
-
 
     distance, glon, glat = compute_galactic_coordinates(
         x=table['POS_X'].quantity,
@@ -168,11 +167,10 @@ def read_snr_data():
     table['sed_energy'] = u.Quantity(sed_energy, 'TeV').to('MeV')
     table['sed_dnde'] = u.Quantity(sed_dnde, 'cm-2 s-1 TeV-1').to('cm-2 s-1 MeV-1')
 
-
-
     return table
 
 
 if __name__ == '__main__':
-    table = read_snr_data()
-    make_snr_xml(table)
+    for version in [1, 2]:
+        table = read_snr_data(version=version)
+        make_snr_xml(table, version=version)

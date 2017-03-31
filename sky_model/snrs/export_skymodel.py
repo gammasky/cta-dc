@@ -6,8 +6,8 @@ import astropy.units as u
 from astropy.table import Table
 
 
-def read_txt_files():
-    filename = 'ctadc_skymodel_gps_sources_snr_1.txt'
+def read_txt_files(version):
+    filename = 'ctadc_skymodel_gps_sources_snr_{}.txt'.format(version)
     print('Reading {}'.format(filename))
     data = np.genfromtxt(filename, defaultfmt='%0.6f', names=True)
 
@@ -91,7 +91,8 @@ def read_txt_files():
 
 
 if __name__ == '__main__':
-    table = read_txt_files()
-    filename = 'ctadc_skymodel_gps_sources_snr_1.ecsv'
-    print('Writing {}'.format(filename))
-    table.write(filename, format='ascii.ecsv', overwrite=True)
+    for version in [1, 2]:
+        table = read_txt_files(version=version)
+        filename = 'ctadc_skymodel_gps_sources_snr_{}.ecsv'.format(version)
+        print('Writing {}'.format(filename))
+        table.write(filename, format='ascii.ecsv', overwrite=True)
