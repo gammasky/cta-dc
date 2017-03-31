@@ -59,13 +59,6 @@ SPECTRUM_NODE_TEMPLATE = SPECTRUM_NODE_TEMPLATE_READABLE
 def make_table_spectrum_xml(sed_energy, sed_dnde):
     xml_spectrum_nodes = ''
     for energy, dnde in zip(sed_energy, sed_dnde):
-
-        # Jürgen requested that we remove nodes with zero or very low flux
-        # so that it works for ctools.
-        # So here we remove the ones below an arbirtrary low threshold:
-        if dnde < 1e-20:
-            continue
-
         xml_spectrum_nodes += SPECTRUM_NODE_TEMPLATE.format(
             energy=1e-6 * energy,
             dnde=1e+10 * dnde,
@@ -75,15 +68,44 @@ def make_table_spectrum_xml(sed_energy, sed_dnde):
     return SPECTRUM_TEMPLATE.format(xml_spectrum_nodes=xml_spectrum_nodes)
 
 
+def make_spectral_point_selection(row):
+    # Jürgen requested that we remove nodes with zero or very low flux
+    # so that it works for ctools.
+    # So here we remove the ones below an arbirtrary low threshold
+
+    # In addition we noticed that some SNRs have all fluxes very low
+    # We remove these super faint SNRs completely.
+    # IT is just one case
+    mask = row['sed_dnde'] > 1e-20
+    sed_energy = row['sed_energy'][mask]
+    sed_dnde = row['sed_dnde'][mask]
+
+    keep = (mask.sum() > 3)
+
+    return dict(
+        sed_energy=sed_energy,
+        sed_dnde=sed_dnde,
+        keep=keep,
+    )
+
 def make_snr_xml(table):
+
+    print('Number of SNRs from Pierre: {}'.format(len(table)))
+
+    snr_in_output = 0
 
     xml_sources = ''
     for row in table:
 
-        xml_spectral = make_table_spectrum_xml(
+        spec = make_spectral_point_selection(row)
 
-            sed_energy=row['sed_energy'],
-            sed_dnde=row['sed_dnde'],
+        if not spec['keep']:
+            continue
+
+        snr_in_output += 1
+        xml_spectral = make_table_spectrum_xml(
+            sed_energy=spec['sed_energy'],
+            sed_dnde=spec['sed_dnde'],
         )
 
         # Assumption on width of the SNR shell
@@ -112,16 +134,19 @@ def make_snr_xml(table):
 
     xml = SOURCE_LIBRARY_TEMPLATE.format(xml_sources=xml_sources)
 
-    filename = 'ctadc_skymodel_gps_sources_snr_1.xml'
+    print('Number of SNRs in output XML: {}'.format(snr_in_output))
+
+    filename = 'ctadc_skymodel_gps_sources_snr_2.xml'
     print('Writing {}'.format(filename))
     with open(filename, 'w') as fh:
         fh.write(xml)
 
 
 def read_snr_data():
-    filename = 'ctadc_skymodel_gps_sources_snr_1.ecsv'
+    filename = 'ctadc_skymodel_gps_sources_snr_2.ecsv'
     print('Reading {}'.format(filename))
     table = Table.read(filename, format='ascii.ecsv')
+
 
     distance, glon, glat = compute_galactic_coordinates(
         x=table['POS_X'].quantity,

@@ -181,36 +181,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_2" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.9604e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.4059e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-7.96289" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.13089" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.77077" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03854" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_3" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-20.94042" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.27040" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.44903" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02245" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_4" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -239,21 +209,6 @@
     <parameter name="DEC" value="-0.70335" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.80444" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.04022" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_5" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.484e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-2.86926" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.38789" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.59157" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02958" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -759,29 +714,6 @@
     <parameter name="DEC" value="-2.25859" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.19036" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00952" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_13" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="8.7847e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.2338e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.9616e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="13.04411" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="6.22130" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.28136" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.06407" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -1438,29 +1370,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_21" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.9763e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.2641e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.3053e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-2.54878" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-1.09476" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.23025" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01151" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_22" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -1606,21 +1515,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_25" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.5378e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-28.03162" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="2.40429" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.42101" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02105" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_26" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -1649,17 +1543,6 @@
     <parameter name="DEC" value="-3.21708" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.49541" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02477" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_27" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-177.24819" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="24.62526" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.68408" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03420" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -2979,29 +2862,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_48" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="6.2876e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.0097e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.3856e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="8.88415" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.61807" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.12664" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.05633" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_49" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -3046,25 +2906,6 @@
     <parameter name="DEC" value="-3.54630" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.46813" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02341" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_50" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.114e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.5249e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-19.61920" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.83276" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.62755" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03138" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -3329,17 +3170,6 @@
     <parameter name="DEC" value="0.17308" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.35754" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01788" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_55" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-64.53630" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-6.42065" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.26300" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01315" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -4963,40 +4793,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_80" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-25.15986" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-3.77199" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.39239" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01962" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_81" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.0096e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.2331e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.204e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-89.04630" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="6.96222" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.38908" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01945" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_82" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -5837,17 +5633,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_94" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-23.97685" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.77136" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.71650" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03582" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_95" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -6410,32 +6195,6 @@
     <parameter name="DEC" value="-0.24801" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.14898" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00745" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_102" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-37.53072" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-3.91936" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.35573" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01779" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_103" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.608e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="58.55530" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-11.45885" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.76904" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03845" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -7521,17 +7280,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_118" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-10.97068" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-6.07929" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.70512" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03526" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_119" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -7643,17 +7391,6 @@
     <parameter name="DEC" value="-3.32465" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.08849" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00442" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_121" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-83.06896" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.27309" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.39048" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01952" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -8142,17 +7879,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_129" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="95.25638" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-10.04818" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.66706" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03335" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_130" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -8580,17 +8306,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_135" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-45.85163" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-6.35937" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.55297" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02765" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_136" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -8798,17 +8513,6 @@
     <parameter name="DEC" value="-0.14452" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.08067" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00403" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_138" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-7.88640" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.40289" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.78657" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03933" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -9073,48 +8777,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_142" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="5.6761e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.7382e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.2796e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="4.08590" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="2.77249" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.91119" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04556" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_143" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.428e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.6251e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="9.38769" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-2.83742" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.84853" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04243" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_144" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -9210,25 +8872,6 @@
     <parameter name="DEC" value="2.13999" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.22386" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01119" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_146" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.1469e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.672e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="7.98785" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-2.73561" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.42882" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02144" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -9942,29 +9585,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_157" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.8573e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.0475e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.0506e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-92.81077" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.40300" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.35766" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01788" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_158" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -10439,21 +10059,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_164" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.6294e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="116.71014" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-18.10557" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.54304" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02715" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_165" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -10550,17 +10155,6 @@
     <parameter name="DEC" value="2.56555" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.42657" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02133" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_166" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-87.52803" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="7.88234" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.29533" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01477" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -11472,29 +11066,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_179" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="7.4595e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.9387e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.0103e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-37.48134" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="3.31723" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.51349" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02567" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_180" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -11804,17 +11375,6 @@
     <parameter name="DEC" value="-13.26332" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.04298" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00215" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_184" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-121.38672" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="9.66533" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.30639" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01532" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -12532,40 +12092,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_195" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.5014e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.1415e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.0311e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="21.28446" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="3.23815" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.45018" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.07251" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_196" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="123.38875" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="21.94443" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.24938" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01247" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_197" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -12914,25 +12440,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_201" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.1986e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.7938e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-54.09347" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-4.60363" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.23005" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01150" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_202" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -12981,29 +12488,6 @@
     <parameter name="DEC" value="-1.81138" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.24775" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01239" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_203" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.6932e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.6809e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.499e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-34.58640" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-1.98912" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.20561" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01028" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -14001,25 +13485,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_218" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.8784e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.457e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-29.37617" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-2.70193" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.44542" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02227" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_219" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -14301,28 +13766,6 @@
     <parameter name="DEC" value="0.10809" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.60378" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.03019" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_223" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="60.33636" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="6.75880" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="2.37520" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.11876" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_224" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-86.89104" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.13269" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.39116" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01956" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -14693,28 +14136,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_230" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="29.39427" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="2.53036" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.44690" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.07234" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_231" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-1.81728" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.19900" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.75380" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03769" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_232" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -14921,17 +14342,6 @@
     <parameter name="DEC" value="1.71389" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.13082" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00654" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_235" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-9.42637" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.85336" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.79241" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03962" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -15326,21 +14736,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_241" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.7935e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="30.21690" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="14.96150" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.80261" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04013" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_242" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -15613,29 +15008,6 @@
     <parameter name="DEC" value="-2.80225" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.52139" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02607" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_247" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="6.4059e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.1582e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.496e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="0.58031" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.44137" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.97428" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04871" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -16883,17 +16255,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_264" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-6.24486" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.54204" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.65146" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03257" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_265" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -17357,17 +16718,6 @@
     <parameter name="DEC" value="0.22891" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.12753" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00638" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_271" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="0.45623" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.26127" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.74162" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03708" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -17975,25 +17325,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_280" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.3934e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.0986e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="7.26114" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-1.17796" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.85033" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04252" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_281" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -18105,17 +17436,6 @@
     <parameter name="DEC" value="-0.62805" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.70331" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.03517" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_283" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="91.42999" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.40277" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.86385" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04319" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -18371,29 +17691,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_288" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.3945e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.1432e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.0751e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="23.11322" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="3.18521" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.65170" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.08259" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_289" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -18609,51 +17906,6 @@
     <parameter name="DEC" value="-0.12087" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.41899" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02095" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_291" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="3.65871" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.02272" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.52395" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02620" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_292" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.6763e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.2679e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.3818e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="46.43656" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.13996" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="2.75742" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.13787" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_293" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="5.50303" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.38005" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.18850" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.05943" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -19744,17 +18996,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_307" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-6.37306" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-2.22819" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.05600" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.05280" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_308" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -19863,17 +19104,6 @@
     <parameter name="DEC" value="0.27815" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.54658" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02733" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_309" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="15.43954" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-1.17534" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.25018" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.06251" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -20223,17 +19453,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_316" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-4.87564" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-4.45477" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.61979" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03099" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_317" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -20325,21 +19544,6 @@
     <parameter name="DEC" value="-0.07661" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.47820" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02391" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_319" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.4591e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-36.49826" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="5.62664" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.46609" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02330" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -21501,21 +20705,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_334" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.696e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-86.68656" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-16.41536" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.54463" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02723" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_335" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -21758,25 +20947,6 @@
     <parameter name="DEC" value="-2.20240" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.22737" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01137" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_338" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.6246e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.7303e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-7.21060" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.80655" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.86928" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04346" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -22392,17 +21562,6 @@
     <parameter name="DEC" value="0.16162" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.24584" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01229" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_348" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-79.90634" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-6.36753" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.53467" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02673" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -24274,17 +23433,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_369" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-52.97787" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.69469" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.50435" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02522" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_370" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -24723,39 +23871,6 @@
     <parameter name="DEC" value="0.16118" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.61992" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.03100" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_377" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-39.30600" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-2.73880" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.56570" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02829" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_378" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-49.50841" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.36297" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.39805" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01990" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_379" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="2.53744" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.93274" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.65052" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03253" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -25232,25 +24347,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_387" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.9674e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.3676e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="31.28340" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="3.96355" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.12683" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.05634" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_388" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -25643,44 +24739,6 @@
     <parameter name="DEC" value="0.02426" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.25338" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01267" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_393" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.0311e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="95.55848" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-4.95219" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.61388" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03069" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_394" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="6.2362e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.0578e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.5e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="14.84369" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.28611" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.11006" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.05550" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -26102,17 +25160,6 @@
     <parameter name="DEC" value="0.07415" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.01626" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00081" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_402" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-8.89039" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-2.33355" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.90079" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04504" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -27208,17 +26255,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_419" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="29.02311" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.11775" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.92895" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04645" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_420" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -27354,17 +26390,6 @@
     <parameter name="DEC" value="0.35343" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.29531" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01477" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_422" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="0.18938" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="3.04787" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.91641" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04582" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -27649,17 +26674,6 @@
     <parameter name="DEC" value="-0.54383" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.18643" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00932" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_427" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-123.90722" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-19.80141" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.59520" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02976" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -28062,48 +27076,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_433" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.6161e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.3076e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-11.81628" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.22932" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.45874" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02294" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_434" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.7171e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.8325e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.6561e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-60.75131" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="2.80962" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.20018" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01001" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_435" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -28254,17 +27226,6 @@
     <parameter name="DEC" value="0.11320" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.37973" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01899" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_438" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="73.76285" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="5.04270" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.70120" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03506" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -28853,17 +27814,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_446" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-58.70918" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="2.48349" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.47058" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02353" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_447" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -28936,25 +27886,6 @@
     <parameter name="DEC" value="1.25547" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.44803" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02240" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_448" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.1915e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.0949e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-32.87207" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-1.81370" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.43873" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02194" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -29034,17 +27965,6 @@
     <parameter name="DEC" value="-0.03607" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.20970" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01049" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_450" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="46.84352" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-24.02268" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.77433" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03872" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -29429,32 +28349,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_458" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="86.98617" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.88574" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.01921" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.05096" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_459" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.5543e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="24.37458" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-1.80884" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.83460" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04173" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_460" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -29515,17 +28409,6 @@
     <parameter name="DEC" value="-0.19978" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.09172" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00459" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_461" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-64.41827" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.05012" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.31459" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01573" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -30860,29 +29743,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_479" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.4482e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.0334e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.1666e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-67.39317" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-2.79758" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.19633" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.00982" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_480" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -31671,17 +30531,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_492" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-18.14943" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.93490" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.66456" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03323" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_493" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -31746,17 +30595,6 @@
     <parameter name="DEC" value="2.07598" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.23388" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01169" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_494" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-48.29697" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-3.58012" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.22971" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01149" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -31922,29 +30760,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_497" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.203e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.5997e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.5914e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="43.33533" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.83366" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="2.95648" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.14782" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_498" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -32021,17 +30836,6 @@
     <parameter name="DEC" value="-0.44092" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.69989" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.03499" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_499" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-44.80504" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="5.63999" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.57644" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02882" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -32999,17 +31803,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_512" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="24.90265" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="3.10351" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.57585" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.07879" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_513" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -33946,25 +32739,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_525" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.419e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.0296e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="6.68123" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="2.46781" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.76744" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03837" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_526" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -34270,29 +33044,6 @@
     <parameter name="DEC" value="-2.82180" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="1.26169" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.06308" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_530" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.2003e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.2377e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.1534e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="106.40772" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="13.08299" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.40587" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02029" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -35572,36 +34323,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_547" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-4.84947" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.61180" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.87285" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04364" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_548" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.9191e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.4554e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-2.72035" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.34346" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.63031" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03152" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_549" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -35690,40 +34411,6 @@
     <parameter name="DEC" value="-5.33796" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.46093" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02305" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_550" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.1869e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.9741e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="6.82564" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="10.11127" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.87764" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04388" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_551" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.4414e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-5.62709" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.08043" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.46250" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02313" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -36161,28 +34848,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_558" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="92.68643" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-6.17368" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.63813" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03191" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_559" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-110.70637" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.12116" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.46931" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02347" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_560" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -36326,17 +34991,6 @@
     <parameter name="DEC" value="3.92441" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.84191" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.04210" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_562" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-5.60986" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.37177" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.60967" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03048" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -36767,17 +35421,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_568" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-77.20560" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-3.89026" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.17543" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.00877" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_569" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -37126,29 +35769,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_573" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="8.0261e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.7923e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.7983e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="25.20023" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="3.73570" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.79857" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.08993" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_574" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -37229,17 +35849,6 @@
     <parameter name="DEC" value="-15.87713" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.45213" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02261" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_575" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="0.35915" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="2.14762" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.74087" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03704" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -38520,17 +37129,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_591" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="72.64512" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-14.95242" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.10806" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.05540" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_592" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -38744,17 +37342,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_595" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-47.20018" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.39767" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.41866" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02093" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_596" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -38815,17 +37402,6 @@
     <parameter name="DEC" value="-3.01142" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.18436" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00922" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_597" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-1.91548" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.87310" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.53965" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02698" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -38900,43 +37476,6 @@
     <parameter name="DEC" value="3.26160" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="3.29563" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.16478" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_600" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-38.75491" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-4.08045" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.46007" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02300" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_601" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-13.54148" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-4.36927" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.80692" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04035" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_602" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.7872e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-2.10442" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-2.74175" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.58846" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02942" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -39016,25 +37555,6 @@
     <parameter name="DEC" value="0.40089" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.25110" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01255" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_604" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.3696e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.4457e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="52.94375" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-2.72121" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="4.75542" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.23777" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -39929,17 +38449,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_618" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="74.30349" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="19.59638" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.88498" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04425" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_619" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -40063,21 +38572,6 @@
     <parameter name="DEC" value="0.18797" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.33214" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01661" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_621" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.1645e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="17.86816" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="6.01295" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.36262" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.06813" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -41010,17 +39504,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_633" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="21.67534" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-6.38651" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.28207" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.06410" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_634" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -41701,36 +40184,6 @@
     <parameter name="DEC" value="-2.96977" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.16876" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00844" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_643" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-175.53660" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.54611" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.44332" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02217" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_644" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.2225e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.1011e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-4.58982" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="3.03047" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.56584" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02829" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -42629,48 +41082,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_658" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.8484e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.579e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-25.22221" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-3.11992" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.35631" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01782" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_659" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.5772e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.1847e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.0399e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="31.07167" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.21473" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.03658" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.05183" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_660" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -42743,17 +41154,6 @@
     <parameter name="DEC" value="13.36866" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.14953" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00748" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_661" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="11.17287" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-1.91177" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.89309" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04465" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -42837,21 +41237,6 @@
     <parameter name="DEC" value="-9.82866" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.09972" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00499" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_663" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.0898e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="15.36693" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.92510" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.85818" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04291" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -43263,25 +41648,6 @@
     <parameter name="DEC" value="-0.13977" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.13380" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00669" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_669" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.4847e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.1387e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="1.18175" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.46609" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.98910" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04945" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -43892,25 +42258,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_679" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.8251e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.8191e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="43.51186" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-1.52629" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="2.31792" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.11590" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_680" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -44389,25 +42736,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_686" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.5283e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.5433e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="36.56017" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-6.27576" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="3.30585" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.16529" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_687" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -44819,17 +43147,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_692" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-139.30166" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.67757" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.45749" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02287" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_693" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -45210,40 +43527,6 @@
     <parameter name="DEC" value="0.79712" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.20593" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01030" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_698" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.9608e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.5398e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-64.24251" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.42726" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.35585" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01779" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_699" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.351e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="25.91018" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="2.13233" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.58822" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.07941" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -45869,36 +44152,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_710" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.255e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.0447e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-7.72395" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="2.40922" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.78387" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03919" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_711" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-20.56676" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.79079" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.54942" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02747" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_712" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -46279,40 +44532,6 @@
     <parameter name="DEC" value="-1.34532" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.19261" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00963" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_717" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="8.1723e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.6832e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.688e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="46.13407" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-2.36503" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="3.01518" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.15076" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_718" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-48.60418" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="3.01390" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.48423" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02421" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -46811,17 +45030,6 @@
     <parameter name="DEC" value="-2.64633" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.37772" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01889" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_725" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-6.92990" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.45620" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.59567" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02978" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -47883,21 +46091,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_740" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.3616e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-19.27646" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-1.36200" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.68812" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03441" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_741" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -48523,17 +46716,6 @@
     <parameter name="DEC" value="7.20413" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.35068" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01753" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_749" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="7.61778" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-2.12984" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.92122" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04606" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -49416,28 +47598,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_759" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-0.52400" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.06093" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.96571" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04829" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_760" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-21.39769" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="2.81110" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.67017" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03351" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_761" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -49820,17 +47980,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_767" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-168.60672" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.38016" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.48086" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02404" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_768" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -50002,25 +48151,6 @@
     <parameter name="DEC" value="2.57477" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.06530" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00326" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_770" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.3903e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.6504e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="6.24962" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.14063" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.65471" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03274" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -50316,17 +48446,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_775" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="3.46215" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.19562" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.03554" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.05178" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_776" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -50470,17 +48589,6 @@
     <parameter name="DEC" value="-3.66833" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="2.72708" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.13635" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_778" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="99.07088" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-10.57194" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.92283" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04614" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -50725,17 +48833,6 @@
     <parameter name="DEC" value="-7.11189" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.36376" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01819" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_783" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="61.83795" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="5.44401" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="2.23435" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.11172" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -51072,17 +49169,6 @@
     <parameter name="DEC" value="40.75553" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.21109" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01055" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_788" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-1.42217" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="5.26171" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.85816" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04291" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -51619,40 +49705,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_796" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-6.44678" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.72790" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.70678" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03534" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_797" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="5.4299e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.1488e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.7801e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-102.84400" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="7.31930" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.11835" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.00592" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_798" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -51677,44 +49729,6 @@
     <parameter name="DEC" value="-3.71208" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="1.51120" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.07556" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_799" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.1666e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="95.58510" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="7.96163" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.34787" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01739" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_800" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="5.1489e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.5341e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.1983e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="96.31948" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-4.87398" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.87884" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04394" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -51833,17 +49847,6 @@
     <parameter name="DEC" value="-0.27260" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.07406" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00370" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_803" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-47.80216" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-6.78565" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.56887" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02844" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -52333,17 +50336,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_810" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-44.72286" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-4.20324" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.25636" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01282" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_811" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -52403,21 +50395,6 @@
     <parameter name="DEC" value="1.73803" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.90939" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.04547" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_813" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.0957e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-11.66602" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-1.44526" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.70380" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03519" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -52560,17 +50537,6 @@
     <parameter name="DEC" value="-0.43315" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.56342" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02817" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_816" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-80.71404" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.03538" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.38963" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01948" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -52854,28 +50820,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_821" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-21.40199" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="3.33494" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.44669" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02233" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_822" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-13.18443" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-2.24590" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.86754" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04338" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_823" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -53011,17 +50955,6 @@
     <parameter name="DEC" value="-10.87903" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.44920" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02246" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_825" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-28.81678" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-5.11425" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.57876" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02894" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -53325,25 +51258,6 @@
     <parameter name="DEC" value="0.06878" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="1.01541" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.05077" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_831" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.4275e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.2402e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="11.12559" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-1.21904" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.67368" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03368" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -53704,29 +51618,6 @@
     <parameter name="DEC" value="-0.06429" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.39800" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01990" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_836" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="5.8497e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.0673e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.6776e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="40.50548" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.46832" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="2.34432" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.11722" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -54234,29 +52125,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_845" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.601e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.6682e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.5875e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="30.47016" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.95184" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="2.44868" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.12243" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_846" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -54746,51 +52614,6 @@
     <parameter name="DEC" value="-0.46267" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.06156" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00308" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_854" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.0262e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.0429e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="26.83381" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.56788" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.32415" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.06621" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_855" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.1445e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="24.09535" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-0.68394" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.54118" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.07706" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_856" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-0.71441" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.98886" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.66255" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03313" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -55805,17 +53628,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_870" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="161.28508" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.28255" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.46761" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02338" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_871" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -56007,21 +53819,6 @@
     <parameter name="DEC" value="2.64568" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.29211" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01461" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_873" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.4477e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="14.79759" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-5.38648" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.35095" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.06755" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -56645,17 +54442,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_882" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-41.07263" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-11.54403" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.70632" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03532" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_883" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -56774,40 +54560,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_885" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="24.97461" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-3.58158" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.05691" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.05285" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_886" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="6.3279e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.2623e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.6388e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-24.01627" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.44090" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.53290" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02665" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_887" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -56900,25 +54652,6 @@
     <parameter name="DEC" value="-4.19809" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.01608" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00080" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_888" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.2823e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.0868e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-19.12776" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-2.29092" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.65585" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03279" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -57203,25 +54936,6 @@
     <parameter name="DEC" value="3.20768" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.57864" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02893" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_893" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.0337e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.97e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="109.26171" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-2.56929" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.69673" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03484" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -57577,25 +55291,6 @@
     <parameter name="DEC" value="11.54144" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.16684" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00834" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_899" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.4538e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.6475e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="91.65368" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.13453" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.78423" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03921" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -57967,21 +55662,6 @@
     <parameter name="DEC" value="0.08948" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.21149" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01057" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_905" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.3166e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-39.91390" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-4.26908" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.45294" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02265" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -58877,21 +56557,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_918" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.1305e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-69.71693" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-4.33178" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.42709" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02135" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_919" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -59127,17 +56792,6 @@
     <parameter name="DEC" value="3.42642" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="1.06966" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.05348" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_921" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-104.48425" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-7.74597" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.48038" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02402" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -59501,17 +57155,6 @@
     <parameter name="DEC" value="-2.29065" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.01693" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00085" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_927" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="4.04856" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.07501" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.62432" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03122" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -59934,29 +57577,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_933" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.646e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.3164e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.1573e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="69.31746" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.57005" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.79527" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03976" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_934" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -60360,21 +57980,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_939" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.0781e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="1.19027" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-1.16740" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.32513" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.01626" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_940" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -60479,28 +58084,6 @@
     <parameter name="DEC" value="0.15924" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.53178" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02659" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_941" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="13.34956" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-3.44800" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.43910" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02196" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_942" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-71.33880" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-5.66473" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.58276" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02914" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -60623,29 +58206,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_944" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="4.4149e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.161e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.0164e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="100.35687" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-5.59395" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.83527" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04176" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_945" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -60765,29 +58325,6 @@
     <parameter name="DEC" value="1.25000" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.05699" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00285" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_947" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="6.4896e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="3.2618e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.5755e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="97.55832" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="6.53506" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.86306" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04315" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -61111,17 +58648,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_952" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="33.49971" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-3.11893" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.51063" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.07553" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_953" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -61158,44 +58684,6 @@
     <parameter name="DEC" value="-0.14621" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.32591" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.01630" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_954" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="5.0808e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="2.4842e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.13257" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.1966e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="20.25477" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.22754" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.83802" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04190" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_955" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.4272e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="18.80216" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.64346" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="1.41209" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.07060" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -63001,25 +60489,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_978" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        <node>
-    <parameter name="Energy" value="0.10000" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.994e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    <node>
-    <parameter name="Energy" value="0.11514" scale="1e06" min="0.1"   max="1.0e20" free="0"/>
-    <parameter name="Intensity" value="1.2224e-10" scale="1e-10" min="1e-20" max="1000.0" free="1"/>
-    </node>
-    </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="37.52904" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="6.32317" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="4.33648" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.21682" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_979" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -63293,17 +60762,6 @@
     </spatialModel>
  </source>
 
- <source name="snr_982" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-43.00467" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="1.58805" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.49074" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02454" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
  <source name="snr_983" type="ExtendedSource">
     <spectrum type="NodeFunction">
         <node>
@@ -63467,17 +60925,6 @@
     <parameter name="DEC" value="9.20960" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.10236" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00512" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_985" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-47.96195" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="4.71998" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.52792" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.02640" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -63715,17 +61162,6 @@
     <parameter name="DEC" value="0.63480" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.05456" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.00273" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_989" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="0.57273" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="0.33320" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.87815" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.04391" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
@@ -64203,17 +61639,6 @@
     <parameter name="DEC" value="-2.29716" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="0.49169" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="0.02458" scale="1.0" min="1e-10" max="10"  free="1"/>
-    </spatialModel>
- </source>
-
- <source name="snr_997" type="ExtendedSource">
-    <spectrum type="NodeFunction">
-        </spectrum>
-    <spatialModel type="RadialShell">
-    <parameter name="RA" value="-27.03585" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="-5.61139" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="0.61914" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="0.03096" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>
  </source>
 
