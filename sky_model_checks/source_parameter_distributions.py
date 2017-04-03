@@ -157,6 +157,11 @@ def plot_sky_positions(data):
     print('Writing {}'.format(filename))
     fig.savefig(filename)
 
+    ax.set_ylim(-5, 5)
+    filename = 'ctadc_skymodel_gps_sources_sky_positions_gps.png'
+    print('Writing {}'.format(filename))
+    fig.savefig(filename)
+
 
 if __name__ == '__main__':
     # make_source_tables()
