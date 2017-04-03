@@ -182,7 +182,7 @@ def plot_logn_logs():
 
 
 if __name__ == '__main__':
-    # make_source_tables()
+    make_source_tables()
     data = load_sky_models()
     print_skymodel_summary(data)
     plot_sky_positions(data)
