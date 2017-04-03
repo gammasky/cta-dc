@@ -10,7 +10,7 @@ import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
 from astropy.table import Table
-from astropy.coordinates import SkyCoord
+from astropy.coordinates import Angle, SkyCoord
 import gammalib
 
 
@@ -89,28 +89,28 @@ def load_sky_models():
     tag = 'gamma-cat'
     filename = '../sky_model/gamma-cat/ctadc_skymodel_gps_sources_gamma-cat2.xml'
     models = gammalib.GModels(filename)
-    table = Table.read(filename.replase('xml', '_summary.ecsv'), format='ascii.ecsv')
+    table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
     data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
     tag = 'image_sources'
     filename = '../sky_model/image_sources/ctadc_skymodel_gps_sources_images.xml'
-    models = gammalib.GModels(filename)
-    data.append(dict(tag=tag, filename=filename, models=models))
+    table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
+    data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
     tag = 'pwn'
     filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_pwn.xml'
-    models = gammalib.GModels(filename)
-    data.append(dict(tag=tag, filename=filename, models=models))
+    table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
+    data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
     tag = 'snr'
     filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.xml'
-    models = gammalib.GModels(filename)
-    data.append(dict(tag=tag, filename=filename, models=models))
+    table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
+    data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
     tag = 'binaries'
     filename = '../sky_model/binaries/ctadc_skymodel_gps_sources_binaries.xml'
-    models = gammalib.GModels(filename)
-    data.append(dict(tag=tag, filename=filename, models=models))
+    table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
+    data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
     # TODO: add pulsars
 
@@ -137,15 +137,29 @@ def print_skymodel_summary(data):
 
 
 def plot_sky_positions(data):
-    fig, ax = plt.subplot()
+    # import IPython; IPython.embed(); 1/0
+    fig, ax = plt.subplots(figsize=(15, 5))
+    for component in data:
+        table = component['table']
+        x = Angle(table['glon'], 'deg').wrap_at('180d').deg
+        y = table['glat']
+        if component['tag'] in ['pwn', 'snr']:
+            s, alpha = 10, 0.3
+            alpha
+        else:
+            s, alpha = 30, 0.8
+        ax.scatter(x, y, label=component['tag'], s=s, alpha=alpha)
 
+    ax.legend(loc='best')
+    ax.set_xlim(180, -180)
+    ax.set_ylim(-90, 90)
     filename = 'ctadc_skymodel_gps_sources_sky_positions.png'
     print('Writing {}'.format(filename))
     fig.savefig(filename)
 
 
 if __name__ == '__main__':
-    make_source_tables()
-    # data = load_sky_models()
+    # make_source_tables()
+    data = load_sky_models()
     # print_skymodel_summary(data)
-    # plot_sky_positions(data)
+    plot_sky_positions(data)
