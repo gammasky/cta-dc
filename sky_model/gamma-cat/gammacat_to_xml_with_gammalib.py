@@ -94,7 +94,6 @@ THE_OTHERS = [
     'SN 1006',  # not in the survey region
     'Arc source',  # very recent, and faint
     'Geminga',  # no good TeV measurement available
-
 ]
 
 
