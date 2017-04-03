@@ -193,6 +193,28 @@ def plot_glon_distribution(data):
     fig.savefig(filename)
 
 
+def plot_glat_distribution(data):
+    fig, ax = plt.subplots()
+    bins = np.arange(-10, 10.1, 0.5)
+    for component in data:
+        if component['tag'] == 'image_sources':
+            continue
+        table = component['table']
+        vals = Angle(table['glat'], 'deg').deg
+        ax.hist(
+            vals, bins=bins, label=component['tag'], histtype='step',
+            alpha=0.8, normed=True,
+        )
+
+    ax.legend(loc='best')
+    ax.set_xlim(-10, 10)
+    ax.set_xlabel('GLAT (deg)')
+    fig.tight_layout()
+    filename = 'ctadc_skymodel_gps_sources_glat.png'
+    print('Writing {}'.format(filename))
+    fig.savefig(filename)
+
+
 def plot_logn_logs():
     # import IPython; IPython.embed(); 1/0
     fig, ax = plt.subplots(figsize=(15, 5))
@@ -211,6 +233,8 @@ if __name__ == '__main__':
     # make_source_tables()
     data = load_sky_models()
     # print_skymodel_summary(data)
-    plot_sky_positions(data)
-    plot_glon_distribution(data)
+
+    # plot_sky_positions(data)
+    # plot_glon_distribution(data)
+    plot_glat_distribution(data)
     # plot_logn_logs()

@@ -14,17 +14,29 @@ image_sources        11 6.27654769846e-11
 
 ## Figures
 
+### Position
+
 * Sky positions:
   * [ctadc_skymodel_gps_sources_sky_positions.png](ctadc_skymodel_gps_sources_sky_positions.png)
   * [ctadc_skymodel_gps_sources_sky_positions_gps.png](ctadc_skymodel_gps_sources_sky_positions_gps.png)
 * GLON: [ctadc_skymodel_gps_sources_glon.png](ctadc_skymodel_gps_sources_glon.png)
-* TODO: GLAT
+* GLAT: [ctadc_skymodel_gps_sources_glat.png](ctadc_skymodel_gps_sources_glat.png)
+* Distance: TODO 
+* Galactic top-down view: TODO
+
+### Spatial
+
 * TODO: Source extensions
+
+### Spectral
+
 * TODO: Differential logN logS
 * TODO: Integral logN logS
 * TODO: Spectra
 
 ## Models
+
+These are the model files, with all information on every source:
 
 * gamma-cat: [xml](../sky_model/gamma-cat/ctadc_skymodel_gps_sources_gamma-cat2.xml)
 * image_sources: [xml](../sky_model/image_sources/ctadc_skymodel_gps_sources_images.xml)
