@@ -155,14 +155,17 @@ def plot_sky_positions(data):
 
     ax.legend(loc='best')
     ax.set_xlim(180, -180)
-    ax.set_ylim(-90, 90)
+    ax.set_ylim(-60, 60)
     ax.set_xlabel('GLON (deg)')
     ax.set_ylabel('GLAT (deg)')
+    ax.grid()
+    fig.tight_layout()
     filename = 'ctadc_skymodel_gps_sources_sky_positions.png'
     print('Writing {}'.format(filename))
     fig.savefig(filename)
 
     ax.set_ylim(-8, 8)
+    fig.tight_layout()
     filename = 'ctadc_skymodel_gps_sources_sky_positions_gps.png'
     print('Writing {}'.format(filename))
     fig.savefig(filename)
@@ -184,6 +187,7 @@ def plot_glon_distribution(data):
     ax.legend(loc='best')
     ax.set_xlim(180, -180)
     ax.set_xlabel('GLON (deg)')
+    fig.tight_layout()
     filename = 'ctadc_skymodel_gps_sources_glon.png'
     print('Writing {}'.format(filename))
     fig.savefig(filename)
