@@ -1,21 +1,27 @@
 # %ECSV 0.9
 # ---
 # datatype:
+# - {name: file, datatype: string}
 # - {name: name, datatype: string}
+# - {name: spatial_type, datatype: string}
 # - {name: ra, datatype: float64}
 # - {name: dec, datatype: float64}
 # - {name: glon, datatype: float64}
 # - {name: glat, datatype: float64}
+# - {name: spectral_type, datatype: string}
+# - {name: flux_1_10, datatype: float64}
 # meta: !!omap
-# - {info: This is TODO}
-name ra dec glon glat
-Westerlund1_gas nan nan nan nan
-Westerlund1_Fermi 252.9 -46.35 339.671544719 -1.32678877721
-PuppisA nan nan nan nan
-"Vela X hard" nan nan nan nan
-"Vela X soft" nan nan nan nan
-"Vela Junior" nan nan nan nan
-"RX J1713.7-3946" nan nan nan nan
-"HESS J1801-233" nan nan nan nan
-"HESS J1800-240A" nan nan nan nan
-"HESS J1800-240B" nan nan nan nan
+# - {filename: image_sources/ctadc_skymodel_gps_sources_images.xml}
+# - {tag: image_sources}
+file name spatial_type ra dec glon glat spectral_type flux_1_10
+image_sources Westerlund1_gas todo nan nan nan nan todo 7.02678199164e-12
+image_sources Westerlund1_Fermi todo 252.9 -46.35 339.671544719 -1.32678877721 todo 1.46120907132e-14
+image_sources PuppisA todo nan nan nan nan todo 1.67978710045e-15
+image_sources "Vela X hard" todo nan nan nan nan todo 1.4444585344e-11
+image_sources "Vela X soft" todo nan nan nan nan todo 9.35906144773e-14
+image_sources "Vela Junior" todo nan nan nan nan todo 2.29695094009e-11
+image_sources "RX J1713.7-3946" todo nan nan nan nan todo 1.64705826714e-11
+image_sources "HESS J1801-233" todo nan nan nan nan todo 4.41922763747e-13
+image_sources "HESS J1800-240A" todo nan nan nan nan todo 4.79638303597e-13
+image_sources "HESS J1800-240B" todo nan nan nan nan todo 4.89353290224e-13
+image_sources "HESS J1800-240C" todo nan nan nan nan todo 3.33220726863e-13

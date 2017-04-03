@@ -15,43 +15,47 @@ import gammalib
 
 
 def make_source_tables():
-    filenames = [
-        'gamma-cat/ctadc_skymodel_gps_sources_gamma-cat2.xml',
-        'image_sources/ctadc_skymodel_gps_sources_images.xml',
-        'pwn/ctadc_skymodel_gps_sources_pwn.xml',
-        'snrs/ctadc_skymodel_gps_sources_snr_2.xml',
-        'binaries/ctadc_skymodel_gps_sources_binaries.xml',
+    parts = [
+        dict(tag='gamma-cat', filename='gamma-cat/ctadc_skymodel_gps_sources_gamma-cat2.xml'),
+        dict(tag='image_sources', filename='image_sources/ctadc_skymodel_gps_sources_images.xml'),
+        dict(tag='pwn', filename='pwn/ctadc_skymodel_gps_sources_pwn.xml'),
+        dict(tag='snr', filename='snrs/ctadc_skymodel_gps_sources_snr_2.xml'),
+        dict(tag='binaries', filename='binaries/ctadc_skymodel_gps_sources_binaries.xml'),
+        # TODO: pulsars
     ]
-    for filename in filenames:
-        filename = '../sky_model/' + filename
+    for data in parts:
+        filename = '../sky_model/' + data['filename']
         print('Reading {}'.format(filename))
-        models = gammalib.GModels(filename)
-
-        table = make_source_table(models)
+        data['models'] = gammalib.GModels(filename)
+        table = make_source_table(data)
         filename = filename.replace('.xml', '_summary.ecsv')
         print('Writing {}'.format(filename))
         table.write(filename, format='ascii.ecsv', overwrite=True)
 
 
-def make_source_table(models):
+def make_source_table(data):
+    models = data['models']
     rows = []
     for source_idx, model in enumerate(models):
-        if source_idx == 10: break
+        # if source_idx == 10: break
 
         row = OrderedDict()
+        row['file'] = data['tag']
         row['name'] = model.name()
         # import IPython; IPython.embed(); 1 / 0
-        make_source_table_spatial(model.spatial(), row)
+        add_source_info_spatial(model.spatial(), row)
+        add_source_info_spectral(model.spectral(), row)
         rows.append(row)
 
     meta = OrderedDict(
-        info='This is TODO',
+        tag=data['tag'],
+        filename=data['filename'],
     )
     table = Table(rows=rows, meta=meta, names=list(rows[0].keys()))
     return table
 
 
-def make_source_table_spatial(spatial, row):
+def add_source_info_spatial(spatial, row):
     if isinstance(spatial, gammalib.GModelSpatialDiffuseMap):
         ra, dec, glon, glat = np.nan, np.nan, np.nan, np.nan
     else:
@@ -61,10 +65,22 @@ def make_source_table_spatial(spatial, row):
         glon = pos.l.deg
         glat = pos.b.deg
 
+    spatial_type = 'todo'
+
+    row['spatial_type'] = spatial_type
     row['ra'] = ra
     row['dec'] = dec
     row['glon'] = glon
     row['glat'] = glat
+
+
+def add_source_info_spectral(spectral, row):
+    row['spectral_type'] = 'todo'
+
+    emin = gammalib.GEnergy(1, 'TeV')
+    emax = gammalib.GEnergy(10, 'TeV')
+    flux = spectral.flux(emin, emax)
+    row['flux_1_10'] = flux
 
 
 def load_sky_models():
@@ -73,7 +89,8 @@ def load_sky_models():
     tag = 'gamma-cat'
     filename = '../sky_model/gamma-cat/ctadc_skymodel_gps_sources_gamma-cat2.xml'
     models = gammalib.GModels(filename)
-    data.append(dict(tag=tag, filename=filename, models=models))
+    table = Table.read(filename.replase('xml', '_summary.ecsv'), format='ascii.ecsv')
+    data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
     tag = 'image_sources'
     filename = '../sky_model/image_sources/ctadc_skymodel_gps_sources_images.xml'
@@ -94,6 +111,8 @@ def load_sky_models():
     filename = '../sky_model/binaries/ctadc_skymodel_gps_sources_binaries.xml'
     models = gammalib.GModels(filename)
     data.append(dict(tag=tag, filename=filename, models=models))
+
+    # TODO: add pulsars
 
     return data
 
