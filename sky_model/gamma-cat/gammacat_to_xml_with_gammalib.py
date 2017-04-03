@@ -29,10 +29,13 @@ def gammacat_source_to_gammalib_model_spatial(gammapy_spatial):
     pos = gammalib.GSkyDir()
 
     kind = gammapy_spatial.__class__.__name__
+    # TODO: use gammalib.GModelSpatialEllipticalGauss
     if kind == 'Gaussian2D':
         pos.lb_deg(gammapy_spatial.x_mean.value, gammapy_spatial.y_mean.value)
         sigma = gammapy_spatial.x_stddev.value
-        # TODO: use gammalib.GModelSpatialEllipticalGauss
+
+        # TODO: This is currently a hack in Gammapy: point sources are put as Gaussians
+
         gammalib_spatial = gammalib.GModelSpatialRadialGauss(pos, sigma)
     elif kind == 'Shell2D':
         # import IPython; IPython.embed(); 1/0

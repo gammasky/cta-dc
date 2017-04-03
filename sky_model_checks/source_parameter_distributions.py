@@ -237,18 +237,19 @@ def plot_size_distribution(data):
     fig, ax = plt.subplots()
     bins = np.arange(0, 3, 0.1)
     for component in data:
-        if component['tag'] == 'image_sources':
+        if component['tag'] not in ['gamma-cat', 'pwn', 'snr']:
             continue
         table = component['table']
-        vals = Angle(table['glat'], 'deg').deg
+        vals = Angle(table['size'], 'deg').deg
         ax.hist(
             vals, bins=bins, label=component['tag'], histtype='step',
             alpha=0.8, normed=True,
         )
 
     ax.legend(loc='best')
-    ax.set_xlim(-10, 10)
-    ax.set_xlabel('GLAT (deg)')
+    # ax.set_xlim(bins[0], bins-[1])
+    ax.set_xlim(0, 2)
+    ax.set_xlabel('Source size (deg)')
     fig.tight_layout()
     filename = 'ctadc_skymodel_gps_sources_size.png'
     print('Writing {}'.format(filename))
@@ -270,11 +271,14 @@ def plot_logn_logs():
 
 
 if __name__ == '__main__':
-    make_source_tables()
-    # data = load_sky_models()
+    # make_source_tables()
+    data = load_sky_models()
     # print_skymodel_summary(data)
 
     # plot_sky_positions(data)
     # plot_glon_distribution(data)
     # plot_glat_distribution(data)
+
+    plot_size_distribution(data)
+
     # plot_logn_logs()
