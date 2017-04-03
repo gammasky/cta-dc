@@ -17,7 +17,7 @@ image_sources        11 6.27654769846e-11
 * Sky positions:
   * [ctadc_skymodel_gps_sources_sky_positions.png](ctadc_skymodel_gps_sources_sky_positions.png)
   * [ctadc_skymodel_gps_sources_sky_positions_gps.png](ctadc_skymodel_gps_sources_sky_positions_gps.png)
-* TODO: GLON
+* GLON: [ctadc_skymodel_gps_sources_glon.png](ctadc_skymodel_gps_sources_glon.png)
 * TODO: GLAT
 * TODO: Source extensions
 * TODO: Differential logN logS

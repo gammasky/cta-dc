@@ -141,7 +141,6 @@ def print_skymodel_summary(data):
 
 
 def plot_sky_positions(data):
-    # import IPython; IPython.embed(); 1/0
     fig, ax = plt.subplots(figsize=(15, 5))
     for component in data:
         table = component['table']
@@ -157,12 +156,35 @@ def plot_sky_positions(data):
     ax.legend(loc='best')
     ax.set_xlim(180, -180)
     ax.set_ylim(-90, 90)
+    ax.set_xlabel('GLON (deg)')
+    ax.set_ylabel('GLAT (deg)')
     filename = 'ctadc_skymodel_gps_sources_sky_positions.png'
     print('Writing {}'.format(filename))
     fig.savefig(filename)
 
-    ax.set_ylim(-5, 5)
+    ax.set_ylim(-8, 8)
     filename = 'ctadc_skymodel_gps_sources_sky_positions_gps.png'
+    print('Writing {}'.format(filename))
+    fig.savefig(filename)
+
+
+def plot_glon_distribution(data):
+    fig, ax = plt.subplots()
+    bins = np.arange(-180, 181, 5)
+    for component in data:
+        if component['tag'] == 'image_sources':
+            continue
+        table = component['table']
+        vals = Angle(table['glon'], 'deg').wrap_at('180d').deg
+        ax.hist(
+            vals, bins=bins, label=component['tag'], histtype='step',
+            alpha=0.8, normed=True,
+        )
+
+    ax.legend(loc='best')
+    ax.set_xlim(180, -180)
+    ax.set_xlabel('GLON (deg)')
+    filename = 'ctadc_skymodel_gps_sources_glon.png'
     print('Writing {}'.format(filename))
     fig.savefig(filename)
 
@@ -182,8 +204,9 @@ def plot_logn_logs():
 
 
 if __name__ == '__main__':
-    make_source_tables()
+    # make_source_tables()
     data = load_sky_models()
-    print_skymodel_summary(data)
+    # print_skymodel_summary(data)
     plot_sky_positions(data)
+    plot_glon_distribution(data)
     # plot_logn_logs()
