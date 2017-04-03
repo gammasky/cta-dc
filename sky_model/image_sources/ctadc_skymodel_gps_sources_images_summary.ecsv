@@ -1,0 +1,21 @@
+# %ECSV 0.9
+# ---
+# datatype:
+# - {name: name, datatype: string}
+# - {name: ra, datatype: float64}
+# - {name: dec, datatype: float64}
+# - {name: glon, datatype: float64}
+# - {name: glat, datatype: float64}
+# meta: !!omap
+# - {info: This is TODO}
+name ra dec glon glat
+Westerlund1_gas nan nan nan nan
+Westerlund1_Fermi 252.9 -46.35 339.671544719 -1.32678877721
+PuppisA nan nan nan nan
+"Vela X hard" nan nan nan nan
+"Vela X soft" nan nan nan nan
+"Vela Junior" nan nan nan nan
+"RX J1713.7-3946" nan nan nan nan
+"HESS J1801-233" nan nan nan nan
+"HESS J1800-240A" nan nan nan nan
+"HESS J1800-240B" nan nan nan nan
