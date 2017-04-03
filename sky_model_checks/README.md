@@ -22,7 +22,7 @@ image_sources        11 6.27654769846e-11
 * GLON: [ctadc_skymodel_gps_sources_glon.png](ctadc_skymodel_gps_sources_glon.png)
 * GLAT: [ctadc_skymodel_gps_sources_glat.png](ctadc_skymodel_gps_sources_glat.png)
 * Distance: TODO 
-* Galactic top-down view: TODO
+* Galactic top-down view: [ctadc_skymodel_gps_sources_galactic_xy.png](ctadc_skymodel_gps_sources_galactic_xy.png)
 
 ### Spatial
 

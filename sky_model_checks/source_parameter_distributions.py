@@ -270,6 +270,31 @@ def plot_logn_logs():
     fig.savefig(filename)
 
 
+def plot_galactic_xy():
+    fig, ax = plt.subplots(figsize=(7, 7))
+
+    filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.ecsv'
+    table = Table.read(filename, format='ascii.ecsv')
+    table.info('stats')
+
+    x = table['POS_X'].quantity.to('kpc').value
+    y = table['POS_Y'].quantity.to('kpc').value
+
+    ax.scatter(x, y, label='snr', s=10, alpha=0.5)
+
+    # ax.set_xlim(0, 2)
+    ax.set_xlabel('X (kpc)')
+    ax.set_xlabel('Y (kpc)')
+    fig.tight_layout()
+
+
+
+
+    filename = 'ctadc_skymodel_gps_sources_galactic_xy.png'
+    print('Writing {}'.format(filename))
+    fig.savefig(filename)
+
+
 if __name__ == '__main__':
     # make_source_tables()
     data = load_sky_models()
@@ -280,5 +305,7 @@ if __name__ == '__main__':
     # plot_glat_distribution(data)
 
     plot_size_distribution(data)
+
+    plot_galactic_xy()
 
     # plot_logn_logs()
