@@ -52,30 +52,48 @@ def make_source_table(data):
         filename=data['filename'],
     )
     table = Table(rows=rows, meta=meta, names=list(rows[0].keys()))
+    table.info('stats')
     return table
 
 
 def add_source_info_spatial(spatial, row):
-    if isinstance(spatial, gammalib.GModelSpatialDiffuseMap):
-        ra, dec, glon, glat = np.nan, np.nan, np.nan, np.nan
-    else:
+    spatial_type = spatial.type()
+
+    if spatial_type in ['PointSource', 'SkyDirFunction']:
+        spatial_type = 'PointSource'
         ra = spatial.ra()
         dec = spatial.dec()
-        pos = SkyCoord(ra, dec, unit='deg').galactic
-        glon = pos.l.deg
-        glat = pos.b.deg
+        size = np.nan
+    elif spatial_type in ['DiffuseMap', 'SpatialMap']:
+        spatial_type = 'DiffuseMap'
+        ra, dec, glon, glat = np.nan, np.nan, np.nan, np.nan
+        size = np.nan
+    elif spatial_type in ['RadialGaussian', 'GaussFunction']:
+        spatial_type = 'RadialGaussian'
+        ra = spatial.ra()
+        dec = spatial.dec()
+        size = spatial.sigma()
+    elif spatial_type == 'RadialShell':
+        ra = spatial.ra()
+        dec = spatial.dec()
+        size = spatial.radius()
+    else:
+        raise ValueError('Invalid: {}'.format(spatial_type))
 
-    spatial_type = 'todo'
+    pos = SkyCoord(ra, dec, unit='deg').galactic
+    glon = pos.l.deg
+    glat = pos.b.deg
 
     row['spatial_type'] = spatial_type
     row['ra'] = ra
     row['dec'] = dec
     row['glon'] = glon
     row['glat'] = glat
+    row['size'] = size
 
 
 def add_source_info_spectral(spectral, row):
-    row['spectral_type'] = 'todo'
+    row['spectral_type'] = spectral.type()
 
     emin = gammalib.GEnergy(1, 'TeV')
     emax = gammalib.GEnergy(10, 'TeV')
@@ -215,6 +233,28 @@ def plot_glat_distribution(data):
     fig.savefig(filename)
 
 
+def plot_size_distribution(data):
+    fig, ax = plt.subplots()
+    bins = np.arange(0, 3, 0.1)
+    for component in data:
+        if component['tag'] == 'image_sources':
+            continue
+        table = component['table']
+        vals = Angle(table['glat'], 'deg').deg
+        ax.hist(
+            vals, bins=bins, label=component['tag'], histtype='step',
+            alpha=0.8, normed=True,
+        )
+
+    ax.legend(loc='best')
+    ax.set_xlim(-10, 10)
+    ax.set_xlabel('GLAT (deg)')
+    fig.tight_layout()
+    filename = 'ctadc_skymodel_gps_sources_size.png'
+    print('Writing {}'.format(filename))
+    fig.savefig(filename)
+
+
 def plot_logn_logs():
     # import IPython; IPython.embed(); 1/0
     fig, ax = plt.subplots(figsize=(15, 5))
@@ -231,7 +271,7 @@ def plot_logn_logs():
 
 if __name__ == '__main__':
     make_source_tables()
-    data = load_sky_models()
+    # data = load_sky_models()
     # print_skymodel_summary(data)
 
     # plot_sky_positions(data)

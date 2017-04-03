@@ -8,20 +8,21 @@
 # - {name: dec, datatype: float64}
 # - {name: glon, datatype: float64}
 # - {name: glat, datatype: float64}
+# - {name: size, datatype: float64}
 # - {name: spectral_type, datatype: string}
 # - {name: flux_1_10, datatype: float64}
 # meta: !!omap
 # - {tag: binaries}
 # - {filename: binaries/ctadc_skymodel_gps_sources_binaries.xml}
-file name spatial_type ra dec glon glat spectral_type flux_1_10
-binaries "LS 5039" todo 276.5625 -14.825 16.9021942727 -1.27810866902 todo 1.39222595063e-12
-binaries "PSR B1259-63" todo 195.705417 -63.831389 304.186795503 -0.987381562718 todo 1.37206632759e-12
-binaries "HESS J1832-093" todo 278.208333 -9.376667 22.4758009977 -0.176878698061 todo 4.31384902541e-13
-binaries "LS I 61+303" todo 40.141667 61.256944 135.66828994 1.11324989917 todo 3.56641733665e-12
-binaries "HESS J0632+057" todo 98.242917 5.805556 205.660072655 -1.44062854173 todo 9.51458733072e-13
-binaries "HESS J1018-589 A" todo 154.741667 -58.945278 284.355691632 -1.68653407802 todo 6.9018614229e-13
-binaries Binary_N1 todo 278.344646 -7.390601 24.3000087778 0.61999760287 todo 7.92090922744e-13
-binaries Binary_N2 todo 290.698354 13.16582 48.1976269199 -0.821275751898 todo 2.13042989148e-13
-binaries Binary_N3 todo 267.86004 -25.97816 3.20000316986 0.42000882885 todo 1.16908464817e-13
-binaries Binary_N4 todo 267.86005 -25.978161 3.20000690234 0.420000589771 todo 7.30677905106e-14
-binaries Binary_N5 todo 87.832424 26.196066 183.000008645 -0.329997123085 todo 2.2633033098e-14
+file name spatial_type ra dec glon glat size spectral_type flux_1_10
+binaries "LS 5039" PointSource 276.5625 -14.825 16.9021942727 -1.27810866902 nan ExponentialCutoffPowerLaw 1.39222595063e-12
+binaries "PSR B1259-63" PointSource 195.705417 -63.831389 304.186795503 -0.987381562718 nan PowerLaw 1.37206632759e-12
+binaries "HESS J1832-093" PointSource 278.208333 -9.376667 22.4758009977 -0.176878698061 nan PowerLaw 4.31384902541e-13
+binaries "LS I 61+303" PointSource 40.141667 61.256944 135.66828994 1.11324989917 nan PowerLaw 3.56641733665e-12
+binaries "HESS J0632+057" PointSource 98.242917 5.805556 205.660072655 -1.44062854173 nan PowerLaw 9.51458733072e-13
+binaries "HESS J1018-589 A" PointSource 154.741667 -58.945278 284.355691632 -1.68653407802 nan PowerLaw 6.9018614229e-13
+binaries Binary_N1 PointSource 278.344646 -7.390601 24.3000087778 0.61999760287 nan PowerLaw 7.92090922744e-13
+binaries Binary_N2 PointSource 290.698354 13.16582 48.1976269199 -0.821275751898 nan PowerLaw 2.13042989148e-13
+binaries Binary_N3 PointSource 267.86004 -25.97816 3.20000316986 0.42000882885 nan PowerLaw 1.16908464817e-13
+binaries Binary_N4 PointSource 267.86005 -25.978161 3.20000690234 0.420000589771 nan PowerLaw 7.30677905106e-14
+binaries Binary_N5 PointSource 87.832424 26.196066 183.000008645 -0.329997123085 nan PowerLaw 2.2633033098e-14

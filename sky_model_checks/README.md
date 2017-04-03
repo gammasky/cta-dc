@@ -26,7 +26,8 @@ image_sources        11 6.27654769846e-11
 
 ### Spatial
 
-* TODO: Source extensions
+* Source sizes: [ctadc_skymodel_gps_sources_size.png](ctadc_skymodel_gps_sources_size.png)
+  * It's radius for SNRs (TODO: outer?) and Gaussian sigma for Gaussian shapes
 
 ### Spectral
 
