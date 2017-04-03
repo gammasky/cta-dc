@@ -51,21 +51,32 @@ def gammacat_source_to_gammalib_model_spectral(gammapy_spectral):
     kind = gammapy_spectral.__class__.__name__
     if kind == 'PowerLaw':
         prefactor = gammapy_spectral.parameters['amplitude'].quantity.to('cm-2 s-1 MeV-1').value
-        index = gammapy_spectral.parameters['index'].value
+        index = - gammapy_spectral.parameters['index'].value
         pivot = gammalib.GEnergy(gammapy_spectral.parameters['reference'].quantity.to('MeV').value, 'MeV')
         gammalib_spectral = gammalib.GModelSpectralPlaw(prefactor, index, pivot)
+        gammalib_spectral['Prefactor'].scale(1e-20)
+        gammalib_spectral['Index'].scale(-1)
+        gammalib_spectral['PivotEnergy'].scale(1e6)
     elif kind == 'PowerLaw2':
         flux = gammapy_spectral.parameters['amplitude'].quantity.to('cm-2 s-1').value
-        index = gammapy_spectral.parameters['index'].value
+        index = - gammapy_spectral.parameters['index'].value
         emin = gammalib.GEnergy(gammapy_spectral.parameters['emin'].quantity.to('MeV').value, 'MeV')
         emax = gammalib.GEnergy(gammapy_spectral.parameters['emax'].quantity.to('MeV').value, 'MeV')
         gammalib_spectral = gammalib.GModelSpectralPlawPhotonFlux(flux, index, emin, emax)
+        gammalib_spectral['PhotonFlux'].scale(1e-12)
+        gammalib_spectral['Index'].scale(-1)
+        gammalib_spectral['LowerLimit'].scale(1e6)
+        gammalib_spectral['UpperLimit'].scale(1e6)
     elif kind == 'ExponentialCutoffPowerLaw':
         prefactor = gammapy_spectral.parameters['amplitude'].quantity.to('cm-2 s-1 MeV-1').value
-        index = gammapy_spectral.parameters['index'].value
+        index = - gammapy_spectral.parameters['index'].value
         pivot = gammalib.GEnergy(gammapy_spectral.parameters['reference'].quantity.to('MeV').value, 'MeV')
         cutoff = gammalib.GEnergy(1. / gammapy_spectral.parameters['lambda_'].quantity.to('MeV-1').value, 'MeV')
         gammalib_spectral = gammalib.GModelSpectralExpPlaw(prefactor, index, pivot, cutoff)
+        gammalib_spectral['Prefactor'].scale(1e-20)
+        gammalib_spectral['Index'].scale(-1)
+        gammalib_spectral['CutoffEnergy'].scale(1e6)
+        gammalib_spectral['PivotEnergy'].scale(1e6)
     else:
         raise NotImplementedError('Not supported: {}'.format(kind))
 
@@ -118,7 +129,7 @@ def gammacat_to_xml_gammalib():
     models = gammalib.GModels()
     for source_idx in range(len(cat.table)):
         # For debugging
-        # if source_idx > 5: break
+        # if source_idx > 1: break
 
         source = cat[source_idx]
         if skip_source(source):
@@ -126,6 +137,8 @@ def gammacat_to_xml_gammalib():
 
         try:
             model = gammacat_source_to_gammalib_model(source)
+            # import IPython; IPython.embed()
+            # print(model)
             models.append(model)
         except ValueError:
             txt = '{} (gammacat source_id={})'.format(source.name, source.data['source_id'])
