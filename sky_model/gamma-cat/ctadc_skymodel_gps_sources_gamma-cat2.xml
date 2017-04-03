@@ -420,7 +420,7 @@
     <spatialModel type="RadialGaussian">
       <parameter name="RA" value="266.29699978676" scale="1" free="0" />
       <parameter name="DEC" value="-30.1990059065777" scale="1" free="0" />
-      <parameter name="Sigma" value="nan" error="0" scale="1" min="0.0002778" free="1" />
+      <parameter name="Sigma" value="0.200000002980232" error="0" scale="1" min="0.0002778" free="1" />
     </spatialModel>
   </source>
   <source name="Galactic Centre" type="ExtendedSource">
@@ -520,7 +520,7 @@
     <spatialModel type="RadialGaussian">
       <parameter name="RA" value="274.500005395833" scale="1" free="0" />
       <parameter name="DEC" value="-15.4499956336538" scale="1" free="0" />
-      <parameter name="Sigma" value="nan" error="0" scale="1" min="0.0002778" free="1" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
     </spatialModel>
   </source>
   <source name="HESS J1826-130" type="ExtendedSource">
