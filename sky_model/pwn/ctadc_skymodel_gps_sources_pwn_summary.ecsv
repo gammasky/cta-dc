@@ -11,8 +11,8 @@
 # - {name: spectral_type, datatype: string}
 # - {name: flux_1_10, datatype: float64}
 # meta: !!omap
-# - {filename: pwn/ctadc_skymodel_gps_sources_pwn.xml}
 # - {tag: pwn}
+# - {filename: pwn/ctadc_skymodel_gps_sources_pwn.xml}
 file name spatial_type ra dec glon glat spectral_type flux_1_10
 pwn pwn_0 todo 275.838000152 -13.4077897497 17.826766216 0.00541756085973 todo 3.71785164612e-14
 pwn pwn_1 todo 261.487855488 -36.2770897732 351.587856221 -0.477943002441 todo 9.33840613444e-14

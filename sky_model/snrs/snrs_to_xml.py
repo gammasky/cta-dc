@@ -25,8 +25,8 @@ SOURCE_TEMPLATE = """
 
 SPATIAL_TEMPLATE = """\
     <spatialModel type="RadialShell">
-    <parameter name="RA" value="{glon:.5f}" scale="1.0" min="-360" max="360" free="1"/>
-    <parameter name="DEC" value="{glat:.5f}" scale="1.0" min="-90" max="90" free="1"/>
+    <parameter name="GLON" value="{glon:.5f}" scale="1.0" min="-360" max="360" free="1"/>
+    <parameter name="GLAT" value="{glat:.5f}" scale="1.0" min="-90" max="90" free="1"/>
     <parameter name="Radius" value="{radius:.5f}" scale="1.0" min="1e-10" max="10"  free="1"/>
     <parameter name="Width" value="{width:.5f}" scale="1.0" min="1e-10" max="10"  free="1"/>
     </spatialModel>"""
@@ -44,14 +44,6 @@ SPECTRUM_NODE_TEMPLATE_READABLE = """\
     </node>
 """
 
-# Single line, more compact version
-SPECTRUM_NODE_TEMPLATE_COMPACT = """\
-<node>\
-<parameter name="Energy" value="{energy:.5f}" unit="TeV"/>\
-<parameter name="Intensity" value="{dnde:.5g}" unit="cm-2 s-1 TeV-1"/>\
-</node>
-"""
-
 # Here you can select which one you want
 SPECTRUM_NODE_TEMPLATE = SPECTRUM_NODE_TEMPLATE_READABLE
 
@@ -62,7 +54,6 @@ def make_table_spectrum_xml(sed_energy, sed_dnde):
         xml_spectrum_nodes += SPECTRUM_NODE_TEMPLATE.format(
             energy=1e-6 * energy,
             dnde=1e+10 * dnde,
-
         )
 
     return SPECTRUM_TEMPLATE.format(xml_spectrum_nodes=xml_spectrum_nodes)
@@ -153,8 +144,8 @@ def read_snr_data(version):
         z=table['POS_Z'].quantity,
     )
     table['distance'] = distance
-    table['glat'] = glat
     table['glon'] = glon
+    table['glat'] = glat
 
     energy_array = np.array(table.meta['energy_array'])
     sed_energy = np.tile(energy_array, reps=(len(table), 1))

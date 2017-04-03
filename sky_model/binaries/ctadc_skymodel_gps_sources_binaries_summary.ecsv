@@ -11,8 +11,8 @@
 # - {name: spectral_type, datatype: string}
 # - {name: flux_1_10, datatype: float64}
 # meta: !!omap
-# - {filename: binaries/ctadc_skymodel_gps_sources_binaries.xml}
 # - {tag: binaries}
+# - {filename: binaries/ctadc_skymodel_gps_sources_binaries.xml}
 file name spatial_type ra dec glon glat spectral_type flux_1_10
 binaries "LS 5039" todo 276.5625 -14.825 16.9021942727 -1.27810866902 todo 1.39222595063e-12
 binaries "PSR B1259-63" todo 195.705417 -63.831389 304.186795503 -0.987381562718 todo 1.37206632759e-12

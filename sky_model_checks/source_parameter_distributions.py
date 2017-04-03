@@ -94,21 +94,25 @@ def load_sky_models():
 
     tag = 'image_sources'
     filename = '../sky_model/image_sources/ctadc_skymodel_gps_sources_images.xml'
+    models = gammalib.GModels(filename)
     table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
     data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
     tag = 'pwn'
     filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_pwn.xml'
+    models = gammalib.GModels(filename)
     table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
     data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
     tag = 'snr'
     filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.xml'
+    models = gammalib.GModels(filename)
     table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
     data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
     tag = 'binaries'
     filename = '../sky_model/binaries/ctadc_skymodel_gps_sources_binaries.xml'
+    models = gammalib.GModels(filename)
     table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
     data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
@@ -163,8 +167,23 @@ def plot_sky_positions(data):
     fig.savefig(filename)
 
 
+def plot_logn_logs():
+    # import IPython; IPython.embed(); 1/0
+    fig, ax = plt.subplots(figsize=(15, 5))
+    for component in data:
+        table = component['table']
+        table.rename_column('flux_1_10', 'S')
+        dist = FluxDistribution(table, label=component['tag'])
+        dist.plot_integral_count()
+
+    filename = 'ctadc_skymodel_gps_sources_logn_logs.png'
+    print('Writing {}'.format(filename))
+    fig.savefig(filename)
+
+
 if __name__ == '__main__':
     # make_source_tables()
     data = load_sky_models()
-    # print_skymodel_summary(data)
+    print_skymodel_summary(data)
     plot_sky_positions(data)
+    # plot_logn_logs()
