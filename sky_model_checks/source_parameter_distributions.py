@@ -102,6 +102,7 @@ def add_source_info_spectral(spectral, row):
 
 
 def load_sky_models():
+    print('Loading data ...')
     data = []
 
     tag = 'gamma-cat'
@@ -120,13 +121,20 @@ def load_sky_models():
     filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_pwn.xml'
     models = gammalib.GModels(filename)
     table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
-    data.append(dict(tag=tag, filename=filename, models=models, table=table))
+    filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_pwn.ecsv'
+    table_in = Table.read(filename, format='ascii.ecsv')
+    table_in['POS_X'] = table_in['x']
+    table_in['POS_Y'] = table_in['y']
+    table_in['POS_Z'] = table_in['z']
+    data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
 
     tag = 'snr'
     filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.xml'
     models = gammalib.GModels(filename)
     table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
-    data.append(dict(tag=tag, filename=filename, models=models, table=table))
+    filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.ecsv'
+    table_in = Table.read(filename, format='ascii.ecsv')
+    data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
 
     tag = 'binaries'
     filename = '../sky_model/binaries/ctadc_skymodel_gps_sources_binaries.xml'
@@ -270,27 +278,51 @@ def plot_logn_logs():
     fig.savefig(filename)
 
 
-def plot_galactic_xy():
+def plot_galactic_xy(data):
     fig, ax = plt.subplots(figsize=(7, 7))
 
-    filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.ecsv'
-    table = Table.read(filename, format='ascii.ecsv')
-    table.info('stats')
+    for component in data:
+        if component['tag'] not in ['snr', 'pwn']:
+            continue
 
-    x = table['POS_X'].quantity.to('kpc').value
-    y = table['POS_Y'].quantity.to('kpc').value
-
-    ax.scatter(x, y, label='snr', s=10, alpha=0.5)
+        table = component['table_in']
+        x = table['POS_X'].quantity.to('kpc').value
+        y = table['POS_Y'].quantity.to('kpc').value
+        ax.scatter(x, y, label=component['tag'], s=10, alpha=0.5)
 
     # ax.set_xlim(0, 2)
-    ax.set_xlabel('X (kpc)')
-    ax.set_xlabel('Y (kpc)')
+    ax.set_xlabel('Galactocentric X (kpc)')
+    ax.set_xlabel('Galactocentric Y (kpc)')
+    ax.legend(loc='best')
+    fig.tight_layout()
+
+    filename = 'ctadc_skymodel_gps_sources_galactic_xy.png'
+    print('Writing {}'.format(filename))
+    fig.savefig(filename)
+
+
+def plot_galactic_z(data):
+    fig, ax = plt.subplots()
+
+    for component in data:
+        if component['tag'] not in ['snr', 'pwn']:
+            continue
+
+        table = component['table_in']
+        bins = np.arange(-2, 2, 0.05)
+        vals = table['POS_Z'].quantity.to('kpc').value
+        ax.hist(
+            vals, bins=bins, histtype='step',
+            alpha=0.8, normed=True, label=component['tag'],
+        )
+
+    # ax.set_xlim(0, 2)
+    ax.set_xlabel('Galactocentric Z (kpc)')
+    ax.legend(loc='best')
     fig.tight_layout()
 
 
-
-
-    filename = 'ctadc_skymodel_gps_sources_galactic_xy.png'
+    filename = 'ctadc_skymodel_gps_sources_galactic_z.png'
     print('Writing {}'.format(filename))
     fig.savefig(filename)
 
@@ -304,8 +336,9 @@ if __name__ == '__main__':
     # plot_glon_distribution(data)
     # plot_glat_distribution(data)
 
-    plot_size_distribution(data)
+    # plot_size_distribution(data)
 
-    plot_galactic_xy()
+    plot_galactic_xy(data)
+    plot_galactic_z(data)
 
     # plot_logn_logs()
