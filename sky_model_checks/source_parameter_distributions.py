@@ -380,15 +380,15 @@ if __name__ == '__main__':
 
     # make_source_tables()
     data = load_sky_models()
-    print_skymodel_summary(data)
+    # print_skymodel_summary(data)
 
-    plot_sky_positions(data)
+    # plot_sky_positions(data)
     # plot_glon_distribution(data)
     # plot_glat_distribution(data)
 
-    # plot_size_distribution(data)
+    plot_size_distribution(data)
 
-    # plot_galactic_xy(data)
-    # plot_galactic_z(data)
+    plot_galactic_xy(data)
+    plot_galactic_z(data)
 
-    # plot_logn_logs()
+    plot_logn_logs()
