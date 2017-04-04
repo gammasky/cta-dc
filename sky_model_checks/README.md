@@ -38,7 +38,14 @@ image_sources        11 6.27654769846e-11
 
 ### Spectra
 
-* Plot all or many SEDs in one plot
+* Spectra for each of the components:
+  * [gamma-cat](ctadc_skymodel_gps_sources_spectra_gamma-cat.png)
+  * [image_sources](ctadc_skymodel_gps_sources_spectra_image_sources.png)
+  * [pwn](ctadc_skymodel_gps_sources_spectra_pwn.png)
+  * [snr](ctadc_skymodel_gps_sources_spectra_snr.png)
+  * [binaries](ctadc_skymodel_gps_sources_spectra_binaries.png)
+  * [pulsars](ctadc_skymodel_gps_sources_spectra_pulsars.png)
+
 * Compute fraction of emission from different components at different energies.
 * Which sources are the PeVatrons?
 * What about faint sources from gamma-cat that are hard spectrum and have no measurement at high energy.
