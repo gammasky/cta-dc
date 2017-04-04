@@ -66,7 +66,7 @@ def make_spectral_point_selection(row):
 
     # In addition we noticed that some SNRs have all fluxes very low
     # We remove these super faint SNRs completely.
-    # IT is just one case
+
     mask = row['sed_dnde'] > 1e-20
     sed_energy = row['sed_energy'][mask]
     sed_dnde = row['sed_dnde'][mask]
