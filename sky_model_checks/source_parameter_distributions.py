@@ -5,13 +5,16 @@ to illustrate / check the CTA 1DC GPS sky model.
 from collections import OrderedDict
 from pathlib import Path
 import numpy as np
+from scipy.ndimage import gaussian_filter1d
 import matplotlib
 
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
 from astropy.table import Table
 from astropy.coordinates import Angle, SkyCoord
+import astropy.units as u
 import gammalib
+from gammapy.spectrum import CrabSpectrum
 
 
 def make_source_tables():
@@ -264,20 +267,6 @@ def plot_size_distribution(data):
     fig.savefig(filename)
 
 
-def plot_logn_logs():
-    # import IPython; IPython.embed(); 1/0
-    fig, ax = plt.subplots(figsize=(15, 5))
-    for component in data:
-        table = component['table']
-        table.rename_column('flux_1_10', 'S')
-        dist = FluxDistribution(table, label=component['tag'])
-        dist.plot_integral_count()
-
-    filename = 'ctadc_skymodel_gps_sources_logn_logs.png'
-    print('Writing {}'.format(filename))
-    fig.savefig(filename)
-
-
 def plot_galactic_xy(data):
     fig, ax = plt.subplots(figsize=(7, 7))
 
@@ -321,8 +310,44 @@ def plot_galactic_z(data):
     ax.legend(loc='best')
     fig.tight_layout()
 
-
     filename = 'ctadc_skymodel_gps_sources_galactic_z.png'
+    print('Writing {}'.format(filename))
+    fig.savefig(filename)
+
+
+def plot_logn_logs():
+    fig, ax = plt.subplots(figsize=(15, 5))
+
+    crab_1_10 = CrabSpectrum().model.integral(1 * u.TeV, 10 * u.TeV).to('cm-2 s-1').value
+    bins = np.logspace(-10, 4, 200)
+    left, right, width = bins[:-1], bins[1:], np.diff(bins)
+
+    for component in data:
+        table = component['table']
+        flux = table['flux_1_10'] / crab_1_10
+        hist = np.histogram(flux, bins=bins)[0]
+        hist = gaussian_filter1d(hist.astype(float), sigma=2)
+        hist = hist / np.max(hist)
+
+        # Plotting a histogram nicely ourselves is nontrivial
+        # Example from http://stackoverflow.com/a/18611135/498873
+        x = np.array([left, right]).T.flatten()
+        y = np.array([hist, hist]).T.flatten()
+
+        ax.plot(x, y, label=component['tag'], alpha=0.8, lw=2)
+
+        # ax.bar(
+        #     left=left, height=hist, width=width,
+        #     label=component['tag'], alpha=0.7,
+        #     align='edge', color='none',
+        # )
+
+    # import IPython; IPython.embed(); 1/0
+    ax.set_xlabel('Integral flux 1-10 TeV (% Crab)')
+    ax.semilogx()
+    ax.legend(loc='best')
+    fig.tight_layout()
+    filename = 'ctadc_skymodel_gps_sources_logn_logs_diff.png'
     print('Writing {}'.format(filename))
     fig.savefig(filename)
 
@@ -338,7 +363,7 @@ if __name__ == '__main__':
 
     # plot_size_distribution(data)
 
-    plot_galactic_xy(data)
-    plot_galactic_z(data)
+    # plot_galactic_xy(data)
+    # plot_galactic_z(data)
 
-    # plot_logn_logs()
+    plot_logn_logs()
