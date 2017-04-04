@@ -33,9 +33,10 @@ image_sources        11 6.27654769846e-11
 
 ### Spectral
 
-* logN logS
+* logN-logS: [logN_logS_gammalib.png] (logN_logS_gammalib.png)
   * Differential (max at 1, smoothed a bit): [ctadc_skymodel_gps_sources_logn_logs_diff.png](ctadc_skymodel_gps_sources_logn_logs_diff.png)
   * Integral: todo
+  
 * TODO: Spectra
 
 ## Models
