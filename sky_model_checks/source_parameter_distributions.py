@@ -2,6 +2,7 @@
 Plot some simple source parameter distributions
 to illustrate / check the CTA 1DC GPS sky model.
 """
+import logging
 from collections import OrderedDict
 from pathlib import Path
 import numpy as np
@@ -16,23 +17,26 @@ import astropy.units as u
 import gammalib
 from gammapy.spectrum import CrabSpectrum
 
+log = logging.getLogger(__name__)
+
 
 def make_source_tables():
+    log.info('Starting make_source_tables')
     parts = [
         dict(tag='gamma-cat', filename='gamma-cat/ctadc_skymodel_gps_sources_gamma-cat2.xml'),
         dict(tag='image_sources', filename='image_sources/ctadc_skymodel_gps_sources_images.xml'),
         dict(tag='pwn', filename='pwn/ctadc_skymodel_gps_sources_pwn.xml'),
         dict(tag='snr', filename='snrs/ctadc_skymodel_gps_sources_snr_2.xml'),
         dict(tag='binaries', filename='binaries/ctadc_skymodel_gps_sources_binaries.xml'),
-        # TODO: pulsars
+        dict(tag='pulsars', filename='pulsars/ctadc_skymodel_gps_sources_pulsars.xml'),
     ]
     for data in parts:
         filename = '../sky_model/' + data['filename']
-        print('Reading {}'.format(filename))
+        log.info('Reading {}'.format(filename))
         data['models'] = gammalib.GModels(filename)
         table = make_source_table(data)
         filename = filename.replace('.xml', '_summary.ecsv')
-        print('Writing {}'.format(filename))
+        log.info('Writing {}'.format(filename))
         table.write(filename, format='ascii.ecsv', overwrite=True)
 
 
@@ -55,7 +59,7 @@ def make_source_table(data):
         filename=data['filename'],
     )
     table = Table(rows=rows, meta=meta, names=list(rows[0].keys()))
-    table.info('stats')
+    # table.info('stats')
     return table
 
 
@@ -105,22 +109,25 @@ def add_source_info_spectral(spectral, row):
 
 
 def load_sky_models():
-    print('Loading data ...')
+    log.info('Starting load_sky_models')
     data = []
 
     tag = 'gamma-cat'
+    log.debug('Reading {}'.format(tag))
     filename = '../sky_model/gamma-cat/ctadc_skymodel_gps_sources_gamma-cat2.xml'
     models = gammalib.GModels(filename)
     table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
     data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
     tag = 'image_sources'
+    log.debug('Reading {}'.format(tag))
     filename = '../sky_model/image_sources/ctadc_skymodel_gps_sources_images.xml'
     models = gammalib.GModels(filename)
     table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
     data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
     tag = 'pwn'
+    log.debug('Reading {}'.format(tag))
     filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_pwn.xml'
     models = gammalib.GModels(filename)
     table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
@@ -132,6 +139,7 @@ def load_sky_models():
     data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
 
     tag = 'snr'
+    log.debug('Reading {}'.format(tag))
     filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.xml'
     models = gammalib.GModels(filename)
     table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
@@ -140,12 +148,18 @@ def load_sky_models():
     data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
 
     tag = 'binaries'
+    log.debug('Reading {}'.format(tag))
     filename = '../sky_model/binaries/ctadc_skymodel_gps_sources_binaries.xml'
     models = gammalib.GModels(filename)
     table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
     data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
-    # TODO: add pulsars
+    tag = 'pulsars'
+    log.debug('Reading {}'.format(tag))
+    filename = '../sky_model/pulsars/ctadc_skymodel_gps_sources_pulsars.xml'
+    models = gammalib.GModels(filename)
+    table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
+    data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
     return data
 
@@ -161,6 +175,8 @@ def compute_total_flux(models):
 
 
 def print_skymodel_summary(data):
+    log.info('Starting print_skymodel_summary')
+
     table = Table()
     table['tag'] = [_['tag'] for _ in data]
     table['n_sources'] = [len(_['models']) for _ in data]
@@ -170,6 +186,7 @@ def print_skymodel_summary(data):
 
 
 def plot_sky_positions(data):
+    log.info('Starting plot_sky_positions')
     fig, ax = plt.subplots(figsize=(15, 5))
     for component in data:
         table = component['table']
@@ -190,17 +207,18 @@ def plot_sky_positions(data):
     ax.grid()
     fig.tight_layout()
     filename = 'ctadc_skymodel_gps_sources_sky_positions.png'
-    print('Writing {}'.format(filename))
+    log.info('Writing {}'.format(filename))
     fig.savefig(filename)
 
     ax.set_ylim(-8, 8)
     fig.tight_layout()
     filename = 'ctadc_skymodel_gps_sources_sky_positions_gps.png'
-    print('Writing {}'.format(filename))
+    log.info('Writing {}'.format(filename))
     fig.savefig(filename)
 
 
 def plot_glon_distribution(data):
+    log.info('Starting plot_glon_distribution')
     fig, ax = plt.subplots()
     bins = np.arange(-180, 181, 5)
     for component in data:
@@ -218,11 +236,12 @@ def plot_glon_distribution(data):
     ax.set_xlabel('GLON (deg)')
     fig.tight_layout()
     filename = 'ctadc_skymodel_gps_sources_glon.png'
-    print('Writing {}'.format(filename))
+    log.info('Writing {}'.format(filename))
     fig.savefig(filename)
 
 
 def plot_glat_distribution(data):
+    log.info('Starting plot_glat_distribution')
     fig, ax = plt.subplots()
     bins = np.arange(-10, 10.1, 0.5)
     for component in data:
@@ -240,11 +259,12 @@ def plot_glat_distribution(data):
     ax.set_xlabel('GLAT (deg)')
     fig.tight_layout()
     filename = 'ctadc_skymodel_gps_sources_glat.png'
-    print('Writing {}'.format(filename))
+    log.info('Writing {}'.format(filename))
     fig.savefig(filename)
 
 
 def plot_size_distribution(data):
+    log.info('Starting plot_size_distribution')
     fig, ax = plt.subplots()
     bins = np.arange(0, 3, 0.1)
     for component in data:
@@ -263,11 +283,12 @@ def plot_size_distribution(data):
     ax.set_xlabel('Source size (deg)')
     fig.tight_layout()
     filename = 'ctadc_skymodel_gps_sources_size.png'
-    print('Writing {}'.format(filename))
+    log.info('Writing {}'.format(filename))
     fig.savefig(filename)
 
 
 def plot_galactic_xy(data):
+    log.info('Starting plot_galactic_xy')
     fig, ax = plt.subplots(figsize=(7, 7))
 
     for component in data:
@@ -286,11 +307,12 @@ def plot_galactic_xy(data):
     fig.tight_layout()
 
     filename = 'ctadc_skymodel_gps_sources_galactic_xy.png'
-    print('Writing {}'.format(filename))
+    log.info('Writing {}'.format(filename))
     fig.savefig(filename)
 
 
 def plot_galactic_z(data):
+    log.info('Starting plot_galactic_z')
     fig, ax = plt.subplots()
 
     for component in data:
@@ -311,11 +333,12 @@ def plot_galactic_z(data):
     fig.tight_layout()
 
     filename = 'ctadc_skymodel_gps_sources_galactic_z.png'
-    print('Writing {}'.format(filename))
+    log.info('Writing {}'.format(filename))
     fig.savefig(filename)
 
 
 def plot_logn_logs():
+    log.info('Starting plot_logn_logs')
     fig, ax = plt.subplots(figsize=(15, 5))
 
     crab_1_10 = CrabSpectrum().model.integral(1 * u.TeV, 10 * u.TeV).to('cm-2 s-1').value
@@ -348,16 +371,18 @@ def plot_logn_logs():
     ax.legend(loc='best')
     fig.tight_layout()
     filename = 'ctadc_skymodel_gps_sources_logn_logs_diff.png'
-    print('Writing {}'.format(filename))
+    log.info('Writing {}'.format(filename))
     fig.savefig(filename)
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG)
+
     # make_source_tables()
     data = load_sky_models()
-    # print_skymodel_summary(data)
+    print_skymodel_summary(data)
 
-    # plot_sky_positions(data)
+    plot_sky_positions(data)
     # plot_glon_distribution(data)
     # plot_glat_distribution(data)
 
@@ -366,4 +391,4 @@ if __name__ == '__main__':
     # plot_galactic_xy(data)
     # plot_galactic_z(data)
 
-    plot_logn_logs()
+    # plot_logn_logs()
