@@ -1,0 +1,32 @@
+# %ECSV 0.9
+# ---
+# datatype:
+# - {name: file, datatype: string}
+# - {name: name, datatype: string}
+# - {name: spatial_type, datatype: string}
+# - {name: ra, datatype: float64}
+# - {name: dec, datatype: float64}
+# - {name: glon, datatype: float64}
+# - {name: glat, datatype: float64}
+# - {name: size, datatype: float64}
+# - {name: spectral_type, datatype: string}
+# - {name: flux_1_10, datatype: float64}
+# meta: !!omap
+# - {tag: pulsars}
+# - {filename: pulsars/ctadc_skymodel_gps_sources_pulsars.xml}
+file name spatial_type ra dec glon glat size spectral_type flux_1_10
+pulsars J0534+2201 PointSource 83.6372 22.0241 184.551361165 -5.77599417348 nan PowerLaw 1.386e-13
+pulsars J0835-4510 PointSource 128.838 -45.1783 263.554287069 -2.78728083513 nan PowerLaw 1.54672104519e-15
+pulsars J0007+7303 PointSource 1.7656 73.0499 119.661705524 10.4605234018 nan PowerLaw 9.4162925538e-16
+pulsars J0614-3329 PointSource 93.5368 -33.4949 240.495765539 -21.831081735 nan PowerLaw 2.9352315413e-15
+pulsars J0633+1746 PointSource 98.4788 17.7732 195.132593037 4.26983810354 nan PowerLaw 8.28459448466e-18
+pulsars OP_J0633+1746 PointSource 98.4788 17.7732 195.132593037 4.26983810354 nan PowerLaw 1.62967833496e-16
+pulsars J1028-5819 PointSource 157.123 -58.3201 285.068861129 -0.495486899945 nan PowerLaw 9.98060993678e-16
+pulsars J1048-5832 PointSource 162.067 -58.5354 287.432619908 0.57998989902 nan PowerLaw 2.45934888468e-17
+pulsars J1809-2332 PointSource 272.463 -23.5441 7.38761592406 -2.00053576134 nan PowerLaw 2.05657430376e-16
+pulsars OP_J1809-2332 PointSource 272.463 -23.5441 7.38761592406 -2.00053576134 nan PowerLaw 7.66710566901e-15
+pulsars J1836+5925 PointSource 279.061 59.4306 88.8817957403 24.9984665267 nan PowerLaw 1.69975515538e-17
+pulsars OP_J1836+5925 PointSource 279.061 59.4306 88.8817957403 24.9984665267 nan PowerLaw 6.28316118794e-23
+pulsars J2021+3651 PointSource 305.278 36.8612 75.2325407338 0.113029892533 nan PowerLaw 1.95726952347e-17
+pulsars J2229+6114 PointSource 337.271 61.2415 106.649988164 2.95369778789 nan PowerLaw 4.16590714622e-15
+pulsars J1413-6205 PointSource 213.372 -62.0866 312.374205749 -0.728452686672 nan PowerLaw 4.07419583741e-16
