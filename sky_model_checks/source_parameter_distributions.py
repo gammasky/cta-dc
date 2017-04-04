@@ -388,9 +388,16 @@ def plot_spectral_models(component):
 
     models = component['models']
     for idx, model in enumerate(models):
-        if idx == 100: break
+        # if idx == 100: break
         # log.debug('Plotting spectral model for: {}'.format(model.name()))
-        plot_spectral_model(model.spectral(), ax, alpha=0.3, color='black')
+        plot_kwargs = dict(color='black')
+        if component['tag'] in ['pwn', 'snr']:
+            plot_kwargs['alpha'] = 0.2
+            plot_kwargs['lw'] = 1
+        else:
+            plot_kwargs['alpha'] = 0.3
+            plot_kwargs['lw'] = 2
+        plot_spectral_model(model.spectral(), ax, plot_kwargs)
 
     ax.set_title('{} spectra'.format(component['tag']))
     ax.loglog()
@@ -404,7 +411,7 @@ def plot_spectral_models(component):
     fig.savefig(filename)
 
 
-def plot_spectral_model(model, ax, **kwargs):
+def plot_spectral_model(model, ax, plot_kwargs):
     energies = Energy.equal_log_spacing(emin=0.02, emax=100, unit='TeV', nbins=40)
     fluxes = []
     for energy in energies:
@@ -414,7 +421,7 @@ def plot_spectral_model(model, ax, **kwargs):
     dnde = u.Quantity(fluxes, 'cm-2 s-1 MeV-1')
     e2dnde = (energies ** 2 * dnde).to('erg cm-2 s-1')
 
-    ax.plot(energies.value, e2dnde.value, **kwargs)
+    ax.plot(energies.value, e2dnde.value, **plot_kwargs)
     # 1/0
 
 
