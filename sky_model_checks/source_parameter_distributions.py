@@ -15,6 +15,7 @@ from astropy.table import Table
 from astropy.coordinates import Angle, SkyCoord
 import astropy.units as u
 import gammalib
+from gammapy.utils.energy import Energy
 from gammapy.spectrum import CrabSpectrum
 
 log = logging.getLogger(__name__)
@@ -375,6 +376,48 @@ def plot_logn_logs():
     fig.savefig(filename)
 
 
+def plot_all_spectral_models(data):
+    log.info('Starting plot_all_spectral_models')
+    for component in data:
+        plot_spectral_models(component)
+
+
+def plot_spectral_models(component):
+    log.info('Starting plot_spectral_models for: {}'.format(component['tag']))
+    fig, ax = plt.subplots()
+
+    models = component['models']
+    for idx, model in enumerate(models):
+        if idx == 100: break
+        # log.debug('Plotting spectral model for: {}'.format(model.name()))
+        plot_spectral_model(model.spectral(), ax, alpha=0.3, color='black')
+
+    ax.set_title('{} spectra'.format(component['tag']))
+    ax.loglog()
+    ax.set_xlabel('Energy (TeV)')
+    ax.set_ylabel('e2dnde (erg cm-2 s-1)')
+    ax.set_ylim(2e-18, 5e-10)
+    # import IPython; IPython.embed()
+    fig.tight_layout()
+    filename = 'ctadc_skymodel_gps_sources_spectra_{}.png'.format(component['tag'])
+    log.info('Writing {}'.format(filename))
+    fig.savefig(filename)
+
+
+def plot_spectral_model(model, ax, **kwargs):
+    energies = Energy.equal_log_spacing(emin=0.02, emax=100, unit='TeV', nbins=40)
+    fluxes = []
+    for energy in energies:
+        energy_gammalib = gammalib.GEnergy(energy.value, 'TeV')
+        fluxes.append(model.eval(energy_gammalib))
+
+    dnde = u.Quantity(fluxes, 'cm-2 s-1 MeV-1')
+    e2dnde = (energies ** 2 * dnde).to('erg cm-2 s-1')
+
+    ax.plot(energies.value, e2dnde.value, **kwargs)
+    # 1/0
+
+
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
 
@@ -386,9 +429,11 @@ if __name__ == '__main__':
     # plot_glon_distribution(data)
     # plot_glat_distribution(data)
 
-    plot_size_distribution(data)
+    # plot_size_distribution(data)
 
-    plot_galactic_xy(data)
-    plot_galactic_z(data)
+    # plot_galactic_xy(data)
+    # plot_galactic_z(data)
 
-    plot_logn_logs()
+    # plot_logn_logs()
+
+    plot_all_spectral_models(data)
