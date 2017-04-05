@@ -22,7 +22,7 @@ image_sources        11 6.27654769846e-11
   * [ctadc_skymodel_gps_sources_sky_positions_gps.png](ctadc_skymodel_gps_sources_sky_positions_gps.png)
   * GLON: [ctadc_skymodel_gps_sources_glon.png](ctadc_skymodel_gps_sources_glon.png)
   * GLAT: [ctadc_skymodel_gps_sources_glat.png](ctadc_skymodel_gps_sources_glat.png)
-  * Distance: TODO
+  * Distance: [ctadc_skymodel_gps_sources_distance.png](ctadc_skymodel_gps_sources_distance.png)
 
 * Positions in the Galaxy (only for simulated sources: PWN, SNR):
   * [ctadc_skymodel_gps_sources_galactic_xy.png](ctadc_skymodel_gps_sources_galactic_xy.png)
@@ -44,7 +44,8 @@ image_sources        11 6.27654769846e-11
   * There is no bug. The fact that there are only few SNRs with small angular size is a result
     of Pierre's model, which contains very few SNRs with small physical size, i.e. below 10 pc.
 * logN-logS: [logN_logS_gammalib.png](logN_logS_gammalib.png)
-  * Differential (max at 1, smoothed a bit): [ctadc_skymodel_gps_sources_logn_logs_diff.png](ctadc_skymodel_gps_sources_logn_logs_diff.png)
+  * Differential (linear in y-axis): [ctadc_skymodel_gps_sources_logn_logs_diff.png](ctadc_skymodel_gps_sources_logn_logs_diff.png)
+  * Differential (log in y-axis): [ctadc_skymodel_gps_sources_logn_logs_diff_logscale.png](ctadc_skymodel_gps_sources_logn_logs_diff_logscale.png)
   * Integral: todo
 * Source size vs flux
 

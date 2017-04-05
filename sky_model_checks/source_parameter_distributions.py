@@ -21,6 +21,81 @@ from gammapy.spectrum import CrabSpectrum
 log = logging.getLogger(__name__)
 
 
+class Histogram:
+    """
+    Helper class to work with 1-dim histograms.
+    
+    Splits histogram computation from plotting,
+    and introduces some conveniences.
+    """
+
+    def __init__(self, bins, vals):
+        self.bins = bins
+        self.vals = vals
+
+    @classmethod
+    def from_points(cls, bins, points):
+        vals = np.histogram(points, bins=bins)[0]
+        return cls(bins=bins, vals=vals)
+
+    @property
+    def bin_centers(self):
+        return 0.5 * (self.bins[:-1] + self.bins[1:])
+
+    def smooth(self, sigma=1):
+        vals = gaussian_filter1d(self.vals.astype(float), sigma=sigma)
+        return self.__class__(bins=self.bins, vals=vals)
+
+    def normalise(self, method='max', value=1):
+        if method == 'max':
+            scale = float(value) / np.max(self.vals)
+        elif method == 'int':
+            integral = np.sum(self.vals * np.diff(self.bins))
+            scale = float(value) / integral
+        elif method == 'int log':
+            integral = np.sum(self.vals * np.diff(np.log10(self.bins)))
+            scale = float(value) / integral
+        else:
+            raise ValueError('Invalid method: {}'.format(method))
+
+        return self.__class__(bins=self.bins, vals=scale * self.vals)
+
+    def plot_hist(self, ax, **kwargs):
+        """Plot a pre-binned histogram"""
+        bins = self.bins
+        vals = self.vals
+        # Plotting a histogram nicely ourselves is nontrivial
+        # Example from http://stackoverflow.com/a/18611135/498873
+        left, right, width = bins[:-1], bins[1:], np.diff(bins)
+        x = np.array([left, right]).T.flatten()
+        y = np.array([vals, vals]).T.flatten()
+        ax.plot(x, y, **kwargs)
+        # ax.bar(
+        #     left=left, height=hist, width=width,
+        #     label=component['tag'], alpha=0.7,
+        #     align='edge', color='none',
+        # )
+
+    def plot_smooth(self, ax, **kwargs):
+        x = self.bin_centers
+        y = self.vals
+        ax.plot(x, y, **kwargs)
+
+
+class HistogramStack:
+    def __init__(self, hists=None):
+        self.hists = hists if hists else []
+
+    def add(self, hist):
+        self.hists.append(hist)
+
+    @property
+    def total(self):
+        bins = self.hists[0].bins
+        vals = np.vstack([h.vals for h in self.hists]).sum(axis=0)
+        return Histogram(bins=bins, vals=vals)
+
+
 def make_source_tables():
     log.info('Starting make_source_tables')
     parts = [
@@ -242,13 +317,15 @@ class GPSSkyModel:
 
     def plot_glon_distribution(self):
         fig, ax = plt.subplots()
-        bins = np.arange(-180, 181, 5)
+        bins = np.arange(-180, 181, 1)
         for component in self.get_components(skip=['image_sources']):
             table = component['table']
-            vals = Angle(table['glon'], 'deg').wrap_at('180d').deg
-            ax.hist(
-                vals, bins=bins, label=component['tag'], histtype='step',
-                alpha=0.8, normed=True,
+            points = Angle(table['glon'], 'deg').wrap_at('180d').deg
+            hist = Histogram.from_points(bins=bins, points=points)
+            hist = hist.normalise(method='int', value=1)
+            hist = hist.smooth(sigma=3)
+            hist.plot_smooth(
+                ax=ax, label=component['tag'], alpha=0.8,
             )
 
         ax.legend(loc='best')
@@ -261,13 +338,15 @@ class GPSSkyModel:
 
     def plot_glat_distribution(self):
         fig, ax = plt.subplots()
-        bins = np.arange(-10, 10.1, 0.5)
+        bins = np.arange(-10, 10.1, 0.1)
         for component in self.get_components(skip=['image_sources']):
             table = component['table']
-            vals = Angle(table['glat'], 'deg').deg
-            ax.hist(
-                vals, bins=bins, label=component['tag'], histtype='step',
-                alpha=0.8, normed=True,
+            points = Angle(table['glat'], 'deg').deg
+            hist = Histogram.from_points(bins=bins, points=points)
+            hist = hist.smooth(sigma=3)
+            hist = hist.normalise(method='int', value=1)
+            hist.plot_smooth(
+                ax=ax, label=component['tag'], alpha=0.8,
             )
 
         ax.legend(loc='best')
@@ -422,38 +501,34 @@ class GPSSkyModel:
         fig.savefig(filename)
 
     def plot_logn_logs(self):
-        fig, ax = plt.subplots(figsize=(15, 5))
+        fig, ax = plt.subplots()
 
         crab_1_10 = CrabSpectrum().model.integral(1 * u.TeV, 10 * u.TeV).to('cm-2 s-1').value
-        bins = np.logspace(-10, 4, 200)
-        left, right, width = bins[:-1], bins[1:], np.diff(bins)
+        bins = np.logspace(-9, 1, 200)
 
+        hists = []
         for component in self.get_components():
             table = component['table']
-            flux = table['flux_1_10'] / crab_1_10
-            hist = np.histogram(flux, bins=bins)[0]
-            hist = gaussian_filter1d(hist.astype(float), sigma=2)
-            hist = hist / np.max(hist)
+            points = table['flux_1_10'] / crab_1_10
+            hist = Histogram.from_points(bins=bins, points=points)
+            hist = hist.smooth(sigma=3)
+            # hist = hist.normalise(method='int log', value=1)
+            hist.plot_smooth(ax, label=component['tag'], alpha=0.8, lw=2)
+            hists.append(hist)
 
-            # Plotting a histogram nicely ourselves is nontrivial
-            # Example from http://stackoverflow.com/a/18611135/498873
-            x = np.array([left, right]).T.flatten()
-            y = np.array([hist, hist]).T.flatten()
+        hists = HistogramStack(hists)
+        hists.total.plot_smooth(ax, label='total', alpha=0.8, lw=2)
 
-            ax.plot(x, y, label=component['tag'], alpha=0.8, lw=2)
-
-            # ax.bar(
-            #     left=left, height=hist, width=width,
-            #     label=component['tag'], alpha=0.7,
-            #     align='edge', color='none',
-            # )
-
-        # import IPython; IPython.embed(); 1/0
         ax.set_xlabel('Integral flux 1-10 TeV (% Crab)')
         ax.semilogx()
         ax.legend(loc='best')
         fig.tight_layout()
         filename = 'ctadc_skymodel_gps_sources_logn_logs_diff.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
+
+        ax.loglog()
+        filename = 'ctadc_skymodel_gps_sources_logn_logs_diff_logscale.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
 
@@ -523,18 +598,18 @@ if __name__ == '__main__':
     # gps.print_summary()
 
     # gps.plot_sky_positions()
-    # gps.plot_glon_distribution()
-    # gps.plot_glat_distribution()
+    gps.plot_glon_distribution()
+    gps.plot_glat_distribution()
 
     # gps.plot_size_distribution()
     # gps.plot_physical_size_distribution()
 
-    gps.check_snr_size_distribution()
+    # gps.check_snr_size_distribution()
 
     # gps.plot_galactic_xy()
     # gps.plot_galactic_xz()
     # gps.plot_galactic_z()
     # gps.plot_galactic_r()
 
-    # gps.plot_logn_logs()
+    gps.plot_logn_logs()
     # gps.plot_all_spectral_models()
