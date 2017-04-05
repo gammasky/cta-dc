@@ -109,83 +109,103 @@ def add_source_info_spectral(spectral, row):
     row['flux_1_10'] = flux
 
 
-def load_sky_models():
-    log.info('Starting load_sky_models')
-    data = []
+class GPSSkyModel:
+    def __init__(self, data):
+        self.data = data
+        self.tags = [
+            'gamma-cat',
+            'image_sources',
+            'pwn',
+            'snr',
+            'binaries',
+            'pulsars',
+        ]
 
-    tag = 'gamma-cat'
-    log.debug('Reading {}'.format(tag))
-    filename = '../sky_model/gamma-cat/ctadc_skymodel_gps_sources_gamma-cat2.xml'
-    models = gammalib.GModels(filename)
-    table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
-    data.append(dict(tag=tag, filename=filename, models=models, table=table))
+    @classmethod
+    def load_sky_models(cls):
+        log.info('Starting load_sky_models')
+        data = []
 
-    tag = 'image_sources'
-    log.debug('Reading {}'.format(tag))
-    filename = '../sky_model/image_sources/ctadc_skymodel_gps_sources_images.xml'
-    models = gammalib.GModels(filename)
-    table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
-    data.append(dict(tag=tag, filename=filename, models=models, table=table))
+        tag = 'gamma-cat'
+        log.debug('Reading {}'.format(tag))
+        filename = '../sky_model/gamma-cat/ctadc_skymodel_gps_sources_gamma-cat2.xml'
+        models = gammalib.GModels(filename)
+        table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
+        data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
-    tag = 'pwn'
-    log.debug('Reading {}'.format(tag))
-    filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_pwn.xml'
-    models = gammalib.GModels(filename)
-    table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
-    filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_pwn.ecsv'
-    table_in = Table.read(filename, format='ascii.ecsv')
-    table_in['POS_X'] = table_in['x']
-    table_in['POS_Y'] = table_in['y']
-    table_in['POS_Z'] = table_in['z']
-    table_in['SIZE_PHYSICAL'] = table_in['distance'] * np.tan(table_in['sigma'].quantity.to('rad').value)
-    data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
+        tag = 'image_sources'
+        log.debug('Reading {}'.format(tag))
+        filename = '../sky_model/image_sources/ctadc_skymodel_gps_sources_images.xml'
+        models = gammalib.GModels(filename)
+        table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
+        data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
-    tag = 'snr'
-    log.debug('Reading {}'.format(tag))
-    filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.xml'
-    models = gammalib.GModels(filename)
-    table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
-    filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.ecsv'
-    table_in = Table.read(filename, format='ascii.ecsv')
-    table_in['SIZE_PHYSICAL'] = table_in['Radius']
-    data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
+        tag = 'pwn'
+        log.debug('Reading {}'.format(tag))
+        filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_pwn.xml'
+        models = gammalib.GModels(filename)
+        table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
+        filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_pwn.ecsv'
+        table_in = Table.read(filename, format='ascii.ecsv')
+        table_in['POS_X'] = table_in['x']
+        table_in['POS_Y'] = table_in['y']
+        table_in['POS_Z'] = table_in['z']
+        table_in['SIZE_PHYSICAL'] = table_in['distance'] * np.tan(table_in['sigma'].quantity.to('rad').value)
+        data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
 
-    tag = 'binaries'
-    log.debug('Reading {}'.format(tag))
-    filename = '../sky_model/binaries/ctadc_skymodel_gps_sources_binaries.xml'
-    models = gammalib.GModels(filename)
-    table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
-    data.append(dict(tag=tag, filename=filename, models=models, table=table))
+        tag = 'snr'
+        log.debug('Reading {}'.format(tag))
+        filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.xml'
+        models = gammalib.GModels(filename)
+        table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
+        filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.ecsv'
+        table_in = Table.read(filename, format='ascii.ecsv')
+        table_in['SIZE_PHYSICAL'] = table_in['Radius']
+        data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
 
-    tag = 'pulsars'
-    log.debug('Reading {}'.format(tag))
-    filename = '../sky_model/pulsars/ctadc_skymodel_gps_sources_pulsars.xml'
-    models = gammalib.GModels(filename)
-    table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
-    data.append(dict(tag=tag, filename=filename, models=models, table=table))
+        tag = 'binaries'
+        log.debug('Reading {}'.format(tag))
+        filename = '../sky_model/binaries/ctadc_skymodel_gps_sources_binaries.xml'
+        models = gammalib.GModels(filename)
+        table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
+        data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
-    return data
+        tag = 'pulsars'
+        log.debug('Reading {}'.format(tag))
+        filename = '../sky_model/pulsars/ctadc_skymodel_gps_sources_pulsars.xml'
+        models = gammalib.GModels(filename)
+        table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
+        data.append(dict(tag=tag, filename=filename, models=models, table=table))
 
+        return cls(data=data)
 
-def compute_total_flux(models):
-    flux_total = 0
-    for model in models:
-        emin = gammalib.GEnergy(1, 'TeV')
-        emax = gammalib.GEnergy(10, 'TeV')
-        flux = model.spectral().flux(emin, emax)
-        flux_total += flux
-    return flux_total
+    def get_component(self, tag):
+        for component in self.data:
+            if tag == component['tag']:
+                return component
+        raise ValueError('Invalid component tag: {}'.format(tag))
 
+    def get_components(self, tags=None):
+        if tags is None:
+            tags = self.tags
+        for tag in tags:
+            yield self.get_component(tag)
 
-def print_skymodel_summary(data):
-    log.info('Starting print_skymodel_summary')
+    def print_summary(self):
+        log.info('Starting print_skymodel_summary')
 
-    table = Table()
-    table['tag'] = [_['tag'] for _ in data]
-    table['n_sources'] = [len(_['models']) for _ in data]
-    table['flux_1_10'] = [compute_total_flux(_['models']) for _ in data]
+        rows = []
+        for component in self.get_components():
+            row = OrderedDict()
+            row['tag'] = component['tag']
+            row['n_sources'] = len(component['models'])
+            row['flux_1_10'] = compute_total_flux(component['models'])
+            rows.append(row)
 
-    table.pprint()
+        table = Table(rows=rows, names=rows[0].keys())
+        filename = 'ctadc_skymodel_gps_sources_summary.csv'
+        log.info('Writing {}'.format(filename))
+        table.write(filename, format='ascii.csv', overwrite=True)
 
 
 def plot_sky_positions(data):
@@ -293,12 +313,11 @@ def plot_size_distribution(data):
 def plot_physical_size_distribution(data):
     log.info('Starting plot_physical_size_distribution')
     fig, ax = plt.subplots()
-    bins = 30 # np.arange(0, 3, 0.05)
+    bins = 30  # np.arange(0, 3, 0.05)
     for component in data:
         if component['tag'] not in ['pwn', 'snr']:
             continue
         table = component['table_in']
-        # table.info('stats')
         vals = table['SIZE_PHYSICAL']
         ax.hist(
             vals, bins=bins, label=component['tag'], histtype='step',
@@ -452,19 +471,35 @@ def plot_spectral_model(model, ax, plot_kwargs):
     # 1/0
 
 
+def check_snr_size_distribution(data):
+    import IPython;
+    IPython.embed()
+
+
+def compute_total_flux(models):
+    flux_total = 0
+    for model in models:
+        emin = gammalib.GEnergy(1, 'TeV')
+        emax = gammalib.GEnergy(10, 'TeV')
+        flux = model.spectral().flux(emin, emax)
+        flux_total += flux
+    return flux_total
+
+
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
 
-    make_source_tables()
-    data = load_sky_models()
-    # print_skymodel_summary(data)
+    # make_source_tables()
+    gps = GPSSkyModel.load_sky_models()
+    gps.print_summary()
 
     # plot_sky_positions(data)
     # plot_glon_distribution(data)
     # plot_glat_distribution(data)
 
-    plot_size_distribution(data)
-    plot_physical_size_distribution(data)
+    # plot_size_distribution(data)
+    # plot_physical_size_distribution(data)
+    # check_snr_size_distribution(data)
 
     # plot_galactic_xy(data)
     # plot_galactic_z(data)
