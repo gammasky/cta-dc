@@ -29,8 +29,11 @@ image_sources        11 6.27654769846e-11
 
 ### Size and integral flux
 
-* Source sizes: [ctadc_skymodel_gps_sources_size.png](ctadc_skymodel_gps_sources_size.png)
+* Source sizes:
   * It's radius for SNRs (TODO: outer?) and Gaussian sigma for Gaussian shapes
+  * Apparent size (deg): [ctadc_skymodel_gps_sources_size.png](ctadc_skymodel_gps_sources_size.png)
+  * Physical size (parsec): [ctadc_skymodel_gps_sources_physical_size.png](ctadc_skymodel_gps_sources_physical_size.png)
+  * TODO: why are there so few small-size SNRs?
 * logN-logS: [logN_logS_gammalib.png](logN_logS_gammalib.png)
   * Differential (max at 1, smoothed a bit): [ctadc_skymodel_gps_sources_logn_logs_diff.png](ctadc_skymodel_gps_sources_logn_logs_diff.png)
   * Integral: todo

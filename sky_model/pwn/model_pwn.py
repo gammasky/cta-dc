@@ -140,6 +140,9 @@ def make_pwn_table(
     luminosity = (10 ** logluminosity) * u.erg / u.second
 
     distance = table['distance'].quantity
+    # We compute intrinsic physical extension from the angular extension here,
+    # to make sure the two quantities are consistent
+    size_physical = distance * np.tan(angular_extension.to('rad').value)
 
     # integral sed between 1 and 10 TeV
     energy_flux = luminosity / (4 * np.pi * distance ** 2)
@@ -168,7 +171,8 @@ def make_pwn_table(
 
     # import IPython; IPython.embed()
     table = table[['x', 'y', 'z', 'spiralarm', 'GLON', 'GLAT', 'RA', 'DEC', 'distance']]
-    table['sigma'] = Column(angular_extension, description='Angular extension (deg)', unit='deg')
+    table['sigma'] = Column(angular_extension, description='Angular size', unit='deg')
+    table['size_physical'] = Column(size_physical.to('pc').value, description='Physical size', unit='pc')
     table['spec_alpha'] = Column(alpha, description='Spectral model parameter (log parabola)')
     table['spec_beta'] = Column(beta, description='Spectral model parameter (log parabola)')
     table['spec_norm'] = Column(norm, description='Spectral model norm parameter (log parabola)', unit='MeV-1 s-1 cm-2')

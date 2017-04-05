@@ -137,6 +137,7 @@ def load_sky_models():
     table_in['POS_X'] = table_in['x']
     table_in['POS_Y'] = table_in['y']
     table_in['POS_Z'] = table_in['z']
+    table_in['SIZE_PHYSICAL'] = table_in['distance'] * np.tan(table_in['sigma'].quantity.to('rad').value)
     data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
 
     tag = 'snr'
@@ -146,6 +147,7 @@ def load_sky_models():
     table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
     filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.ecsv'
     table_in = Table.read(filename, format='ascii.ecsv')
+    table_in['SIZE_PHYSICAL'] = table_in['Radius']
     data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
 
     tag = 'binaries'
@@ -267,12 +269,12 @@ def plot_glat_distribution(data):
 def plot_size_distribution(data):
     log.info('Starting plot_size_distribution')
     fig, ax = plt.subplots()
-    bins = np.arange(0, 3, 0.1)
+    bins = np.arange(0, 3, 0.05)
     for component in data:
         if component['tag'] not in ['gamma-cat', 'pwn', 'snr']:
             continue
         table = component['table']
-        vals = Angle(table['size'], 'deg').deg
+        vals = table['size']
         ax.hist(
             vals, bins=bins, label=component['tag'], histtype='step',
             alpha=0.8, normed=True,
@@ -281,9 +283,34 @@ def plot_size_distribution(data):
     ax.legend(loc='best')
     # ax.set_xlim(bins[0], bins-[1])
     ax.set_xlim(0, 2)
-    ax.set_xlabel('Source size (deg)')
+    ax.set_xlabel('Source apparent size (deg)')
     fig.tight_layout()
     filename = 'ctadc_skymodel_gps_sources_size.png'
+    log.info('Writing {}'.format(filename))
+    fig.savefig(filename)
+
+
+def plot_physical_size_distribution(data):
+    log.info('Starting plot_physical_size_distribution')
+    fig, ax = plt.subplots()
+    bins = 30 # np.arange(0, 3, 0.05)
+    for component in data:
+        if component['tag'] not in ['pwn', 'snr']:
+            continue
+        table = component['table_in']
+        # table.info('stats')
+        vals = table['SIZE_PHYSICAL']
+        ax.hist(
+            vals, bins=bins, label=component['tag'], histtype='step',
+            alpha=0.8, normed=True,
+        )
+
+    ax.legend(loc='best')
+    # ax.set_xlim(bins[0], bins-[1])
+    # ax.set_xlim(0, 2)
+    ax.set_xlabel('Source physical size (pc)')
+    fig.tight_layout()
+    filename = 'ctadc_skymodel_gps_sources_physical_size.png'
     log.info('Writing {}'.format(filename))
     fig.savefig(filename)
 
@@ -428,7 +455,7 @@ def plot_spectral_model(model, ax, plot_kwargs):
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
 
-    # make_source_tables()
+    make_source_tables()
     data = load_sky_models()
     # print_skymodel_summary(data)
 
@@ -436,11 +463,12 @@ if __name__ == '__main__':
     # plot_glon_distribution(data)
     # plot_glat_distribution(data)
 
-    # plot_size_distribution(data)
+    plot_size_distribution(data)
+    plot_physical_size_distribution(data)
 
     # plot_galactic_xy(data)
     # plot_galactic_z(data)
 
     # plot_logn_logs()
 
-    plot_all_spectral_models(data)
+    # plot_all_spectral_models(data)
