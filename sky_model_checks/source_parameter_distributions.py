@@ -398,49 +398,45 @@ class GPSSkyModel:
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
 
+    def plot_logn_logs(self):
+        fig, ax = plt.subplots(figsize=(15, 5))
 
-def plot_logn_logs():
-    log.info('Starting plot_logn_logs')
-    fig, ax = plt.subplots(figsize=(15, 5))
+        crab_1_10 = CrabSpectrum().model.integral(1 * u.TeV, 10 * u.TeV).to('cm-2 s-1').value
+        bins = np.logspace(-10, 4, 200)
+        left, right, width = bins[:-1], bins[1:], np.diff(bins)
 
-    crab_1_10 = CrabSpectrum().model.integral(1 * u.TeV, 10 * u.TeV).to('cm-2 s-1').value
-    bins = np.logspace(-10, 4, 200)
-    left, right, width = bins[:-1], bins[1:], np.diff(bins)
+        for component in self.get_components():
+            table = component['table']
+            flux = table['flux_1_10'] / crab_1_10
+            hist = np.histogram(flux, bins=bins)[0]
+            hist = gaussian_filter1d(hist.astype(float), sigma=2)
+            hist = hist / np.max(hist)
 
-    for component in data:
-        table = component['table']
-        flux = table['flux_1_10'] / crab_1_10
-        hist = np.histogram(flux, bins=bins)[0]
-        hist = gaussian_filter1d(hist.astype(float), sigma=2)
-        hist = hist / np.max(hist)
+            # Plotting a histogram nicely ourselves is nontrivial
+            # Example from http://stackoverflow.com/a/18611135/498873
+            x = np.array([left, right]).T.flatten()
+            y = np.array([hist, hist]).T.flatten()
 
-        # Plotting a histogram nicely ourselves is nontrivial
-        # Example from http://stackoverflow.com/a/18611135/498873
-        x = np.array([left, right]).T.flatten()
-        y = np.array([hist, hist]).T.flatten()
+            ax.plot(x, y, label=component['tag'], alpha=0.8, lw=2)
 
-        ax.plot(x, y, label=component['tag'], alpha=0.8, lw=2)
+            # ax.bar(
+            #     left=left, height=hist, width=width,
+            #     label=component['tag'], alpha=0.7,
+            #     align='edge', color='none',
+            # )
 
-        # ax.bar(
-        #     left=left, height=hist, width=width,
-        #     label=component['tag'], alpha=0.7,
-        #     align='edge', color='none',
-        # )
+        # import IPython; IPython.embed(); 1/0
+        ax.set_xlabel('Integral flux 1-10 TeV (% Crab)')
+        ax.semilogx()
+        ax.legend(loc='best')
+        fig.tight_layout()
+        filename = 'ctadc_skymodel_gps_sources_logn_logs_diff.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
 
-    # import IPython; IPython.embed(); 1/0
-    ax.set_xlabel('Integral flux 1-10 TeV (% Crab)')
-    ax.semilogx()
-    ax.legend(loc='best')
-    fig.tight_layout()
-    filename = 'ctadc_skymodel_gps_sources_logn_logs_diff.png'
-    log.info('Writing {}'.format(filename))
-    fig.savefig(filename)
-
-
-def plot_all_spectral_models(data):
-    log.info('Starting plot_all_spectral_models')
-    for component in data:
-        plot_spectral_models(component)
+    def plot_all_spectral_models(self):
+        for component in self.get_components():
+            plot_spectral_models(component)
 
 
 def plot_spectral_models(component):
@@ -522,7 +518,6 @@ if __name__ == '__main__':
     # gps.plot_galactic_z()
     # gps.plot_galactic_r()
 
+    gps.plot_logn_logs()
 
-    # plot_logn_logs()
-
-    # plot_all_spectral_models(data)
+    gps.plot_all_spectral_models()
