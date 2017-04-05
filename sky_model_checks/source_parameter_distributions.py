@@ -48,8 +48,11 @@ class Histogram:
     def bin_centers(self):
         return 0.5 * (self.bins[:-1] + self.bins[1:])
 
-    def smooth(self, sigma=1):
-        vals = gaussian_filter1d(self.vals.astype(float), sigma=sigma)
+    def smooth(self, sigma=None):
+        if sigma is None:
+            vals = self.vals
+        else:
+            vals = gaussian_filter1d(self.vals.astype(float), sigma=sigma)
         return self.__class__(bins=self.bins, vals=vals)
 
     def normalise(self, method='max', value=1):
@@ -509,39 +512,41 @@ class GPSSkyModel:
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
 
-    def get_logn_logs(self):
+    def get_logn_logs(self, quantity):
         crab_1_10 = CrabSpectrum().model.integral(1 * u.TeV, 10 * u.TeV).to('cm-2 s-1').value
-        bins = np.logspace(-9, 1, 200)
+        bins = np.logspace(-9, 1, 100)
 
         hists = []
         for component in self.get_components():
             table = component['table']
             points = table['flux_1_10'] / crab_1_10
             hist = Histogram.from_points(bins=bins, points=points)
+            if quantity == 'int':
+                hist.vals = np.cumsum(hist.vals[::-1])[::-1]
             hists.append(hist)
 
         return HistogramStack(hists)
 
-    def plot_logn_logs(self):
+    def plot_logn_logs(self, quantity, sigma):
         fig, ax = plt.subplots()
 
-        hists = self.get_logn_logs()
+        hists = self.get_logn_logs(quantity)
         kwargs = dict(alpha=0.8, lw=2)
-        hists.total.smooth(sigma=3).plot_smooth(ax, label='total', **kwargs)
+        hists.total.smooth(sigma=sigma).plot_smooth(ax, label='total', **kwargs)
         for tag, hist in zip(self.tags, hists.hists):
-            hist.smooth(sigma=3).plot_smooth(ax, label=tag, **kwargs)
+            hist.smooth(sigma=sigma).plot_smooth(ax, label=tag, **kwargs)
 
         ax.set_xlabel('Integral flux 1-10 TeV (% Crab)')
         ax.semilogx()
         ax.legend(loc='best')
         fig.tight_layout()
-        filename = 'ctadc_skymodel_gps_sources_logn_logs_diff.png'
+        filename = 'ctadc_skymodel_gps_sources_logn_logs_{}.png'.format(quantity)
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
 
         ax.loglog()
         fig.tight_layout()
-        filename = 'ctadc_skymodel_gps_sources_logn_logs_diff_logscale.png'
+        filename = 'ctadc_skymodel_gps_sources_logn_logs_{}_logscale.png'.format(quantity)
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
 
@@ -611,8 +616,8 @@ if __name__ == '__main__':
     # gps.print_summary()
 
     # gps.plot_sky_positions()
-    gps.plot_glon_distribution()
-    gps.plot_glat_distribution()
+    # gps.plot_glon_distribution()
+    # gps.plot_glat_distribution()
 
     # gps.plot_size_distribution()
     # gps.plot_physical_size_distribution()
@@ -624,5 +629,7 @@ if __name__ == '__main__':
     # gps.plot_galactic_z()
     # gps.plot_galactic_r()
 
-    gps.plot_logn_logs()
+    gps.plot_logn_logs(quantity='diff', sigma=2)
+    gps.plot_logn_logs(quantity='int', sigma=None)
+
     # gps.plot_all_spectral_models()
