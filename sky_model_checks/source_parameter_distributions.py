@@ -318,6 +318,29 @@ class GPSSkyModel:
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
 
+    def check_snr_size_distribution(self):
+        snr = self.get_component('snr')
+        # print(snr['table_in'].colnames)
+        # snr['table_in'].info('stats')
+        # print(snr['table'].colnames)
+        # snr['table'].info('stats')
+
+        size_in = snr['table_in']['size'].quantity.to('deg')
+        size_out = snr['table']['size'] * u.deg
+        # import IPython; IPython.embed()
+
+        fig, ax = plt.subplots()
+        bins = np.arange(0, 5, 0.05)
+        ax.hist(size_in.value, bins=bins, label=['snr input'], histtype='step', normed=True)
+        ax.hist(size_out.value, bins=bins, label=['snr output'], histtype='step', normed=True)
+
+        ax.legend(loc='best')
+        ax.set_xlabel('Source apparent size (deg)')
+        fig.tight_layout()
+        filename = 'ctadc_skymodel_gps_sources_size_snr_check.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
+
     def plot_galactic_xy(self):
         fig, ax = plt.subplots(figsize=(7, 7))
 
@@ -482,11 +505,6 @@ def plot_spectral_model(model, ax, plot_kwargs):
     # 1/0
 
 
-def check_snr_size_distribution(data):
-    import IPython;
-    IPython.embed()
-
-
 def compute_total_flux(models):
     flux_total = 0
     for model in models:
@@ -511,13 +529,12 @@ if __name__ == '__main__':
     # gps.plot_size_distribution()
     # gps.plot_physical_size_distribution()
 
-    # TODO: gps.check_snr_size_distribution()
+    gps.check_snr_size_distribution()
 
     # gps.plot_galactic_xy()
     # gps.plot_galactic_xz()
     # gps.plot_galactic_z()
     # gps.plot_galactic_r()
 
-    gps.plot_logn_logs()
-
-    gps.plot_all_spectral_models()
+    # gps.plot_logn_logs()
+    # gps.plot_all_spectral_models()

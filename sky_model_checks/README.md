@@ -36,7 +36,13 @@ image_sources        11 6.27654769846e-11
   * It's radius for SNRs (TODO: outer?) and Gaussian sigma for Gaussian shapes
   * Apparent size (deg): [ctadc_skymodel_gps_sources_size.png](ctadc_skymodel_gps_sources_size.png)
   * Physical size (parsec): [ctadc_skymodel_gps_sources_physical_size.png](ctadc_skymodel_gps_sources_physical_size.png)
-  * TODO: why are there so few small-size SNRs?
+  * I found it weird that there are only few small-size SNRs in the apparent size.
+    So I checked that that the angular size distribution as given in Pierre's table
+    matches with the angular size distribution we have in the XML sky model,
+    i.e. that there's no bug in our scripts:
+    [ctadc_skymodel_gps_sources_size_snr_check.png](ctadc_skymodel_gps_sources_size_snr_check.png)
+  * There is no bug. The fact that there are only few SNRs with small angular size is a result
+    of Pierre's model, which contains very few SNRs with small physical size, i.e. below 10 pc.
 * logN-logS: [logN_logS_gammalib.png](logN_logS_gammalib.png)
   * Differential (max at 1, smoothed a bit): [ctadc_skymodel_gps_sources_logn_logs_diff.png](ctadc_skymodel_gps_sources_logn_logs_diff.png)
   * Integral: todo
