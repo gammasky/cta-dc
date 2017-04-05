@@ -44,13 +44,28 @@ image_sources        11 6.27654769846e-11
   * There is no bug. The fact that there are only few SNRs with small angular size is a result
     of Pierre's model, which contains very few SNRs with small physical size, i.e. below 10 pc.
 * logN-logS:
+  * This shows number of sources on the y axis.
+    The most useful variant of these plots is the one that's integral with log in y-axis,
+    because that allows one to read off roughly the number of sources above a given flux level.
   * Differential (linear in y-axis): [ctadc_skymodel_gps_sources_logn_logs_diff.png](ctadc_skymodel_gps_sources_logn_logs_diff.png)
   * Differential (log in y-axis): [ctadc_skymodel_gps_sources_logn_logs_diff_logscale.png](ctadc_skymodel_gps_sources_logn_logs_diff_logscale.png)
   * Integral (linear in y-axis): [ctadc_skymodel_gps_sources_logn_logs_int.png](ctadc_skymodel_gps_sources_logn_logs_int.png)
   * Integral (log in y-axis): [ctadc_skymodel_gps_sources_logn_logs_int_logscale.png](ctadc_skymodel_gps_sources_logn_logs_int_logscale.png)
   * Another version, from one of Roberta's scripts: [logN_logS_gammalib.png](logN_logS_gammalib.png)
 * logF-logS:
-  * TODO
+  * This shows flux of sources on the y axis.
+    This is useful to assess the total flux in each component,
+    as well as which sources contribute what fraction of the total emission, e.g.:
+    "Do the faint sources in the 0.1% to 1% Crab flux brightness band contribute much to the diffuse emission?"
+  * Conclusion: in this model, for the 1-10 TeV energy band,
+    there aren't very many faint sources, they don't contribute much to the total flux.
+    * There's 16 Crab flux in total, and the sources with flux below 1% Crab have flux ~ 1 Crab all together.
+    * There's very little flux from the sources below 1 mCrab.
+  * Differential (linear in y-axis): [ctadc_skymodel_gps_sources_logf_logs_diff.png](ctadc_skymodel_gps_sources_logf_logs_diff.png)
+  * Differential (log in y-axis): [ctadc_skymodel_gps_sources_logf_logs_diff_logscale.png](ctadc_skymodel_gps_sources_logf_logs_diff_logscale.png)
+  * Integral (linear in y-axis): [ctadc_skymodel_gps_sources_logf_logs_int.png](ctadc_skymodel_gps_sources_logf_logs_int.png)
+  * Integral (log in y-axis): [ctadc_skymodel_gps_sources_logf_logs_int_logscale.png](ctadc_skymodel_gps_sources_logf_logs_int_logscale.png)
+     
 * Source size vs flux
 
 ### Spectra
