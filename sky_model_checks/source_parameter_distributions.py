@@ -38,6 +38,12 @@ class Histogram:
         vals = np.histogram(points, bins=bins)[0]
         return cls(bins=bins, vals=vals)
 
+    def copy(self):
+        return self.__class__(
+            bins=self.bins.copy(),
+            vals=self.vals.copy(),
+        )
+
     @property
     def bin_centers(self):
         return 0.5 * (self.bins[:-1] + self.bins[1:])
@@ -85,6 +91,9 @@ class Histogram:
 class HistogramStack:
     def __init__(self, hists=None):
         self.hists = hists if hists else []
+
+    def copy(self):
+        return [h.copy() for h in self.hists]
 
     def add(self, hist):
         self.hists.append(hist)
@@ -500,9 +509,7 @@ class GPSSkyModel:
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
 
-    def plot_logn_logs(self):
-        fig, ax = plt.subplots()
-
+    def get_logn_logs(self):
         crab_1_10 = CrabSpectrum().model.integral(1 * u.TeV, 10 * u.TeV).to('cm-2 s-1').value
         bins = np.logspace(-9, 1, 200)
 
@@ -511,13 +518,18 @@ class GPSSkyModel:
             table = component['table']
             points = table['flux_1_10'] / crab_1_10
             hist = Histogram.from_points(bins=bins, points=points)
-            hist = hist.smooth(sigma=3)
-            # hist = hist.normalise(method='int log', value=1)
-            hist.plot_smooth(ax, label=component['tag'], alpha=0.8, lw=2)
             hists.append(hist)
 
-        hists = HistogramStack(hists)
-        hists.total.plot_smooth(ax, label='total', alpha=0.8, lw=2)
+        return HistogramStack(hists)
+
+    def plot_logn_logs(self):
+        fig, ax = plt.subplots()
+
+        hists = self.get_logn_logs()
+        kwargs = dict(alpha=0.8, lw=2)
+        hists.total.smooth(sigma=3).plot_smooth(ax, label='total', **kwargs)
+        for tag, hist in zip(self.tags, hists.hists):
+            hist.smooth(sigma=3).plot_smooth(ax, label=tag, **kwargs)
 
         ax.set_xlabel('Integral flux 1-10 TeV (% Crab)')
         ax.semilogx()
@@ -528,6 +540,7 @@ class GPSSkyModel:
         fig.savefig(filename)
 
         ax.loglog()
+        fig.tight_layout()
         filename = 'ctadc_skymodel_gps_sources_logn_logs_diff_logscale.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
