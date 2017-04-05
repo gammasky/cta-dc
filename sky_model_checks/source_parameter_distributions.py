@@ -123,7 +123,6 @@ class GPSSkyModel:
 
     @classmethod
     def load_sky_models(cls):
-        log.info('Starting load_sky_models')
         data = []
 
         tag = 'gamma-cat'
@@ -150,6 +149,7 @@ class GPSSkyModel:
         table_in['POS_X'] = table_in['x']
         table_in['POS_Y'] = table_in['y']
         table_in['POS_Z'] = table_in['z']
+        table_in['galactic_r'] = np.sqrt(table_in['POS_X'] ** 2 + table_in['POS_Y'] ** 2)
         table_in['SIZE_PHYSICAL'] = table_in['distance'] * np.tan(table_in['sigma'].quantity.to('rad').value)
         data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
 
@@ -160,6 +160,7 @@ class GPSSkyModel:
         table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
         filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.ecsv'
         table_in = Table.read(filename, format='ascii.ecsv')
+        table_in['galactic_r'] = np.sqrt(table_in['POS_X'] ** 2 + table_in['POS_Y'] ** 2)
         table_in['SIZE_PHYSICAL'] = table_in['Radius']
         data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
 
@@ -185,15 +186,17 @@ class GPSSkyModel:
                 return component
         raise ValueError('Invalid component tag: {}'.format(tag))
 
-    def get_components(self, tags=None):
+    def get_components(self, tags=None, skip=None):
         if tags is None:
-            tags = self.tags
+            tags = self.tags.copy()
+        if skip is not None:
+            for tag in skip:
+                tags.remove(tag)
+
         for tag in tags:
             yield self.get_component(tag)
 
     def print_summary(self):
-        log.info('Starting print_skymodel_summary')
-
         rows = []
         for component in self.get_components():
             row = OrderedDict()
@@ -207,181 +210,193 @@ class GPSSkyModel:
         log.info('Writing {}'.format(filename))
         table.write(filename, format='ascii.csv', overwrite=True)
 
+    def plot_sky_positions(self):
+        fig, ax = plt.subplots(figsize=(15, 5))
+        for component in self.get_components():
+            table = component['table']
+            x = Angle(table['glon'], 'deg').wrap_at('180d').deg
+            y = table['glat']
+            if component['tag'] in ['pwn', 'snr']:
+                s, alpha = 10, 0.3
+                alpha
+            else:
+                s, alpha = 30, 0.8
+            ax.scatter(x, y, label=component['tag'], s=s, alpha=alpha)
 
-def plot_sky_positions(data):
-    log.info('Starting plot_sky_positions')
-    fig, ax = plt.subplots(figsize=(15, 5))
-    for component in data:
-        table = component['table']
-        x = Angle(table['glon'], 'deg').wrap_at('180d').deg
-        y = table['glat']
-        if component['tag'] in ['pwn', 'snr']:
-            s, alpha = 10, 0.3
-            alpha
-        else:
-            s, alpha = 30, 0.8
-        ax.scatter(x, y, label=component['tag'], s=s, alpha=alpha)
+        ax.legend(loc='best')
+        ax.set_xlim(180, -180)
+        ax.set_ylim(-60, 60)
+        ax.set_xlabel('GLON (deg)')
+        ax.set_ylabel('GLAT (deg)')
+        ax.grid()
+        fig.tight_layout()
+        filename = 'ctadc_skymodel_gps_sources_sky_positions.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
 
-    ax.legend(loc='best')
-    ax.set_xlim(180, -180)
-    ax.set_ylim(-60, 60)
-    ax.set_xlabel('GLON (deg)')
-    ax.set_ylabel('GLAT (deg)')
-    ax.grid()
-    fig.tight_layout()
-    filename = 'ctadc_skymodel_gps_sources_sky_positions.png'
-    log.info('Writing {}'.format(filename))
-    fig.savefig(filename)
+        ax.set_ylim(-8, 8)
+        fig.tight_layout()
+        filename = 'ctadc_skymodel_gps_sources_sky_positions_gps.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
 
-    ax.set_ylim(-8, 8)
-    fig.tight_layout()
-    filename = 'ctadc_skymodel_gps_sources_sky_positions_gps.png'
-    log.info('Writing {}'.format(filename))
-    fig.savefig(filename)
+    def plot_glon_distribution(self):
+        fig, ax = plt.subplots()
+        bins = np.arange(-180, 181, 5)
+        for component in self.get_components(skip=['image_sources']):
+            table = component['table']
+            vals = Angle(table['glon'], 'deg').wrap_at('180d').deg
+            ax.hist(
+                vals, bins=bins, label=component['tag'], histtype='step',
+                alpha=0.8, normed=True,
+            )
 
+        ax.legend(loc='best')
+        ax.set_xlim(180, -180)
+        ax.set_xlabel('GLON (deg)')
+        fig.tight_layout()
+        filename = 'ctadc_skymodel_gps_sources_glon.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
 
-def plot_glon_distribution(data):
-    log.info('Starting plot_glon_distribution')
-    fig, ax = plt.subplots()
-    bins = np.arange(-180, 181, 5)
-    for component in data:
-        if component['tag'] == 'image_sources':
-            continue
-        table = component['table']
-        vals = Angle(table['glon'], 'deg').wrap_at('180d').deg
-        ax.hist(
-            vals, bins=bins, label=component['tag'], histtype='step',
-            alpha=0.8, normed=True,
-        )
+    def plot_glat_distribution(self):
+        fig, ax = plt.subplots()
+        bins = np.arange(-10, 10.1, 0.5)
+        for component in self.get_components(skip=['image_sources']):
+            table = component['table']
+            vals = Angle(table['glat'], 'deg').deg
+            ax.hist(
+                vals, bins=bins, label=component['tag'], histtype='step',
+                alpha=0.8, normed=True,
+            )
 
-    ax.legend(loc='best')
-    ax.set_xlim(180, -180)
-    ax.set_xlabel('GLON (deg)')
-    fig.tight_layout()
-    filename = 'ctadc_skymodel_gps_sources_glon.png'
-    log.info('Writing {}'.format(filename))
-    fig.savefig(filename)
+        ax.legend(loc='best')
+        ax.set_xlim(-10, 10)
+        ax.set_xlabel('GLAT (deg)')
+        fig.tight_layout()
+        filename = 'ctadc_skymodel_gps_sources_glat.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
 
+    def plot_size_distribution(self):
+        fig, ax = plt.subplots()
+        bins = np.arange(0, 3, 0.05)
+        for component in self.get_components(tags=['gamma-cat', 'pwn', 'snr']):
+            table = component['table']
+            vals = table['size']
+            ax.hist(
+                vals, bins=bins, label=component['tag'], histtype='step',
+                alpha=0.8, normed=True,
+            )
 
-def plot_glat_distribution(data):
-    log.info('Starting plot_glat_distribution')
-    fig, ax = plt.subplots()
-    bins = np.arange(-10, 10.1, 0.5)
-    for component in data:
-        if component['tag'] == 'image_sources':
-            continue
-        table = component['table']
-        vals = Angle(table['glat'], 'deg').deg
-        ax.hist(
-            vals, bins=bins, label=component['tag'], histtype='step',
-            alpha=0.8, normed=True,
-        )
+        ax.legend(loc='best')
+        # ax.set_xlim(bins[0], bins-[1])
+        ax.set_xlim(0, 2)
+        ax.set_xlabel('Source apparent size (deg)')
+        fig.tight_layout()
+        filename = 'ctadc_skymodel_gps_sources_size.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
 
-    ax.legend(loc='best')
-    ax.set_xlim(-10, 10)
-    ax.set_xlabel('GLAT (deg)')
-    fig.tight_layout()
-    filename = 'ctadc_skymodel_gps_sources_glat.png'
-    log.info('Writing {}'.format(filename))
-    fig.savefig(filename)
+    def plot_physical_size_distribution(self):
+        fig, ax = plt.subplots()
+        bins = 30  # np.arange(0, 3, 0.05)
+        for component in self.get_components(tags=['pwn', 'snr']):
+            table = component['table_in']
+            vals = table['SIZE_PHYSICAL']
+            ax.hist(
+                vals, bins=bins, label=component['tag'], histtype='step',
+                alpha=0.8, normed=True,
+            )
 
+        ax.legend(loc='best')
+        # ax.set_xlim(bins[0], bins-[1])
+        # ax.set_xlim(0, 2)
+        ax.set_xlabel('Source physical size (pc)')
+        fig.tight_layout()
+        filename = 'ctadc_skymodel_gps_sources_physical_size.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
 
-def plot_size_distribution(data):
-    log.info('Starting plot_size_distribution')
-    fig, ax = plt.subplots()
-    bins = np.arange(0, 3, 0.05)
-    for component in data:
-        if component['tag'] not in ['gamma-cat', 'pwn', 'snr']:
-            continue
-        table = component['table']
-        vals = table['size']
-        ax.hist(
-            vals, bins=bins, label=component['tag'], histtype='step',
-            alpha=0.8, normed=True,
-        )
+    def plot_galactic_xy(self):
+        fig, ax = plt.subplots(figsize=(7, 7))
 
-    ax.legend(loc='best')
-    # ax.set_xlim(bins[0], bins-[1])
-    ax.set_xlim(0, 2)
-    ax.set_xlabel('Source apparent size (deg)')
-    fig.tight_layout()
-    filename = 'ctadc_skymodel_gps_sources_size.png'
-    log.info('Writing {}'.format(filename))
-    fig.savefig(filename)
+        for component in self.get_components(tags=['pwn', 'snr']):
+            table = component['table_in']
+            x = table['POS_X'].quantity.to('kpc').value
+            y = table['POS_Y'].quantity.to('kpc').value
+            ax.scatter(x, y, label=component['tag'], s=10, alpha=0.5)
 
+        # ax.set_xlim(0, 2)
+        ax.set_xlabel('Galactocentric X (kpc)')
+        ax.set_ylabel('Galactocentric Y (kpc)')
+        ax.legend(loc='best')
+        fig.tight_layout()
 
-def plot_physical_size_distribution(data):
-    log.info('Starting plot_physical_size_distribution')
-    fig, ax = plt.subplots()
-    bins = 30  # np.arange(0, 3, 0.05)
-    for component in data:
-        if component['tag'] not in ['pwn', 'snr']:
-            continue
-        table = component['table_in']
-        vals = table['SIZE_PHYSICAL']
-        ax.hist(
-            vals, bins=bins, label=component['tag'], histtype='step',
-            alpha=0.8, normed=True,
-        )
+        filename = 'ctadc_skymodel_gps_sources_galactic_xy.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
 
-    ax.legend(loc='best')
-    # ax.set_xlim(bins[0], bins-[1])
-    # ax.set_xlim(0, 2)
-    ax.set_xlabel('Source physical size (pc)')
-    fig.tight_layout()
-    filename = 'ctadc_skymodel_gps_sources_physical_size.png'
-    log.info('Writing {}'.format(filename))
-    fig.savefig(filename)
+    def plot_galactic_xz(self):
+        fig, ax = plt.subplots(figsize=(15, 5))
 
+        for component in self.get_components(tags=['pwn', 'snr']):
+            table = component['table_in']
+            x = table['POS_X'].quantity.to('kpc').value
+            z = table['POS_Z'].quantity.to('kpc').value
+            ax.scatter(x, z, label=component['tag'], s=10, alpha=0.5)
 
-def plot_galactic_xy(data):
-    log.info('Starting plot_galactic_xy')
-    fig, ax = plt.subplots(figsize=(7, 7))
+        ax.set_ylim(-3, 3)
+        ax.set_xlabel('Galactocentric X (kpc)')
+        ax.set_ylabel('Galactocentric Z (kpc)')
+        ax.legend(loc='best')
+        fig.tight_layout()
 
-    for component in data:
-        if component['tag'] not in ['snr', 'pwn']:
-            continue
+        filename = 'ctadc_skymodel_gps_sources_galactic_xz.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
 
-        table = component['table_in']
-        x = table['POS_X'].quantity.to('kpc').value
-        y = table['POS_Y'].quantity.to('kpc').value
-        ax.scatter(x, y, label=component['tag'], s=10, alpha=0.5)
+    def plot_galactic_z(self):
+        fig, ax = plt.subplots()
 
-    # ax.set_xlim(0, 2)
-    ax.set_xlabel('Galactocentric X (kpc)')
-    ax.set_xlabel('Galactocentric Y (kpc)')
-    ax.legend(loc='best')
-    fig.tight_layout()
+        for component in self.get_components(tags=['pwn', 'snr']):
+            table = component['table_in']
+            bins = np.arange(-2, 2, 0.05)
+            vals = table['POS_Z'].quantity.to('kpc').value
+            ax.hist(
+                vals, bins=bins, histtype='step',
+                alpha=0.8, normed=True, label=component['tag'],
+            )
 
-    filename = 'ctadc_skymodel_gps_sources_galactic_xy.png'
-    log.info('Writing {}'.format(filename))
-    fig.savefig(filename)
+        # ax.set_xlim(0, 2)
+        ax.set_xlabel('Galactocentric Z (kpc)')
+        ax.legend(loc='best')
+        fig.tight_layout()
 
+        filename = 'ctadc_skymodel_gps_sources_galactic_z.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
 
-def plot_galactic_z(data):
-    log.info('Starting plot_galactic_z')
-    fig, ax = plt.subplots()
+    def plot_galactic_r(self):
+        fig, ax = plt.subplots()
 
-    for component in data:
-        if component['tag'] not in ['snr', 'pwn']:
-            continue
+        for component in self.get_components(tags=['pwn', 'snr']):
+            table = component['table_in']
+            bins = np.arange(0, 20, 1)
+            vals = table['galactic_r']
+            ax.hist(
+                vals, bins=bins, histtype='step',
+                alpha=0.8, normed=True, label=component['tag'],
+            )
 
-        table = component['table_in']
-        bins = np.arange(-2, 2, 0.05)
-        vals = table['POS_Z'].quantity.to('kpc').value
-        ax.hist(
-            vals, bins=bins, histtype='step',
-            alpha=0.8, normed=True, label=component['tag'],
-        )
+        # ax.set_xlim(0, 2)
+        ax.set_xlabel('Galactocentric radius (kpc)')
+        ax.legend(loc='best')
+        fig.tight_layout()
 
-    # ax.set_xlim(0, 2)
-    ax.set_xlabel('Galactocentric Z (kpc)')
-    ax.legend(loc='best')
-    fig.tight_layout()
-
-    filename = 'ctadc_skymodel_gps_sources_galactic_z.png'
-    log.info('Writing {}'.format(filename))
-    fig.savefig(filename)
+        filename = 'ctadc_skymodel_gps_sources_galactic_r.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
 
 
 def plot_logn_logs():
@@ -491,18 +506,22 @@ if __name__ == '__main__':
 
     # make_source_tables()
     gps = GPSSkyModel.load_sky_models()
-    gps.print_summary()
+    # gps.print_summary()
 
-    # plot_sky_positions(data)
-    # plot_glon_distribution(data)
-    # plot_glat_distribution(data)
+    # gps.plot_sky_positions()
+    # gps.plot_glon_distribution()
+    # gps.plot_glat_distribution()
 
-    # plot_size_distribution(data)
-    # plot_physical_size_distribution(data)
-    # check_snr_size_distribution(data)
+    # gps.plot_size_distribution()
+    # gps.plot_physical_size_distribution()
 
-    # plot_galactic_xy(data)
-    # plot_galactic_z(data)
+    # TODO: gps.check_snr_size_distribution()
+
+    # gps.plot_galactic_xy()
+    # gps.plot_galactic_xz()
+    # gps.plot_galactic_z()
+    # gps.plot_galactic_r()
+
 
     # plot_logn_logs()
 

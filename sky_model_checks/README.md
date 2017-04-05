@@ -17,15 +17,18 @@ image_sources        11 6.27654769846e-11
 
 ### Position
 
-* Sky positions:
+* As seen from Earth:
   * [ctadc_skymodel_gps_sources_sky_positions.png](ctadc_skymodel_gps_sources_sky_positions.png)
   * [ctadc_skymodel_gps_sources_sky_positions_gps.png](ctadc_skymodel_gps_sources_sky_positions_gps.png)
-* GLON: [ctadc_skymodel_gps_sources_glon.png](ctadc_skymodel_gps_sources_glon.png)
-* GLAT: [ctadc_skymodel_gps_sources_glat.png](ctadc_skymodel_gps_sources_glat.png)
-* Positions in the Galaxy:
+  * GLON: [ctadc_skymodel_gps_sources_glon.png](ctadc_skymodel_gps_sources_glon.png)
+  * GLAT: [ctadc_skymodel_gps_sources_glat.png](ctadc_skymodel_gps_sources_glat.png)
+  * Distance: TODO
+
+* Positions in the Galaxy (only for simulated sources: PWN, SNR):
   * [ctadc_skymodel_gps_sources_galactic_xy.png](ctadc_skymodel_gps_sources_galactic_xy.png)
+  * [ctadc_skymodel_gps_sources_galactic_xz.png](ctadc_skymodel_gps_sources_galactic_xz.png)
   * [ctadc_skymodel_gps_sources_galactic_z.png](ctadc_skymodel_gps_sources_galactic_z.png)
-* Distance: TODO
+  * [ctadc_skymodel_gps_sources_galactic_r.png](ctadc_skymodel_gps_sources_galactic_r.png)
 
 ### Size and integral flux
 
