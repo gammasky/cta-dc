@@ -31,8 +31,7 @@ def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
     emax_int = 10 * u.TeV
     pivot_energy = 1 * u.TeV
     energy_flux_standard_candle = spec.energy_flux(emin=emin_int, emax=emax_int)
-    flux_at_1TeV = energy_flux / energy_flux_standard_candle * u.Unit(
-        'cm-2 s-1 TeV-1')  # * spec.parameters['amplitude'].quantity
+    flux_at_1TeV = energy_flux / energy_flux_standard_candle * u.Unit('cm-2 s-1 TeV-1')
     flux_at_1TeV = flux_at_1TeV.to('cm-2 s-1 MeV-1')
 
     flux_above_1TeV = LogParabola(amplitude=flux_at_1TeV, reference=pivot_energy, alpha=alpha, beta=beta)
@@ -107,7 +106,6 @@ def make_pwn_table(
     )
     table = add_observed_parameters(table)
 
-
     # Draw angular extension, then compute physical extension
     # intrinsic_extension = random_state.normal(mean_intrinsic,sigma_intrinsic,n_sources)
     intrinsic_extension = random_state.uniform(3, 60, n_sources)
@@ -117,12 +115,12 @@ def make_pwn_table(
     angular_extension = intrinsic_extension / (table['distance'] * constant)
     angular_extension = angular_extension.to('deg') / 2.0
     for idx in range(len(table)):
-        if (angular_extension[idx] < 0.01 * u.Unit('deg')):
+        if angular_extension[idx] < 0.01 * u.Unit('deg'):
             # print('PROBLEM: ', angular_extension[idx])
             angular_extension[idx] = 0.01 * u.Unit('deg')
 
     for idx in range(len(table)):
-        if (angular_extension[idx] < 0):
+        if angular_extension[idx] < 0:
             print('ROBLEM: ', angular_extension[idx], intrinsic_extension[idx])
     # print('size ', intrinsic_extension, angular_extension, table['distance'])
 
@@ -135,7 +133,7 @@ def make_pwn_table(
 
     logluminosity = random_state.normal(mean_logluminosity, sigma_logluminosity, n_sources)
     for idx in range(len(table)):
-        if (logluminosity[idx] > 35):
+        if logluminosity[idx] > 35:
             logluminosity[idx] = random_state.normal(mean_logluminosity, sigma_logluminosity, 1)
     luminosity = (10 ** logluminosity) * u.erg / u.second
 
@@ -146,7 +144,6 @@ def make_pwn_table(
 
     # integral sed between 1 and 10 TeV
     energy_flux = luminosity / (4 * np.pi * distance ** 2)
-    # print(energy_flux)
     energy_flux = energy_flux.to('TeV cm-2 s-1')
 
     vals = []
@@ -169,7 +166,6 @@ def make_pwn_table(
     int_flux = u.Quantity(int_vals)
     int_flux_cu = u.Quantity(int_vals_cu)
 
-    # import IPython; IPython.embed()
     table = table[['x', 'y', 'z', 'spiralarm', 'GLON', 'GLAT', 'RA', 'DEC', 'distance']]
     table['sigma'] = Column(angular_extension, description='Angular size', unit='deg')
     table['size_physical'] = Column(size_physical.to('pc').value, description='Physical size', unit='pc')
@@ -180,6 +176,15 @@ def make_pwn_table(
     table['int_flux_above_1TeV'] = Column(int_flux, description='Integral flux above 1 TeV ', unit='s-1 cm-2')
     table['int_flux_above_1TeV_cu'] = Column(int_flux_cu, description='Integral flux above 1 TeV in crab units')
     table['source_name'] = Column(name, description='source name')
+
+    table.rename_column('x', 'galactocentric_x')
+    table.rename_column('y', 'galactocentric_y')
+    table.rename_column('z', 'galactocentric_z')
+    r = np.sqrt(table['galactocentric_x'] ** 2 + table['galactocentric_y'] ** 2)
+    table['galactocentric_r'] = Column(r, unit='kpc', description='Galactocentric radius in the xy plan')
+    s = table['distance'] * np.tan(table['sigma'].quantity.to('rad').value)
+    table['size_physical'] = Column(s, unit='pc', description='Physical size')
+
     return table
 
 
