@@ -92,6 +92,7 @@ def read_txt_files(version):
 
 
 def add_extra_info(table):
+    table.rename_column('Radius', 'size_physical')
     table.rename_column('POS_X', 'galactocentric_x')
     table.rename_column('POS_Y', 'galactocentric_y')
     table.rename_column('POS_Z', 'galactocentric_z')

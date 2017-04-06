@@ -242,8 +242,6 @@ class GPSSkyModel:
         table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
         filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.ecsv'
         table_in = Table.read(filename, format='ascii.ecsv')
-        # table_in['galactic_r'] = np.sqrt(table_in['POS_X'] ** 2 + table_in['POS_Y'] ** 2)
-        table_in['SIZE_PHYSICAL'] = table_in['Radius']
         data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
 
         tag = 'binaries'
@@ -389,7 +387,7 @@ class GPSSkyModel:
         bins = 30  # np.arange(0, 3, 0.05)
         for component in self.get_components(tags=['pwn', 'snr']):
             table = component['table_in']
-            vals = table['SIZE_PHYSICAL']
+            vals = table['size_physical']
             ax.hist(
                 vals, bins=bins, label=component['tag'], histtype='step',
                 alpha=0.8, normed=True,
@@ -432,8 +430,8 @@ class GPSSkyModel:
 
         for component in self.get_components(tags=['pwn', 'snr']):
             table = component['table_in']
-            x = table['POS_X'].quantity.to('kpc').value
-            y = table['POS_Y'].quantity.to('kpc').value
+            x = table['galactocentric_x'].quantity.to('kpc').value
+            y = table['galactocentric_y'].quantity.to('kpc').value
             ax.scatter(x, y, label=component['tag'], s=10, alpha=0.5)
 
         # ax.set_xlim(0, 2)
@@ -451,8 +449,8 @@ class GPSSkyModel:
 
         for component in self.get_components(tags=['pwn', 'snr']):
             table = component['table_in']
-            x = table['POS_X'].quantity.to('kpc').value
-            z = table['POS_Z'].quantity.to('kpc').value
+            x = table['galactocentric_x'].quantity.to('kpc').value
+            z = table['galactocentric_z'].quantity.to('kpc').value
             ax.scatter(x, z, label=component['tag'], s=10, alpha=0.5)
 
         ax.set_ylim(-3, 3)
@@ -471,7 +469,7 @@ class GPSSkyModel:
         for component in self.get_components(tags=['pwn', 'snr']):
             table = component['table_in']
             bins = np.arange(-2, 2, 0.05)
-            vals = table['POS_Z'].quantity.to('kpc').value
+            vals = table['galactocentric_z'].quantity.to('kpc').value
             ax.hist(
                 vals, bins=bins, histtype='step',
                 alpha=0.8, normed=True, label=component['tag'],
@@ -492,7 +490,7 @@ class GPSSkyModel:
         for component in self.get_components(tags=['pwn', 'snr']):
             table = component['table_in']
             bins = np.arange(0, 20, 1)
-            vals = table['galactic_r']
+            vals = table['galactocentric_r']
             ax.hist(
                 vals, bins=bins, histtype='step',
                 alpha=0.8, normed=True, label=component['tag'],
@@ -651,7 +649,7 @@ def compute_total_flux(models):
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
 
-    make_source_tables()
+    # make_source_tables()
     gps = GPSSkyModel.load_sky_models()
     # gps.print_summary()
 
@@ -664,15 +662,15 @@ if __name__ == '__main__':
 
     # gps.check_snr_size()
 
-    # gps.plot_galactic_xy()
-    # gps.plot_galactic_xz()
-    # gps.plot_galactic_z()
-    # gps.plot_galactic_r()
+    gps.plot_galactic_xy()
+    gps.plot_galactic_xz()
+    gps.plot_galactic_z()
+    gps.plot_galactic_r()
     gps.plot_distance()
 
-    # gps.plot_logn_logs(quantity='n', variant='diff', sigma=2)
-    # gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
-    # gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
-    # gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
+    gps.plot_logn_logs(quantity='n', variant='diff', sigma=2)
+    gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
+    gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
+    gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
 
-    # gps.plot_all_spectral_models()
+    gps.plot_all_spectral_models()
