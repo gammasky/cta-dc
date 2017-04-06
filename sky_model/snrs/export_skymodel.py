@@ -106,8 +106,12 @@ def add_extra_info(table):
         z=table['galactocentric_z'].quantity,
     )
     table['distance'] = Column(distance, unit='kpc', description='Distance from Earth')
+    table['distance'].format = '%.5f'
+
     table['glon'] = Column(glon, unit='deg', description='Galactic longitude')
+    table['glon'].format = '%.5f'
     table['glat'] = Column(glat, unit='deg', description='Galactic latitude')
+    table['glat'].format = '%.5f'
 
     return table
 
