@@ -12,8 +12,8 @@
 # - {name: spectral_type, datatype: string}
 # - {name: flux_1_10, datatype: float64}
 # meta: !!omap
-# - {filename: snrs/ctadc_skymodel_gps_sources_snr_2.xml}
 # - {tag: snr}
+# - {filename: snrs/ctadc_skymodel_gps_sources_snr_2.xml}
 file name spatial_type ra dec glon glat size spectral_type flux_1_10
 snr snr_0 RadialShell 239.122833658 -53.3261973442 328.496936217 0.101127012918 0.06294 NodeFunction 1.16928311904e-14
 snr snr_1 RadialShell 272.018147226 -28.0323288399 3.25764629418 -3.81525282421 0.07059 NodeFunction 2.25771285752e-14

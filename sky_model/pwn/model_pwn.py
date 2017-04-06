@@ -106,13 +106,16 @@ def make_pwn_table(
     )
     table = add_observed_parameters(table)
 
+    table['distance'] = table['distance'].quantity.to('kpc')
+    table['distance'].unit = 'kpc'
+
     # Draw angular extension, then compute physical extension
     # intrinsic_extension = random_state.normal(mean_intrinsic,sigma_intrinsic,n_sources)
     intrinsic_extension = random_state.uniform(3, 60, n_sources)
 
     intrinsic_extension = intrinsic_extension * u.pc
     constant = 0.000291 / u.arcmin
-    angular_extension = intrinsic_extension / (table['distance'] * constant)
+    angular_extension = intrinsic_extension / (table['distance'].quantity.to('pc') * constant)
     angular_extension = angular_extension.to('deg') / 2.0
     for idx in range(len(table)):
         if angular_extension[idx] < 0.01 * u.Unit('deg'):
@@ -179,13 +182,14 @@ def make_pwn_table(
 
     return table
 
+
 def polish_pwn_table(table):
     table.rename_column('x', 'galactocentric_x')
     table.rename_column('y', 'galactocentric_y')
     table.rename_column('z', 'galactocentric_z')
     r = np.sqrt(table['galactocentric_x'] ** 2 + table['galactocentric_y'] ** 2)
     table['galactocentric_r'] = Column(r, unit='kpc', description='Galactocentric radius in the xy plan')
-    s = table['distance'] * np.tan(table['sigma'].quantity.to('rad').value)
+    s = table['distance'].quantity.to('pc') * np.tan(table['sigma'].quantity.to('rad').value)
     table['size_physical'] = Column(s, unit='pc', description='Physical size')
 
     table['galactocentric_x'].format = '%.5f'
@@ -207,6 +211,7 @@ def polish_pwn_table(table):
     table['galactocentric_r'].format = '%0.4f'
 
     return table
+
 
 if __name__ == '__main__':
     table = make_pwn_table()

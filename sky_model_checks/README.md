@@ -33,7 +33,7 @@ image_sources        11 6.27654769846e-11
 ### Size and integral flux
 
 * Source sizes:
-  * It's radius for SNRs (TODO: outer?) and Gaussian sigma for Gaussian shapes
+  * Outer radius for SNRs and Gaussian sigma for Gaussian shapes
   * Apparent size (deg): [ctadc_skymodel_gps_sources_size.png](ctadc_skymodel_gps_sources_size.png)
   * Physical size (parsec): [ctadc_skymodel_gps_sources_physical_size.png](ctadc_skymodel_gps_sources_physical_size.png)
   * I found it weird that there are only few small-size SNRs in the apparent size.

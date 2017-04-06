@@ -662,15 +662,15 @@ if __name__ == '__main__':
 
     # gps.check_snr_size()
 
-    gps.plot_galactic_xy()
-    gps.plot_galactic_xz()
-    gps.plot_galactic_z()
-    gps.plot_galactic_r()
-    gps.plot_distance()
+    # gps.plot_galactic_xy()
+    # gps.plot_galactic_xz()
+    # gps.plot_galactic_z()
+    # gps.plot_galactic_r()
+    # gps.plot_distance()
 
-    gps.plot_logn_logs(quantity='n', variant='diff', sigma=2)
-    gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
-    gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
-    gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
-
-    gps.plot_all_spectral_models()
+    # gps.plot_logn_logs(quantity='n', variant='diff', sigma=2)
+    # gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
+    # gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
+    # gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
+    #
+    # gps.plot_all_spectral_models()
