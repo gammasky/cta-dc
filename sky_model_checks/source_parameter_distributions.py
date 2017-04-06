@@ -242,7 +242,7 @@ class GPSSkyModel:
         table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
         filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.ecsv'
         table_in = Table.read(filename, format='ascii.ecsv')
-        table_in['galactic_r'] = np.sqrt(table_in['POS_X'] ** 2 + table_in['POS_Y'] ** 2)
+        # table_in['galactic_r'] = np.sqrt(table_in['POS_X'] ** 2 + table_in['POS_Y'] ** 2)
         table_in['SIZE_PHYSICAL'] = table_in['Radius']
         data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
 
@@ -651,7 +651,7 @@ def compute_total_flux(models):
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
 
-    # make_source_tables()
+    make_source_tables()
     gps = GPSSkyModel.load_sky_models()
     # gps.print_summary()
 

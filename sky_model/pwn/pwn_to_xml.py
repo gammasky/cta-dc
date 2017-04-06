@@ -30,9 +30,9 @@ SPATIAL_TEMPLATE = """\
 
 SPECTRUM_TEMPLATE = """\
     <spectrum type="LogParabola">
-        <parameter name="Prefactor" scale="1e-20" value="{norm:.3f}"  min="1e-07" max="1000.0" free="1"/>
-        <parameter name="Index"     scale="-1"    value="{index:.3f}"  min="0.0"   max="+5.0"   free="1"/>
-        <parameter name="Curvature" scale="-1"    value="{curvature:.3f}"  min="-5.0"   max="+5.0"   free="1"/>
+        <parameter name="Prefactor" scale="1e-20" value="{norm:5g}"  min="1e-07" max="1000.0" free="1"/>
+        <parameter name="Index"     scale="-1"    value="{index:.5f}"  min="0.0"   max="+5.0"   free="1"/>
+        <parameter name="Curvature" scale="-1"    value="{curvature:.5f}"  min="-5.0"   max="+5.0"   free="1"/>
         <parameter name="PivotEnergy" scale="1e6"   value="{energy:.1f}" min="0.01"  max="1000.0" free="0"/>
       </spectrum>
 

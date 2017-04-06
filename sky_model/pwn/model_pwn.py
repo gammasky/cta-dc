@@ -177,6 +177,9 @@ def make_pwn_table(
     table['int_flux_above_1TeV_cu'] = Column(int_flux_cu, description='Integral flux above 1 TeV in crab units')
     table['source_name'] = Column(name, description='source name')
 
+    return table
+
+def polish_pwn_table(table):
     table.rename_column('x', 'galactocentric_x')
     table.rename_column('y', 'galactocentric_y')
     table.rename_column('z', 'galactocentric_z')
@@ -185,11 +188,29 @@ def make_pwn_table(
     s = table['distance'] * np.tan(table['sigma'].quantity.to('rad').value)
     table['size_physical'] = Column(s, unit='pc', description='Physical size')
 
-    return table
+    table['galactocentric_x'].format = '%.5f'
+    table['galactocentric_y'].format = '%.5f'
+    table['galactocentric_z'].format = '%.5f'
+    table['GLON'].format = '%.5f'
+    table['GLAT'].format = '%.5f'
+    table['RA'].format = '%.5f'
+    table['DEC'].format = '%.5f'
+    table['distance'].format = '%.5f'
+    table['sigma'].format = '%.5f'
+    table['size_physical'].format = '%.5f'
+    table['spec_alpha'].format = '%5g'
+    table['spec_beta'].format = '%5g'
+    table['spec_norm'].format = '%5g'
+    table['spec_norm_cu'].format = '%5g'
+    table['int_flux_above_1TeV'].format = '%5g'
+    table['int_flux_above_1TeV_cu'].format = '%5g'
+    table['galactocentric_r'].format = '%0.4f'
 
+    return table
 
 if __name__ == '__main__':
     table = make_pwn_table()
+    table = polish_pwn_table(table)
 
     filename = 'ctadc_skymodel_gps_sources_pwn.ecsv'
     print('Writing {}'.format(filename))
