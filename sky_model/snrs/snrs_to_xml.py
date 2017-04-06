@@ -1,10 +1,10 @@
 """
 Convert SNRs to XML format.
 """
+from pathlib import Path
 import numpy as np
 import astropy.units as u
 from astropy.table import Table
-from gammapy.utils.coordinates import galactic as compute_galactic_coordinates
 
 SOURCE_LIBRARY_TEMPLATE = """\
 <?xml version="1.0" standalone="no"?>
@@ -80,7 +80,7 @@ def make_spectral_point_selection(row):
     )
 
 
-def make_snr_xml(table, version):
+def make_snr_xml(table):
     print('Number of SNRs from Pierre: {}'.format(len(table)))
 
     snr_in_output = 0
@@ -123,30 +123,12 @@ def make_snr_xml(table, version):
 
         xml_sources += xml_source
 
-    xml = SOURCE_LIBRARY_TEMPLATE.format(xml_sources=xml_sources)
-
     print('Number of SNRs in output XML: {}'.format(snr_in_output))
-
-    filename = 'ctadc_skymodel_gps_sources_snr_{}.xml'.format(version)
-    print('Writing {}'.format(filename))
-    with open(filename, 'w') as fh:
-        fh.write(xml)
+    xml = SOURCE_LIBRARY_TEMPLATE.format(xml_sources=xml_sources)
+    return xml
 
 
-def read_snr_data(version):
-    filename = 'ctadc_skymodel_gps_sources_snr_{}.ecsv'.format(version)
-    print('Reading {}'.format(filename))
-    table = Table.read(filename, format='ascii.ecsv')
-
-    distance, glon, glat = compute_galactic_coordinates(
-        x=table['POS_X'].quantity,
-        y=table['POS_Y'].quantity,
-        z=table['POS_Z'].quantity,
-    )
-    table['distance'] = distance
-    table['glon'] = glon
-    table['glat'] = glat
-
+def add_sed_columns(table):
     energy_array = np.array(table.meta['energy_array'])
     sed_energy = np.tile(energy_array, reps=(len(table), 1))
 
@@ -158,10 +140,16 @@ def read_snr_data(version):
     table['sed_energy'] = u.Quantity(sed_energy, 'TeV').to('MeV')
     table['sed_dnde'] = u.Quantity(sed_dnde, 'cm-2 s-1 TeV-1').to('cm-2 s-1 MeV-1')
 
-    return table
-
 
 if __name__ == '__main__':
     for version in [1, 2]:
-        table = read_snr_data(version=version)
-        make_snr_xml(table, version=version)
+        filename = 'ctadc_skymodel_gps_sources_snr_{}.ecsv'.format(version)
+        print('Reading {}'.format(filename))
+        table = Table.read(filename, format='ascii.ecsv')
+        add_sed_columns(table)
+
+        xml = make_snr_xml(table)
+
+        filename = 'ctadc_skymodel_gps_sources_snr_{}.xml'.format(version)
+        print('Writing {}'.format(filename))
+        Path(filename).write_text(xml)

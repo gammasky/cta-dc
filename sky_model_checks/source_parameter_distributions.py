@@ -233,11 +233,6 @@ class GPSSkyModel:
         table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
         filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_pwn.ecsv'
         table_in = Table.read(filename, format='ascii.ecsv')
-        table_in['POS_X'] = table_in['x']
-        table_in['POS_Y'] = table_in['y']
-        table_in['POS_Z'] = table_in['z']
-        table_in['galactic_r'] = np.sqrt(table_in['POS_X'] ** 2 + table_in['POS_Y'] ** 2)
-        table_in['SIZE_PHYSICAL'] = table_in['distance'] * np.tan(table_in['sigma'].quantity.to('rad').value)
         data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
 
         tag = 'snr'
@@ -327,7 +322,7 @@ class GPSSkyModel:
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
 
-    def plot_glon_distribution(self):
+    def plot_glon(self):
         fig, ax = plt.subplots()
         bins = np.arange(-180, 181, 1)
         for component in self.get_components(skip=['image_sources']):
@@ -348,7 +343,7 @@ class GPSSkyModel:
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
 
-    def plot_glat_distribution(self):
+    def plot_glat(self):
         fig, ax = plt.subplots()
         bins = np.arange(-10, 10.1, 0.1)
         for component in self.get_components(skip=['image_sources']):
@@ -369,7 +364,7 @@ class GPSSkyModel:
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
 
-    def plot_size_distribution(self):
+    def plot_size(self):
         fig, ax = plt.subplots()
         bins = np.arange(0, 3, 0.05)
         for component in self.get_components(tags=['gamma-cat', 'pwn', 'snr']):
@@ -389,7 +384,7 @@ class GPSSkyModel:
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
 
-    def plot_physical_size_distribution(self):
+    def plot_physical_size(self):
         fig, ax = plt.subplots()
         bins = 30  # np.arange(0, 3, 0.05)
         for component in self.get_components(tags=['pwn', 'snr']):
@@ -409,7 +404,7 @@ class GPSSkyModel:
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
 
-    def check_snr_size_distribution(self):
+    def check_snr_size(self):
         snr = self.get_component('snr')
         # print(snr['table_in'].colnames)
         # snr['table_in'].info('stats')
@@ -509,6 +504,28 @@ class GPSSkyModel:
         fig.tight_layout()
 
         filename = 'ctadc_skymodel_gps_sources_galactic_r.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
+
+    def plot_distance(self):
+        fig, ax = plt.subplots()
+
+        bins = 50 # np.arange(0, 20, 1)
+
+        for component in self.get_components(tags=['pwn', 'snr']):
+            table = component['table_in']
+            vals = table['distance']
+            ax.hist(
+                vals, bins=bins, histtype='step',
+                alpha=0.8, normed=True, label=component['tag'],
+            )
+
+        # ax.set_xlim(0, 2)
+        ax.set_xlabel('Distance to Earth (kpc)')
+        ax.legend(loc='best')
+        fig.tight_layout()
+
+        filename = 'ctadc_skymodel_gps_sources_distance.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
 
@@ -639,22 +656,23 @@ if __name__ == '__main__':
     # gps.print_summary()
 
     # gps.plot_sky_positions()
-    # gps.plot_glon_distribution()
-    # gps.plot_glat_distribution()
+    # gps.plot_glon()
+    # gps.plot_glat()
 
-    # gps.plot_size_distribution()
-    # gps.plot_physical_size_distribution()
+    # gps.plot_size()
+    # gps.plot_physical_size()
 
-    # gps.check_snr_size_distribution()
+    # gps.check_snr_size()
 
     # gps.plot_galactic_xy()
     # gps.plot_galactic_xz()
     # gps.plot_galactic_z()
     # gps.plot_galactic_r()
+    gps.plot_distance()
 
-    gps.plot_logn_logs(quantity='n', variant='diff', sigma=2)
-    gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
-    gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
-    gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
+    # gps.plot_logn_logs(quantity='n', variant='diff', sigma=2)
+    # gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
+    # gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
+    # gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
 
     # gps.plot_all_spectral_models()

@@ -3,7 +3,8 @@ Reformat data for simulated SNRs by Pierre Cristofari from TXT to ECSV
 """
 import numpy as np
 import astropy.units as u
-from astropy.table import Table
+from astropy.table import Table, Column
+from gammapy.utils.coordinates import galactic as compute_galactic_coordinates
 
 
 def read_txt_files(version):
@@ -90,9 +91,31 @@ def read_txt_files(version):
     return t
 
 
+def add_extra_info(table):
+    table.rename_column('POS_X', 'galactocentric_x')
+    table.rename_column('POS_Y', 'galactocentric_y')
+    table.rename_column('POS_Z', 'galactocentric_z')
+
+    r = np.sqrt(table['galactocentric_x'] ** 2 + table['galactocentric_y'] ** 2)
+    table['galactocentric_r'] = Column(r, unit='kpc', description='Galactocentric radius in the xy plan')
+
+    distance, glon, glat = compute_galactic_coordinates(
+        x=table['galactocentric_x'].quantity,
+        y=table['galactocentric_y'].quantity,
+        z=table['galactocentric_z'].quantity,
+    )
+    table['distance'] = Column(distance, unit='kpc', description='Distance from Earth')
+    table['glon'] = Column(glon, unit='deg', description='Galactic longitude')
+    table['glat'] = Column(glat, unit='deg', description='Galactic latitude')
+
+    return table
+
+
 if __name__ == '__main__':
     for version in [1, 2]:
         table = read_txt_files(version=version)
+        table = add_extra_info(table)
+
         filename = 'ctadc_skymodel_gps_sources_snr_{}.ecsv'.format(version)
         print('Writing {}'.format(filename))
         table.write(filename, format='ascii.ecsv', overwrite=True)
