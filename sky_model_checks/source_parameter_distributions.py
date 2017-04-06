@@ -652,25 +652,25 @@ if __name__ == '__main__':
     # make_source_tables()
     gps = GPSSkyModel.load_sky_models()
     # gps.print_summary()
-
+    #
     # gps.plot_sky_positions()
     # gps.plot_glon()
     # gps.plot_glat()
-
+    #
     # gps.plot_size()
     # gps.plot_physical_size()
-
+    #
     # gps.check_snr_size()
-
+    #
     # gps.plot_galactic_xy()
     # gps.plot_galactic_xz()
     # gps.plot_galactic_z()
     # gps.plot_galactic_r()
     # gps.plot_distance()
 
-    # gps.plot_logn_logs(quantity='n', variant='diff', sigma=2)
-    # gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
-    # gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
-    # gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
-    #
-    # gps.plot_all_spectral_models()
+    gps.plot_logn_logs(quantity='n', variant='diff', sigma=2)
+    gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
+    gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
+    gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
+
+    gps.plot_all_spectral_models()

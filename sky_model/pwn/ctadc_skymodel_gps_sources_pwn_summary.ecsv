@@ -12,8 +12,8 @@
 # - {name: spectral_type, datatype: string}
 # - {name: flux_1_10, datatype: float64}
 # meta: !!omap
-# - {tag: pwn}
 # - {filename: pwn/ctadc_skymodel_gps_sources_pwn.xml}
+# - {tag: pwn}
 file name spatial_type ra dec glon glat size spectral_type flux_1_10
 pwn pwn_0 RadialGaussian 255.259861317 -41.9769242804 344.141826216 0.0888269484584 0.08457 LogParabola 1.84096280921e-15
 pwn pwn_2 RadialGaussian 266.098763247 -25.9425794635 2.41210618084 1.79418715883 0.21747 LogParabola 6.78568825839e-14

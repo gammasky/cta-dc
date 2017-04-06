@@ -92,10 +92,14 @@ def read_txt_files(version):
 
 
 def add_extra_info(table):
+    # Change Pierre's XYZ to the one used in Gammapy at the moment
+    # See https://github.com/gammasky/cta-dc/issues/17
+    table['galactocentric_x'] = Column(table['POS_Y'].data, unit='kpc', description='Galactocentric X', format='%0.5f')
+    table['galactocentric_y'] = Column(-table['POS_X'].data, unit='kpc', description='Galactocentric Y', format='%0.5f')
+    table['galactocentric_z'] = Column(table['POS_Z'].data, unit='kpc', description='Galactocentric Y', format='%0.5f')
+    table.remove_columns(['POS_X', 'POS_Y', 'POS_Z'])
+
     table.rename_column('Radius', 'size_physical')
-    table.rename_column('POS_X', 'galactocentric_x')
-    table.rename_column('POS_Y', 'galactocentric_y')
-    table.rename_column('POS_Z', 'galactocentric_z')
 
     r = np.sqrt(table['galactocentric_x'] ** 2 + table['galactocentric_y'] ** 2)
     table['galactocentric_r'] = Column(r, unit='kpc', description='Galactocentric radius in the xy plan')
