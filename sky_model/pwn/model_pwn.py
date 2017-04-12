@@ -225,7 +225,7 @@ def polish_pwn_table(table):
     table.rename_column('x', 'galactocentric_x')
     table.rename_column('y', 'galactocentric_y')
     table.rename_column('z', 'galactocentric_z')
-
+    table.rename_column('size', 'sigma')
     table['galactocentric_x'].format = '%.5f'
     table['galactocentric_y'].format = '%.5f'
     table['galactocentric_z'].format = '%.5f'
@@ -234,7 +234,7 @@ def polish_pwn_table(table):
     table['RA'].format = '%.5f'
     table['DEC'].format = '%.5f'
     table['distance'].format = '%.5f'
-    table['size'].format = '%.5f'
+    table['sigma'].format = '%.5f'
     table['physical_size'].format = '%.5f'
     table['spec_alpha'].format = '%5g'
     table['spec_beta'].format = '%5g'
@@ -294,8 +294,8 @@ def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.7, type
     #table_composite['size_snr'] = Column(size_snrs, description='physical size', unit='pc')
     #table_composite['frac'] = Column(frac, description='physical size', unit='pc')
 
-    print('------------------------------------------')
-    print(table_composite)
+    #print('------------------------------------------')
+    #print(table_composite)
 
     return table_composite
 
@@ -394,8 +394,9 @@ if __name__ == '__main__':
     compute_glat_glon_distance(table)
 
     table = add_spectra(table, random_state=random_state)
+
     polish_pwn_table(table)
-    table.info()
+
     table.pprint()
 
     filename = 'ctadc_skymodel_gps_sources_pwn.ecsv'
