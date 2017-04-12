@@ -27,8 +27,8 @@ SPATIAL_TEMPLATE = """\
     <spatialModel type="RadialShell">
     <parameter name="GLON" value="{glon:.5f}" scale="1.0" min="-360" max="360" free="1"/>
     <parameter name="GLAT" value="{glat:.5f}" scale="1.0" min="-90" max="90" free="1"/>
-    <parameter name="Radius" value="{radius:.5f}" scale="1.0" min="1e-10" max="10"  free="1"/>
-    <parameter name="Width" value="{width:.5f}" scale="1.0" min="1e-10" max="10"  free="1"/>
+    <parameter name="Radius" value="{radius:.5f}" scale="1.0" min="1e-10" max="1000"  free="1"/>
+    <parameter name="Width" value="{width:.5f}" scale="1.0" min="1e-10" max="1000"  free="1"/>
     </spatialModel>"""
 
 SPECTRUM_TEMPLATE = """\
