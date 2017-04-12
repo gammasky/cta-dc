@@ -15,7 +15,7 @@ from gammapy.spectrum import CrabSpectrum
 def compute_glat_glon_distance(table):
     x, y, z = table['x'].quantity, table['y'].quantity, table['z'].quantity
     distance, glon, glat = astrometry.galactic(x, y, z)
-    phys_size = table['physical_size'].quantity
+    phys_size = table['size_physical'].quantity
     coordinate = SkyCoord(glon, glat, unit='deg', frame='galactic').transform_to('icrs')
     ra, dec = coordinate.ra.deg, coordinate.dec.deg
     r = np.sqrt(table['x'] ** 2 + table['y'] ** 2)
@@ -99,7 +99,7 @@ def polish_pwn_table(table):
     table['DEC'].format = '%.5f'
     table['distance'].format = '%.5f'
     table['sigma'].format = '%.5f'
-    table['physical_size'].format = '%.5f'
+    table['size_physical'].format = '%.5f'
     table['spec_alpha'].format = '%5g'
     table['spec_beta'].format = '%5g'
     table['spec_norm'].format = '%5g'
@@ -151,7 +151,7 @@ def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.7, type
     table_composite['x'] = Column(x_composites, description='Galactocentric x coordinate', unit='kpc')
     table_composite['y'] = Column(y_composites, description='Galactocentric y coordinate', unit='kpc')
     table_composite['z'] = Column(z_composites, description='Galactocentric z coordinate', unit='kpc')
-    table_composite['physical_size'] = Column(size_composites, description='physical size', unit='pc')
+    table_composite['size_physical'] = Column(size_composites, description='Physical size', unit='pc')
     # table_composite['size_snr'] = Column(size_snrs, description='physical size', unit='pc')
     # table_composite['frac'] = Column(frac, description='physical size', unit='pc')
 
@@ -168,8 +168,8 @@ def make_pwn_pos(random_state,
         random_state=random_state,
     )
 
-    physical_size = random_state.uniform(min_intrinsic_extension, max_intrinsic_extension, n_sources)
-    physical_size = u.Quantity(physical_size, 'pc')
+    size_physical = random_state.uniform(min_intrinsic_extension, max_intrinsic_extension, n_sources)
+    size_physical = u.Quantity(size_physical, 'pc')
 
     table.remove_column('morph_type')
     table.remove_column('age')
@@ -181,8 +181,7 @@ def make_pwn_pos(random_state,
     table.remove_column('x_birth')
     table.remove_column('y_birth')
     table.remove_column('z_birth')
-    table['physical_size'] = Column(physical_size,
-                                    description='physical size', unit='pc')
+    table['size_physical'] = Column(size_physical, description='Physical size', unit='pc')
 
     return table
 

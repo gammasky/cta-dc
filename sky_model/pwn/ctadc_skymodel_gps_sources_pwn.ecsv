@@ -7,7 +7,7 @@
 #     y coordinate}
 # - {name: galactocentric_z, unit: kpc, datatype: float64, format: '%.5f', description: Galactocentric
 #     z coordinate}
-# - {name: physical_size, unit: pc, datatype: float64, format: '%.5f', description: physical
+# - {name: size_physical, unit: pc, datatype: float64, format: '%.5f', description: Physical
 #     size}
 # - {name: spiralarm, datatype: string}
 # - {name: distance, unit: kpc, datatype: float64, format: '%.5f', description: Distance
@@ -33,7 +33,7 @@
 #   description: 'Integral flux above 1 TeV '}
 # - {name: int_flux_above_1TeV_cu, unit: '%', datatype: float64, format: '%5g', description: Integral
 #     flux above 1 TeV in crab units}
-galactocentric_x galactocentric_y galactocentric_z physical_size spiralarm distance GLON GLAT RA DEC sigma galactocentric_r spec_alpha spec_beta spec_norm spec_norm_cu int_flux_above_1TeV int_flux_above_1TeV_cu
+galactocentric_x galactocentric_y galactocentric_z size_physical spiralarm distance GLON GLAT RA DEC sigma galactocentric_r spec_alpha spec_beta spec_norm spec_norm_cu int_flux_above_1TeV int_flux_above_1TeV_cu
 10.06780 -1.05684 -0.18919 4.50101 "" 12.52186 53.52435 -0.86570 293.37894 17.82434 0.02059 10.1231 1.84816 0.0535175 8.5918e-21 0.0266 8.25551e-15 0.0442056
 0.60416 1.27350 -0.05405 30.40688 "" 9.79230 3.53730 -0.31625 268.75644 -26.06152 0.17785 1.4095 2.2209 0.291957 8.18668e-21 0.0253457 5.25998e-15 0.0281655
 9.92393 7.05028 0.06006 28.11953 "" 18.44720 32.54534 0.18654 282.51718 -0.25899 0.08730 12.1734 2.67334 0.366999 2.3479e-20 0.0726905 1.17325e-14 0.0628237

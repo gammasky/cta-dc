@@ -12,8 +12,8 @@
 # - {name: spectral_type, datatype: string}
 # - {name: flux_1_10, datatype: float64}
 # meta: !!omap
-# - {filename: gamma-cat/ctadc_skymodel_gps_sources_gamma-cat2.xml}
 # - {tag: gamma-cat}
+# - {filename: gamma-cat/ctadc_skymodel_gps_sources_gamma-cat2.xml}
 file name spatial_type ra dec glon glat size spectral_type flux_1_10
 gamma-cat "CTA 1" RadialGaussian 1.65002800746 72.7830033719 119.580259455 10.2036842463 0.300000011921 PowerLaw 7.96566690307e-13
 gamma-cat "Tycho SNR" RadialGaussian 6.33971830636 64.1408031811 120.092367617 1.41293280708 0.05 PowerLaw 1.13205735913e-13

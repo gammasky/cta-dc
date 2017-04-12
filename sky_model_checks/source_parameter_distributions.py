@@ -382,7 +382,7 @@ class GPSSkyModel:
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
 
-    def plot_physical_size(self):
+    def plot_size_physical(self):
         fig, ax = plt.subplots()
         bins = 30  # np.arange(0, 3, 0.05)
         for component in self.get_components(tags=['pwn', 'snr']):
@@ -526,6 +526,7 @@ class GPSSkyModel:
         filename = 'ctadc_skymodel_gps_sources_distance.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
+        plt.close(fig)
 
     def get_logn_logs(self, quantity, variant):
         crab_1_10 = CrabSpectrum().model.integral(1 * u.TeV, 10 * u.TeV).to('cm-2 s-1').value
@@ -633,7 +634,6 @@ def plot_spectral_model(model, ax, plot_kwargs):
     e2dnde = (energies ** 2 * dnde).to('erg cm-2 s-1')
 
     ax.plot(energies.value, e2dnde.value, **plot_kwargs)
-    # 1/0
 
 
 def compute_total_flux(models):
@@ -650,27 +650,28 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
 
     # make_source_tables()
+    #
     gps = GPSSkyModel.load_sky_models()
-    gps.print_summary()
-
-    gps.plot_sky_positions()
-    gps.plot_glon()
-    gps.plot_glat()
-
-    gps.plot_size()
-    gps.plot_physical_size()
-
-    gps.check_snr_size()
-
-    gps.plot_galactic_xy()
-    gps.plot_galactic_xz()
-    gps.plot_galactic_z()
-    gps.plot_galactic_r()
+    # gps.print_summary()
+    #
+    # gps.plot_sky_positions()
+    # gps.plot_glon()
+    # gps.plot_glat()
+    #
+    # gps.plot_size()
+    # gps.plot_size_physical()
+    #
+    # gps.check_snr_size()
+    #
+    # gps.plot_galactic_xy()
+    # gps.plot_galactic_xz()
+    # gps.plot_galactic_z()
+    # gps.plot_galactic_r()
     gps.plot_distance()
-
-    gps.plot_logn_logs(quantity='n', variant='diff', sigma=2)
-    gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
-    gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
-    gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
-
-    gps.plot_all_spectral_models()
+    #
+    # gps.plot_logn_logs(quantity='n', variant='diff', sigma=2)
+    # gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
+    # gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
+    # gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
+    #
+    # gps.plot_all_spectral_models()
