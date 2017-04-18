@@ -653,8 +653,8 @@ def compute_total_flux(models):
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
 
-    # make_source_tables()
-    #
+    make_source_tables()
+
     gps = GPSSkyModel.load_sky_models()
     gps.print_summary()
 
