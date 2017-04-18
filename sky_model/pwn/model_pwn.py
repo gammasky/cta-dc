@@ -171,7 +171,6 @@ def make_pwn_pos(random_state,
     size_physical = random_state.uniform(min_intrinsic_extension, max_intrinsic_extension, n_sources)
     size_physical = u.Quantity(size_physical, 'pc')
 
-    table.remove_column('morph_type')
     table.remove_column('age')
     table.remove_column('n_ISM')
     table.remove_column('v_abs')
