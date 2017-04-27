@@ -180,14 +180,16 @@ def make_pwn_pos(random_state,
         random_state=random_state,
     )
 
-<<<<<<< HEAD
+
     physical_size = random_state.uniform(min_intrinsic_extension, max_intrinsic_extension, n_sources)
     physical_size = u.Quantity(physical_size, 'pc')
+    type = []
+    for iii in range(1, len(physical_size)):
+        type.append('isolated')
 
-=======
     size_physical = random_state.uniform(min_intrinsic_extension, max_intrinsic_extension, n_sources)
     size_physical = u.Quantity(size_physical, 'pc')
->>>>>>> a9cb736dccb4e381c3d240765a197fedd8c3ddf8
+
 
     table.remove_column('age')
     table.remove_column('n_ISM')
@@ -198,13 +200,11 @@ def make_pwn_pos(random_state,
     table.remove_column('x_birth')
     table.remove_column('y_birth')
     table.remove_column('z_birth')
-<<<<<<< HEAD
-    table['physical_size'] = Column(physical_size,
-                                          description='physical size', unit='pc')
 
-=======
+    table['type'] = Column(type, description='type of PWN')
+
     table['size_physical'] = Column(size_physical, description='Physical size', unit='pc')
->>>>>>> a9cb736dccb4e381c3d240765a197fedd8c3ddf8
+
 
     return table
 
