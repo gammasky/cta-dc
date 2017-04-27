@@ -6,6 +6,7 @@ Use Gammalib for now to make sure the XML format is OK.
 import logging
 import gammalib
 from gammapy.catalog import SourceCatalogGammaCat
+from gammapy.catalog.gammacat import NoDataAvailableError
 
 logging.basicConfig(level='DEBUG')
 log = logging.getLogger(__name__)
@@ -143,7 +144,7 @@ def gammacat_to_xml_gammalib():
             # import IPython; IPython.embed()
             # print(model)
             models.append(model)
-        except ValueError:
+        except NoDataAvailableError:
             txt = '{} (gammacat source_id={})'.format(source.name, source.data['source_id'])
             log.error('MISSING DATA: {}'.format(txt))
             pass

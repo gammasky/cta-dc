@@ -4,7 +4,6 @@ to illustrate / check the CTA 1DC GPS sky model.
 """
 import logging
 from collections import OrderedDict
-from pathlib import Path
 import numpy as np
 from scipy.ndimage import gaussian_filter1d
 import matplotlib
@@ -137,7 +136,6 @@ def make_source_table(data):
         row = OrderedDict()
         row['file'] = data['tag']
         row['name'] = model.name()
-        # import IPython; IPython.embed(); 1 / 0
         add_source_info_spatial(model.spatial(), row)
         add_source_info_spectral(model.spectral(), row)
         rows.append(row)
@@ -319,6 +317,7 @@ class GPSSkyModel:
         filename = 'ctadc_skymodel_gps_sources_sky_positions_gps.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
+        plt.close(fig)
 
     def plot_glon(self):
         fig, ax = plt.subplots()
@@ -340,6 +339,7 @@ class GPSSkyModel:
         filename = 'ctadc_skymodel_gps_sources_glon.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
+        plt.close(fig)
 
     def plot_glat(self):
         fig, ax = plt.subplots()
@@ -361,6 +361,7 @@ class GPSSkyModel:
         filename = 'ctadc_skymodel_gps_sources_glat.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
+        plt.close(fig)
 
     def plot_size(self):
         fig, ax = plt.subplots()
@@ -381,8 +382,9 @@ class GPSSkyModel:
         filename = 'ctadc_skymodel_gps_sources_size.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
+        plt.close(fig)
 
-    def plot_physical_size(self):
+    def plot_size_physical(self):
         fig, ax = plt.subplots()
         bins = 30  # np.arange(0, 3, 0.05)
         for component in self.get_components(tags=['pwn', 'snr']):
@@ -401,17 +403,13 @@ class GPSSkyModel:
         filename = 'ctadc_skymodel_gps_sources_physical_size.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
+        plt.close(fig)
 
     def check_snr_size(self):
         snr = self.get_component('snr')
-        # print(snr['table_in'].colnames)
-        # snr['table_in'].info('stats')
-        # print(snr['table'].colnames)
-        # snr['table'].info('stats')
 
         size_in = snr['table_in']['size'].quantity.to('deg')
         size_out = snr['table']['size'] * u.deg
-        # import IPython; IPython.embed()
 
         fig, ax = plt.subplots()
         bins = np.arange(0, 5, 0.05)
@@ -424,6 +422,7 @@ class GPSSkyModel:
         filename = 'ctadc_skymodel_gps_sources_size_snr_check.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
+        plt.close(fig)
 
     def plot_galactic_xy(self):
         fig, ax = plt.subplots(figsize=(7, 7))
@@ -443,6 +442,7 @@ class GPSSkyModel:
         filename = 'ctadc_skymodel_gps_sources_galactic_xy.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
+        plt.close(fig)
 
     def plot_galactic_xz(self):
         fig, ax = plt.subplots(figsize=(15, 5))
@@ -462,6 +462,7 @@ class GPSSkyModel:
         filename = 'ctadc_skymodel_gps_sources_galactic_xz.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
+        plt.close(fig)
 
     def plot_galactic_z(self):
         fig, ax = plt.subplots()
@@ -483,6 +484,7 @@ class GPSSkyModel:
         filename = 'ctadc_skymodel_gps_sources_galactic_z.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
+        plt.close(fig)
 
     def plot_galactic_r(self):
         fig, ax = plt.subplots()
@@ -504,6 +506,7 @@ class GPSSkyModel:
         filename = 'ctadc_skymodel_gps_sources_galactic_r.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
+        plt.close(fig)
 
     def plot_distance(self):
         fig, ax = plt.subplots()
@@ -526,6 +529,7 @@ class GPSSkyModel:
         filename = 'ctadc_skymodel_gps_sources_distance.png'
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
+        plt.close(fig)
 
     def get_logn_logs(self, quantity, variant):
         crab_1_10 = CrabSpectrum().model.integral(1 * u.TeV, 10 * u.TeV).to('cm-2 s-1').value
@@ -587,6 +591,7 @@ class GPSSkyModel:
         filename = 'ctadc_skymodel_gps_sources_log{}_logs_{}_logscale.png'.format(quantity, variant)
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
+        plt.close(fig)
 
     def plot_all_spectral_models(self):
         for component in self.get_components():
@@ -615,11 +620,11 @@ def plot_spectral_models(component):
     ax.set_xlabel('Energy (TeV)')
     ax.set_ylabel('e2dnde (erg cm-2 s-1)')
     ax.set_ylim(2e-18, 5e-10)
-    # import IPython; IPython.embed()
     fig.tight_layout()
     filename = 'ctadc_skymodel_gps_sources_spectra_{}.png'.format(component['tag'])
     log.info('Writing {}'.format(filename))
     fig.savefig(filename)
+    plt.close(fig)
 
 
 def plot_spectral_model(model, ax, plot_kwargs):
@@ -633,7 +638,6 @@ def plot_spectral_model(model, ax, plot_kwargs):
     e2dnde = (energies ** 2 * dnde).to('erg cm-2 s-1')
 
     ax.plot(energies.value, e2dnde.value, **plot_kwargs)
-    # 1/0
 
 
 def compute_total_flux(models):
@@ -649,7 +653,8 @@ def compute_total_flux(models):
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
 
-    # make_source_tables()
+    make_source_tables()
+
     gps = GPSSkyModel.load_sky_models()
     gps.print_summary()
 
@@ -658,7 +663,7 @@ if __name__ == '__main__':
     gps.plot_glat()
 
     gps.plot_size()
-    gps.plot_physical_size()
+    gps.plot_size_physical()
 
     gps.check_snr_size()
 
