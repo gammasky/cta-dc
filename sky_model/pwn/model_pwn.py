@@ -273,6 +273,7 @@ def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.7, type
     size_composites = []
     size_snrs = []
     frac = []
+    type = []
     for id in range(1, int(n_composites)):
         x_snr = table_snrs[id]['galactocentric_x']
         y_snr = table_snrs[id]['galactocentric_y']
@@ -285,12 +286,14 @@ def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.7, type
         size_composites.append(size_phys_composite)
         size_snrs.append(size_phys_snr)
         frac.append(frac_radius_composite[id])
+        type.append('composite')
 
     table_composite = Table()
     table_composite['x'] = Column(x_composites, description='Galactocentric x coordinate', unit='kpc')
     table_composite['y'] = Column(y_composites, description='Galactocentric y coordinate', unit='kpc')
     table_composite['z'] = Column(z_composites, description='Galactocentric z coordinate', unit='kpc')
     table_composite['physical_size'] = Column(size_composites, description='physical size', unit='pc')
+    table_composite['type'] = Column(type, description='type of PWN')
     #table_composite['size_snr'] = Column(size_snrs, description='physical size', unit='pc')
     #table_composite['frac'] = Column(frac, description='physical size', unit='pc')
 
@@ -312,6 +315,9 @@ def make_pwn_pos(random_state,
 
     physical_size = random_state.uniform(min_intrinsic_extension, max_intrinsic_extension, n_sources)
     physical_size = u.Quantity(physical_size, 'pc')
+    type = []
+    for iii in range(1, len(physical_size)):
+        type.append('isolated')
 
     table.remove_column('morph_type')
     table.remove_column('age')
@@ -325,6 +331,8 @@ def make_pwn_pos(random_state,
     table.remove_column('z_birth')
     table['physical_size'] = Column(physical_size,
                                           description='physical size', unit='pc')
+    table['type'] = Column(type,
+                                    description='type of PWN', unit='pc')
 
     return table
 
