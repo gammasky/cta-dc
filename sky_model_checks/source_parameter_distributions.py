@@ -140,10 +140,9 @@ def make_source_table(data):
         add_source_info_spectral(model.spectral(), row)
         rows.append(row)
 
-    meta = OrderedDict(
-        tag=data['tag'],
-        filename=data['filename'],
-    )
+    meta = OrderedDict()
+    meta['tag'] = data['tag']
+    meta['filename'] = data['filename']
     table = Table(rows=rows, meta=meta, names=list(rows[0].keys()))
     # table.info('stats')
     return table
@@ -511,7 +510,7 @@ class GPSSkyModel:
     def plot_distance(self):
         fig, ax = plt.subplots()
 
-        bins = 50 # np.arange(0, 20, 1)
+        bins = 50  # np.arange(0, 20, 1)
 
         for component in self.get_components(tags=['pwn', 'snr']):
             table = component['table_in']

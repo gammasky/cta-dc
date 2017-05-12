@@ -12,8 +12,8 @@
 # - {name: spectral_type, datatype: string}
 # - {name: flux_1_10, datatype: float64}
 # meta: !!omap
-# - {filename: image_sources/ctadc_skymodel_gps_sources_images.xml}
 # - {tag: image_sources}
+# - {filename: image_sources/ctadc_skymodel_gps_sources_images.xml}
 file name spatial_type ra dec glon glat size spectral_type flux_1_10
 image_sources Westerlund1_gas DiffuseMap nan nan nan nan nan PowerLaw 7.02678199164e-12
 image_sources Westerlund1_Fermi RadialGaussian 252.9 -46.35 339.671544719 -1.32678877721 0.475 ExponentialCutoffPowerLaw 1.46120907132e-14
