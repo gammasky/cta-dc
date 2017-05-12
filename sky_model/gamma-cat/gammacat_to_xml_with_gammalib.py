@@ -34,11 +34,8 @@ def gammacat_source_to_gammalib_model_spatial(gammapy_spatial):
 
     kind = gammapy_spatial.__class__.__name__
     if kind == 'Delta2D':
-        # import IPython; IPython.embed()
         pos.lb_deg(gammapy_spatial.x_0.value, gammapy_spatial.y_0.value)
-        sigma = 0.05
-        gammalib_spatial = gammalib.GModelSpatialRadialGauss(pos, sigma)
-        # gammalib_spatial = gammalib.GModelSpatialPointSource(pos)
+        gammalib_spatial = gammalib.GModelSpatialPointSource(pos)
     elif kind == 'Gaussian2D':
         # TODO: use gammalib.GModelSpatialEllipticalGauss
         pos.lb_deg(gammapy_spatial.x_mean.value, gammapy_spatial.y_mean.value)
