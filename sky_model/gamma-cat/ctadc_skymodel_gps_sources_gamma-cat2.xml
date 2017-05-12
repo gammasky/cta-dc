@@ -125,10 +125,9 @@
   </source>
   <source name="HESS J1418-609" type="ExtendedSource">
     <spectrum type="PowerLaw">
-      <parameter name="PhotonFlux" value="2.17000007372847" error="0" scale="1e-12" min="0" max="10000000000000" free="1" />
+      <parameter name="Prefactor" value="263.999998077746" error="0" scale="1e-20" min="0" free="1" />
       <parameter name="Index" value="2.22000002861023" error="-0" scale="-1" min="-10" max="10" free="1" />
-      <parameter name="LowerLimit" value="0.300000011920929" scale="1000000" min="1e-09" max="1000000000" free="0" />
-      <parameter name="UpperLimit" value="1000" scale="1000000" free="0" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
     </spectrum>
     <spatialModel type="RadialGaussian">
       <parameter name="RA" value="214.516700223442" scale="1" free="0" />
@@ -138,10 +137,9 @@
   </source>
   <source name="HESS J1420-607" type="ExtendedSource">
     <spectrum type="PowerLaw">
-      <parameter name="PhotonFlux" value="2.96999989705948" error="0" scale="1e-12" min="0" max="10000000000000" free="1" />
+      <parameter name="Prefactor" value="347.999992537928" error="0" scale="1e-20" min="0" free="1" />
       <parameter name="Index" value="2.17000007629395" error="-0" scale="-1" min="-10" max="10" free="1" />
-      <parameter name="LowerLimit" value="0.300000011920929" scale="1000000" min="1e-09" max="1000000000" free="0" />
-      <parameter name="UpperLimit" value="1000" scale="1000000" free="0" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
     </spectrum>
     <spatialModel type="RadialGaussian">
       <parameter name="RA" value="214.691707901769" scale="1" free="0" />
@@ -228,7 +226,7 @@
       <parameter name="PhotonFlux" value="57.8000008966129" error="0" scale="1e-12" min="0" max="10000000000000" free="1" />
       <parameter name="Index" value="2.46000003814697" error="-0" scale="-1" min="-10" max="10" free="1" />
       <parameter name="LowerLimit" value="0.200000002980232" scale="1000000" min="1e-09" max="1000000000" free="0" />
-      <parameter name="UpperLimit" value="1000" scale="1000000" free="0" />
+      <parameter name="UpperLimit" value="100000" scale="1000000" free="0" />
     </spectrum>
     <spatialModel type="RadialGaussian">
       <parameter name="RA" value="243.562493342389" scale="1" free="0" />
@@ -241,7 +239,7 @@
       <parameter name="PhotonFlux" value="43.2999990029881" error="0" scale="1e-12" min="0" max="10000000000000" free="1" />
       <parameter name="Index" value="2.34999990463257" error="-0" scale="-1" min="-10" max="10" free="1" />
       <parameter name="LowerLimit" value="0.200000002980232" scale="1000000" min="1e-09" max="1000000000" free="0" />
-      <parameter name="UpperLimit" value="1000" scale="1000000" free="0" />
+      <parameter name="UpperLimit" value="100000" scale="1000000" free="0" />
     </spectrum>
     <spatialModel type="RadialGaussian">
       <parameter name="RA" value="244.059998704957" scale="1" free="0" />
@@ -266,7 +264,7 @@
       <parameter name="PhotonFlux" value="28.7000007093141" error="0" scale="1e-12" min="0" max="10000000000000" free="1" />
       <parameter name="Index" value="2.11999988555908" error="-0" scale="-1" min="-10" max="10" free="1" />
       <parameter name="LowerLimit" value="0.200000002980232" scale="1000000" min="1e-09" max="1000000000" free="0" />
-      <parameter name="UpperLimit" value="1000" scale="1000000" free="0" />
+      <parameter name="UpperLimit" value="100000" scale="1000000" free="0" />
     </spectrum>
     <spatialModel type="RadialGaussian">
       <parameter name="RA" value="248.007797118468" scale="1" free="0" />
@@ -279,7 +277,7 @@
       <parameter name="PhotonFlux" value="13.3999998597201" error="0" scale="1e-12" min="0" max="10000000000000" free="1" />
       <parameter name="Index" value="2.38000011444092" error="-0" scale="-1" min="-10" max="10" free="1" />
       <parameter name="LowerLimit" value="0.200000002980232" scale="1000000" min="1e-09" max="1000000000" free="0" />
-      <parameter name="UpperLimit" value="1000" scale="1000000" free="0" />
+      <parameter name="UpperLimit" value="100000" scale="1000000" free="0" />
     </spectrum>
     <spatialModel type="RadialGaussian">
       <parameter name="RA" value="248.499999048183" scale="1" free="0" />
@@ -364,8 +362,8 @@
     <spectrum type="PowerLaw">
       <parameter name="PhotonFlux" value="0.650000019086772" error="0" scale="1e-12" min="0" max="10000000000000" free="1" />
       <parameter name="Index" value="2.79999995231628" error="-0" scale="-1" min="-10" max="10" free="1" />
-      <parameter name="LowerLimit" value="0.219999998807907" scale="1000000" min="1e-09" max="1000000000" free="0" />
-      <parameter name="UpperLimit" value="1000" scale="1000000" free="0" />
+      <parameter name="LowerLimit" value="0.400000005960465" scale="1000000" min="1e-09" max="1000000000" free="0" />
+      <parameter name="UpperLimit" value="100000" scale="1000000" free="0" />
     </spectrum>
     <spatialModel type="RadialGaussian">
       <parameter name="RA" value="259.49600531013" scale="1" free="0" />
@@ -441,7 +439,7 @@
       <parameter name="PhotonFlux" value="5.69999993385584" error="0" scale="1e-12" min="0" max="10000000000000" free="1" />
       <parameter name="Index" value="2.40000009536743" error="-0" scale="-1" min="-10" max="10" free="1" />
       <parameter name="LowerLimit" value="0.200000002980232" scale="1000000" min="1e-09" max="1000000000" free="0" />
-      <parameter name="UpperLimit" value="1000" scale="1000000" free="0" />
+      <parameter name="UpperLimit" value="100000" scale="1000000" free="0" />
     </spectrum>
     <spatialModel type="RadialGaussian">
       <parameter name="RA" value="266.825006428334" scale="1" free="0" />
@@ -478,7 +476,7 @@
       <parameter name="PhotonFlux" value="53.1999999608956" error="0" scale="1e-12" min="0" max="10000000000000" free="1" />
       <parameter name="Index" value="2.72000002861023" error="-0" scale="-1" min="-10" max="10" free="1" />
       <parameter name="LowerLimit" value="0.200000002980232" scale="1000000" min="1e-09" max="1000000000" free="0" />
-      <parameter name="UpperLimit" value="1000" scale="1000000" free="0" />
+      <parameter name="UpperLimit" value="100000" scale="1000000" free="0" />
     </spectrum>
     <spatialModel type="RadialGaussian">
       <parameter name="RA" value="271.123755868312" scale="1" free="0" />
@@ -503,7 +501,7 @@
       <parameter name="PhotonFlux" value="14.1999996830511" error="0" scale="1e-12" min="0" max="10000000000000" free="1" />
       <parameter name="Index" value="2.08999991416931" error="-0" scale="-1" min="-10" max="10" free="1" />
       <parameter name="LowerLimit" value="0.200000002980232" scale="1000000" min="1e-09" max="1000000000" free="0" />
-      <parameter name="UpperLimit" value="1000" scale="1000000" free="0" />
+      <parameter name="UpperLimit" value="100000" scale="1000000" free="0" />
     </spectrum>
     <spatialModel type="RadialGaussian">
       <parameter name="RA" value="273.362925594873" scale="1" free="0" />
@@ -566,7 +564,7 @@
       <parameter name="PhotonFlux" value="18.6999998819104" error="0" scale="1e-12" min="0" max="10000000000000" free="1" />
       <parameter name="Index" value="2.45000004768372" error="-0" scale="-1" min="-10" max="10" free="1" />
       <parameter name="LowerLimit" value="0.200000002980232" scale="1000000" min="1e-09" max="1000000000" free="0" />
-      <parameter name="UpperLimit" value="1000" scale="1000000" free="0" />
+      <parameter name="UpperLimit" value="100000" scale="1000000" free="0" />
     </spectrum>
     <spatialModel type="RadialGaussian">
       <parameter name="RA" value="278.715838047084" scale="1" free="0" />
@@ -579,7 +577,7 @@
       <parameter name="PhotonFlux" value="30.3999984907488" error="0" scale="1e-12" min="0" max="10000000000000" free="1" />
       <parameter name="Index" value="2.26999998092651" error="-0" scale="-1" min="-10" max="10" free="1" />
       <parameter name="LowerLimit" value="0.200000002980232" scale="1000000" min="1e-09" max="1000000000" free="0" />
-      <parameter name="UpperLimit" value="1000" scale="1000000" free="0" />
+      <parameter name="UpperLimit" value="100000" scale="1000000" free="0" />
     </spectrum>
     <spatialModel type="RadialGaussian">
       <parameter name="RA" value="279.427924926965" scale="1" free="0" />
@@ -693,6 +691,18 @@
       <parameter name="RA" value="292.629204029609" scale="1" free="0" />
       <parameter name="DEC" value="18.8670051610595" scale="1" free="0" />
       <parameter name="Sigma" value="0.0549999997019768" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="Cassiopeia A" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="144.9999950838" error="0" scale="1e-20" min="0" free="1" />
+      <parameter name="Index" value="2.75" error="-0" scale="-1" min="-10" max="10" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="350.850006001541" scale="1" free="0" />
+      <parameter name="DEC" value="58.8150032295771" scale="1" free="0" />
+      <parameter name="Sigma" value="0.05" error="0" scale="1" min="0.0002778" free="1" />
     </spatialModel>
   </source>
 </source_library>

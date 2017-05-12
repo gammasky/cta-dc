@@ -13,7 +13,10 @@ log = logging.getLogger(__name__)
 
 
 def gammacat_source_to_gammalib_model(source):
-    # import IPython; IPython.embed(); 1/0
+
+    if source.data['spec_type'] == 'none':
+        # log.error('spec_type is none!')
+        raise NoDataAvailableError('spec_type is none!')
 
     gammapy_spectral = source.spectral_model
     gammalib_spectral = gammacat_source_to_gammalib_model_spectral(gammapy_spectral)
@@ -30,17 +33,18 @@ def gammacat_source_to_gammalib_model_spatial(gammapy_spatial):
     pos = gammalib.GSkyDir()
 
     kind = gammapy_spatial.__class__.__name__
-    # TODO: use gammalib.GModelSpatialEllipticalGauss
-    if kind == 'Gaussian2D':
+    if kind == 'Delta2D':
+        # import IPython; IPython.embed()
+        pos.lb_deg(gammapy_spatial.x_0.value, gammapy_spatial.y_0.value)
+        sigma = 0.05
+        gammalib_spatial = gammalib.GModelSpatialRadialGauss(pos, sigma)
+        # gammalib_spatial = gammalib.GModelSpatialPointSource(pos)
+    elif kind == 'Gaussian2D':
+        # TODO: use gammalib.GModelSpatialEllipticalGauss
         pos.lb_deg(gammapy_spatial.x_mean.value, gammapy_spatial.y_mean.value)
         sigma = gammapy_spatial.x_stddev.value
-
-        # TODO: This is currently a hack in Gammapy: point sources are put as Gaussians
-
         gammalib_spatial = gammalib.GModelSpatialRadialGauss(pos, sigma)
     elif kind == 'Shell2D':
-        # import IPython; IPython.embed(); 1/0
-        # gammalib_spatial = gammalib.GModelSpatialPointSource(pos)
         pos.lb_deg(gammapy_spatial.x_0.value, gammapy_spatial.y_0.value)
         radius = gammapy_spatial.r_in.value  # TODO: is this inner or outer radius?
         width = gammapy_spatial.width.value
