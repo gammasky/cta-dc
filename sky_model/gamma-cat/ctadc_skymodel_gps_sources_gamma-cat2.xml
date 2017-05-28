@@ -158,7 +158,7 @@
   </source>
   <source name="RCW 86" type="ExtendedSource">
     <spectrum type="ExponentialCutoffPowerLaw">
-      <parameter name="Prefactor" value="299.999998801259" error="0" scale="1e-20" min="0" free="1" />
+      <parameter name="Prefactor" value="400.200012018459" error="0" scale="1e-20" min="0" free="1" />
       <parameter name="Index" value="1.5900000333786" error="-0" scale="-1" min="-10" max="10" free="1" />
       <parameter name="CutoffEnergy" value="3.47000002861023" error="0" scale="1000000" min="1e-07" free="1" />
       <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
@@ -168,6 +168,18 @@
       <parameter name="DEC" value="-62.6450056476476" scale="1" free="0" />
       <parameter name="Radius" value="0.151999998092651" error="0" scale="1" min="0" free="1" />
       <parameter name="Width" value="0.0379999995231628" error="0" scale="1" min="0.0002778" free="1" />
+    </spatialModel>
+  </source>
+  <source name="HESS J1458-608" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="210.000007834499" error="0" scale="1e-20" min="0" free="1" />
+      <parameter name="Index" value="2.79999995231628" error="-0" scale="-1" min="-10" max="10" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="RadialGaussian">
+      <parameter name="RA" value="224.87418201329" scale="1" free="0" />
+      <parameter name="DEC" value="-60.8780600230323" scale="1" free="0" />
+      <parameter name="Sigma" value="0.170000001788139" error="0" scale="1" min="0.0002778" free="1" />
     </spatialModel>
   </source>
   <source name="HESS J1503-582" type="ExtendedSource">
@@ -284,7 +296,7 @@
   </source>
   <source name="HESS J1640-465" type="ExtendedSource">
     <spectrum type="ExponentialCutoffPowerLaw">
-      <parameter name="Prefactor" value="330.000003018194" error="0" scale="1e-20" min="0" free="1" />
+      <parameter name="Prefactor" value="389.400013969809" error="0" scale="1e-20" min="0" free="1" />
       <parameter name="Index" value="2.10999989509583" error="-0" scale="-1" min="-10" max="10" free="1" />
       <parameter name="CutoffEnergy" value="6" error="0" scale="1000000" min="1e-07" free="1" />
       <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
@@ -332,8 +344,8 @@
   </source>
   <source name="HESS J1708-410" type="ExtendedSource">
     <spectrum type="PowerLaw">
-      <parameter name="Prefactor" value="269.999994584325" error="0" scale="1e-20" min="0" free="1" />
-      <parameter name="Index" value="2.46000003814697" error="-0" scale="-1" min="-10" max="10" free="1" />
+      <parameter name="Prefactor" value="559.599979202407" error="0" scale="1e-20" min="0" free="1" />
+      <parameter name="Index" value="2.57999992370605" error="-0" scale="-1" min="-10" max="10" free="1" />
       <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
     </spectrum>
     <spatialModel type="RadialGaussian">
