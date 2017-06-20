@@ -46,11 +46,11 @@ def make_plot(num_plot, color_scale, fluxes_cu,fluxes_cu_2,fluxes_cu_3,fluxes_cu
 
     print('y: ', y)
 
-    plt.step(bins[::-1], y, color=color_scale[0], lw=2)
+    # plt.step(bins[::-1], y, color=color_scale[0], lw=2)
     if num_plot > 1:
         hist_2, bins_edges_2 = np.histogram(fluxes_cu_2, bins=bins)
         y_2 = np.insert(hist_2[::-1].astype('float64').cumsum(), 0, 0.01)
-        plt.step(bins[::-1], y_2, color=color_scale[1], lw=2)
+        # plt.step(bins[::-1], y_2, color=color_scale[1], lw=2)
 
     if num_plot > 2:
         hist_3, bins_edges_3 = np.histogram(fluxes_cu_3, bins=bins)
@@ -63,7 +63,7 @@ def make_plot(num_plot, color_scale, fluxes_cu,fluxes_cu_2,fluxes_cu_3,fluxes_cu
     if num_plot > 4:
         hist_5, bins_edges_5 = np.histogram(fluxes_cu_5, bins=bins)
         y_5 = np.insert(hist_5[::-1].astype('float64').cumsum(), 0, 0.01)
-        plt.step(bins[::-1], y_5, color=color_scale[4], lw=2)
+        # plt.step(bins[::-1], y_5, color=color_scale[4], lw=2)
 
 
 
@@ -90,7 +90,7 @@ def make_plot(num_plot, color_scale, fluxes_cu,fluxes_cu_2,fluxes_cu_3,fluxes_cu
     plt.ylim(0.8, 2000)
     plt.xlim(0.05, 100)
     plt.ylabel('#')
-    plt.xlabel('F (1-10 TeV) [cu]')
+    plt.xlabel('F (1-10 TeV) [%cu]')
 
     plt.plot([10, 10], [flux_min, 100], 'k-', lw=1, color='black')
     plt.plot([0.2, 0.2], [flux_min, 5000], 'k--', lw=1, color='black')
@@ -104,11 +104,11 @@ def make_plot(num_plot, color_scale, fluxes_cu,fluxes_cu_2,fluxes_cu_3,fluxes_cu
 
     line1, = plt.plot([100000, 10000, 10000], linestyle='-', lw=2, label='PWN', color='green')
     line2, = plt.plot([1000, 10000, 10000], linestyle='-', lw=2, label='SNR', color='blue')
-    line3, = plt.plot([1000, 10000, 10000], linestyle='-', lw=2, label='gamma-cat all', color='red')
+    line3, = plt.plot([1000, 10000, 10000], linestyle='-', lw=2, label='gamma-cat', color='red')
     line4, = plt.plot([1000, 10000, 10000], linestyle='-', lw=2, label='All', color='black')
-    line5, = plt.plot([1000, 10000, 10000], linestyle='-', lw=2, label='binaries', color='yellow')
-    line6, = plt.plot([1000, 10000, 10000], linestyle='-', lw=2, label='templates', color='orange')
-    line7, = plt.plot([1000, 10000, 10000], linestyle='-', lw=2, label='gamma-cat', color='magenta')
+    # line5, = plt.plot([1000, 10000, 10000], linestyle='-', lw=2, label='binaries', color='yellow')
+    # line6, = plt.plot([1000, 10000, 10000], linestyle='-', lw=2, label='templates', color='orange')
+    # line7, = plt.plot([1000, 10000, 10000], linestyle='-', lw=2, label='gamma-cat', color='magenta')
 
     plt.legend(handler_map={line1: HandlerLine2D(numpoints=8)})
 
