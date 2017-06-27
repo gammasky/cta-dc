@@ -720,6 +720,17 @@
       <parameter name="Sigma" value="0.0549999997019768" error="0" scale="1" min="0.0002778" free="1" />
     </spatialModel>
   </source>
+  <source name="HESS J1943+213" type="PointSource">
+    <spectrum type="PowerLaw">
+      <parameter name="Prefactor" value="56.000001727799" error="0" scale="1e-20" min="0" free="1" />
+      <parameter name="Index" value="3.09999990463257" error="-0" scale="-1" min="-10" max="10" free="1" />
+      <parameter name="PivotEnergy" value="1" scale="1000000" free="0" />
+    </spectrum>
+    <spatialModel type="PointSource">
+      <parameter name="RA" value="295.979203700646" scale="1" free="0" />
+      <parameter name="DEC" value="21.302224614766" scale="1" free="0" />
+    </spatialModel>
+  </source>
   <source name="Cassiopeia A" type="PointSource">
     <spectrum type="PowerLaw">
       <parameter name="Prefactor" value="144.9999950838" error="0" scale="1e-20" min="0" free="1" />

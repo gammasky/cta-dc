@@ -13,7 +13,6 @@ log = logging.getLogger(__name__)
 
 
 def gammacat_source_to_gammalib_model(source):
-
     if source.data['spec_type'] == 'none':
         # log.error('spec_type is none!')
         raise NoDataAvailableError('spec_type is none!')
@@ -88,7 +87,7 @@ def gammacat_source_to_gammalib_model_spectral(gammapy_spectral):
     return gammalib_spectral
 
 
-THE_OTHERS = [
+SOURCES_REMOVE = [
     # Sources in image_sources/ctadc_skymodel_gps_sources_images.xml
     'Westerlund 1',
     # 'Puppis A',  # Not a source in gamma-cat anyways
@@ -98,6 +97,7 @@ THE_OTHERS = [
     'W28'  # a.k.a. "HESS J1801-233"
     'HESS J1800-240A',
     'HESS J1800-240B',
+
     # Sources in binaries/ctadc_skymodel_gps_sources_binaries.xml
     'LS 5039',
     'PSR B1259-63',
@@ -105,22 +105,29 @@ THE_OTHERS = [
     'LS I +61 303',
     'HESS J0632+057',
     'HESS J1018-589 A',
-    # Sources we don't really need
+
+    # Sources we don't need for misc reasons
     'Galactic Centre ridge',  # not a source
-    'SN 1006',  # not in the survey region
-    'Arc source',  # very recent, and faint
+    'Arc source',  # no good TeV measurement available
     'Geminga',  # no good TeV measurement available
+]
+
+SOURCES_KEEP = [
+    'HESS J1943+213',
 ]
 
 
 def skip_source(source):
     txt = '{} (gammacat source_id={})'.format(source.name, source.data['source_id'])
-    if source.data['where'] == 'egal':
-        # log.debug('Skipped EGAL source: {}'.format(txt))
+    if source.name in SOURCES_KEEP:
+        return False
+
+    if source.name in SOURCES_REMOVE:
+        # log.debug('Skipped source that belongs to THE OTHERS: {}'.format(txt))
         return True
 
-    if source.name in THE_OTHERS:
-        # log.debug('Skipped source that belongs to THE OTHERS: {}'.format(txt))
+    if source.data['where'] == 'egal':
+        # log.debug('Skipped EGAL source: {}'.format(txt))
         return True
 
     # log.debug('Keeping source: {}'.format(txt))
