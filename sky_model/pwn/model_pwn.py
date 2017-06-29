@@ -359,23 +359,23 @@ def main():
 
     #table = vstack([table_composites, table_isolated])
 
-    #compute_glat_glon_distance(table_composites)
+    compute_glat_glon_distance(table_composites)
 
-    #table_composites = add_spectra(table_composites, random_state=random_state)
-    #polish_pwn_table(table_composites)
+    table_composites = add_spectra(table_composites, random_state=random_state)
+    polish_pwn_table(table_composites)
 
-    #select_those_to_be_remon_soutved(table_composites)
+    select_those_to_removed(table_composites, tag='composite')
 
-    #filename_composite = 'ctadc_skymodel_gps_sources_composite.ecsv'
-    #print('Writing {}'.format(filename_composite))
-    #table_composites.write(filename_composite, format='ascii.ecsv', overwrite=True)
+    filename_composite = 'ctadc_skymodel_gps_sources_composite.ecsv'
+    print('Writing {}'.format(filename_composite))
+    table_composites.write(filename_composite, format='ascii.ecsv', overwrite=True)
 
 
     compute_glat_glon_distance(table_isolated)
     table_isolated = add_spectra(table_isolated, random_state=random_state)
     polish_pwn_table(table_isolated)
 
-    select_those_to_removed(table_isolated)
+    select_those_to_removed(table_isolated, tag='pwn')
 
     filename = 'ctadc_skymodel_gps_sources_pwn.ecsv'
     print('Writing {}'.format(filename))

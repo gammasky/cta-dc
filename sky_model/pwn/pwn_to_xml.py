@@ -43,29 +43,32 @@ SPECTRUM_TEMPLATE = """\
 def make_pwn_xml(table):
     xml_sources = ''
 
-    for row in table[:2]:
-        xml_spectral = SPECTRUM_TEMPLATE.format(
-            norm=row['spec_norm'] / 1e-20,
-            index=row['spec_alpha'],
-            curvature=row['spec_beta'],
-            energy=1.0
-        )
+    for row in table:
+        if (row['skip'] == 1):
+            continue;
+        else:
+            xml_spectral = SPECTRUM_TEMPLATE.format(
+                norm=row['spec_norm'] / 1e-20,
+                index=row['spec_alpha'],
+                curvature=row['spec_beta'],
+                energy=1.0
+            )
 
-        xml_spatial = SPATIAL_TEMPLATE.format(
-            glon=row['GLON'],
-            glat=row['GLAT'],
-            sigma=row['sigma']
-        )
+            xml_spatial = SPATIAL_TEMPLATE.format(
+                glon=row['GLON'],
+                glat=row['GLAT'],
+                sigma=row['sigma']
+            )
 
-        source_name = row['source_name']
+            source_name = row['source_name']
 
-        xml_source = SOURCE_TEMPLATE.format(
-            source_name=source_name,
-            xml_spectral=xml_spectral,
-            xml_spatial=xml_spatial
-        )
+            xml_source = SOURCE_TEMPLATE.format(
+                source_name=source_name,
+                xml_spectral=xml_spectral,
+                xml_spatial=xml_spatial
+            )
 
-        xml_sources += xml_source
+            xml_sources += xml_source
 
     return SOURCE_LIBRARY_TEMPLATE.format(xml_sources=xml_sources)
 
@@ -91,13 +94,12 @@ if __name__ == '__main__':
     Path(filename).write_text(xml)
 
 
-    #filename_composite = 'ctadc_skymodel_gps_sources_composite.ecsv'
-    #print('Reading {}'.format(filename_composite))
-    #table_composite = Table.read(filename_composite, format='ascii.ecsv')
-    #table_composite.pprint()
+    filename_composite = 'ctadc_skymodel_gps_sources_composite.ecsv'
+    print('Reading {}'.format(filename_composite))
+    table_composite = Table.read(filename_composite, format='ascii.ecsv')
+    table_composite.pprint()
 
-    #xml_composite = make_pwn_xml(table_composite)
-
-    #filename_composite = 'ctadc_skymodel_gps_sources_composite.xml'
-    #print('Writing {}'.format(filename_composite))
-    #Path(filename_composite).write_text(xml_composite)
+    xml_composite = make_pwn_xml(table_composite)
+    filename_composite = 'ctadc_skymodel_gps_sources_composite.xml'
+    print('Writing {}'.format(filename_composite))
+    Path(filename_composite).write_text(xml_composite)
