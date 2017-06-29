@@ -37,95 +37,13 @@ SPECTRUM_TEMPLATE = """\
       </spectrum>
 
 """
-def make_composite_xml(table):
-    xml_sources = ''
-    remove_or_not0 = 0
-    remove_or_not1 = 0
-    for row in table:
-        if (row['int_flux_above_1TeV_cu'] > 10):
-            if (remove_or_not0 < 20):
-                remove_or_not0 += 1
-                print('crab: ', row['int_flux_above_1TeV_cu'])
-            continue;
 
-        if (row['int_flux_above_1TeV_cu'] > 8 and row['int_flux_above_1TeV_cu'] < 10):
-            if (remove_or_not1 < 3):
-                remove_or_not1 += 1
-                print('8-10    ', remove_or_not1, row.index, row['int_flux_above_1TeV_cu'])
-            continue;
-
-        xml_spectral = SPECTRUM_TEMPLATE.format(
-        norm=row['spec_norm'] / 1e-20,
-        index=row['spec_alpha'],
-        curvature=row['spec_beta'],
-        energy=1.0
-        )
-
-        xml_spatial = SPATIAL_TEMPLATE.format(
-            glon=row['GLON'],
-            glat=row['GLAT'],
-            sigma=row['sigma']
-        )
-
-        source_name = 'pwn_{}'.format(row.index)
-
-        xml_source = SOURCE_TEMPLATE.format(
-            source_name=source_name,
-            xml_spectral=xml_spectral,
-            xml_spatial=xml_spatial
-        )
-
-        xml_sources += xml_source
-
-    return SOURCE_LIBRARY_TEMPLATE.format(xml_sources=xml_sources)
 
 
 def make_pwn_xml(table):
-    remove_or_not0 = 0
-    remove_or_not = 0
-    remove_or_not_2 = 0
-    remove_or_not_3 = 0
-    remove_or_not_4 = 0
-    remove_or_not_5 = 0
     xml_sources = ''
 
-    # for row in table[:2]:
-    for row in table:
-        if (row['int_flux_above_1TeV_cu'] > 10):
-            if (remove_or_not0 < 20):
-                remove_or_not0 += 1
-                print('crab: ', row['int_flux_above_1TeV_cu'])
-            continue;
-
-        if (row['int_flux_above_1TeV_cu'] > 8 and row['int_flux_above_1TeV_cu'] < 10):
-            if (remove_or_not < 3):
-                remove_or_not += 1
-                print('8-10    ', remove_or_not, row.index, row['int_flux_above_1TeV_cu'])
-                continue;
-
-        if (row['int_flux_above_1TeV_cu'] < 8 and row['int_flux_above_1TeV_cu'] > 6):
-            if (remove_or_not_2 < 3):
-                remove_or_not_2 += 1
-                print('6-8: ', remove_or_not_2, row.index, row['int_flux_above_1TeV_cu'])
-                continue;
-
-        if (row['int_flux_above_1TeV_cu'] < 6 and row['int_flux_above_1TeV_cu'] > 4):
-            if (remove_or_not_3 < 1):
-                remove_or_not_3 += 1
-                print('4-6: ', remove_or_not_3, row.index, row['int_flux_above_1TeV_cu'])
-                continue;
-
-        if (row['int_flux_above_1TeV_cu'] < 4 and row['int_flux_above_1TeV_cu'] > 2):
-            if (remove_or_not_4 < 6):
-                remove_or_not_4 += 1
-                print('2-4: ', remove_or_not_4, row.index, row['int_flux_above_1TeV_cu'])
-                continue;
-        if (row['int_flux_above_1TeV_cu'] < 2 and row['int_flux_above_1TeV_cu'] > 1):
-            if (remove_or_not_5 < 9):
-                remove_or_not_5 += 1
-                print('1-2: ', remove_or_not_5, row.index, row['int_flux_above_1TeV_cu'])
-                continue;
-
+    for row in table[:2]:
         xml_spectral = SPECTRUM_TEMPLATE.format(
             norm=row['spec_norm'] / 1e-20,
             index=row['spec_alpha'],
@@ -139,7 +57,7 @@ def make_pwn_xml(table):
             sigma=row['sigma']
         )
 
-        source_name = 'pwn_{}'.format(row.index)
+        source_name = row['source_name']
 
         xml_source = SOURCE_TEMPLATE.format(
             source_name=source_name,
@@ -153,10 +71,16 @@ def make_pwn_xml(table):
 
 
 if __name__ == '__main__':
+
+
+
     filename = 'ctadc_skymodel_gps_sources_pwn.ecsv'
     print('Reading {}'.format(filename))
     table = Table.read(filename, format='ascii.ecsv')
     table.pprint()
+    for row in table:
+        if (row['skip'] == 1):
+            print(row['source_name'], row['int_flux_above_1TeV_cu'])
 
     xml = make_pwn_xml(table)
 
@@ -167,13 +91,13 @@ if __name__ == '__main__':
     Path(filename).write_text(xml)
 
 
-    filename_composite = 'ctadc_skymodel_gps_sources_composite.ecsv'
-    print('Reading {}'.format(filename_composite))
-    table_composite = Table.read(filename_composite, format='ascii.ecsv')
-    table_composite.pprint()
+    #filename_composite = 'ctadc_skymodel_gps_sources_composite.ecsv'
+    #print('Reading {}'.format(filename_composite))
+    #table_composite = Table.read(filename_composite, format='ascii.ecsv')
+    #table_composite.pprint()
 
-    xml_composite = make_composite_xml(table_composite)
+    #xml_composite = make_pwn_xml(table_composite)
 
-    filename_composite = 'ctadc_skymodel_gps_sources_composite.xml'
-    print('Writing {}'.format(filename_composite))
-    Path(filename_composite).write_text(xml_composite)
+    #filename_composite = 'ctadc_skymodel_gps_sources_composite.xml'
+    #print('Writing {}'.format(filename_composite))
+    #Path(filename_composite).write_text(xml_composite)

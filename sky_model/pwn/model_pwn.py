@@ -111,6 +111,87 @@ def polish_pwn_table(table):
     return table
 
 
+def select_those_to_removed(table, tag='pwn'):
+    #[20, 3, 3, 1, 6, 9]
+    skip_array_pwn = [20,3,3,1,6,9]
+    skip_array_composite = [20,3,3,1,6,9]
+
+    if (tag == 'pwn'):
+        skip_array = skip_array_pwn
+    if (tag == 'composite'):
+        skip_array = skip_array_composite
+
+    name = []
+    skip = []
+    more_than_10cu = 0
+    between_10_and_8cu = 0
+    between_8_and_6cu = 0
+    between_6_and_4cu = 0
+    between_4_and_2cu = 0
+    between_2_and_1cu = 0
+    for row in table:
+        if (tag == 'pwn'):
+            source_name = 'pwn_{}'.format(row.index)
+        if (tag == 'composite'):
+            source_name = 'composite_{}'.format(row.index)
+        name.append(source_name)
+        if (row['int_flux_above_1TeV_cu'] > 10):
+            #print('crab: ', row['int_flux_above_1TeV_cu'])
+            more_than_10cu += 1
+            if (more_than_10cu <= skip_array[0]):
+                skip.append(1)
+            else:
+                skip.append(0)
+        if (row['int_flux_above_1TeV_cu'] > 8 and row['int_flux_above_1TeV_cu'] < 10):
+            between_10_and_8cu += 1
+            #print('8-10    ', row.index, row['int_flux_above_1TeV_cu'])
+            if (between_10_and_8cu <= skip_array[1]):
+                skip.append(1)
+            else:
+                skip.append(0)
+        if (row['int_flux_above_1TeV_cu'] < 8 and row['int_flux_above_1TeV_cu'] > 6):
+            #print('4-6: ', remove_or_not_3, row.index, row['int_flux_above_1TeV_cu'])
+            between_8_and_6cu += 1
+            if (between_8_and_6cu <= skip_array[2]):
+                skip.append(1)
+            else:
+                skip.append(0)
+        if (row['int_flux_above_1TeV_cu'] < 6 and row['int_flux_above_1TeV_cu'] > 4):
+            #print('4-6: ', remove_or_not_3, row.index, row['int_flux_above_1TeV_cu'])
+            between_6_and_4cu += 1
+            if (between_6_and_4cu <= skip_array[3]):
+                skip.append(1)
+            else:
+                skip.append(0)
+        if (row['int_flux_above_1TeV_cu'] < 4 and row['int_flux_above_1TeV_cu'] > 2):
+            #print('2-4: ', remove_or_not_4, row.index, row['int_flux_above_1TeV_cu'])
+            between_4_and_2cu += 1
+            if (between_4_and_2cu <= skip_array[4]):
+                skip.append(1)
+            else:
+                skip.append(0)
+        if (row['int_flux_above_1TeV_cu'] < 2 and row['int_flux_above_1TeV_cu'] > 1):
+            #print('1-2: ', remove_or_not_5, row.index, row['int_flux_above_1TeV_cu'])
+            between_2_and_1cu += 1
+            if (between_2_and_1cu <= skip_array[5]):
+                skip.append(1)
+            else:
+                skip.append(0)
+        elif (row['int_flux_above_1TeV_cu'] < 1):
+            skip.append(0)
+
+
+    print('more than 10cu: ', more_than_10cu)
+    print('between 10 and 8 cu: ', between_10_and_8cu)
+    print('between 8 and 6 cu: ', between_8_and_6cu)
+    print('between 6 and 4 cu: ', between_6_and_4cu)
+    print('between 4 and 2 cu: ', between_10_and_8cu)
+    print('between 2 and 1 cu: ', between_2_and_1cu)
+    table['skip'] = Column(skip, description='skip boolean: 0 take, 1 skip')
+    table['source_name'] = Column(name, description='source name')
+    return table
+
+
 def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.5, type=1):
     """
     Exchange some PWN to be composites,
@@ -168,7 +249,7 @@ def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.5, type
 
 def make_pwn_pos(random_state,
                  n_sources, min_intrinsic_extension=3, max_intrinsic_extension=30):
-    print('n_sources ', n_sources)
+   # print('n_sources ', n_sources)
 
     table = make_base_catalog_galactic(
         n_sources=n_sources,
@@ -269,29 +350,32 @@ def main():
     random_state = get_random_state(random_seed)
 
     table_composites = make_composites(random_state=random_state)
-    table_composites.pprint()
+    #table_composites.pprint()
 
     n_isolated_pwn = n_sources - len(table_composites)
     table_isolated = make_pwn_pos(n_sources=n_isolated_pwn, random_state=random_state)
-    table_isolated.pprint()
+    #table_isolated.pprint()
 
 
     #table = vstack([table_composites, table_isolated])
 
-    compute_glat_glon_distance(table_composites)
+    #compute_glat_glon_distance(table_composites)
 
-    table_composites = add_spectra(table_composites, random_state=random_state)
-    polish_pwn_table(table_composites)
+    #table_composites = add_spectra(table_composites, random_state=random_state)
+    #polish_pwn_table(table_composites)
 
-    filename_composite = 'ctadc_skymodel_gps_sources_composite.ecsv'
-    print('Writing {}'.format(filename_composite))
-    table_composites.write(filename_composite, format='ascii.ecsv', overwrite=True)
+    #select_those_to_be_remon_soutved(table_composites)
+
+    #filename_composite = 'ctadc_skymodel_gps_sources_composite.ecsv'
+    #print('Writing {}'.format(filename_composite))
+    #table_composites.write(filename_composite, format='ascii.ecsv', overwrite=True)
 
 
     compute_glat_glon_distance(table_isolated)
     table_isolated = add_spectra(table_isolated, random_state=random_state)
     polish_pwn_table(table_isolated)
 
+    select_those_to_removed(table_isolated)
 
     filename = 'ctadc_skymodel_gps_sources_pwn.ecsv'
     print('Writing {}'.format(filename))
