@@ -16,6 +16,7 @@ import astropy.units as u
 import gammalib
 from gammapy.utils.energy import Energy
 from gammapy.spectrum import CrabSpectrum
+from gammapy.spectrum.models import LogParabola
 
 log = logging.getLogger(__name__)
 
@@ -114,6 +115,7 @@ def make_source_tables():
         dict(tag='image_sources', filename='image_sources/ctadc_skymodel_gps_sources_images.xml'),
         dict(tag='pwn', filename='pwn/ctadc_skymodel_gps_sources_pwn.xml'),
         dict(tag='snr', filename='snrs/ctadc_skymodel_gps_sources_snr_2.xml'),
+        dict(tag='composite', filename='pwn/ctadc_skymodel_gps_sources_composite.xml'),
         dict(tag='binaries', filename='binaries/ctadc_skymodel_gps_sources_binaries.xml'),
         dict(tag='pulsars', filename='pulsars/ctadc_skymodel_gps_sources_pulsars.xml'),
     ]
@@ -144,7 +146,7 @@ def make_source_table(data):
     meta['tag'] = data['tag']
     meta['filename'] = data['filename']
     table = Table(rows=rows, meta=meta, names=list(rows[0].keys()))
-    # table.info('stats')
+    table.info('stats')
     return table
 
 
@@ -186,43 +188,64 @@ def add_source_info_spatial(spatial, row):
 
 def add_source_info_spectral(spectral, row):
     row['spectral_type'] = spectral.type()
+    spectral_type = spectral.type()
+
+    if spectral_type in ['LogParabola']:
+        spectral_type = 'LogParabola'
+        row['prefactor'] = spectral.prefactor()
+        alpha = spectral.index()
+        beta = spectral.curvature()
+        row['alpha'] = alpha
+        row['beta'] = beta
 
     emin = gammalib.GEnergy(1, 'TeV')
     emax = gammalib.GEnergy(10, 'TeV')
     flux = spectral.flux(emin, emax)
     row['flux_1_10'] = flux
 
-
 class GPSSkyModel:
-    def __init__(self, data):
-        self.data = data
-        self.tags = [
+    ALL_TAGS = [
             'gamma-cat',
             'image_sources',
             'pwn',
             'snr',
+            'composite',
             'binaries',
             'pulsars',
         ]
 
-    @classmethod
-    def load_sky_models(cls):
-        data = []
+    def __init__(self, data, tags=None):
+        self.data = data
+        self.tags = tags or self.ALL_TAGS
 
+    @classmethod
+    def load_sky_models(cls, tags=None):
+        tags = tags or cls.ALL_TAGS
+        data = []
+        for tag in tags:
+            data.append(getattr(cls, '_load_sky_model_' + tag)())
+        return cls(data=data)
+
+    @classmethod
+    def _load_sky_model_gammacat(cls):
         tag = 'gamma-cat'
         log.debug('Reading {}'.format(tag))
         filename = '../sky_model/gamma-cat/ctadc_skymodel_gps_sources_gamma-cat2.xml'
         models = gammalib.GModels(filename)
         table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
-        data.append(dict(tag=tag, filename=filename, models=models, table=table))
+        return dict(tag=tag, filename=filename, models=models, table=table)
 
+    @classmethod
+    def _load_sky_model_image_sources(cls):
         tag = 'image_sources'
         log.debug('Reading {}'.format(tag))
         filename = '../sky_model/image_sources/ctadc_skymodel_gps_sources_images.xml'
         models = gammalib.GModels(filename)
         table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
-        data.append(dict(tag=tag, filename=filename, models=models, table=table))
+        return dict(tag=tag, filename=filename, models=models, table=table)
 
+    @classmethod
+    def _load_sky_model_pwn(cls):
         tag = 'pwn'
         log.debug('Reading {}'.format(tag))
         filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_pwn.xml'
@@ -230,8 +253,21 @@ class GPSSkyModel:
         table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
         filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_pwn.ecsv'
         table_in = Table.read(filename, format='ascii.ecsv')
-        data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
+        return dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in)
 
+    @classmethod
+    def _load_sky_model_composite(cls):
+        tag = 'composite'
+        log.debug('Reading {}'.format(tag))
+        filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_composite.xml'
+        models = gammalib.GModels(filename)
+        table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
+        filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_composite.ecsv'
+        table_in = Table.read(filename, format='ascii.ecsv')
+        return dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in)
+
+    @classmethod
+    def _load_sky_model_snr(cls):
         tag = 'snr'
         log.debug('Reading {}'.format(tag))
         filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.xml'
@@ -239,23 +275,25 @@ class GPSSkyModel:
         table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
         filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.ecsv'
         table_in = Table.read(filename, format='ascii.ecsv')
-        data.append(dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in))
+        return dict(tag=tag, filename=filename, models=models, table=table, table_in=table_in)
 
+    @classmethod
+    def _load_sky_model_binaries(cls):
         tag = 'binaries'
         log.debug('Reading {}'.format(tag))
         filename = '../sky_model/binaries/ctadc_skymodel_gps_sources_binaries.xml'
         models = gammalib.GModels(filename)
         table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
-        data.append(dict(tag=tag, filename=filename, models=models, table=table))
+        return dict(tag=tag, filename=filename, models=models, table=table)
 
+    @classmethod
+    def _load_sky_model_pulsars(cls):
         tag = 'pulsars'
         log.debug('Reading {}'.format(tag))
         filename = '../sky_model/pulsars/ctadc_skymodel_gps_sources_pulsars.xml'
         models = gammalib.GModels(filename)
         table = Table.read(filename.replace('.xml', '_summary.ecsv'), format='ascii.ecsv')
-        data.append(dict(tag=tag, filename=filename, models=models, table=table))
-
-        return cls(data=data)
+        return dict(tag=tag, filename=filename, models=models, table=table)
 
     def get_component(self, tag):
         for component in self.data:
@@ -265,7 +303,7 @@ class GPSSkyModel:
 
     def get_components(self, tags=None, skip=None):
         if tags is None:
-            tags = self.tags.copy()
+            tags = ['gamma-cat', 'image_sources', 'pwn', 'composite', 'snr', 'binaries', 'pulsars']  # self.tags.copy()
         if skip is not None:
             for tag in skip:
                 tags.remove(tag)
@@ -293,7 +331,7 @@ class GPSSkyModel:
             table = component['table']
             x = Angle(table['glon'], 'deg').wrap_at('180d').deg
             y = table['glat']
-            if component['tag'] in ['pwn', 'snr']:
+            if component['tag'] in ['pwn', 'snr', 'composite']:
                 s, alpha = 10, 0.3
                 alpha
             else:
@@ -365,7 +403,7 @@ class GPSSkyModel:
     def plot_size(self):
         fig, ax = plt.subplots()
         bins = np.arange(0, 3, 0.05)
-        for component in self.get_components(tags=['gamma-cat', 'pwn', 'snr']):
+        for component in self.get_components(tags=['composite', 'pwn', 'snr']):
             table = component['table']
             vals = table['size']
             ax.hist(
@@ -386,7 +424,7 @@ class GPSSkyModel:
     def plot_size_physical(self):
         fig, ax = plt.subplots()
         bins = 30  # np.arange(0, 3, 0.05)
-        for component in self.get_components(tags=['pwn', 'snr']):
+        for component in self.get_components(tags=['pwn', 'snr', 'composite']):
             table = component['table_in']
             vals = table['size_physical']
             ax.hist(
@@ -424,9 +462,10 @@ class GPSSkyModel:
         plt.close(fig)
 
     def plot_galactic_xy(self):
+        print('---------------plot xy-------------------------')
         fig, ax = plt.subplots(figsize=(7, 7))
 
-        for component in self.get_components(tags=['pwn', 'snr']):
+        for component in self.get_components(tags=['pwn', 'snr', 'composite']):
             table = component['table_in']
             x = table['galactocentric_x'].quantity.to('kpc').value
             y = table['galactocentric_y'].quantity.to('kpc').value
@@ -446,7 +485,7 @@ class GPSSkyModel:
     def plot_galactic_xz(self):
         fig, ax = plt.subplots(figsize=(15, 5))
 
-        for component in self.get_components(tags=['pwn', 'snr']):
+        for component in self.get_components(tags=['pwn', 'snr', 'composite']):
             table = component['table_in']
             x = table['galactocentric_x'].quantity.to('kpc').value
             z = table['galactocentric_z'].quantity.to('kpc').value
@@ -466,7 +505,7 @@ class GPSSkyModel:
     def plot_galactic_z(self):
         fig, ax = plt.subplots()
 
-        for component in self.get_components(tags=['pwn', 'snr']):
+        for component in self.get_components(tags=['pwn', 'snr', 'composite']):
             table = component['table_in']
             bins = np.arange(-2, 2, 0.05)
             vals = table['galactocentric_z'].quantity.to('kpc').value
@@ -488,7 +527,7 @@ class GPSSkyModel:
     def plot_galactic_r(self):
         fig, ax = plt.subplots()
 
-        for component in self.get_components(tags=['pwn', 'snr']):
+        for component in self.get_components(tags=['pwn', 'snr', 'composite']):
             table = component['table_in']
             bins = np.arange(0, 20, 1)
             vals = table['galactocentric_r']
@@ -507,12 +546,35 @@ class GPSSkyModel:
         fig.savefig(filename)
         plt.close(fig)
 
+
+    def plot_luminosity(self):
+        fig, ax = plt.subplots()
+        bins = 50  # np.arange(0, 20, 1)
+        # import IPython; IPython.embed(); 1/0
+        for component in self.get_components(tags=['pwn', 'composite']):
+            table = component['table_in']
+            vals = table['luminosity']
+            print(vals)
+            ax.hist(
+                vals, bins=bins, histtype='step',
+                alpha=0.8, normed=True, label=component['tag'],
+            )
+
+        ax.set_xlabel('Luminosity [erg/s]')
+        ax.legend(loc='best')
+        fig.tight_layout()
+
+        filename = 'ctadc_skymodel_gps_sources_luminosity.png'
+        log.info('Writing {}'.format(filename))
+        fig.savefig(filename)
+        plt.close(fig)
+
+
     def plot_distance(self):
         fig, ax = plt.subplots()
-
         bins = 50  # np.arange(0, 20, 1)
 
-        for component in self.get_components(tags=['pwn', 'snr']):
+        for component in self.get_components(tags=['pwn', 'snr', 'composite']):
             table = component['table_in']
             vals = table['distance']
             ax.hist(
@@ -530,9 +592,10 @@ class GPSSkyModel:
         fig.savefig(filename)
         plt.close(fig)
 
+
     def get_logn_logs(self, quantity, variant):
         crab_1_10 = CrabSpectrum().model.integral(1 * u.TeV, 10 * u.TeV).to('cm-2 s-1').value
-        bins = np.logspace(-6.1, 0.7, 100)
+        bins = np.logspace(-3.1, 0.7, 100)
 
         hists = []
         for component in self.get_components():
@@ -555,8 +618,10 @@ class GPSSkyModel:
                 raise ValueError('Invalid variant: {}'.format(variant))
 
             hists.append(hist)
+            # print('size: ', hists.size())
 
         return HistogramStack(hists)
+
 
     def plot_logn_logs(self, quantity, variant, sigma):
         fig, ax = plt.subplots()
@@ -565,6 +630,7 @@ class GPSSkyModel:
         kwargs = dict(alpha=0.8, lw=2)
         hists.total.smooth(sigma=sigma).plot_smooth(ax, label='total', **kwargs)
         for tag, hist in zip(self.tags, hists.hists):
+            print(tag)  # , self.tags)
             hist.smooth(sigma=sigma).plot_smooth(ax, label=tag, **kwargs)
 
         ax.set_xlabel('Integral flux 1-10 TeV (% Crab)')
@@ -591,6 +657,7 @@ class GPSSkyModel:
         log.info('Writing {}'.format(filename))
         fig.savefig(filename)
         plt.close(fig)
+
 
     def plot_all_spectral_models(self):
         for component in self.get_components():
@@ -648,33 +715,37 @@ def compute_total_flux(models):
         flux_total += flux
     return flux_total
 
-
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
 
-    make_source_tables()
+    # make_source_tables()
+    # exit()
 
-    gps = GPSSkyModel.load_sky_models()
-    gps.print_summary()
+    gps = GPSSkyModel.load_sky_models(tags=['pwn','composite'])
+    # gps.print_summary()
 
-    gps.plot_sky_positions()
-    gps.plot_glon()
-    gps.plot_glat()
+    print('loaded')
 
-    gps.plot_size()
-    gps.plot_size_physical()
+    # gps.plot_sky_positions()
+    # gps.plot_glon()
+    # gps.plot_glat()
+    #
+    # gps.plot_size()
+    # gps.plot_size_physical()
+    #
+    # #gps.check_snr_size()
+    #
+    # gps.plot_galactic_xy()
+    # gps.plot_galactic_xz()
+    # gps.plot_galactic_z()
+    # gps.plot_galactic_r()
+    # gps.plot_distance()
 
-    gps.check_snr_size()
+    # gps.plot_logn_logs(quantity='n', variant='diff', sigma=2)
+    # gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
+    # gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
+    # gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
 
-    gps.plot_galactic_xy()
-    gps.plot_galactic_xz()
-    gps.plot_galactic_z()
-    gps.plot_galactic_r()
-    gps.plot_distance()
+    gps.plot_luminosity()
 
-    gps.plot_logn_logs(quantity='n', variant='diff', sigma=2)
-    gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
-    gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
-    gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
-
-    gps.plot_all_spectral_models()
+#    gps.plot_all_spectral_models()

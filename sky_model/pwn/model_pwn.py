@@ -10,7 +10,7 @@ from gammapy.utils.random import get_random_state
 from gammapy.utils import coordinates as astrometry
 from gammapy.spectrum.models import LogParabola
 from gammapy.spectrum import CrabSpectrum
-
+from gammapy.utils.random import sample_powerlaw
 
 def compute_glat_glon_distance(table):
     x, y, z = table['x'].quantity, table['y'].quantity, table['z'].quantity
@@ -111,7 +111,7 @@ def polish_pwn_table(table):
     return table
 
 
-def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.7, type=1):
+def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.5, type=1):
     """
     Exchange some PWN to be composites,
     i.e. coupled to the SNRs
@@ -127,6 +127,7 @@ def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.7, type
 
     n_composites = int(n_snrs / 3)
     frac_radius_composite = random_state.uniform(min_frac_radius, max_frac_radius, n_composites)
+    #offset = random_state.norm(0.1, 0.1, n_composites )
 
     x_composites = []
     y_composites = []
@@ -136,9 +137,9 @@ def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.7, type
     frac = []
     type = []
     for id in range(1, int(n_composites)):
-        x_snr = table_snrs[id]['galactocentric_x']
-        y_snr = table_snrs[id]['galactocentric_y']
-        z_snr = table_snrs[id]['galactocentric_z']
+        x_snr = table_snrs[id+500]['galactocentric_x']
+        y_snr = table_snrs[id+500]['galactocentric_y']
+        z_snr = table_snrs[id+500]['galactocentric_z']
         size_phys_snr = table_snrs[id]['size_physical']
         x_composites.append(x_snr)
         y_composites.append(y_snr)
@@ -154,7 +155,7 @@ def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.7, type
     table_composite['y'] = Column(y_composites, description='Galactocentric y coordinate', unit='kpc')
     table_composite['z'] = Column(z_composites, description='Galactocentric z coordinate', unit='kpc')
 
-    table_composite['physical_size'] = Column(size_composites, description='physical size', unit='pc')
+    table_composite['size_physical'] = Column(size_composites, description='physical size', unit='pc')
     #table_composite['size_snr'] = Column(size_snrs, description='physical size', unit='pc')
     #table_composite['frac'] = Column(frac, description='physical size', unit='pc')
 
@@ -179,7 +180,7 @@ def make_pwn_pos(random_state,
     physical_size = random_state.uniform(min_intrinsic_extension, max_intrinsic_extension, n_sources)
     physical_size = u.Quantity(physical_size, 'pc')
     type = []
-    for iii in range(1, len(physical_size)):
+    for iii in range(0, len(physical_size)):
         type.append('isolated')
 
     size_physical = random_state.uniform(min_intrinsic_extension, max_intrinsic_extension, n_sources)
@@ -205,20 +206,27 @@ def make_pwn_pos(random_state,
 
 
 def add_spectra(table, random_state,
-                mean_index_alpha=2.1, sigma_index_alpha=0.3, max_index_beta=0.5,
+                mean_index_alpha=2.1, sigma_index_alpha=0.2, max_index_beta=0.4,
                 mean_logluminosity=33.5, sigma_logluminosity=1.0):
 
     n_sources = len(table)
     alpha = random_state.normal(mean_index_alpha, sigma_index_alpha, n_sources)
-    beta = random_state.uniform(0, max_index_beta, n_sources)
+    beta = random_state.uniform(0.1, max_index_beta, n_sources)
 
-    # Define the luminosity
+    #Define the luminosity
+    luminosity = sample_powerlaw(
+        x_min=1e34,
+        x_max=1e37,
+        gamma=1.9,
+        size=n_sources,
+    )
+    luminosity = luminosity * u.erg / u.second
 
-    logluminosity = random_state.normal(mean_logluminosity, sigma_logluminosity, n_sources)
-    for idx in range(len(table)):
-        if logluminosity[idx] > 35:
-            logluminosity[idx] = random_state.normal(mean_logluminosity, sigma_logluminosity, 1)
-    luminosity = (10 ** logluminosity) * u.erg / u.second
+    #logluminosity = random_state.normal(mean_logluminosity, sigma_logluminosity, n_sources)
+    #for idx in range(len(table)):
+    #    if logluminosity[idx] > 35:
+    #        logluminosity[idx] = random_state.normal(mean_logluminosity, sigma_logluminosity, 1)
+    #luminosity = (10 ** logluminosity) * u.erg / u.second
 
     distance = table['distance'].to('cm')
     # integral sed between 1 and 10 TeV
@@ -251,29 +259,43 @@ def add_spectra(table, random_state,
     table['spec_norm_cu'] = Column(norm_cu, description='Spectral model norm parameter (log parabola) in crab units')
     table['int_flux_above_1TeV'] = Column(int_flux, description='Integral flux above 1 TeV ', unit='s-1 cm-2')
     table['int_flux_above_1TeV_cu'] = Column(int_flux_cu, description='Integral flux above 1 TeV in crab units')
-
+    table['luminosity']= Column(luminosity, description='Intrinsic source luminosity', unit='erg s-1')
     return table
 
 
 def main():
-    n_sources = 650
+    n_sources = 900
     random_seed = 0
     random_state = get_random_state(random_seed)
 
     table_composites = make_composites(random_state=random_state)
+    table_composites.pprint()
+
     n_isolated_pwn = n_sources - len(table_composites)
     table_isolated = make_pwn_pos(n_sources=n_isolated_pwn, random_state=random_state)
+    table_isolated.pprint()
 
-    table = vstack([table_composites, table_isolated])
-    compute_glat_glon_distance(table)
 
-    table = add_spectra(table, random_state=random_state)
+    #table = vstack([table_composites, table_isolated])
 
-    polish_pwn_table(table)
+    compute_glat_glon_distance(table_composites)
+
+    table_composites = add_spectra(table_composites, random_state=random_state)
+    polish_pwn_table(table_composites)
+
+    filename_composite = 'ctadc_skymodel_gps_sources_composite.ecsv'
+    print('Writing {}'.format(filename_composite))
+    table_composites.write(filename_composite, format='ascii.ecsv', overwrite=True)
+
+
+    compute_glat_glon_distance(table_isolated)
+    table_isolated = add_spectra(table_isolated, random_state=random_state)
+    polish_pwn_table(table_isolated)
+
 
     filename = 'ctadc_skymodel_gps_sources_pwn.ecsv'
     print('Writing {}'.format(filename))
-    table.write(filename, format='ascii.ecsv', overwrite=True)
+    table_isolated.write(filename, format='ascii.ecsv', overwrite=True)
 
 
 if __name__ == '__main__':

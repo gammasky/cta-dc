@@ -30,13 +30,54 @@ SPATIAL_TEMPLATE = """\
 
 SPECTRUM_TEMPLATE = """\
     <spectrum type="LogParabola">
-        <parameter name="Prefactor" scale="1e-20" value="{norm:5g}"  min="1e-07" max="1000.0" free="1"/>
+        <parameter name="Prefactor" scale="1e-20" value="{norm:5g}"  min="1e-07" max="10000.0" free="1"/>
         <parameter name="Index"     scale="-1"    value="{index:.5f}"  min="0.0"   max="+5.0"   free="1"/>
         <parameter name="Curvature" scale="-1"    value="{curvature:.5f}"  min="-5.0"   max="+5.0"   free="1"/>
         <parameter name="PivotEnergy" scale="1e6"   value="{energy:.1f}" min="0.01"  max="1000.0" free="0"/>
       </spectrum>
 
 """
+def make_composite_xml(table):
+    xml_sources = ''
+    remove_or_not0 = 0
+    remove_or_not1 = 0
+    for row in table:
+        if (row['int_flux_above_1TeV_cu'] > 10):
+            if (remove_or_not0 < 20):
+                remove_or_not0 += 1
+                print('crab: ', row['int_flux_above_1TeV_cu'])
+            continue;
+
+        if (row['int_flux_above_1TeV_cu'] > 8 and row['int_flux_above_1TeV_cu'] < 10):
+            if (remove_or_not1 < 3):
+                remove_or_not1 += 1
+                print('8-10    ', remove_or_not1, row.index, row['int_flux_above_1TeV_cu'])
+            continue;
+
+        xml_spectral = SPECTRUM_TEMPLATE.format(
+        norm=row['spec_norm'] / 1e-20,
+        index=row['spec_alpha'],
+        curvature=row['spec_beta'],
+        energy=1.0
+        )
+
+        xml_spatial = SPATIAL_TEMPLATE.format(
+            glon=row['GLON'],
+            glat=row['GLAT'],
+            sigma=row['sigma']
+        )
+
+        source_name = 'pwn_{}'.format(row.index)
+
+        xml_source = SOURCE_TEMPLATE.format(
+            source_name=source_name,
+            xml_spectral=xml_spectral,
+            xml_spatial=xml_spatial
+        )
+
+        xml_sources += xml_source
+
+    return SOURCE_LIBRARY_TEMPLATE.format(xml_sources=xml_sources)
 
 
 def make_pwn_xml(table):
@@ -115,9 +156,24 @@ if __name__ == '__main__':
     filename = 'ctadc_skymodel_gps_sources_pwn.ecsv'
     print('Reading {}'.format(filename))
     table = Table.read(filename, format='ascii.ecsv')
+    table.pprint()
 
     xml = make_pwn_xml(table)
 
     filename = 'ctadc_skymodel_gps_sources_pwn.xml'
     print('Writing {}'.format(filename))
+    print(Path(filename))
+
     Path(filename).write_text(xml)
+
+
+    filename_composite = 'ctadc_skymodel_gps_sources_composite.ecsv'
+    print('Reading {}'.format(filename_composite))
+    table_composite = Table.read(filename_composite, format='ascii.ecsv')
+    table_composite.pprint()
+
+    xml_composite = make_composite_xml(table_composite)
+
+    filename_composite = 'ctadc_skymodel_gps_sources_composite.xml'
+    print('Writing {}'.format(filename_composite))
+    Path(filename_composite).write_text(xml_composite)
