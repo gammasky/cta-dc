@@ -368,6 +368,10 @@ class GPSSkyModel:
         for component in self.get_components(tags=['gamma-cat', 'pwn', 'snr']):
             table = component['table']
             vals = table['size']
+            if component['tag'] == 'gamma-cat':
+                vals = np.nan_to_num(vals)  # put gamma-cat point sources at size=0
+            # TODO: this is still failing because the size column was changed in the SNR table.
+            # Change back in that table, or here in this script.
             ax.hist(
                 vals, bins=bins, label=component['tag'], histtype='step',
                 alpha=0.8, normed=True,
