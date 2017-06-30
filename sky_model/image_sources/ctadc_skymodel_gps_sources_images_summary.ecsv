@@ -14,15 +14,15 @@
 # meta: !!omap
 # - {tag: image_sources}
 # - {filename: image_sources/ctadc_skymodel_gps_sources_images.xml}
-file name spatial_type ra dec glon glat size spectral_type flux_1_10
-image_sources Westerlund1_gas DiffuseMap nan nan nan nan nan PowerLaw 7.02678199164e-12
-image_sources Westerlund1_Fermi RadialGaussian 252.9 -46.35 339.671544719 -1.32678877721 0.475 ExponentialCutoffPowerLaw 1.46120907132e-14
-image_sources PuppisA DiffuseMap nan nan nan nan nan ExponentialCutoffPowerLaw 1.67978710045e-15
-image_sources "Vela X hard" DiffuseMap nan nan nan nan nan ExponentialCutoffPowerLaw 1.4444585344e-11
-image_sources "Vela X soft" DiffuseMap nan nan nan nan nan BrokenPowerLaw 9.35906144773e-14
-image_sources "Vela Junior" DiffuseMap nan nan nan nan nan ExponentialCutoffPowerLaw 2.29695094009e-11
-image_sources "RX J1713.7-3946" DiffuseMap nan nan nan nan nan ExponentialCutoffPowerLaw 1.64705826714e-11
-image_sources "HESS J1801-233" DiffuseMap nan nan nan nan nan PowerLaw 4.41922763747e-13
-image_sources "HESS J1800-240A" DiffuseMap nan nan nan nan nan PowerLaw 4.79638303597e-13
-image_sources "HESS J1800-240B" DiffuseMap nan nan nan nan nan PowerLaw 4.89353290224e-13
-image_sources "HESS J1800-240C" DiffuseMap nan nan nan nan nan PowerLaw 3.33220726863e-13
+file name spatial_type ra dec glon glat size spectral_type flux_1_10 skip
+image_sources Westerlund1_gas DiffuseMap nan nan nan nan nan PowerLaw 7.02678199164e-12 0
+image_sources Westerlund1_Fermi RadialGaussian 252.9 -46.35 339.671544719 -1.32678877721 0.475 ExponentialCutoffPowerLaw 1.46120907132e-14 0
+image_sources PuppisA DiffuseMap nan nan nan nan nan ExponentialCutoffPowerLaw 1.67978710045e-15 0
+image_sources "Vela X hard" DiffuseMap nan nan nan nan nan ExponentialCutoffPowerLaw 1.4444585344e-11 0
+image_sources "Vela X soft" DiffuseMap nan nan nan nan nan BrokenPowerLaw 9.35906144773e-14 0
+image_sources "Vela Junior" DiffuseMap nan nan nan nan nan ExponentialCutoffPowerLaw 2.29695094009e-11 0
+image_sources "RX J1713.7-3946" DiffuseMap nan nan nan nan nan ExponentialCutoffPowerLaw 1.64705826714e-11 0
+image_sources "HESS J1801-233" DiffuseMap nan nan nan nan nan PowerLaw 4.41922763747e-13 0
+image_sources "HESS J1800-240A" DiffuseMap nan nan nan nan nan PowerLaw 4.79638303597e-13 0
+image_sources "HESS J1800-240B" DiffuseMap nan nan nan nan nan PowerLaw 4.89353290224e-13 0
+image_sources "HESS J1800-240C" DiffuseMap nan nan nan nan nan PowerLaw 3.33220726863e-13 0

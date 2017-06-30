@@ -43,7 +43,9 @@ def define_flux_crab_above_energy(emin=1 * u.TeV, emax=10 * u.TeV):
     crab = CrabSpectrum('meyer').model
     crabMAGIC = LogParabola(amplitude=3.23e-11 * u.Unit('cm-2 s-1 TeV-1'), reference=1 * u.TeV, alpha=2.47, beta=0.24)
     crab_flux_above_1TeV = crabMAGIC.integral(emin=emin, emax=emax)
+    #print('crab_flux_above_1TeV ', crab_flux_above_1TeV )
     crab_flux_above_1TeV_model = crab.integral(emin=emin, emax=emax)
+
     return crab_flux_above_1TeV, crab_flux_above_1TeV_model
 
 
@@ -60,11 +62,15 @@ def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
     emax_int = 10 * u.TeV
     pivot_energy = 1 * u.TeV
     energy_flux_standard_candle = spec.energy_flux(emin=emin_int, emax=emax_int)
+
     flux_at_1TeV = energy_flux / energy_flux_standard_candle * u.Unit('cm-2 s-1 TeV-1')
+    #print('std: ', energy_flux_standard_candle, 'energy_flux: ', energy_flux, flux_at_1TeV)
     flux_at_1TeV = flux_at_1TeV.to('cm-2 s-1 MeV-1')
 
-    flux_above_1TeV = LogParabola(amplitude=flux_at_1TeV, reference=pivot_energy, alpha=alpha, beta=beta)
-    flux_above_1TeV = flux_above_1TeV.integral(emin=emin_int, emax=10 * u.TeV)
+    spec2 = LogParabola(amplitude=flux_at_1TeV, reference=pivot_energy, alpha=alpha, beta=beta)
+    energy_flux_above_1TeV = spec2.energy_flux(emin=emin_int, emax=10 * u.TeV)
+   # print('c',energy_flux_above_1TeV.to('TeV cm-2 s-1'),energy_flux_above_1TeV.to('TeV cm-2 s-1')/(flux_at_1TeV.to('cm-2 s-1 TeV-1')/)) )
+    flux_above_1TeV = spec2.integral(emin=emin_int, emax=10 * u.TeV)
     flux_above_1TeV = flux_above_1TeV.to('cm-2 s-1')
     # evaluating Crab flux at and above 1 TeV by using MAGIC Crab spectrum from JHEA 2015
     crab_flux_above_1TeV, crab_flux_above_1TeV_model = define_flux_crab_above_energy(emin=1 * u.TeV, emax=10 * u.TeV)
@@ -80,6 +86,7 @@ def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
     # computing flux at and above 1 TeV in crab units
     flux_at_1TeV_cu = (flux_at_1TeV / crab_flux_at_1TeV).to('%')
     flux_above_1TeV_cu = (flux_above_1TeV / crab_flux_above_1TeV).to('%')
+    #print(crab_flux_above_1TeV, flux_above_1TeV, flux_above_1TeV / crab_flux_above_1TeV, flux_above_1TeV_cu  )
     flux_above_1TeV_cu_model = (flux_above_1TeV / crab_flux_above_1TeV_model).to('%')
 
     return flux_at_1TeV, flux_at_1TeV_cu, flux_above_1TeV, flux_above_1TeV_cu
@@ -136,7 +143,7 @@ def select_those_to_removed(table, tag='pwn'):
             source_name = 'composite_{}'.format(row.index)
         name.append(source_name)
         if (row['int_flux_above_1TeV_cu'] > 10):
-            #print('crab: ', row['int_flux_above_1TeV_cu'])
+            print('crab: ', row['int_flux_above_1TeV_cu'], row['int_flux_above_1TeV'])
             more_than_10cu += 1
             if (more_than_10cu <= skip_array[0]):
                 skip.append(1)
@@ -296,23 +303,25 @@ def add_spectra(table, random_state,
 
     #Define the luminosity
     luminosity = sample_powerlaw(
-        x_min=1e34,
+        x_min=2.5e33,
         x_max=1e37,
-        gamma=1.9,
+        gamma=1.5,
         size=n_sources,
     )
     luminosity = luminosity * u.erg / u.second
 
-    #logluminosity = random_state.normal(mean_logluminosity, sigma_logluminosity, n_sources)
-    #for idx in range(len(table)):
-    #    if logluminosity[idx] > 35:
-    #        logluminosity[idx] = random_state.normal(mean_logluminosity, sigma_logluminosity, 1)
-    #luminosity = (10 ** logluminosity) * u.erg / u.second
+   # logluminosity = random_state.normal(mean_logluminosity, sigma_logluminosity, n_sources)
+   # for idx in range(len(table)):
+   #     if logluminosity[idx] > 35:
+   #         logluminosity[idx] = random_state.normal(mean_logluminosity, sigma_logluminosity, 1)
+   # luminosity = (10 ** logluminosity) * u.erg / u.second
 
     distance = table['distance'].to('cm')
     # integral sed between 1 and 10 TeV
     energy_flux = luminosity / (4 * np.pi * distance * distance)
     energy_flux = energy_flux.to('TeV cm-2 s-1')
+
+
 
     vals = []
     vals_cu = []
@@ -329,6 +338,14 @@ def add_spectra(table, random_state,
         int_vals_cu.append(int_val_cu)
         source_name = 'pwn_{}'.format(idx)
         name.append(source_name)
+        energy_flux_check = (LogParabola(amplitude=val,
+                                         alpha=alpha[idx],
+                                         beta=beta[idx],
+                                         reference=1 * u.TeV,
+                                         ).energy_flux(emin=1 * u.TeV, emax=10 * u.TeV)).to('TeV cm-2 s-1')
+
+        #lum = energy_flux_check
+        #print(energy_flux[idx], energy_flux_check)
     norm = u.Quantity(vals)
     norm_cu = u.Quantity(vals_cu)
     int_flux = u.Quantity(int_vals)
@@ -341,11 +358,28 @@ def add_spectra(table, random_state,
     table['int_flux_above_1TeV'] = Column(int_flux, description='Integral flux above 1 TeV ', unit='s-1 cm-2')
     table['int_flux_above_1TeV_cu'] = Column(int_flux_cu, description='Integral flux above 1 TeV in crab units')
     table['luminosity']= Column(luminosity, description='Intrinsic source luminosity', unit='erg s-1')
+
+    # luminosity_check = []
+    # for row in table:
+    #      energy_flux_check = (LogParabola(amplitude=row['spec_norm'] * u.Unit('MeV-1 s-1 cm-2'),
+    #                                       alpha=row['spec_alpha'],
+    #                                       beta=row['spec_beta'],
+    #                                       reference=1 * u.TeV,
+    #                          ).energy_flux(emin=1 * u.TeV, emax=10 * u.TeV)).to('erg cm-2 s-1')
+    #      print(energy_flux_check)
+    #      dist = u.Quantity(row['distance'], 'kpc')
+    #      lum_check = energy_flux_check * 4 * np.pi * (dist.to('cm')) ** 2
+    #      luminosity_check.append(lum_check.value)
+    #
+    # table['luminosity_check'] = Column(luminosity_check, description='Intrinsic source luminosity check', unit='erg s-1')
+    #
+    # print(table)
+
     return table
 
 
 def main():
-    n_sources = 900
+    n_sources = 800
     random_seed = 0
     random_state = get_random_state(random_seed)
 
@@ -375,6 +409,9 @@ def main():
     table_isolated = add_spectra(table_isolated, random_state=random_state)
     polish_pwn_table(table_isolated)
 
+    for row in table_isolated:
+        if (row['int_flux_above_1TeV_cu']>10):
+            print(row['int_flux_above_1TeV'], row['int_flux_above_1TeV_cu'])
     select_those_to_removed(table_isolated, tag='pwn')
 
     filename = 'ctadc_skymodel_gps_sources_pwn.ecsv'

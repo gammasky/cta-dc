@@ -100,6 +100,7 @@ def add_extra_info(table):
     table.remove_columns(['POS_X', 'POS_Y', 'POS_Z'])
 
     table.rename_column('Radius', 'size_physical')
+    table.rename_column('size', 'sigma')
 
     r = np.sqrt(table['galactocentric_x'] ** 2 + table['galactocentric_y'] ** 2)
     table['galactocentric_r'] = Column(r, unit='kpc', description='Galactocentric radius in the xy plan')
@@ -112,18 +113,23 @@ def add_extra_info(table):
     table['distance'] = Column(distance, unit='kpc', description='Distance from Earth')
     table['distance'].format = '%.5f'
 
-    table['glon'] = Column(glon, unit='deg', description='Galactic longitude')
-    table['glon'].format = '%.5f'
-    table['glat'] = Column(glat, unit='deg', description='Galactic latitude')
-    table['glat'].format = '%.5f'
-
+    table['GLON'] = Column(glon, unit='deg', description='Galactic longitude')
+    table['GLON'].format = '%.5f'
+    table['GLAT'] = Column(glat, unit='deg', description='Galactic latitude')
+    table['GLAT'].format = '%.5f'
+    skip_arr = []
+    for row in table:
+        skip_arr.append(0)
+    table['skip'] = Column(skip_arr, description='Skip boolean, 1 skip 0 keep')
     return table
+
 
 
 if __name__ == '__main__':
     for version in [1, 2]:
         table = read_txt_files(version=version)
         table = add_extra_info(table)
+        print(table.info())
 
         filename = 'ctadc_skymodel_gps_sources_snr_{}.ecsv'.format(version)
         print('Writing {}'.format(filename))
