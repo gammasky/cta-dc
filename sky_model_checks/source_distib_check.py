@@ -678,7 +678,7 @@ class GPSSkyModel:
             plt.close(fig)
 
     def get_logn_logs(self, quantity, variant, tags):
-        print('ere')
+        #print('ere')
         #bins = np.logspace(-3.1, 0.7, 1000)
         bins = np.logspace(-0.5, 2.1, 1000)
         crab_1_10 = CrabSpectrum().model.integral(1 * u.TeV, 10 * u.TeV).to('cm-2 s-1').value
@@ -688,7 +688,7 @@ class GPSSkyModel:
         for component in self.get_components(tags=tags):
             table = component['table']
             tag = component['tag']
-            print('starting from ', tag)
+
             if tag in {'pwn', 'composite'}:
                 fluxes = []
                 fluxes_skip = []

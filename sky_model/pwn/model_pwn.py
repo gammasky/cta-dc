@@ -49,6 +49,20 @@ def define_flux_crab_above_energy(emin=1 * u.TeV, emax=10 * u.TeV):
     return crab_flux_above_1TeV, crab_flux_above_1TeV_model
 
 
+# def flux_amplitude_from_integral_flux(alpha, beta, int_flux_crab):
+#     spec = LogParabola(
+#         amplitude=1 * u.Unit('cm-2 s-1 TeV-1'),
+#         reference=1 * u.TeV,
+#         alpha=alpha,
+#         beta=-beta,
+#     )
+#     crabMAGIC = LogParabola(amplitude=3.23e-11 * u.Unit('cm-2 s-1 TeV-1'), reference=1 * u.TeV, alpha=2.47, beta=0.24)
+#
+#     int_flux = crabMAGIC*int_flux_crab
+#     int_flux_standard = spec.integral(emin=1*u.TeV, emax=10*u.TeV)
+#     amplitude = int_flux/int_flux_standard * u.Unit('cm-2 s-1 TeV-1')
+#     return amplitude
+
 def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
     spec = LogParabola(
         amplitude=1 * u.Unit('cm-2 s-1 TeV-1'),
@@ -322,8 +336,19 @@ def add_spectra(table, random_state,
     )
     luminosity = luminosity * u.erg / u.second
 
+    # int_flux_crab = sample_powerlaw(
+    #     x_min=0.001,
+    #     x_max=100,
+    #     gamma=1.1,
+    #     size=n_sources,
+    # )
+    # amplitude = flux_amplitude_from_integral_flux(alpha=alpha, beta=beta,int_flux_crab=int_flux_crab)
+    #
 
-   # logluminosity = random_state.normal(mean_logluminosity, sigma_logluminosity, n_sources)
+
+    #luminosity = luminosity * u.erg / u.second
+
+    # logluminosity = random_state.normal(mean_logluminosity, sigma_logluminosity, n_sources)
    # for idx in range(len(table)):
    #     if logluminosity[idx] > 35:
    #         logluminosity[idx] = random_state.normal(mean_logluminosity, sigma_logluminosity, 1)
