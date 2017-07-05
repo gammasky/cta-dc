@@ -322,6 +322,7 @@ def add_spectra(table, random_state,
     )
     luminosity = luminosity * u.erg / u.second
 
+
    # logluminosity = random_state.normal(mean_logluminosity, sigma_logluminosity, n_sources)
    # for idx in range(len(table)):
    #     if logluminosity[idx] > 35:

@@ -365,10 +365,11 @@ class GPSSkyModel:
 
     def plot_galactic_xz(self):
         fig, ax = plt.subplots(figsize=(15, 5))
-        x = []
-        z = []
-        for component in self.get_components(tags=['composite','snr', 'pwn']):
+
+        for component in self.get_components(tags=['composite', 'pwn']):
             table = component['table']
+            x = []
+            z = []
             for row in table:
                 if (row['skip'] == 1):
                     continue;
@@ -392,10 +393,11 @@ class GPSSkyModel:
 
     def plot_galactic_xy(self):
         fig, ax = plt.subplots()
-        x = []
-        y = []
+
         for component in self.get_components(tags=['snr','composite','pwn']):
             table = component['table']
+            x = []
+            y = []
             for row in table:
                 if (row['skip'] == 1):
                     continue;
