@@ -25,4 +25,4 @@ image_sources "RX J1713.7-3946" DiffuseMap nan nan nan nan nan ExponentialCutoff
 image_sources "HESS J1801-233" DiffuseMap nan nan nan nan nan PowerLaw 4.41922763747e-13 0
 image_sources "HESS J1800-240A" DiffuseMap nan nan nan nan nan PowerLaw 4.79638303597e-13 0
 image_sources "HESS J1800-240B" DiffuseMap nan nan nan nan nan PowerLaw 4.89353290224e-13 0
-image_sources "HESS J1800-240C" DiffuseMap nan nan nan nan nan PowerLaw 3.33220726863e-13 0
+image_sources "HESS J1800-240C" DiffuseMap nan nan nan nan nan PowerLaw 3.33220726863e-13 0ub27set

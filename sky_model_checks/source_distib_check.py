@@ -161,7 +161,7 @@ class GPSSkyModel:
         log.debug('Reading {}'.format(tag))
         filename = '../sky_model/pwn/ctadc_skymodel_gps_sources_composite.ecsv'
         table = Table.read(filename, format='ascii.ecsv')
-        return dict(tag=tag, filename=filename, table=table, color='blue')
+        return dict(tag=tag, filename=filename, table=table, color='black')
 
     @classmethod
     def _load_tables_snr(cls):
@@ -169,7 +169,7 @@ class GPSSkyModel:
         log.debug('Reading {}'.format(tag))
         filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2.ecsv'
         table = Table.read(filename, format='ascii.ecsv')
-        return dict(tag=tag, filename=filename, table=table, color='red')
+        return dict(tag=tag, filename=filename, table=table, color='blue')
 
    # @classmethod
    # def _load_tables_snr(cls):
@@ -547,7 +547,7 @@ class GPSSkyModel:
     def plot_size(self):
         fig, ax = plt.subplots()
         bins = np.arange(0, 5, 0.01)
-        for component in self.get_components(tags=['composite', 'pwn', 'snr']):
+        for component in self.get_components(tags=['composite', 'pwn']):
             table = component['table']
             vals = []
             for row in table:
@@ -577,10 +577,10 @@ class GPSSkyModel:
             table = component['table']
             vals = []
             for row in table:
-                if (row['skip'] == 1):
-                    continue;
-                else:
-                    vals.append(row['size_physical'])
+                #if (row['skip'] == 1):
+                #    continue;
+                #else:
+                vals.append(row['size_physical'])
             ax.hist(
                 vals, bins=bins, label=component['tag'], histtype='step',
                 alpha=0.8, normed=True,
@@ -599,10 +599,12 @@ class GPSSkyModel:
 
     def plot_flux_vs_size(self):
         fig, ax = plt.subplots()
-        int_flux = []
-        size = []
-        for component in self.get_components(tags=['composite','pwn']):
+
+        for component in self.get_components(tags=['composite', 'pwn']):
             table = component['table']
+            print('here: ',component['tag'], len(table), component['color'])
+            int_flux = []
+            size = []
             for row in table:
                # if (row['skip'] == 1):
                #     continue;
@@ -611,7 +613,7 @@ class GPSSkyModel:
                 flux = u.Quantity((row['int_flux_above_1TeV_cu']), '%')
                 size.append(sigma.value)
                 int_flux.append(flux.value)
-            ax.scatter(size, int_flux, label=component['tag'], s=10, alpha=0.5, color=component['color'])
+            ax.scatter(size, int_flux, label=component['tag'], s=10, alpha=0.8, color=component['color'])
 
         ax.grid()
         ax.set_ylim(0.001, 120)
@@ -784,20 +786,20 @@ if __name__ == '__main__':
     gps = GPSSkyModel.load_tables(tags=['gammacat', 'pwn', 'composite', 'snr'])
 
     gps.plot_luminosity()
-    # gps.plot_galactic_z()
-    # gps.plot_galactic_r()
-    # gps.plot_galactic_xz()
-    # gps.plot_galactic_xy()
-    # gps.plot_distance()
-    # gps.plot_glon()
-    # gps.plot_glat()
-    # gps.plot_sky_positions()
+    gps.plot_galactic_z()
+    gps.plot_galactic_r()
+    gps.plot_galactic_xz()
+    gps.plot_galactic_xy()
+    gps.plot_distance()
+    gps.plot_glon()
+    gps.plot_glat()
+    gps.plot_sky_positions()
     gps.plot_size()
-    # gps.plot_size_physical()
+    gps.plot_size_physical()
     gps.plot_flux_vs_size()
-    #gps.plot_logn_logs(quantity = 'n', variant = 'diff', sigma = 2)
+    gps.plot_logn_logs(quantity = 'n', variant = 'diff', sigma = 2)
     gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
-    #gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
-    #gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
+    gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
+    gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
     #
    #gps.print_summary()

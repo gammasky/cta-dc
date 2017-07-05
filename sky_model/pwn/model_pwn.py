@@ -121,7 +121,7 @@ def polish_pwn_table(table):
 def select_those_to_removed(table, tag='pwn'):
     #[20, 3, 3, 1, 6, 9]
     skip_array_pwn = [20,3,3,1,6,9]
-    skip_array_composite = [20,3,3,1,6,9]
+    skip_array_composite = [20,0,0,0,0,0]
 
     if (tag == 'pwn'):
         skip_array = skip_array_pwn
@@ -199,7 +199,7 @@ def select_those_to_removed(table, tag='pwn'):
     return table
 
 
-def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.5, type=1):
+def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.7, type=1):
     """
     Exchange some PWN to be composites,
     i.e. coupled to the SNRs
@@ -255,7 +255,8 @@ def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.5, type
 
 
 def make_pwn_pos(random_state,
-                 n_sources, min_intrinsic_extension=3, max_intrinsic_extension=30):
+                 n_sources, min_intrinsic_extension=3, max_intrinsic_extension=50,
+                 mean_intrinsic_extension=15, sigma_intrinsic_extension=10, ):
    # print('n_sources ', n_sources)
 
     table = make_base_catalog_galactic(
@@ -265,14 +266,25 @@ def make_pwn_pos(random_state,
     )
 
 
-    physical_size = random_state.uniform(min_intrinsic_extension, max_intrinsic_extension, n_sources)
-    physical_size = u.Quantity(physical_size, 'pc')
+    size_physical = random_state.normal(mean_intrinsic_extension,sigma_intrinsic_extension, n_sources)
+
+
+    for iii in range(0, len(size_physical)):
+        if (size_physical[iii] < 0):
+            print(size_physical[iii])
+            #size_physical[iii] = random_state.normal(mean_intrinsic_extension, sigma_intrinsic_extension, n_sources)
+            #if (size_physical[iii] < 0):
+            size_physical[iii] = 0.1
+
+
+    #physical_size = random_state.uniform(min_intrinsic_extension, max_intrinsic_extension, n_sources)
+    size_physical = u.Quantity(size_physical, 'pc')
     type = []
-    for iii in range(0, len(physical_size)):
+    for iii in range(0, len(size_physical)):
         type.append('isolated')
 
-    size_physical = random_state.uniform(min_intrinsic_extension, max_intrinsic_extension, n_sources)
-    size_physical = u.Quantity(size_physical, 'pc')
+    #size_physical = random_state.uniform(min_intrinsic_extension, max_intrinsic_extension, n_sources)
+    #size_physical = u.Quantity(size_physical, 'pc')
 
 
     table.remove_column('age')
@@ -305,7 +317,7 @@ def add_spectra(table, random_state,
     luminosity = sample_powerlaw(
         x_min=2.5e33,
         x_max=1e37,
-        gamma=1.5,
+        gamma=1.3,
         size=n_sources,
     )
     luminosity = luminosity * u.erg / u.second
@@ -379,7 +391,7 @@ def add_spectra(table, random_state,
 
 
 def main():
-    n_sources = 800
+    n_sources = 850
     random_seed = 0
     random_state = get_random_state(random_seed)
 
