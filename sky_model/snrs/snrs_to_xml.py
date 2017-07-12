@@ -104,7 +104,7 @@ def make_snr_xml(table):
         # but Jurgen cannot handle 0, we put 5% of the shell radius
 
         width_fraction = 0.05
-        radius = u.Quantity(row['size'], 'arcmin').to('deg')
+        radius = u.Quantity(row['sigma'], 'arcmin').to('deg')
         width = width_fraction * radius
 
         xml_spatial = SPATIAL_TEMPLATE.format(

@@ -50,7 +50,7 @@ def read_txt_files(version):
 
     t[NAMES[0]].unit = ''
     t[NAMES[0]].format = '%i'
-    t[NAMES[0]].description = 'Simulation_number'
+    t[NAMES[0]].description = 'Simulation number'
 
     t[NAMES[1]].unit = 'kpc'
     t[NAMES[1]].format = '%0.4f'
@@ -113,10 +113,10 @@ def add_extra_info(table):
     table['distance'] = Column(distance, unit='kpc', description='Distance from Earth')
     table['distance'].format = '%.5f'
 
-    table['GLON'] = Column(glon, unit='deg', description='Galactic longitude')
-    table['GLON'].format = '%.5f'
-    table['GLAT'] = Column(glat, unit='deg', description='Galactic latitude')
-    table['GLAT'].format = '%.5f'
+    table['glon'] = Column(glon, unit='deg', description='Galactic longitude')
+    table['glon'].format = '%.5f'
+    table['glat'] = Column(glat, unit='deg', description='Galactic latitude')
+    table['glat'].format = '%.5f'
     table['skip'] = Column(0, description='Skip boolean, 1 skip 0 keep')
     return table
 
