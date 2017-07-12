@@ -4,13 +4,14 @@ Make synthetic PNW population for CTA 1DC
 import numpy as np
 import astropy.units as u
 from astropy.coordinates import SkyCoord
-from astropy.table import Table, Column, vstack
+from astropy.table import Table, Column
 from gammapy.astro.population import make_base_catalog_galactic
 from gammapy.utils.random import get_random_state
 from gammapy.utils import coordinates as astrometry
 from gammapy.spectrum.models import LogParabola
 from gammapy.spectrum import CrabSpectrum
 from gammapy.utils.random import sample_powerlaw
+
 
 def compute_glat_glon_distance(table):
     x, y, z = table['x'].quantity, table['y'].quantity, table['z'].quantity
@@ -27,7 +28,6 @@ def compute_glat_glon_distance(table):
     size = np.clip(size.to('deg').value, 0.01, 100) * u.deg
 
     # Add columns to table
-
     table['distance'] = Column(distance, unit='kpc', description='Distance observer to source center')
     table['GLON'] = Column(glon, unit='deg', description='Galactic longitude')
     table['GLAT'] = Column(glat, unit='deg', description='Galactic latitude')
@@ -43,25 +43,10 @@ def define_flux_crab_above_energy(emin=1 * u.TeV, emax=10 * u.TeV):
     crab = CrabSpectrum('meyer').model
     crabMAGIC = LogParabola(amplitude=3.23e-11 * u.Unit('cm-2 s-1 TeV-1'), reference=1 * u.TeV, alpha=2.47, beta=0.24)
     crab_flux_above_1TeV = crabMAGIC.integral(emin=emin, emax=emax)
-    #print('crab_flux_above_1TeV ', crab_flux_above_1TeV )
     crab_flux_above_1TeV_model = crab.integral(emin=emin, emax=emax)
 
     return crab_flux_above_1TeV, crab_flux_above_1TeV_model
 
-
-# def flux_amplitude_from_integral_flux(alpha, beta, int_flux_crab):
-#     spec = LogParabola(
-#         amplitude=1 * u.Unit('cm-2 s-1 TeV-1'),
-#         reference=1 * u.TeV,
-#         alpha=alpha,
-#         beta=-beta,
-#     )
-#     crabMAGIC = LogParabola(amplitude=3.23e-11 * u.Unit('cm-2 s-1 TeV-1'), reference=1 * u.TeV, alpha=2.47, beta=0.24)
-#
-#     int_flux = crabMAGIC*int_flux_crab
-#     int_flux_standard = spec.integral(emin=1*u.TeV, emax=10*u.TeV)
-#     amplitude = int_flux/int_flux_standard * u.Unit('cm-2 s-1 TeV-1')
-#     return amplitude
 
 def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
     spec = LogParabola(
@@ -78,12 +63,12 @@ def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
     energy_flux_standard_candle = spec.energy_flux(emin=emin_int, emax=emax_int)
 
     flux_at_1TeV = energy_flux / energy_flux_standard_candle * u.Unit('cm-2 s-1 TeV-1')
-    #print('std: ', energy_flux_standard_candle, 'energy_flux: ', energy_flux, flux_at_1TeV)
+    # print('std: ', energy_flux_standard_candle, 'energy_flux: ', energy_flux, flux_at_1TeV)
     flux_at_1TeV = flux_at_1TeV.to('cm-2 s-1 MeV-1')
 
     spec2 = LogParabola(amplitude=flux_at_1TeV, reference=pivot_energy, alpha=alpha, beta=beta)
     energy_flux_above_1TeV = spec2.energy_flux(emin=emin_int, emax=10 * u.TeV)
-   # print('c',energy_flux_above_1TeV.to('TeV cm-2 s-1'),energy_flux_above_1TeV.to('TeV cm-2 s-1')/(flux_at_1TeV.to('cm-2 s-1 TeV-1')/)) )
+    # print('c',energy_flux_above_1TeV.to('TeV cm-2 s-1'),energy_flux_above_1TeV.to('TeV cm-2 s-1')/(flux_at_1TeV.to('cm-2 s-1 TeV-1')/)) )
     flux_above_1TeV = spec2.integral(emin=emin_int, emax=10 * u.TeV)
     flux_above_1TeV = flux_above_1TeV.to('cm-2 s-1')
     # evaluating Crab flux at and above 1 TeV by using MAGIC Crab spectrum from JHEA 2015
@@ -100,7 +85,7 @@ def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
     # computing flux at and above 1 TeV in crab units
     flux_at_1TeV_cu = (flux_at_1TeV / crab_flux_at_1TeV).to('%')
     flux_above_1TeV_cu = (flux_above_1TeV / crab_flux_above_1TeV).to('%')
-    #print(crab_flux_above_1TeV, flux_above_1TeV, flux_above_1TeV / crab_flux_above_1TeV, flux_above_1TeV_cu  )
+    # print(crab_flux_above_1TeV, flux_above_1TeV, flux_above_1TeV / crab_flux_above_1TeV, flux_above_1TeV_cu  )
     flux_above_1TeV_cu_model = (flux_above_1TeV / crab_flux_above_1TeV_model).to('%')
 
     return flux_at_1TeV, flux_at_1TeV_cu, flux_above_1TeV, flux_above_1TeV_cu
@@ -133,9 +118,9 @@ def polish_pwn_table(table):
 
 
 def select_those_to_removed(table, tag='pwn'):
-    #[20, 3, 3, 1, 6, 9]
-    skip_array_pwn = [20,3,3,1,6,9]
-    skip_array_composite = [20,0,0,0,0,0]
+    # [20, 3, 3, 1, 6, 9]
+    skip_array_pwn = [20, 3, 3, 1, 6, 9]
+    skip_array_composite = [20, 0, 0, 0, 0, 0]
 
     if (tag == 'pwn'):
         skip_array = skip_array_pwn
@@ -155,9 +140,11 @@ def select_those_to_removed(table, tag='pwn'):
             source_name = 'pwn_{}'.format(row.index)
         if (tag == 'composite'):
             source_name = 'composite_{}'.format(row.index)
+
         name.append(source_name)
+
         if (row['int_flux_above_1TeV_cu'] > 10):
-            print('crab: ', row['int_flux_above_1TeV_cu'], row['int_flux_above_1TeV'])
+            # print('crab: ', row['int_flux_above_1TeV_cu'], row['int_flux_above_1TeV'])
             more_than_10cu += 1
             if (more_than_10cu <= skip_array[0]):
                 skip.append(1)
@@ -165,34 +152,34 @@ def select_those_to_removed(table, tag='pwn'):
                 skip.append(0)
         if (row['int_flux_above_1TeV_cu'] > 8 and row['int_flux_above_1TeV_cu'] < 10):
             between_10_and_8cu += 1
-            #print('8-10    ', row.index, row['int_flux_above_1TeV_cu'])
+            # print('8-10    ', row.index, row['int_flux_above_1TeV_cu'])
             if (between_10_and_8cu <= skip_array[1]):
                 skip.append(1)
             else:
                 skip.append(0)
         if (row['int_flux_above_1TeV_cu'] < 8 and row['int_flux_above_1TeV_cu'] > 6):
-            #print('4-6: ', remove_or_not_3, row.index, row['int_flux_above_1TeV_cu'])
+            # print('4-6: ', remove_or_not_3, row.index, row['int_flux_above_1TeV_cu'])
             between_8_and_6cu += 1
             if (between_8_and_6cu <= skip_array[2]):
                 skip.append(1)
             else:
                 skip.append(0)
         if (row['int_flux_above_1TeV_cu'] < 6 and row['int_flux_above_1TeV_cu'] > 4):
-            #print('4-6: ', remove_or_not_3, row.index, row['int_flux_above_1TeV_cu'])
+            # print('4-6: ', remove_or_not_3, row.index, row['int_flux_above_1TeV_cu'])
             between_6_and_4cu += 1
             if (between_6_and_4cu <= skip_array[3]):
                 skip.append(1)
             else:
                 skip.append(0)
         if (row['int_flux_above_1TeV_cu'] < 4 and row['int_flux_above_1TeV_cu'] > 2):
-            #print('2-4: ', remove_or_not_4, row.index, row['int_flux_above_1TeV_cu'])
+            # print('2-4: ', remove_or_not_4, row.index, row['int_flux_above_1TeV_cu'])
             between_4_and_2cu += 1
             if (between_4_and_2cu <= skip_array[4]):
                 skip.append(1)
             else:
                 skip.append(0)
         if (row['int_flux_above_1TeV_cu'] < 2 and row['int_flux_above_1TeV_cu'] > 1):
-            #print('1-2: ', remove_or_not_5, row.index, row['int_flux_above_1TeV_cu'])
+            # print('1-2: ', remove_or_not_5, row.index, row['int_flux_above_1TeV_cu'])
             between_2_and_1cu += 1
             if (between_2_and_1cu <= skip_array[5]):
                 skip.append(1)
@@ -201,13 +188,12 @@ def select_those_to_removed(table, tag='pwn'):
         elif (row['int_flux_above_1TeV_cu'] < 1):
             skip.append(0)
 
-
-    print('more than 10cu: ', more_than_10cu)
-    print('between 10 and 8 cu: ', between_10_and_8cu)
-    print('between 8 and 6 cu: ', between_8_and_6cu)
-    print('between 6 and 4 cu: ', between_6_and_4cu)
-    print('between 4 and 2 cu: ', between_10_and_8cu)
-    print('between 2 and 1 cu: ', between_2_and_1cu)
+    # print('more than 10cu: ', more_than_10cu)
+    # print('between 10 and 8 cu: ', between_10_and_8cu)
+    # print('between 8 and 6 cu: ', between_8_and_6cu)
+    # print('between 6 and 4 cu: ', between_6_and_4cu)
+    # print('between 4 and 2 cu: ', between_10_and_8cu)
+    # print('between 2 and 1 cu: ', between_2_and_1cu)
     table['skip'] = Column(skip, description='skip boolean: 0 take, 1 skip')
     table['source_name'] = Column(name, description='source name')
     return table
@@ -229,7 +215,6 @@ def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.7, type
 
     n_composites = int(n_snrs / 3)
     frac_radius_composite = random_state.uniform(min_frac_radius, max_frac_radius, n_composites)
-    #offset = random_state.norm(0.1, 0.1, n_composites )
 
     x_composites = []
     y_composites = []
@@ -239,9 +224,9 @@ def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.7, type
     frac = []
     type = []
     for id in range(1, int(n_composites)):
-        x_snr = table_snrs[id+500]['galactocentric_x']
-        y_snr = table_snrs[id+500]['galactocentric_y']
-        z_snr = table_snrs[id+500]['galactocentric_z']
+        x_snr = table_snrs[id + 500]['galactocentric_x']
+        y_snr = table_snrs[id + 500]['galactocentric_y']
+        z_snr = table_snrs[id + 500]['galactocentric_z']
         size_phys_snr = table_snrs[id]['size_physical']
         x_composites.append(x_snr)
         y_composites.append(y_snr)
@@ -258,48 +243,30 @@ def make_composites(random_state, min_frac_radius=0.1, max_frac_radius=0.7, type
     table_composite['z'] = Column(z_composites, description='Galactocentric z coordinate', unit='kpc')
 
     table_composite['size_physical'] = Column(size_composites, description='physical size', unit='pc')
-    #table_composite['size_snr'] = Column(size_snrs, description='physical size', unit='pc')
-    #table_composite['frac'] = Column(frac, description='physical size', unit='pc')
 
-    #print('------------------------------------------')
-    #print(table_composite)
     table_composite['type'] = Column(type, description='type of PWN')
 
     return table_composite
 
 
-def make_pwn_pos(random_state,
-                 n_sources, min_intrinsic_extension=3, max_intrinsic_extension=50,
+def make_pwn_pos(random_state, n_sources,
                  mean_intrinsic_extension=15, sigma_intrinsic_extension=10, ):
-   # print('n_sources ', n_sources)
-
     table = make_base_catalog_galactic(
         n_sources=n_sources,
         max_age=0 * u.year,
         random_state=random_state,
     )
 
-
-    size_physical = random_state.normal(mean_intrinsic_extension,sigma_intrinsic_extension, n_sources)
-
+    size_physical = random_state.normal(mean_intrinsic_extension, sigma_intrinsic_extension, n_sources)
 
     for iii in range(0, len(size_physical)):
-        if (size_physical[iii] < 0):
-            print(size_physical[iii])
-            #size_physical[iii] = random_state.normal(mean_intrinsic_extension, sigma_intrinsic_extension, n_sources)
-            #if (size_physical[iii] < 0):
+        if size_physical[iii] < 0:
             size_physical[iii] = 0.1
 
-
-    #physical_size = random_state.uniform(min_intrinsic_extension, max_intrinsic_extension, n_sources)
     size_physical = u.Quantity(size_physical, 'pc')
     type = []
     for iii in range(0, len(size_physical)):
         type.append('isolated')
-
-    #size_physical = random_state.uniform(min_intrinsic_extension, max_intrinsic_extension, n_sources)
-    #size_physical = u.Quantity(size_physical, 'pc')
-
 
     table.remove_column('age')
     table.remove_column('n_ISM')
@@ -315,51 +282,29 @@ def make_pwn_pos(random_state,
 
     table['size_physical'] = Column(size_physical, description='Physical size', unit='pc')
 
-
     return table
 
 
 def add_spectra(table, random_state,
-                mean_index_alpha=2.1, sigma_index_alpha=0.2, max_index_beta=0.4,
-                mean_logluminosity=33.5, sigma_logluminosity=1.0):
-
+                mean_index_alpha=2.1, sigma_index_alpha=0.2, max_index_beta=0.4):
     n_sources = len(table)
     alpha = random_state.normal(mean_index_alpha, sigma_index_alpha, n_sources)
     beta = random_state.uniform(0.1, max_index_beta, n_sources)
 
-    #Define the luminosity
+    # Define the luminosity
     luminosity = sample_powerlaw(
         x_min=2.5e33,
         x_max=1e37,
         gamma=1.3,
         size=n_sources,
+        random_state=random_state,
     )
     luminosity = luminosity * u.erg / u.second
-
-    # int_flux_crab = sample_powerlaw(
-    #     x_min=0.001,
-    #     x_max=100,
-    #     gamma=1.1,
-    #     size=n_sources,
-    # )
-    # amplitude = flux_amplitude_from_integral_flux(alpha=alpha, beta=beta,int_flux_crab=int_flux_crab)
-    #
-
-
-    #luminosity = luminosity * u.erg / u.second
-
-    # logluminosity = random_state.normal(mean_logluminosity, sigma_logluminosity, n_sources)
-   # for idx in range(len(table)):
-   #     if logluminosity[idx] > 35:
-   #         logluminosity[idx] = random_state.normal(mean_logluminosity, sigma_logluminosity, 1)
-   # luminosity = (10 ** logluminosity) * u.erg / u.second
 
     distance = table['distance'].to('cm')
     # integral sed between 1 and 10 TeV
     energy_flux = luminosity / (4 * np.pi * distance * distance)
     energy_flux = energy_flux.to('TeV cm-2 s-1')
-
-
 
     vals = []
     vals_cu = []
@@ -376,14 +321,7 @@ def add_spectra(table, random_state,
         int_vals_cu.append(int_val_cu)
         source_name = 'pwn_{}'.format(idx)
         name.append(source_name)
-        energy_flux_check = (LogParabola(amplitude=val,
-                                         alpha=alpha[idx],
-                                         beta=beta[idx],
-                                         reference=1 * u.TeV,
-                                         ).energy_flux(emin=1 * u.TeV, emax=10 * u.TeV)).to('TeV cm-2 s-1')
 
-        #lum = energy_flux_check
-        #print(energy_flux[idx], energy_flux_check)
     norm = u.Quantity(vals)
     norm_cu = u.Quantity(vals_cu)
     int_flux = u.Quantity(int_vals)
@@ -395,23 +333,7 @@ def add_spectra(table, random_state,
     table['spec_norm_cu'] = Column(norm_cu, description='Spectral model norm parameter (log parabola) in crab units')
     table['int_flux_above_1TeV'] = Column(int_flux, description='Integral flux above 1 TeV ', unit='s-1 cm-2')
     table['int_flux_above_1TeV_cu'] = Column(int_flux_cu, description='Integral flux above 1 TeV in crab units')
-    table['luminosity']= Column(luminosity, description='Intrinsic source luminosity', unit='erg s-1')
-
-    # luminosity_check = []
-    # for row in table:
-    #      energy_flux_check = (LogParabola(amplitude=row['spec_norm'] * u.Unit('MeV-1 s-1 cm-2'),
-    #                                       alpha=row['spec_alpha'],
-    #                                       beta=row['spec_beta'],
-    #                                       reference=1 * u.TeV,
-    #                          ).energy_flux(emin=1 * u.TeV, emax=10 * u.TeV)).to('erg cm-2 s-1')
-    #      print(energy_flux_check)
-    #      dist = u.Quantity(row['distance'], 'kpc')
-    #      lum_check = energy_flux_check * 4 * np.pi * (dist.to('cm')) ** 2
-    #      luminosity_check.append(lum_check.value)
-    #
-    # table['luminosity_check'] = Column(luminosity_check, description='Intrinsic source luminosity check', unit='erg s-1')
-    #
-    # print(table)
+    table['luminosity'] = Column(luminosity, description='Intrinsic source luminosity', unit='erg s-1')
 
     return table
 
@@ -422,14 +344,9 @@ def main():
     random_state = get_random_state(random_seed)
 
     table_composites = make_composites(random_state=random_state)
-    #table_composites.pprint()
 
     n_isolated_pwn = n_sources - len(table_composites)
     table_isolated = make_pwn_pos(n_sources=n_isolated_pwn, random_state=random_state)
-    #table_isolated.pprint()
-
-
-    #table = vstack([table_composites, table_isolated])
 
     compute_glat_glon_distance(table_composites)
 
@@ -442,14 +359,10 @@ def main():
     print('Writing {}'.format(filename_composite))
     table_composites.write(filename_composite, format='ascii.ecsv', overwrite=True)
 
-
     compute_glat_glon_distance(table_isolated)
     table_isolated = add_spectra(table_isolated, random_state=random_state)
     polish_pwn_table(table_isolated)
 
-    for row in table_isolated:
-        if (row['int_flux_above_1TeV_cu']>10):
-            print(row['int_flux_above_1TeV'], row['int_flux_above_1TeV_cu'])
     select_those_to_removed(table_isolated, tag='pwn')
 
     filename = 'ctadc_skymodel_gps_sources_pwn.ecsv'
