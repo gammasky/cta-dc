@@ -326,8 +326,7 @@ class GPSSkyModel:
 
     def check_snr_size(self):
         snr = self.get_component('snr')
-
-        size_in = snr['table_in']['size'].quantity.to('deg')
+        size_in = snr['table_in']['sigma'].quantity.to('deg')
         size_out = snr['table']['size'] * u.deg
 
         fig, ax = plt.subplots()
