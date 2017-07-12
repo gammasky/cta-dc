@@ -92,3 +92,5 @@ ENV/
 
 sky_model/images/*.fits.gz
 
+irf
+data
