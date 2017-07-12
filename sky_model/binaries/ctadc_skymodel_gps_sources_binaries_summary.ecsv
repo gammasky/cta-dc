@@ -14,6 +14,7 @@
 # meta: !!omap
 # - {tag: binaries}
 # - {filename: binaries/ctadc_skymodel_gps_sources_binaries.xml}
+# schema: astropy-2.0
 file name spatial_type ra dec glon glat size spectral_type flux_1_10
 binaries "LS 5039" PointSource 276.5625 -14.825 16.9021942727 -1.27810866902 nan ExponentialCutoffPowerLaw 1.39222595063e-12
 binaries "PSR B1259-63" PointSource 195.705417 -63.831389 304.186795503 -0.987381562718 nan PowerLaw 1.37206632759e-12

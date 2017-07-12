@@ -14,6 +14,7 @@
 # meta: !!omap
 # - {tag: pulsars}
 # - {filename: pulsars/ctadc_skymodel_gps_sources_pulsars.xml}
+# schema: astropy-2.0
 file name spatial_type ra dec glon glat size spectral_type flux_1_10
 pulsars J0534+2201 PointSource 83.6372 22.0241 184.551361165 -5.77599417348 nan PowerLaw 1.386e-13
 pulsars J0835-4510 PointSource 128.838 -45.1783 263.554287069 -2.78728083513 nan PowerLaw 1.54672104519e-15
