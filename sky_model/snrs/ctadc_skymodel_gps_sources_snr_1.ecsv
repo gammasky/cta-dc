@@ -10,105 +10,105 @@
 #     size of the SNR}
 # - {name: size_physical, unit: pc, datatype: float64, format: '%0.4f', description: SNR
 #     Radius}
-# - {name: '0.1', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.1', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.11514', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.11514', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.132571', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.132571', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.152642', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.152642', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.175751', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.175751', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.202359', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.202359', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.232995', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.232995', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.26827', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.26827', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.308884', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.308884', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.355648', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.355648', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.409492', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.409492', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.471487', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.471487', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.542868', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.542868', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.625055', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.625055', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.719686', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.719686', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.828643', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.828643', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '0.954095', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '0.954095', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '1.09854', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '1.09854', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '1.26486', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '1.26486', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '1.45635', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '1.45635', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '1.67683', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '1.67683', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '1.9307', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '1.9307', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '2.223', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '2.223', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '2.55955', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '2.55955', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '2.94705', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '2.94705', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '3.39322', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '3.39322', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '3.90694', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '3.90694', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '4.49843', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '4.49843', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '5.17947', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '5.17947', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '5.96362', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '5.96362', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '6.86649', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '6.86649', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '7.90604', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '7.90604', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '9.10298', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '9.10298', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '10.4811', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '10.4811', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '12.0679', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '12.0679', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '13.895', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '13.895', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '15.9986', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '15.9986', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '18.4207', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '18.4207', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '21.2095', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '21.2095', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '24.4205', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '24.4205', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '28.1177', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '28.1177', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '32.3746', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '32.3746', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '37.2759', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '37.2759', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '42.9193', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '42.9193', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '49.4171', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '49.4171', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '56.8987', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '56.8987', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '65.5129', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '65.5129', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '75.4312', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '75.4312', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '86.8511', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '86.8511', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
-# - {name: '100.0', unit: 'TeV^{-1}cm^{-2}s^{-1}', datatype: float64, description: Differential
+# - {name: '100.0', unit: 1 / (cm2 s TeV), datatype: float64, description: Differential
 #     spectrum}
 # - {name: galactocentric_x, unit: kpc, datatype: float64, format: '%0.5f', description: Galactocentric
 #     X}
@@ -136,6 +136,7 @@
 #     3.39322, 3.90694, 4.49843, 5.17947, 5.96362, 6.86649, 7.90604, 9.10298, 10.4811,
 #     12.0679, 13.895, 15.9986, 18.4207, 21.2095, 24.4205, 28.1177, 32.3746, 37.2759,
 #     42.9193, 49.4171, 56.8987, 65.5129, 75.4312, 86.8511, 100.0]
+# schema: astropy-2.0
 Simulation_number n0 type age sigma size_physical 0.1 0.11514 0.132571 0.152642 0.175751 0.202359 0.232995 0.26827 0.308884 0.355648 0.409492 0.471487 0.542868 0.625055 0.719686 0.828643 0.954095 1.09854 1.26486 1.45635 1.67683 1.9307 2.223 2.55955 2.94705 3.39322 3.90694 4.49843 5.17947 5.96362 6.86649 7.90604 9.10298 10.4811 12.0679 13.895 15.9986 18.4207 21.2095 24.4205 28.1177 32.3746 37.2759 42.9193 49.4171 56.8987 65.5129 75.4312 86.8511 100.0 galactocentric_x galactocentric_y galactocentric_z galactocentric_r distance GLON GLAT skip
 0 2.9791 1 8.7584 3.8115 8.2134 9.74631e-12 7.00558e-12 5.02465e-12 3.59635e-12 2.56902e-12 1.83189e-12 1.30419e-12 9.27209e-13 6.584e-13 4.67017e-13 3.30924e-13 2.34238e-13 1.65597e-13 1.16893e-13 8.23578e-14 5.78893e-14 4.05734e-14 2.83397e-14 1.97159e-14 1.36543e-14 9.40845e-15 6.44674e-15 4.39047e-15 2.9703e-15 1.99513e-15 1.32974e-15 8.78848e-16 5.75589e-16 3.73282e-16 2.39514e-16 1.51916e-16 9.5153e-17 5.87914e-17 3.57893e-17 2.14368e-17 1.26151e-17 7.28166e-18 4.11512e-18 2.27227e-18 1.22312e-18 6.40183e-19 3.24874e-19 1.59333e-19 7.52483e-20 3.40807e-20 1.4734e-20 6.04825e-21 2.34302e-21 8.50455e-22 2.86748e-22 1.65425 6.22328 0.02703 6.43939 14.81595 6.41064 0.10452 0
 0 0.2326 2 2.1385 4.6709 8.5067 8.94163e-13 7.03031e-13 5.52307e-13 4.33513e-13 3.39844e-13 2.6611e-13 2.0807e-13 1.62398e-13 1.26539e-13 9.83896e-14 7.62986e-14 5.90198e-14 4.55319e-14 3.49839e-14 2.67748e-14 2.04074e-14 1.54831e-14 1.16815e-14 8.74873e-15 6.50571e-15 4.79885e-15 3.5074e-15 2.53667e-15 1.81261e-15 1.27745e-15 8.86231e-16 6.04008e-16 4.03624e-16 2.63981e-16 1.68717e-16 1.05239e-16 6.39824e-17 3.78511e-17 2.17321e-17 1.20632e-17 6.44102e-18 3.2873e-18 1.5915e-18 7.24132e-19 3.06148e-19 1.18591e-19 4.13661e-20 1.27187e-20 3.35934e-21 7.4071e-22 1.33351e-22 2.00557e-23 3.0047e-24 6.03293e-25 1.52229e-25 10.06780 -1.05684 -0.18919 10.12312 12.52186 53.52435 -0.86570 0

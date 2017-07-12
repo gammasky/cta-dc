@@ -85,7 +85,7 @@ def read_txt_files(version):
     t[NAMES[8]].description = 'SNR Radius'
 
     for x in range(9, size):
-        t[NAMES[x]].unit = 'TeV^{-1}cm^{-2}s^{-1}'
+        t[NAMES[x]].unit = 'cm-2 s-1 TeV-1'
         t[NAMES[x]].description = 'Differential spectrum'
 
     return t
@@ -93,7 +93,7 @@ def read_txt_files(version):
 
 def add_extra_info(table):
     # Change Pierre's XYZ to the one used in Gammapy at the moment
-    # See https://github.com/gammasky/cta-dc/issues/17
+    # This was checked to be correct in https://github.com/gammasky/cta-dc/issues/17
     table['galactocentric_x'] = Column(table['POS_Y'].data, unit='kpc', description='Galactocentric X', format='%0.5f')
     table['galactocentric_y'] = Column(-table['POS_X'].data, unit='kpc', description='Galactocentric Y', format='%0.5f')
     table['galactocentric_z'] = Column(table['POS_Z'].data, unit='kpc', description='Galactocentric Y', format='%0.5f')
@@ -117,19 +117,14 @@ def add_extra_info(table):
     table['GLON'].format = '%.5f'
     table['GLAT'] = Column(glat, unit='deg', description='Galactic latitude')
     table['GLAT'].format = '%.5f'
-    skip_arr = []
-    for row in table:
-        skip_arr.append(0)
-    table['skip'] = Column(skip_arr, description='Skip boolean, 1 skip 0 keep')
+    table['skip'] = Column(0, description='Skip boolean, 1 skip 0 keep')
     return table
-
 
 
 if __name__ == '__main__':
     for version in [1, 2]:
         table = read_txt_files(version=version)
         table = add_extra_info(table)
-        print(table.info())
 
         filename = 'ctadc_skymodel_gps_sources_snr_{}.ecsv'.format(version)
         print('Writing {}'.format(filename))
