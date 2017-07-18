@@ -10,12 +10,11 @@
 # - {name: glat, datatype: float64}
 # - {name: size, datatype: float64}
 # - {name: spectral_type, datatype: string}
-# - {name: flux_1_10, datatype: float64}
+# - {name: int_flux_above_1TeV, datatype: float64}
 # meta: !!omap
 # - {tag: gamma-cat}
 # - {filename: gamma-cat/ctadc_skymodel_gps_sources_gamma-cat2.xml}
-# schema: astropy-2.0
-file name spatial_type ra dec glon glat size spectral_type flux_1_10
+file name spatial_type ra dec glon glat size spectral_type int_flux_above_1TeV
 gamma-cat "CTA 1" RadialGaussian 1.65002800746 72.7830033719 119.580259455 10.2036842463 0.300000011921 PowerLaw 7.96566690307e-13
 gamma-cat "Tycho SNR" PointSource 6.33971830636 64.1408031811 120.092367617 1.41293280708 nan PowerLaw 1.13205735913e-13
 gamma-cat "3C 58" PointSource 31.4043214512 64.828300067 130.717825348 3.08385064562 nan PowerLaw 1.37169887061e-13

@@ -97,7 +97,8 @@ def add_source_info_spectral(spectral, row):
     emin = gammalib.GEnergy(1, 'TeV')
     emax = gammalib.GEnergy(10, 'TeV')
     flux = spectral.flux(emin, emax)
-    row['flux_1_10'] = flux
+    flux_crab = flux
+    row['int_flux_above_1TeV'] = flux
 
 
 if __name__ == '__main__':

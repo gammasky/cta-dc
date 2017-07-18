@@ -4,7 +4,7 @@ Convert SNRs to XML format.
 from pathlib import Path
 import numpy as np
 import astropy.units as u
-from astropy.table import Table
+from astropy.table import Table, Column
 
 SOURCE_LIBRARY_TEMPLATE = """\
 <?xml version="1.0" standalone="no"?>
@@ -80,15 +80,17 @@ def make_spectral_point_selection(row):
     )
 
 
-def make_snr_xml(table):
+def make_snr_xml(table_sed, table):
     print('Number of SNRs from Pierre: {}'.format(len(table)))
-
+    print('Number of SNRs from Pierre: {}'.format(len(table_sed)))
     snr_in_output = 0
 
+    keep = []
     xml_sources = ''
-    for row in table:
+    for row in table_sed:
 
         spec = make_spectral_point_selection(row)
+        keep.append(spec['keep'])
 
         if not spec['keep']:
             continue
@@ -123,6 +125,7 @@ def make_snr_xml(table):
 
         xml_sources += xml_source
 
+    table['keep'] = Column(keep, description='')
     print('Number of SNRs in output XML: {}'.format(snr_in_output))
     xml = SOURCE_LIBRARY_TEMPLATE.format(xml_sources=xml_sources)
     return xml
@@ -148,9 +151,19 @@ if __name__ == '__main__':
         filename = 'ctadc_skymodel_gps_sources_snr_{}.ecsv'.format(version)
         print('Reading {}'.format(filename))
         table = Table.read(filename, format='ascii.ecsv')
-        add_sed_columns(table)
+        #table.remove_column('skip')
+        table_sed = Table.read(filename, format='ascii.ecsv')
+        add_sed_columns(table_sed)
 
-        xml = make_snr_xml(table)
+        print(table)
+
+        xml = make_snr_xml(table_sed, table)
+        print(table)
+
+
+        filename = 'ctadc_skymodel_gps_sources_snr_{}_keep.ecsv'.format(version)
+        print('Writing {}'.format(filename))
+        table.write(filename, format='ascii.ecsv', overwrite=True)
 
         filename = 'ctadc_skymodel_gps_sources_snr_{}.xml'.format(version)
         print('Writing {}'.format(filename))

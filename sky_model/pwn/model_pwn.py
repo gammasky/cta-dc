@@ -8,10 +8,11 @@ from astropy.table import Table, Column
 from gammapy.astro.population import make_base_catalog_galactic
 from gammapy.utils.random import get_random_state
 from gammapy.utils import coordinates as astrometry
+
 from gammapy.spectrum.models import LogParabola
 from gammapy.spectrum import CrabSpectrum
 from gammapy.utils.random import sample_powerlaw
-
+#from ../../tools/crab_flux import define_flux_crab_above_energy
 
 def compute_glat_glon_distance(table):
     x, y, z = table['x'].quantity, table['y'].quantity, table['z'].quantity
@@ -83,12 +84,13 @@ def flux_amplitude_from_energy_flux(alpha, beta, energy_flux):
     crab_flux_at_1TeV = crabMAGIC(pivot_energy).to('MeV-1 cm-2 s-1')
 
     # computing flux at and above 1 TeV in crab units
-    flux_at_1TeV_cu = (flux_at_1TeV / crab_flux_at_1TeV).to('%')
-    flux_above_1TeV_cu = (flux_above_1TeV / crab_flux_above_1TeV).to('%')
+    flux_at_1TeV_cu = (flux_at_1TeV / crab_flux_at_1TeV)*100
+    flux_above_1TeV_cu = (flux_above_1TeV / crab_flux_above_1TeV)*100
     # print(crab_flux_above_1TeV, flux_above_1TeV, flux_above_1TeV / crab_flux_above_1TeV, flux_above_1TeV_cu  )
     flux_above_1TeV_cu_model = (flux_above_1TeV / crab_flux_above_1TeV_model).to('%')
 
     return flux_at_1TeV, flux_at_1TeV_cu, flux_above_1TeV, flux_above_1TeV_cu
+
 
 
 def polish_pwn_table(table):
@@ -119,8 +121,8 @@ def polish_pwn_table(table):
 
 def select_those_to_removed(table, tag='pwn'):
     # [20, 3, 3, 1, 6, 9]
-    skip_array_pwn = [20, 3, 3, 1, 6, 9]
-    skip_array_composite = [20, 0, 0, 0, 0, 0]
+    skip_array_pwn = [20, 3, 3, 2, 2, 6]
+    skip_array_composite = [10, 3, 2, 5, 6, 0]
 
     if (tag == 'pwn'):
         skip_array = skip_array_pwn
@@ -188,12 +190,12 @@ def select_those_to_removed(table, tag='pwn'):
         elif (row['int_flux_above_1TeV_cu'] < 1):
             skip.append(0)
 
-    # print('more than 10cu: ', more_than_10cu)
-    # print('between 10 and 8 cu: ', between_10_and_8cu)
-    # print('between 8 and 6 cu: ', between_8_and_6cu)
-    # print('between 6 and 4 cu: ', between_6_and_4cu)
-    # print('between 4 and 2 cu: ', between_10_and_8cu)
-    # print('between 2 and 1 cu: ', between_2_and_1cu)
+    print('more than 10cu: ', more_than_10cu)
+    print('between 10 and 8 cu: ', between_10_and_8cu)
+    print('between 8 and 6 cu: ', between_8_and_6cu)
+    print('between 6 and 4 cu: ', between_6_and_4cu)
+    print('between 4 and 2 cu: ', between_10_and_8cu)
+    print('between 2 and 1 cu: ', between_2_and_1cu)
     table['skip'] = Column(skip, description='skip boolean: 0 take, 1 skip')
     table['source_name'] = Column(name, description='source name')
     return table
@@ -293,9 +295,9 @@ def add_spectra(table, random_state,
 
     # Define the luminosity
     luminosity = sample_powerlaw(
-        x_min=2.5e33,
-        x_max=1e37,
-        gamma=1.3,
+        x_min=1.2e33,
+        x_max=5e36,
+        gamma=1.0,
         size=n_sources,
         random_state=random_state,
     )
@@ -335,12 +337,13 @@ def add_spectra(table, random_state,
     table['int_flux_above_1TeV_cu'] = Column(int_flux_cu, description='Integral flux above 1 TeV in crab units')
     table['luminosity'] = Column(luminosity, description='Intrinsic source luminosity', unit='erg s-1')
 
+   # print(table['int_flux_above_1TeV'], table['int_flux_above_1TeV_cu'])
     return table
 
 
 def main():
-    n_sources = 850
-    random_seed = 0
+    n_sources = 1000
+    random_seed = 1
     random_state = get_random_state(random_seed)
 
     table_composites = make_composites(random_state=random_state)
