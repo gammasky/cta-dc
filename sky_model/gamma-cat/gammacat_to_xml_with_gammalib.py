@@ -8,19 +8,22 @@ import gammalib
 from gammapy.catalog import SourceCatalogGammaCat
 from gammapy.catalog.gammacat import NoDataAvailableError
 
-logging.basicConfig(level='DEBUG')
+logging.basicConfig(level='INFO')
 log = logging.getLogger(__name__)
 
 
 def gammacat_source_to_gammalib_model(source):
+    log.debug(source)
     if source.data['spec_type'] == 'none':
         # log.error('spec_type is none!')
         raise NoDataAvailableError('spec_type is none!')
 
     gammapy_spectral = source.spectral_model
+    log.debug(gammapy_spectral)
     gammalib_spectral = gammacat_source_to_gammalib_model_spectral(gammapy_spectral)
 
     gammapy_spatial = source.spatial_model()
+    log.debug(gammapy_spatial)
     gammalib_spatial = gammacat_source_to_gammalib_model_spatial(gammapy_spatial)
 
     gammalib_model = gammalib.GModelSky(gammalib_spatial, gammalib_spectral)
@@ -105,6 +108,9 @@ SOURCES_REMOVE = [
     'LS I +61 303',
     'HESS J0632+057',
     'HESS J1018-589 A',
+
+    # Sources in pulsars list
+    'Crab pulsar',
 
     # Sources we don't need for misc reasons
     'Galactic Centre ridge',  # not a source
