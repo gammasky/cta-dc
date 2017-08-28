@@ -94,3 +94,8 @@ sky_model/images/*.fits.gz
 
 irf
 data
+
+*.aux
+*.out
+*.bbl
+*.blg
