@@ -20,7 +20,7 @@ BASE_PATH = Path('1dc/1dc')
 
 
 def get_events_file_info(filename):
-    log.debug('Reading {}'.format(filename))
+    log.debug(f'Reading {filename}')
     header = fits.open(filename)['EVENTS'].header
 
     info = OrderedDict()
@@ -46,6 +46,7 @@ def get_events_file_info(filename):
     info['DATE_END'] = header['DATE_END']
     info['TIME_END'] = header['TIME_END']
 
+    info['N_TELS'] = header['N_TELS']
     info['OBJECT'] = header['OBJECT']
     info['CALDB'] = header['CALDB']
     info['IRF'] = header['IRF']
@@ -53,7 +54,9 @@ def get_events_file_info(filename):
     # Not part of the spec, but good to know from which file the info comes
     info['EVENTS_FILENAME'] = filename
 
-    # info['EVENT_COUNT'] = len(events)
+    # import IPython; IPython.embed(); 1/0
+    info['EVENT_COUNT'] = header['NAXIS2']
+
     # info['EVENT_TIME_MIN'] = events['TIME'].min()
     # info['EVENT_TIME_MAX'] = events['TIME'].max()
     # info['EVENT_ENERGY_MIN'] = events['ENERGY'].min()
@@ -183,15 +186,15 @@ def make_observation_index_table(dataset, out_dir, max_rows=-1, progress_bar=Tru
 
     Format: http://gamma-astro-data-formats.readthedocs.io/en/latest/data_storage/obs_index/index.html
     """
-    log.info('Gathering observation index info from events for: {}'.format(dataset))
+    log.info(f'Gathering observation index info from events for: {dataset}')
 
-    glob_pattern = str(BASE_PATH / 'data/baseline/{}/*.fits'.format(dataset))
-    log.debug('glob pattern: {}'.format(glob_pattern))
+    glob_pattern = str(BASE_PATH / f'data/baseline/{dataset}/*.fits')
+    log.debug(f'glob pattern: {glob_pattern}')
     filenames = list(glob(glob_pattern))
-    log.debug('Number of files matching: {}'.format(len(filenames)))
+    log.debug(f'Number of files matching: {len(filenames)}')
 
     if max_rows > 0:
-        log.warning('Selecting subset of observations: first {}'.format(max_rows))
+        log.warning(f'Selecting subset of observations: first {max_rows}')
         filenames = filenames[:max_rows]
 
     if progress_bar:
@@ -205,11 +208,20 @@ def make_observation_index_table(dataset, out_dir, max_rows=-1, progress_bar=Tru
 
     names = list(rows[0].keys())
     obs_table = Table(rows=rows, names=names)
-    add_provenance(obs_table.meta)
-    obs_table.meta['dataset'] = dataset
+    meta = obs_table.meta
+    add_provenance(meta)
+    meta['dataset'] = dataset
+
+    # Values copied from one of the EVENTS headers
+    # Should be the same for all CTA files
+    meta['MJDREFI'] = 51544
+    meta['MJDREFF'] = 5.0000000000E-01
+    meta['TIMEUNIT'] = 's'
+    meta['TIMESYS'] = 'TT'
+    meta['TIMEREF'] = 'LOCAL'
 
     filename = out_dir / 'obs-index.fits.gz'
-    log.info('Writing {}'.format(filename))
+    log.info(f'Writing {filename}')
     obs_table.write(filename, overwrite=True)
 
 
@@ -220,11 +232,11 @@ def make_hdu_index_table(dataset, out_dir, max_rows=-1):
     and needs the observation index file to be there already.
     """
     filename = out_dir / 'obs-index.fits.gz'
-    log.info('Reading {}'.format(filename))
+    log.info(f'Reading {filename}')
     obs_table = Table.read(filename)
 
     if max_rows > 0:
-        log.warning('Selecting subset of observations: first {}'.format(max_rows))
+        log.warning(f'Selecting subset of observations: first {max_rows}')
         obs_table = obs_table[:max_rows]
 
     rows = []
@@ -239,11 +251,11 @@ def make_hdu_index_table(dataset, out_dir, max_rows=-1):
     names = ['OBS_ID', 'HDU_TYPE', 'HDU_CLASS', 'FILE_DIR', 'FILE_NAME', 'HDU_NAME']
 
     hdu_table = Table(rows=rows, names=names)
-    add_provenance(hdu_table.meta, dataset)
+    add_provenance(hdu_table.meta)
     hdu_table.meta['dataset'] = dataset
 
     filename = out_dir / 'hdu-index.fits.gz'
-    log.info('Writing {}'.format(filename))
+    log.info(f'Writing {filename}')
     hdu_table.write(filename, overwrite=True)
 
 
@@ -262,7 +274,7 @@ def make_concatenated_index_files():
     table.meta['dataset'] = 'all'
 
     filename = BASE_PATH / 'index/all/obs-index.fits.gz'
-    log.info('Writing {}'.format(filename))
+    log.info(f'Writing {filename}')
     table.write(filename, overwrite=True)
 
     table = table_vstack([
@@ -274,14 +286,14 @@ def make_concatenated_index_files():
     table.meta['dataset'] = 'all'
 
     filename = BASE_PATH / 'index/all/hdu-index.fits.gz'
-    log.info('Writing {}'.format(filename))
+    log.info(f'Writing {filename}')
     table.write(filename, overwrite=True)
 
 
 def make_tarball():
     """Make index file tarball, ready for upload to CTA server."""
-    cmd = 'cd 1dc; tar zcvf index.tar.gz 1dc/index'
-    log.info('Executing: {}'.format(cmd))
+    cmd = 'cd 1dc; tar zcf index.tar.gz 1dc/index'
+    log.info(f'Executing: {cmd}')
     subprocess.call(cmd, shell=True)
 
 
@@ -303,14 +315,14 @@ def main():
     # Execute steps
     logging.basicConfig(level=loglevel)
 
-    # for dataset in datasets:
-    #     out_dir = out_base_dir / dataset
-    #     if not out_dir.is_dir():
-    #         log.info('Making directory: {}'.format(out_dir))
-    #         out_dir.mkdir(parents=True)
-    #
-    #     make_observation_index_table(dataset, out_dir, max_rows=max_rows, progress_bar=progress_bar)
-    #     make_hdu_index_table(dataset, out_dir, max_rows=max_rows)
+    for dataset in datasets:
+        out_dir = out_base_dir / dataset
+        if not out_dir.is_dir():
+            log.info('Making directory: {}'.format(out_dir))
+            out_dir.mkdir(parents=True)
+
+        make_observation_index_table(dataset, out_dir, max_rows=max_rows, progress_bar=progress_bar)
+        make_hdu_index_table(dataset, out_dir, max_rows=max_rows)
 
     make_concatenated_index_files()
 

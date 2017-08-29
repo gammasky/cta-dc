@@ -8,7 +8,7 @@ log = logging.getLogger(__name__)
 
 def make_counts_image(dataset, max_runs):
     log.info(f'Making all-sky image for dataset: {dataset}')
-    data_store = DataStore.from_dir('1dc/1dc/index/{}'.format(dataset))
+    data_store = DataStore.from_dir(f'1dc/1dc/index/{dataset}')
 
     image = SkyImage.empty(
         nxpix=3600, nypix=1800, binsz=0.1,
@@ -32,7 +32,7 @@ def make_counts_image(dataset, max_runs):
 
     image.data = image.data.astype('float32')
 
-    filename = 'checks/images/allsky_counts_{}.fits.gz'.format(dataset)
+    filename = f'checks/images/allsky_counts_{dataset}.fits.gz'
     log.info(f'Writing {filename}')
     image.write(filename, overwrite=True)
 
