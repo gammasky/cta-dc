@@ -68,6 +68,8 @@ def check_tarball():
 
 
 def main():
+    logging.basicConfig(level='INFO')
+
     # datasets = ['agn', 'egal', 'gc', 'gps']
     datasets = ['agn']
 

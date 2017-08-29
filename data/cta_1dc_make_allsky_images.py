@@ -32,12 +32,14 @@ def make_counts_image(dataset, max_runs):
 
     image.data = image.data.astype('float32')
 
-    filename = 'images/allsky_counts_{}.fits.gz'.format(dataset)
+    filename = 'checks/images/allsky_counts_{}.fits.gz'.format(dataset)
     log.info(f'Writing {filename}')
     image.write(filename, overwrite=True)
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level='INFO')
+
     datasets = ['agn', 'egal', 'gc', 'gps']
     # datasets = ['agn', 'egal']
     max_runs = -1
