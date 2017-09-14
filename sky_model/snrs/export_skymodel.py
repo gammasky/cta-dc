@@ -93,6 +93,7 @@ def read_txt_files(version):
         t[NAMES[x]].description = 'Differential spectrum'
 
 
+    print(t)
 
     return t
 
@@ -128,13 +129,16 @@ def add_extra_info(table):
     zarray = np.zeros(len(table['distance']))
     table['skip'] = Column(zarray, description='Skip boolean, 1 skip 0 keep')
     table['skip'].format = '%.d'
+
+    print(table['flux_1_10'])
+    print(table.info())
     return table
 
 
 if __name__ == '__main__':
     for version in [1]:
         table = read_txt_files(version=version)
-        table = add_extra_info(table)
+        #table = add_extra_info(table)
 
         filename = 'ctadc_skymodel_gps_sources_snr_{}.ecsv'.format(version)
         print('Writing {}'.format(filename))

@@ -41,16 +41,19 @@ def select_needed_parameters(table_o):
     size_degree = []
     glat = []
     glon = []
-    for row in table_o:
-        fl_cu = (row['flux_1_10']/crab_flux)
-       #print(fl_cu)
-        flux_1_10_cu.append(fl_cu)
+    flux_q = []
+    #for row in table_o:
+    #    fl_cu = ()
+    #   #print(fl_cu)
+    #    flux_1_10_cu.append(fl_cu)
+
 
     print(table_o.info())
     for idx in range(len(table_o)):
         if table_o[idx]['skip'] == 1:
             #print(row['keep'])
             continue;
+
         skip_known.append(table_o[idx]['skip'])
         dis = Quantity(table_o[idx]['distance'], 'kpc')
         distance.append(table_o[idx]['distance'])
@@ -58,7 +61,8 @@ def select_needed_parameters(table_o):
         ism_density.append(table_o[idx]['n0'])
         ang_size = Quantity(table_o[idx]['sigma'], 'arcmin')
         size_degree.append(ang_size.to('degree').value)
-
+        flux_q.append(table_o[idx]['flux_1_10'])
+        print(table_o[idx]['flux_1_10'])
         # if (idx <10):
         #     print(ang_size, ang_size.to('degree'), dis, dis.to('pc'), size_ph, q)
         galactocentric_x.append(table_o[idx]['galactocentric_x'])
@@ -68,7 +72,7 @@ def select_needed_parameters(table_o):
         glon.append(table_o[idx]['glon'])
         glat.append(table_o[idx]['glat'])
         size_physical.append(table_o[idx]['size_physical'])
-
+        print(table_o[idx]['size_physical'], table_o[idx]['flux_1_10'])
 
     tab = Table([distance])
     tab['distance']=Column(distance, description='distance', unit='kpc')
@@ -84,6 +88,8 @@ def select_needed_parameters(table_o):
     tab['skip'] = Column(skip_known, description='skip because already known')
     tab['size_physical'] = Column(size_physical, description='intrinsic physical size', unit='pc')
     tab['sigma'] = Column(size_degree, description='angular size', unit='deg')
+    #tab['int_flux_above_1TeV_cu'] = Column(flux_1_10_cu, description='Integral flux between 1 and 10 TeV in crab units')
+    tab['flux_1_10'] = Column(flux_q, description='Integral flux between 1 and 10 TeV', unit='cm-2 s-1')
 
     tab.remove_column('col0')
     print('----------------------------')
@@ -95,10 +101,10 @@ if __name__ == '__main__':
     print(table_o.info())
     #print(table_s.info())
 
+    print(table_o['flux_1_10'])
 
-
-    tab = select_needed_parameters(table_o)
-    print(tab.info())
+    #tab = select_needed_parameters(table_o)
+    #print(tab.info())
   #  tab.rename_column('glat','GLAT')
   #  tab.rename_column('glon', 'GLON')
    # tab.rename_column('size_ang','sigma')
@@ -107,9 +113,9 @@ if __name__ == '__main__':
     #print(table_s.info())
 
 
-    filename = 'ctadc_skymodel_gps_sources_snr_1_summary_all.ecsv'
-    print('Writing {}'.format(filename))
-    tab.write(filename, format='ascii.ecsv', overwrite=True)
+    #filename = 'ctadc_skymodel_gps_sources_snr_1_summary_all.ecsv'
+    #print('Writing {}'.format(filename))
+    #tab.write(filename, format='ascii.ecsv', overwrite=True)
 
 
 
