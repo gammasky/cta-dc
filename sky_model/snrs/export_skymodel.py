@@ -5,10 +5,10 @@ import numpy as np
 import astropy.units as u
 from astropy.table import Table, Column
 from gammapy.utils.coordinates import galactic as compute_galactic_coordinates
-
+import numpy as np
 
 def read_txt_files(version):
-    filename = 'ctadc_skymodel_gps_sources_snr_{}.txt'.format(version)
+    filename = 'test_roberta_september_{}.txt'.format(version)
     print('Reading {}'.format(filename))
     data = np.genfromtxt(filename, defaultfmt='%0.6f', names=True)
 
@@ -32,10 +32,10 @@ def read_txt_files(version):
         temp = np.vstack([temp, test[j]])
 
     NAMES = data.dtype.names[0]
-    for x in range(1, 9):
+    for x in range(1, 10):
         NAMES = np.append(NAMES, data.dtype.names[x])
-    for x in range(9, size):
-        NAMES = np.append(NAMES, EGRID[x - 9])
+    for x in range(10, size):
+        NAMES = np.append(NAMES, EGRID[x - 10])
 
     t = Table(temp, names=NAMES)
 
@@ -84,9 +84,15 @@ def read_txt_files(version):
     t[NAMES[8]].format = '%0.4f'
     t[NAMES[8]].description = 'SNR Radius'
 
-    for x in range(9, size):
+    t[NAMES[9]].unit = 'cm-2 s-1'
+    t[NAMES[9]].format = '%0.4f'
+    t[NAMES[9]].description = 'Integral flux 1-10TeV'
+
+    for x in range(10, size):
         t[NAMES[x]].unit = 'cm-2 s-1 TeV-1'
         t[NAMES[x]].description = 'Differential spectrum'
+
+
 
     return t
 
@@ -98,6 +104,8 @@ def add_extra_info(table):
     table['galactocentric_y'] = Column(-table['POS_X'].data, unit='kpc', description='Galactocentric Y', format='%0.5f')
     table['galactocentric_z'] = Column(table['POS_Z'].data, unit='kpc', description='Galactocentric Y', format='%0.5f')
     table.remove_columns(['POS_X', 'POS_Y', 'POS_Z'])
+    table['flux_1_10'] = Column(table['flux_1_10'].data, unit='cm-2 s-1', description='Integral flux from 1 to 10 TeV',
+                                format='%0.5f')
 
     table.rename_column('Radius', 'size_physical')
     table.rename_column('size', 'sigma')
@@ -117,12 +125,14 @@ def add_extra_info(table):
     table['glon'].format = '%.5f'
     table['glat'] = Column(glat, unit='deg', description='Galactic latitude')
     table['glat'].format = '%.5f'
-    table['skip'] = Column(0, description='Skip boolean, 1 skip 0 keep')
+    zarray = np.zeros(len(table['distance']))
+    table['skip'] = Column(zarray, description='Skip boolean, 1 skip 0 keep')
+    table['skip'].format = '%.d'
     return table
 
 
 if __name__ == '__main__':
-    for version in [1, 2]:
+    for version in [1]:
         table = read_txt_files(version=version)
         table = add_extra_info(table)
 

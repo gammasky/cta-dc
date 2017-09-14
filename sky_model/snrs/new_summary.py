@@ -15,16 +15,16 @@ def define_flux_crab_above_energy(emin=1 * u.TeV, emax=10 * u.TeV):
 
 
 def load_tables():
-    filename_summary = 'ctadc_skymodel_gps_sources_snr_2_summary.ecsv'
-    table_summary = Table.read(filename_summary, format='ascii.ecsv')
-    filename_orig = 'ctadc_skymodel_gps_sources_snr_2_keep.ecsv'
+    #filename_summary = 'ctadc_skymodel_gps_sources_snr_2_summary.ecsv'
+    #table_summary = Table.read(filename_summary, format='ascii.ecsv')
+    filename_orig = 'ctadc_skymodel_gps_sources_snr_1.ecsv'
     table_orig = Table.read(filename_orig, format='ascii.ecsv')
 
-    return table_summary, table_orig
+    return table_orig
 
 
 
-def select_needed_parameters(table_s, table_o):
+def select_needed_parameters(table_o):
     crab_flux_above_1TeV, crab_flux_above_1TeV_model = define_flux_crab_above_energy();
     crab_flux = crab_flux_above_1TeV.value
     q = Quantity(0.000291, unit='arcmin**-1')
@@ -39,14 +39,16 @@ def select_needed_parameters(table_s, table_o):
     galactocentric_r = []
     size_physical = []
     size_degree = []
-    for row in table_s:
+    glat = []
+    glon = []
+    for row in table_o:
         fl_cu = (row['flux_1_10']/crab_flux)
-        #print(fl_cu)
+       #print(fl_cu)
         flux_1_10_cu.append(fl_cu)
 
     print(table_o.info())
     for idx in range(len(table_o)):
-        if table_o[idx]['keep'] == False:
+        if table_o[idx]['skip'] == 1:
             #print(row['keep'])
             continue;
         skip_known.append(table_o[idx]['skip'])
@@ -63,44 +65,51 @@ def select_needed_parameters(table_s, table_o):
         galactocentric_y.append(table_o[idx]['galactocentric_y'])
         galactocentric_z.append(table_o[idx]['galactocentric_z'])
         galactocentric_r.append(table_o[idx]['galactocentric_r'])
+        glon.append(table_o[idx]['glon'])
+        glat.append(table_o[idx]['glat'])
         size_physical.append(table_o[idx]['size_physical'])
 
-    #print(' distanec', len(distance))
 
+    tab = Table([distance])
+    tab['distance']=Column(distance, description='distance', unit='kpc')
+    tab['GLAT'] = Column(glat, description='Latitude')
+    tab['GLON'] = Column(glon, description='Latitude')
+    tab['galactocentric_x'] = Column(galactocentric_x, description='galactocentric_x', unit='kpc')
+    tab['galactocentric_y'] = Column(galactocentric_y, description='galactocentric_x', unit='kpc')
+    tab['galactocentric_z'] = Column(galactocentric_z, description='galactocentric_x', unit='kpc')
+    tab['galactocentric_r'] = Column(galactocentric_r, description='galactocentric_x', unit='kpc')
+    tab['age'] = Column(age, description='age', unit='kyr')
+    tab['n0'] = Column(ism_density, description='n0 column density', unit='cm-3')
+    tab['int_flux_above_1TeV_cu'] = Column(flux_1_10_cu, description='integral flux in crab unit', unit='%')
+    tab['skip'] = Column(skip_known, description='skip because already known')
+    tab['size_physical'] = Column(size_physical, description='intrinsic physical size', unit='pc')
+    tab['sigma'] = Column(size_degree, description='angular size', unit='deg')
 
-    table_s['distance'] = Column(distance, description='distance', unit='kpc')
-    table_s['galactocentric_x'] = Column(galactocentric_x, description='galactocentric_x', unit='kpc')
-    table_s['galactocentric_y'] = Column(galactocentric_y, description='galactocentric_x', unit='kpc')
-    table_s['galactocentric_z'] = Column(galactocentric_z, description='galactocentric_x', unit='kpc')
-    table_s['galactocentric_r'] = Column(galactocentric_r, description='galactocentric_x', unit='kpc')
-    table_s['age'] = Column(age, description='age', unit='kyr')
-    table_s['n0'] = Column(ism_density, description='n0 column density', unit='cm-3')
-    table_s['int_flux_above_1TeV_cu'] = Column(flux_1_10_cu, description='integral flux in crab unit', unit='%')
-    table_s['skip'] = Column(skip_known, description='skip because already known')
-    table_s['size_physical'] = Column(size_physical, description='intrinsic physical size', unit='pc')
-    table_s['size_ang'] = Column(size_degree, description='angular size', unit='deg')
-    return table_s
+    tab.remove_column('col0')
+    print('----------------------------')
+    print(tab)
+    return tab
 
 if __name__ == '__main__':
-    table_s, table_o = load_tables()
-    #print(table_o.info())
+    table_o = load_tables()
+    print(table_o.info())
     #print(table_s.info())
 
 
 
-    select_needed_parameters(table_s, table_o)
-    #print(table_s.info())
-    table_s.rename_column('glat','GLAT')
-    table_s.rename_column('glon', 'GLON')
-    table_s.rename_column('size_ang','sigma')
-    print(table_s['sigma'], table_s['size'])
+    tab = select_needed_parameters(table_o)
+    print(tab.info())
+  #  tab.rename_column('glat','GLAT')
+  #  tab.rename_column('glon', 'GLON')
+   # tab.rename_column('size_ang','sigma')
+    #print(table_s['sigma'], table_s['size'])
 
     #print(table_s.info())
 
 
-    filename = 'ctadc_skymodel_gps_sources_snr_2_summary_all.ecsv'
+    filename = 'ctadc_skymodel_gps_sources_snr_1_summary_all.ecsv'
     print('Writing {}'.format(filename))
-    table_s.write(filename, format='ascii.ecsv', overwrite=True)
+    tab.write(filename, format='ascii.ecsv', overwrite=True)
 
 
 
