@@ -176,7 +176,8 @@ class GPSSkyModel:
     def _load_tables_snr(cls):
         tag = 'snr'
         log.debug('Reading {}'.format(tag))
-        filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_2_summary_all.ecsv'
+        filename = '../sky_model/snrs/ctadc_skymodel_gps_sources_snr_1_summary_all.ecsv'
+        #'ctadc_skymodel_gps_sources_snr_2_summary_all.ecsv'
         table = Table.read(filename, format='ascii.ecsv')
         return dict(tag=tag, filename=filename, table=table, color='blue')
 
@@ -640,8 +641,9 @@ class GPSSkyModel:
     def plot_flux_vs_size(self):
         fig, ax = plt.subplots()
 
-        for component in self.get_components(tags=['snr']):
+        for component in self.get_components(tags=['snr', 'pwn', 'composite']):
             table = component['table']
+            print(table)
             print('here: ',component['tag'], len(table), component['color'])
             int_flux = []
             size = []
@@ -652,7 +654,7 @@ class GPSSkyModel:
                 sigma = u.Quantity(row['sigma'], 'deg')
                 flux = u.Quantity((row['int_flux_above_1TeV_cu']), '%')
                 size.append(sigma.value)
-                print(flux)
+                #print(sigma, flux)
                 int_flux.append(flux.value)
             ax.scatter(size, int_flux, label=component['tag'], s=10, alpha=0.8, color=component['color'])
 
@@ -839,22 +841,22 @@ if __name__ == '__main__':
 
     gps.plot_luminosity()
 
-    #gps.plot_galactic_z()
-    #gps.plot_galactic_r()
-    #gps.plot_galactic_xz()
-    #gps.plot_galactic_xy()
-    #gps.plot_distance()
-    #gps.plot_glon()
-    #gps.plot_glat()
-    #gps.plot_sky_positions()
+    gps.plot_galactic_z()
+    gps.plot_galactic_r()
+    gps.plot_galactic_xz()
+    gps.plot_galactic_xy()
+    gps.plot_distance()
+    gps.plot_glon()
+    gps.plot_glat()
+    gps.plot_sky_positions()
 
-    #gps.plot_n0()
-    #gps.plot_size()
-    #gps.plot_size_physical()
+    gps.plot_n0()
+    gps.plot_size()
+    gps.plot_size_physical()
     gps.plot_flux_vs_size()
-    #gps.plot_logn_logs(quantity = 'n', variant = 'diff', sigma = 2)
-    #gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
-    #gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
-    #gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
+    gps.plot_logn_logs(quantity = 'n', variant = 'diff', sigma = 2)
+    gps.plot_logn_logs(quantity='n', variant='int', sigma=None)
+    gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
+    gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
     #
-   #gps.print_summary()
+   gps.print_summary()

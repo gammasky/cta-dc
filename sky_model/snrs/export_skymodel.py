@@ -85,15 +85,12 @@ def read_txt_files(version):
     t[NAMES[8]].description = 'SNR Radius'
 
     t[NAMES[9]].unit = 'cm-2 s-1'
-    t[NAMES[9]].format = '%0.4f'
+    t[NAMES[9]].format = '%0.4e'
     t[NAMES[9]].description = 'Integral flux 1-10TeV'
 
     for x in range(10, size):
         t[NAMES[x]].unit = 'cm-2 s-1 TeV-1'
         t[NAMES[x]].description = 'Differential spectrum'
-
-
-    print(t)
 
     return t
 
@@ -106,7 +103,7 @@ def add_extra_info(table):
     table['galactocentric_z'] = Column(table['POS_Z'].data, unit='kpc', description='Galactocentric Y', format='%0.5f')
     table.remove_columns(['POS_X', 'POS_Y', 'POS_Z'])
     table['flux_1_10'] = Column(table['flux_1_10'].data, unit='cm-2 s-1', description='Integral flux from 1 to 10 TeV',
-                                format='%0.5f')
+                                format='%0.4e')
 
     table.rename_column('Radius', 'size_physical')
     table.rename_column('size', 'sigma')
@@ -130,15 +127,15 @@ def add_extra_info(table):
     table['skip'] = Column(zarray, description='Skip boolean, 1 skip 0 keep')
     table['skip'].format = '%.d'
 
-    print(table['flux_1_10'])
-    print(table.info())
+    #print(table['flux_1_10'])
+    #print(table.info())
     return table
 
 
 if __name__ == '__main__':
     for version in [1]:
         table = read_txt_files(version=version)
-        #table = add_extra_info(table)
+        table = add_extra_info(table)
 
         filename = 'ctadc_skymodel_gps_sources_snr_{}.ecsv'.format(version)
         print('Writing {}'.format(filename))
