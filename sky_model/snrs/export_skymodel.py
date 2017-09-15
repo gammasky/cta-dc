@@ -8,7 +8,7 @@ from gammapy.utils.coordinates import galactic as compute_galactic_coordinates
 import numpy as np
 
 def read_txt_files(version):
-    filename = 'test_roberta_september_{}.txt'.format(version)
+    filename = 'test_roberta_september_6.txt'#.format(version)
     print('Reading {}'.format(filename))
     data = np.genfromtxt(filename, defaultfmt='%0.6f', names=True)
 

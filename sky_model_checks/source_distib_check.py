@@ -859,4 +859,4 @@ if __name__ == '__main__':
     gps.plot_logn_logs(quantity='f', variant='diff', sigma=2)
     gps.plot_logn_logs(quantity='f', variant='int', sigma=None)
     #
-   gps.print_summary()
+   #gps.print_summary()
