@@ -64,7 +64,8 @@ class IndexFileChecker:
 
     @staticmethod
     def check_observation(xml_data, obs_data):
-        assert int(xml_data['@id']) == int(obs_data['OBS_ID'])
+        if int(xml_data['@id']) != int(obs_data['OBS_ID']):
+            log.error(f'Mismatch: xml obs_id: {xml_data["@id"]}, obs_data: {obs_data["OBS_ID"]}')
         # print(xml_data['parameter'][6])
         # print(obs_data['IRF'])
         assert xml_data['parameter'][6]['@response'] == obs_data['IRF']
@@ -102,12 +103,14 @@ def check_composite_index_files():
     filename = BASE_PATH / 'index/all/obs-index.fits.gz'
     log.debug(f'Reading {filename}')
     table = Table.read(filename)
-    assert len(table) == n_obs
+    if len(table) != n_obs:
+        log.error(f'Incorrect number of rows: actual={len(table)}, expected={n_obs}')
 
     filename = BASE_PATH / 'index/all/hdu-index.fits.gz'
     log.debug(f'Reading {filename}')
     table = Table.read(filename)
-    assert len(table) == 6 * n_obs
+    if len(table) != 6 * n_obs:
+        log.error(f'Incorrect number of rows: actual={len(table)}, expected={6 * n_obs}')
 
 
 def check_index_files_checksums(dirname):

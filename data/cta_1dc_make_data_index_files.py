@@ -76,6 +76,7 @@ class ObservationDefinition:
         expected_keys = {
             'obs_id',
             'dataset',
+            'irf',
         }
         if set(data.keys()) != expected_keys:
             log.error(data)
@@ -169,7 +170,7 @@ class ObservationDefinition:
 
     @property
     def irf_dir(self):
-        return self.base_dir + '/caldb/data/cta/1dc/bcf/South_z20_50h'
+        return self.base_dir + '/caldb/data/cta/1dc/bcf/' + self.data['irf']
 
     @property
     def irf_filename(self):
@@ -190,7 +191,7 @@ def make_observation_index_table(dataset, out_dir, max_rows=-1, progress_bar=Tru
 
     glob_pattern = str(BASE_PATH / f'data/baseline/{dataset}/*.fits')
     log.debug(f'glob pattern: {glob_pattern}')
-    filenames = list(glob(glob_pattern))
+    filenames = sorted(glob(glob_pattern))
     log.debug(f'Number of files matching: {len(filenames)}')
 
     if max_rows > 0:
@@ -243,7 +244,8 @@ def make_hdu_index_table(dataset, out_dir, max_rows=-1):
     for obs_table_row in obs_table:
         obs_def = ObservationDefinition(data=dict(
             dataset=dataset,
-            obs_id=obs_table_row['OBS_ID']
+            obs_id=obs_table_row['OBS_ID'],
+            irf=obs_table_row['IRF'],
         ))
 
         rows.extend(obs_def.make_hdu_index_rows())
