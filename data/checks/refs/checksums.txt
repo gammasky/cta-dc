@@ -1,0 +1,11 @@
+1dc/index/README.md b0ef42f3d3c868496ffaf884a89fa840
+1dc/index/agn/hdu-index.fits.gz f227b7744079b21ac907aedd755d1633
+1dc/index/agn/obs-index.fits.gz 0272021e0e952cfc3249547060c201e5
+1dc/index/all/hdu-index.fits.gz 07450dfaf9b1735ad34c715ca888c6e7
+1dc/index/all/obs-index.fits.gz a3895026b82eb8b13018bd4701b2e34f
+1dc/index/egal/hdu-index.fits.gz 528034a87b266a72a179f644bc6420c0
+1dc/index/egal/obs-index.fits.gz 0ae82ff96b802657bf5cc0d487227291
+1dc/index/gc/hdu-index.fits.gz 98028bb0ecd29c8438db7c3badb089ed
+1dc/index/gc/obs-index.fits.gz 6cd11b7766288b74dd1bcf7e93c79537
+1dc/index/gps/hdu-index.fits.gz a840cba1c9c6da8f3757918650057ed2
+1dc/index/gps/obs-index.fits.gz 0de7401fbd8a85a4b8e15b2345684ffe
