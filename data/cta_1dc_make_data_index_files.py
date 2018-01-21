@@ -41,10 +41,10 @@ def get_events_file_info(filename):
     info['DEADC'] = header['DEADC']
     info['TSTART'] = header['TSTART']
     info['TSTOP'] = header['TSTOP']
-    info['DATE_OBS'] = header['DATE_OBS']
-    info['TIME_OBS'] = header['TIME_OBS']
-    info['DATE_END'] = header['DATE_END']
-    info['TIME_END'] = header['TIME_END']
+    info['DATE-OBS'] = header['DATE_OBS']
+    info['TIME-OBS'] = header['TIME_OBS']
+    info['DATE-END'] = header['DATE_END']
+    info['TIME-END'] = header['TIME_END']
 
     info['N_TELS'] = header['N_TELS']
     info['OBJECT'] = header['OBJECT']
@@ -103,10 +103,14 @@ class ObservationDefinition:
         )
 
     def make_hdu_index_entry_gti(self):
-        row = self.make_hdu_index_entry_events()
-        row['HDU_TYPE'] = 'gti'
-        row['HDU_CLASS'] = 'gti'
-        return row
+        return dict(
+            OBS_ID=self.data['obs_id'],
+            HDU_TYPE='gti',
+            HDU_CLASS='gti',
+            FILE_DIR=self.events_dir,
+            FILE_NAME=self.events_filename,
+            HDU_NAME='GTI',
+        )
 
     def make_hdu_index_entry_aeff(self):
         return dict(
