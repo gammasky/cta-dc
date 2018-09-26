@@ -19,6 +19,24 @@ log = logging.getLogger()
 BASE_PATH = Path('1dc/1dc')
 
 
+def write_fits_gz(table, path):
+    """Write Table to fits.gz in a reproducible way.
+
+    Writing to `.fits.gz` with Astropy directly never gave
+    reproducible files, probably because in the background
+    some date string was inserted in the zip file.
+
+    So this helper function first write to `.fits` and then
+    calls `gzip` with options that avoid the issue.
+    """
+    log.info(f'Writing {path}')
+    table.write(str(path), overwrite=True)
+
+    cmd = f'gzip -f -n {path}'
+    log.info(f'Executing: {cmd}')
+    subprocess.call(cmd, shell=True)
+
+
 def get_events_file_info(filename):
     log.debug(f'Reading {filename}')
     header = fits.open(filename)['EVENTS'].header
@@ -225,9 +243,8 @@ def make_observation_index_table(dataset, out_dir, max_rows=-1, progress_bar=Tru
     meta['TIMESYS'] = 'TT'
     meta['TIMEREF'] = 'LOCAL'
 
-    filename = out_dir / 'obs-index.fits.gz'
-    log.info(f'Writing {filename}')
-    obs_table.write(filename, overwrite=True)
+    path = out_dir / 'obs-index.fits'
+    write_fits_gz(obs_table, path)
 
 
 def make_hdu_index_table(dataset, out_dir, max_rows=-1):
@@ -260,9 +277,8 @@ def make_hdu_index_table(dataset, out_dir, max_rows=-1):
     add_provenance(hdu_table.meta)
     hdu_table.meta['dataset'] = dataset
 
-    filename = out_dir / 'hdu-index.fits.gz'
-    log.info(f'Writing {filename}')
-    hdu_table.write(filename, overwrite=True)
+    path = out_dir / 'hdu-index.fits'
+    write_fits_gz(hdu_table, path)
 
 
 def make_concatenated_index_files():
@@ -279,9 +295,8 @@ def make_concatenated_index_files():
     add_provenance(table.meta)
     table.meta['dataset'] = 'all'
 
-    filename = BASE_PATH / 'index/all/obs-index.fits.gz'
-    log.info(f'Writing {filename}')
-    table.write(filename, overwrite=True)
+    path = BASE_PATH / 'index/all/obs-index.fits'
+    write_fits_gz(table, path)
 
     table = table_vstack([
         Table.read(BASE_PATH / 'index' / dataset / 'hdu-index.fits.gz')
@@ -291,9 +306,8 @@ def make_concatenated_index_files():
     add_provenance(table.meta)
     table.meta['dataset'] = 'all'
 
-    filename = BASE_PATH / 'index/all/hdu-index.fits.gz'
-    log.info(f'Writing {filename}')
-    table.write(filename, overwrite=True)
+    path = BASE_PATH / 'index/all/hdu-index.fits'
+    write_fits_gz(table, path)
 
 
 def make_tarball():
