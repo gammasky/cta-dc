@@ -9,8 +9,9 @@ from pathlib import Path
 import tempfile
 import hashlib
 import subprocess
+from astropy.io import fits
 from astropy.table import Table
-import xmltodict
+from gammapy.extern import xmltodict
 
 BASE_PATH = Path('1dc/1dc')
 
@@ -138,8 +139,46 @@ def check_checksums():
         check_index_files_checksums(tmpdirname)
 
 
+class IndexToTextDumper:
+    """Create a text representation of the index files.
+
+    We commit this to the git repo and use git diff
+    to review fixes / changes. This avoids regressions.
+    """
+    datasets = ['agn', 'all', 'egal', 'gc', 'gps']
+
+    def run(self):
+        for dataset in self.datasets:
+            for which in ['hdu', 'obs']:
+                path_in = BASE_PATH / 'index' / dataset / f'{which}-index.fits.gz'
+                path_out = BASE_PATH / 'checks' / 'refs' / dataset / f'{which}-index.txt'
+                path_out.parent.mkdir(exist_ok=True, parents=True)
+
+                self.dump_header(path_in, path_out)
+
+                path_out = BASE_PATH / 'checks' / 'refs' / dataset / f'{which}-index.ecsv'
+                self.dump_data(path_in, path_out)
+
+    @staticmethod
+    def dump_header(path_in, path_out):
+        txt = ''
+        hdu_list = fits.open(str(path_in))
+        for hdu in hdu_list:
+            txt += hdu.header.tostring(sep='\n', padding=False)
+            txt += '\n\n**********\n\n'
+        log.info(f'Writing {path_out}')
+        path_out.write_text(txt)
+
+    @staticmethod
+    def dump_data(path_in, path_out):
+        table = Table.read(str(path_in))
+        log.info(f'Writing {path_out}')
+        table.write(str(path_out), format='ascii.ecsv', overwrite=True)
+
+
 if __name__ == '__main__':
     logging.basicConfig(level='INFO')
-    check_index_files()
-    check_composite_index_files()
-    check_checksums()
+    IndexToTextDumper().run()
+    # check_index_files()
+    # check_composite_index_files()
+    # check_checksums()

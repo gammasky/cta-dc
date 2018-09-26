@@ -1,0 +1,34 @@
+SIMPLE  =                    T / conforms to FITS standard                      
+BITPIX  =                    8 / array data type                                
+NAXIS   =                    0 / number of array dimensions                     
+EXTEND  =                    T                                                  
+END                                                                             
+
+**********
+
+XTENSION= 'BINTABLE'           / binary table extension                         
+BITPIX  =                    8 / array data type                                
+NAXIS   =                    2 / number of array dimensions                     
+NAXIS1  =                  112 / length of dimension 1                          
+NAXIS2  =                 7626 / length of dimension 2                          
+PCOUNT  =                    0 / number of group parameters                     
+GCOUNT  =                    1 / number of groups                               
+TFIELDS =                    6 / number of table fields                         
+TTYPE1  = 'OBS_ID  '                                                            
+TFORM1  = 'K       '                                                            
+TTYPE2  = 'HDU_TYPE'                                                            
+TFORM2  = '6A      '                                                            
+TTYPE3  = 'HDU_CLASS'                                                           
+TFORM3  = '10A     '                                                            
+TTYPE4  = 'FILE_DIR'                                                            
+TFORM4  = '42A     '                                                            
+TTYPE5  = 'FILE_NAME'                                                           
+TFORM5  = '25A     '                                                            
+TTYPE6  = 'HDU_NAME'                                                            
+TFORM6  = '21A     '                                                            
+OBSERVER= 'CTA first data challenge (1DC)'                                      
+DATASET = 'egal    '                                                            
+END                                                                             
+
+**********
+

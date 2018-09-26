@@ -1,0 +1,73 @@
+SIMPLE  =                    T / conforms to FITS standard                      
+BITPIX  =                    8 / array data type                                
+NAXIS   =                    0 / number of array dimensions                     
+EXTEND  =                    T                                                  
+END                                                                             
+
+**********
+
+XTENSION= 'BINTABLE'           / binary table extension                         
+BITPIX  =                    8 / array data type                                
+NAXIS   =                    2 / number of array dimensions                     
+NAXIS1  =                  243 / length of dimension 1                          
+NAXIS2  =                 3270 / length of dimension 2                          
+PCOUNT  =                    0 / number of group parameters                     
+GCOUNT  =                    1 / number of groups                               
+TFIELDS =                   23 / number of table fields                         
+TTYPE1  = 'OBS_ID  '                                                            
+TFORM1  = 'K       '                                                            
+TTYPE2  = 'RA_PNT  '                                                            
+TFORM2  = 'D       '                                                            
+TTYPE3  = 'DEC_PNT '                                                            
+TFORM3  = 'D       '                                                            
+TTYPE4  = 'GLON_PNT'                                                            
+TFORM4  = 'D       '                                                            
+TTYPE5  = 'GLAT_PNT'                                                            
+TFORM5  = 'D       '                                                            
+TTYPE6  = 'ZEN_PNT '                                                            
+TFORM6  = 'D       '                                                            
+TTYPE7  = 'ALT_PNT '                                                            
+TFORM7  = 'D       '                                                            
+TTYPE8  = 'AZ_PNT  '                                                            
+TFORM8  = 'K       '                                                            
+TTYPE9  = 'ONTIME  '                                                            
+TFORM9  = 'D       '                                                            
+TTYPE10 = 'LIVETIME'                                                            
+TFORM10 = 'D       '                                                            
+TTYPE11 = 'DEADC   '                                                            
+TFORM11 = 'D       '                                                            
+TTYPE12 = 'TSTART  '                                                            
+TFORM12 = 'D       '                                                            
+TTYPE13 = 'TSTOP   '                                                            
+TFORM13 = 'D       '                                                            
+TTYPE14 = 'DATE-OBS'                                                            
+TFORM14 = '10A     '                                                            
+TTYPE15 = 'TIME-OBS'                                                            
+TFORM15 = '8A      '                                                            
+TTYPE16 = 'DATE-END'                                                            
+TFORM16 = '10A     '                                                            
+TTYPE17 = 'TIME-END'                                                            
+TFORM17 = '8A      '                                                            
+TTYPE18 = 'N_TELS  '                                                            
+TFORM18 = 'K       '                                                            
+TTYPE19 = 'OBJECT  '                                                            
+TFORM19 = '21A     '                                                            
+TTYPE20 = 'CALDB   '                                                            
+TFORM20 = '3A      '                                                            
+TTYPE21 = 'IRF     '                                                            
+TFORM21 = '13A     '                                                            
+TTYPE22 = 'EVENTS_FILENAME'                                                     
+TFORM22 = '50A     '                                                            
+TTYPE23 = 'EVENT_COUNT'                                                         
+TFORM23 = 'K       '                                                            
+OBSERVER= 'CTA first data challenge (1DC)'                                      
+DATASET = 'gps     '                                                            
+MJDREFI =                51544                                                  
+MJDREFF =                  0.5                                                  
+TIMEUNIT= 's       '                                                            
+TIMESYS = 'TT      '                                                            
+TIMEREF = 'LOCAL   '                                                            
+END                                                                             
+
+**********
+
