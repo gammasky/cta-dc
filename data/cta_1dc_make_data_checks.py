@@ -9,9 +9,11 @@ from pathlib import Path
 import tempfile
 import hashlib
 import subprocess
+import ruamel.yaml
 from astropy.io import fits
 from astropy.table import Table
 from gammapy.extern import xmltodict
+from gammapy.data import DataStore
 
 BASE_PATH = Path('1dc/1dc')
 
@@ -38,6 +40,14 @@ docs_obs_infos = dict(
 )
 
 
+def write_yaml(data, path):
+    """Helper function to write data to a YAML file."""
+    path = Path(path)
+    log.info('Writing {}'.format(path))
+    with path.open('w') as fh:
+        ruamel.yaml.round_trip_dump(data, fh)
+
+
 class IndexFileChecker:
     def __init__(self, dataset):
         self.dataset = dataset
@@ -45,7 +55,6 @@ class IndexFileChecker:
     def run(self):
         self.check_against_docs()
         self.check_against_xml()
-        # self.print_ref()
 
     def check_against_docs(self):
         obs_table = self.obs_table
@@ -56,7 +65,6 @@ class IndexFileChecker:
 
     def check_against_xml(self):
         xml_list = self.xml_list
-        # print(dict(xml_data[0]))
         obs_table = self.obs_table
         assert len(xml_list) == len(obs_table)
 
@@ -84,16 +92,9 @@ class IndexFileChecker:
         log.debug(f'Reading {filename}')
         return Table.read(str(filename))
 
-        # def print_ref(self):
-        #     obs_table = self.obs_table
-        #     lines = obs_table.pformat()
-        #     path = Path('checks/refs/'
-        #     print(s)
-
 
 def check_index_files():
     datasets = ['agn', 'egal', 'gc', 'gps']
-    # datasets = ['agn']
     for dataset in datasets:
         IndexFileChecker(dataset).run()
 
@@ -150,13 +151,14 @@ class IndexToTextDumper:
     def run(self):
         for dataset in self.datasets:
             for which in ['hdu', 'obs']:
+                OUT_PATH = Path('checks/refs')
                 path_in = BASE_PATH / 'index' / dataset / f'{which}-index.fits.gz'
-                path_out = BASE_PATH / 'checks' / 'refs' / dataset / f'{which}-index.txt'
+                path_out = OUT_PATH / dataset / f'{which}-index.txt'
                 path_out.parent.mkdir(exist_ok=True, parents=True)
 
                 self.dump_header(path_in, path_out)
 
-                path_out = BASE_PATH / 'checks' / 'refs' / dataset / f'{which}-index.ecsv'
+                path_out = OUT_PATH / dataset / f'{which}-index.ecsv'
                 self.dump_data(path_in, path_out)
 
     @staticmethod
@@ -176,9 +178,35 @@ class IndexToTextDumper:
         table.write(str(path_out), format='ascii.ecsv', overwrite=True)
 
 
+class DataStoreChecks:
+    datasets = ['agn', 'all', 'egal', 'gc', 'gps']
+
+    def run(self):
+        for dataset in self.datasets:
+            self.check(dataset)
+
+    @staticmethod
+    def check(dataset):
+        path = BASE_PATH / 'index' / dataset
+        ds = DataStore.from_dir(path)
+
+        # Errors are always the same
+        # We only check the first and last run
+        ds.obs_table = ds.obs_table[[0, -1]]
+        ds.hdu_table = ds.hdu_table[[0, 1, 2, 3, 4, 5, -6, -5, -4, -3, -2, -1]]
+
+        results = ds.check()
+        results = (_ for _ in results if _['level'] not in {'debug'})
+        results = list(results)
+
+        filename = Path('checks/refs') / dataset / 'check.yaml'
+        write_yaml(results, filename)
+
+
 if __name__ == '__main__':
     logging.basicConfig(level='INFO')
-    IndexToTextDumper().run()
+    # IndexToTextDumper().run()
     # check_index_files()
     # check_composite_index_files()
     # check_checksums()
+    DataStoreChecks().run()

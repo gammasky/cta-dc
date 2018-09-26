@@ -1,0 +1,48 @@
+- level: error
+  hdu: obs-index
+  msg: "Missing meta keys: ['ALTITUDE', 'GEOLAT', 'GEOLON', 'HDUCLAS1', 'HDUCLAS2',\
+    \ 'HDUCLASS', 'HDUDOC', 'HDUVERS']"
+- level: error
+  hdu: obs-index
+  msg: HDUCLAS1 must be INDEX
+- level: error
+  hdu: obs-index
+  msg: HDUCLAS2 must be OBS
+- level: error
+  hdu: obs-index
+  msg: "Invalid unit for column: 'RA_PNT'"
+- level: error
+  hdu: obs-index
+  msg: "Invalid unit for column: 'DEC_PNT'"
+- level: error
+  hdu: obs-index
+  msg: "Invalid unit for column: 'TSTART'"
+- level: error
+  hdu: obs-index
+  msg: "Invalid unit for column: 'TSTOP'"
+- level: error
+  hdu: hdu-index
+  msg: Invalid header key. Must have HDUCLAS1=INDEX
+- level: error
+  hdu: hdu-index
+  msg: Invalid header key. Must have HDUCLAS2=HDU
+- level: error
+  obs_id: 510000
+  msg: "Missing meta keys: ['HDUCLAS1', 'HDUCLASS', 'HDUDOC', 'HDUVERS', 'INSTRUME',\
+    \ 'ORIGIN']"
+- level: error
+  obs_id: 510000
+  msg: Event times after the obs end time
+- level: error
+  obs_id: 510000
+  msg: Events are not time-ordered.
+- level: error
+  obs_id: 511919
+  msg: "Missing meta keys: ['HDUCLAS1', 'HDUCLASS', 'HDUDOC', 'HDUVERS', 'INSTRUME',\
+    \ 'ORIGIN']"
+- level: error
+  obs_id: 511919
+  msg: Event times after the obs end time
+- level: error
+  obs_id: 511919
+  msg: Events are not time-ordered.
