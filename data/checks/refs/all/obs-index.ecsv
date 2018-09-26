@@ -2,18 +2,18 @@
 # ---
 # datatype:
 # - {name: OBS_ID, datatype: int64}
-# - {name: RA_PNT, datatype: float64}
-# - {name: DEC_PNT, datatype: float64}
-# - {name: GLON_PNT, datatype: float64}
-# - {name: GLAT_PNT, datatype: float64}
-# - {name: ZEN_PNT, datatype: float64}
-# - {name: ALT_PNT, datatype: float64}
-# - {name: AZ_PNT, datatype: int64}
-# - {name: ONTIME, datatype: float64}
-# - {name: LIVETIME, datatype: float64}
+# - {name: RA_PNT, unit: deg, datatype: float64}
+# - {name: DEC_PNT, unit: deg, datatype: float64}
+# - {name: GLON_PNT, unit: deg, datatype: float64}
+# - {name: GLAT_PNT, unit: deg, datatype: float64}
+# - {name: ZEN_PNT, unit: deg, datatype: float64}
+# - {name: ALT_PNT, unit: deg, datatype: float64}
+# - {name: AZ_PNT, unit: deg, datatype: int64}
+# - {name: ONTIME, unit: s, datatype: float64}
+# - {name: LIVETIME, unit: s, datatype: float64}
 # - {name: DEADC, datatype: float64}
-# - {name: TSTART, datatype: float64}
-# - {name: TSTOP, datatype: float64}
+# - {name: TSTART, unit: s, datatype: float64}
+# - {name: TSTOP, unit: s, datatype: float64}
 # - {name: DATE-OBS, datatype: string}
 # - {name: TIME-OBS, datatype: string}
 # - {name: DATE-END, datatype: string}
@@ -32,6 +32,11 @@
 # - {TIMEUNIT: s}
 # - {TIMESYS: TT}
 # - {TIMEREF: LOCAL}
+# - {HDUCLASS: GADF}
+# - {HDUDOC: 'https://github.com/open-gamma-ray-astro/gamma-astro-data-formats'}
+# - {HDUVERS: '0.2'}
+# - {HDUCLAS1: INDEX}
+# - {HDUCLAS2: OBS}
 # schema: astropy-2.0
 OBS_ID RA_PNT DEC_PNT GLON_PNT GLAT_PNT ZEN_PNT ALT_PNT AZ_PNT ONTIME LIVETIME DEADC TSTART TSTOP DATE-OBS TIME-OBS DATE-END TIME-END N_TELS OBJECT CALDB IRF EVENTS_FILENAME EVENT_COUNT
 510000 35.665000916 43.035499573 140.14293444204662 -16.766931181669598 0.0 90.0 0 1800.0 1764.0 0.98000001907 662774400.0 662776192.0 2021-01-01 11:58:51 2021-01-01 12:28:51 0 "AGN monitoring" 1dc North_z20_50h 1dc/1dc/data/baseline/agn/agn_baseline_510000.fits 94306

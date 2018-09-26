@@ -28,6 +28,11 @@ TTYPE6  = 'HDU_NAME'
 TFORM6  = '21A     '                                                            
 OBSERVER= 'CTA first data challenge (1DC)'                                      
 DATASET = 'agn     '                                                            
+HDUCLASS= 'GADF    '                                                            
+HDUDOC  = 'https://github.com/open-gamma-ray-astro/gamma-astro-data-formats'    
+HDUVERS = '0.2     '                                                            
+HDUCLAS1= 'INDEX   '                                                            
+HDUCLAS2= 'OBS     '                                                            
 END                                                                             
 
 **********

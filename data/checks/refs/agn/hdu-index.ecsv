@@ -10,6 +10,11 @@
 # meta: !!omap
 # - {OBSERVER: CTA first data challenge (1DC)}
 # - {DATASET: agn}
+# - {HDUCLASS: GADF}
+# - {HDUDOC: 'https://github.com/open-gamma-ray-astro/gamma-astro-data-formats'}
+# - {HDUVERS: '0.2'}
+# - {HDUCLAS1: INDEX}
+# - {HDUCLAS2: OBS}
 # schema: astropy-2.0
 OBS_ID HDU_TYPE HDU_CLASS FILE_DIR FILE_NAME HDU_NAME
 510000 events events ../../data/baseline/agn agn_baseline_510000.fits EVENTS

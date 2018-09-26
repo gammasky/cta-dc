@@ -1,28 +1,6 @@
 - level: error
   hdu: obs-index
-  msg: "Missing meta keys: ['ALTITUDE', 'GEOLAT', 'GEOLON', 'HDUCLAS1', 'HDUCLAS2',\
-    \ 'HDUCLASS', 'HDUDOC', 'HDUVERS']"
-- level: error
-  hdu: obs-index
-  msg: HDUCLAS1 must be INDEX
-- level: error
-  hdu: obs-index
-  msg: HDUCLAS2 must be OBS
-- level: error
-  hdu: obs-index
-  msg: "Invalid unit for column: 'RA_PNT'"
-- level: error
-  hdu: obs-index
-  msg: "Invalid unit for column: 'DEC_PNT'"
-- level: error
-  hdu: obs-index
-  msg: "Invalid unit for column: 'TSTART'"
-- level: error
-  hdu: obs-index
-  msg: "Invalid unit for column: 'TSTOP'"
-- level: error
-  hdu: hdu-index
-  msg: Invalid header key. Must have HDUCLAS1=INDEX
+  msg: "Missing meta keys: ['ALTITUDE', 'GEOLAT', 'GEOLON']"
 - level: error
   hdu: hdu-index
   msg: Invalid header key. Must have HDUCLAS2=HDU

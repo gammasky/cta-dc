@@ -231,6 +231,19 @@ def make_observation_index_table(dataset, out_dir, max_rows=-1, progress_bar=Tru
 
     names = list(rows[0].keys())
     obs_table = Table(rows=rows, names=names)
+
+    obs_table['RA_PNT'].unit = 'deg'
+    obs_table['DEC_PNT'].unit = 'deg'
+    obs_table['GLON_PNT'].unit = 'deg'
+    obs_table['GLAT_PNT'].unit = 'deg'
+    obs_table['ZEN_PNT'].unit = 'deg'
+    obs_table['ALT_PNT'].unit = 'deg'
+    obs_table['AZ_PNT'].unit = 'deg'
+    obs_table['ONTIME'].unit = 's'
+    obs_table['LIVETIME'].unit = 's'
+    obs_table['TSTART'].unit = 's'
+    obs_table['TSTOP'].unit = 's'
+
     meta = obs_table.meta
     add_provenance(meta)
     meta['dataset'] = dataset
@@ -242,6 +255,12 @@ def make_observation_index_table(dataset, out_dir, max_rows=-1, progress_bar=Tru
     meta['TIMEUNIT'] = 's'
     meta['TIMESYS'] = 'TT'
     meta['TIMEREF'] = 'LOCAL'
+
+    meta['HDUCLASS'] = 'GADF'
+    meta['HDUDOC'] = 'https://github.com/open-gamma-ray-astro/gamma-astro-data-formats'
+    meta['HDUVERS'] = '0.2'
+    meta['HDUCLAS1'] = 'INDEX'
+    meta['HDUCLAS2'] = 'OBS'
 
     path = out_dir / 'obs-index.fits'
     write_fits_gz(obs_table, path)
@@ -274,8 +293,15 @@ def make_hdu_index_table(dataset, out_dir, max_rows=-1):
     names = ['OBS_ID', 'HDU_TYPE', 'HDU_CLASS', 'FILE_DIR', 'FILE_NAME', 'HDU_NAME']
 
     hdu_table = Table(rows=rows, names=names)
-    add_provenance(hdu_table.meta)
-    hdu_table.meta['dataset'] = dataset
+    meta = hdu_table.meta
+    add_provenance(meta)
+    meta['dataset'] = dataset
+
+    meta['HDUCLASS'] = 'GADF'
+    meta['HDUDOC'] = 'https://github.com/open-gamma-ray-astro/gamma-astro-data-formats'
+    meta['HDUVERS'] = '0.2'
+    meta['HDUCLAS1'] = 'INDEX'
+    meta['HDUCLAS2'] = 'OBS'
 
     path = out_dir / 'hdu-index.fits'
     write_fits_gz(hdu_table, path)

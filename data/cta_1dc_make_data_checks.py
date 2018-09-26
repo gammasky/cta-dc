@@ -205,8 +205,8 @@ class DataStoreChecks:
 
 if __name__ == '__main__':
     logging.basicConfig(level='INFO')
-    # IndexToTextDumper().run()
-    # check_index_files()
-    # check_composite_index_files()
+    IndexToTextDumper().run()
+    check_index_files()
+    check_composite_index_files()
     # check_checksums()
     DataStoreChecks().run()
