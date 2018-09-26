@@ -62,6 +62,11 @@ TTYPE23 = 'EVENT_COUNT'
 TFORM23 = 'K       '                                                            
 OBSERVER= 'CTA first data challenge (1DC)'                                      
 DATASET = 'all     '                                                            
+MJDREFI =                51544                                                  
+MJDREFF =                  0.5                                                  
+TIMEUNIT= 's       '                                                            
+TIMESYS = 'TT      '                                                            
+TIMEREF = 'LOCAL   '                                                            
 END                                                                             
 
 **********

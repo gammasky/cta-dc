@@ -291,7 +291,7 @@ def make_concatenated_index_files():
         Table.read(BASE_PATH / 'index' / dataset / 'obs-index.fits.gz')
         for dataset in datasets
     ], metadata_conflicts='silent')
-    table.meta = OrderedDict()
+    # table.meta = OrderedDict()
     add_provenance(table.meta)
     table.meta['dataset'] = 'all'
 
@@ -302,7 +302,7 @@ def make_concatenated_index_files():
         Table.read(BASE_PATH / 'index' / dataset / 'hdu-index.fits.gz')
         for dataset in datasets
     ], metadata_conflicts='silent')
-    table.meta = OrderedDict()
+    # table.meta = OrderedDict()
     add_provenance(table.meta)
     table.meta['dataset'] = 'all'
 
