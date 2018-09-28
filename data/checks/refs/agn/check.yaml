@@ -2,9 +2,6 @@
   hdu: obs-index
   msg: "Missing meta keys: ['ALTITUDE', 'GEOLAT', 'GEOLON']"
 - level: error
-  hdu: hdu-index
-  msg: Invalid header key. Must have HDUCLAS2=HDU
-- level: error
   obs_id: 510000
   msg: "Missing meta keys: ['HDUCLAS1', 'HDUCLASS', 'HDUDOC', 'HDUVERS', 'INSTRUME',\
     \ 'ORIGIN']"
@@ -15,12 +12,12 @@
   obs_id: 510000
   msg: Events are not time-ordered.
 - level: error
-  obs_id: 511919
+  obs_id: 513839
   msg: "Missing meta keys: ['HDUCLAS1', 'HDUCLASS', 'HDUDOC', 'HDUVERS', 'INSTRUME',\
     \ 'ORIGIN']"
 - level: error
-  obs_id: 511919
+  obs_id: 513839
   msg: Event times after the obs end time
 - level: error
-  obs_id: 511919
+  obs_id: 513839
   msg: Events are not time-ordered.

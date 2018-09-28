@@ -2,9 +2,6 @@
   hdu: obs-index
   msg: "Missing meta keys: ['ALTITUDE', 'GEOLAT', 'GEOLON']"
 - level: error
-  hdu: hdu-index
-  msg: Invalid header key. Must have HDUCLAS2=HDU
-- level: error
   obs_id: 210000
   msg: "Missing meta keys: ['HDUCLAS1', 'HDUCLASS', 'HDUDOC', 'HDUVERS', 'INSTRUME',\
     \ 'ORIGIN']"

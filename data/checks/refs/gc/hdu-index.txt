@@ -32,7 +32,7 @@ HDUCLASS= 'GADF    '
 HDUDOC  = 'https://github.com/open-gamma-ray-astro/gamma-astro-data-formats'    
 HDUVERS = '0.2     '                                                            
 HDUCLAS1= 'INDEX   '                                                            
-HDUCLAS2= 'OBS     '                                                            
+HDUCLAS2= 'HDU     '                                                            
 END                                                                             
 
 **********

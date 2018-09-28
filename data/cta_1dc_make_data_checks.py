@@ -36,7 +36,7 @@ docs_obs_infos = dict(
     gps=dict(n_obs=3270),
     gc=dict(n_obs=1671),
     egal=dict(n_obs=1271),
-    agn=dict(n_obs=1920),
+    agn=dict(n_obs=3840),
 )
 
 
@@ -100,7 +100,7 @@ def check_index_files():
 
 
 def check_composite_index_files():
-    n_obs = 8132
+    n_obs = 10052
 
     filename = BASE_PATH / 'index/all/obs-index.fits.gz'
     log.debug(f'Reading {filename}')

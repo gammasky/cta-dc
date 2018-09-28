@@ -301,7 +301,7 @@ def make_hdu_index_table(dataset, out_dir, max_rows=-1):
     meta['HDUDOC'] = 'https://github.com/open-gamma-ray-astro/gamma-astro-data-formats'
     meta['HDUVERS'] = '0.2'
     meta['HDUCLAS1'] = 'INDEX'
-    meta['HDUCLAS2'] = 'OBS'
+    meta['HDUCLAS2'] = 'HDU'
 
     path = out_dir / 'hdu-index.fits'
     write_fits_gz(hdu_table, path)
