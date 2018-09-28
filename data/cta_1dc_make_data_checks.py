@@ -208,5 +208,5 @@ if __name__ == '__main__':
     IndexToTextDumper().run()
     check_index_files()
     check_composite_index_files()
-    # check_checksums()
+    check_checksums()
     DataStoreChecks().run()
