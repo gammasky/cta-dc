@@ -20,7 +20,7 @@ BASE_PATH = Path('1dc/1dc')
 
 
 def write_fits_gz(table, path):
-    """Write Table to fits.gz in a reproducible way.
+    """Write BinTableHDU to fits.gz in a reproducible way.
 
     Writing to `.fits.gz` with Astropy directly never gave
     reproducible files, probably because in the background
@@ -30,7 +30,7 @@ def write_fits_gz(table, path):
     calls `gzip` with options that avoid the issue.
     """
     log.info(f'Writing {path}')
-    table.write(str(path), overwrite=True)
+    table.writeto(str(path), overwrite=True)
 
     cmd = f'gzip -f -n {path}'
     log.info(f'Executing: {cmd}')
@@ -263,7 +263,9 @@ def make_observation_index_table(dataset, out_dir, max_rows=-1, progress_bar=Tru
     meta['HDUCLAS2'] = 'OBS'
 
     path = out_dir / 'obs-index.fits'
-    write_fits_gz(obs_table, path)
+    hdu = fits.BinTableHDU(obs_table)
+    hdu.name = 'OBS_INDEX'
+    write_fits_gz(hdu, path)
 
 
 def make_hdu_index_table(dataset, out_dir, max_rows=-1):
@@ -304,7 +306,9 @@ def make_hdu_index_table(dataset, out_dir, max_rows=-1):
     meta['HDUCLAS2'] = 'HDU'
 
     path = out_dir / 'hdu-index.fits'
-    write_fits_gz(hdu_table, path)
+    hdu = fits.BinTableHDU(hdu_table)
+    hdu.name = 'HDU_INDEX'
+    write_fits_gz(hdu, path)
 
 
 def make_concatenated_index_files():
@@ -322,7 +326,9 @@ def make_concatenated_index_files():
     table.meta['dataset'] = 'all'
 
     path = BASE_PATH / 'index/all/obs-index.fits'
-    write_fits_gz(table, path)
+    hdu = fits.BinTableHDU(table)
+    hdu.name = 'OBS_INDEX'
+    write_fits_gz(hdu, path)
 
     table = table_vstack([
         Table.read(BASE_PATH / 'index' / dataset / 'hdu-index.fits.gz')
@@ -333,7 +339,9 @@ def make_concatenated_index_files():
     table.meta['dataset'] = 'all'
 
     path = BASE_PATH / 'index/all/hdu-index.fits'
-    write_fits_gz(table, path)
+    hdu = fits.BinTableHDU(table)
+    hdu.name = 'HDU_INDEX'
+    write_fits_gz(hdu, path)
 
 
 def make_tarball():

@@ -15,6 +15,7 @@
 # - {HDUVERS: '0.2'}
 # - {HDUCLAS1: INDEX}
 # - {HDUCLAS2: HDU}
+# - {EXTNAME: HDU_INDEX}
 # schema: astropy-2.0
 OBS_ID HDU_TYPE HDU_CLASS FILE_DIR FILE_NAME HDU_NAME
 310000 events events ../../data/baseline/gc gc_baseline_310000.fits EVENTS

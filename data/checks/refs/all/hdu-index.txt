@@ -14,6 +14,14 @@ NAXIS2  =                60312 / length of dimension 2
 PCOUNT  =                    0 / number of group parameters                     
 GCOUNT  =                    1 / number of groups                               
 TFIELDS =                    6 / number of table fields                         
+OBSERVER= 'CTA first data challenge (1DC)'                                      
+DATASET = 'all     '                                                            
+HDUCLASS= 'GADF    '                                                            
+HDUDOC  = 'https://github.com/open-gamma-ray-astro/gamma-astro-data-formats'    
+HDUVERS = '0.2     '                                                            
+HDUCLAS1= 'INDEX   '                                                            
+HDUCLAS2= 'HDU     '                                                            
+EXTNAME = 'HDU_INDEX'                                                           
 TTYPE1  = 'OBS_ID  '                                                            
 TFORM1  = 'K       '                                                            
 TTYPE2  = 'HDU_TYPE'                                                            
@@ -26,13 +34,6 @@ TTYPE5  = 'FILE_NAME'
 TFORM5  = '25A     '                                                            
 TTYPE6  = 'HDU_NAME'                                                            
 TFORM6  = '21A     '                                                            
-OBSERVER= 'CTA first data challenge (1DC)'                                      
-DATASET = 'all     '                                                            
-HDUCLASS= 'GADF    '                                                            
-HDUDOC  = 'https://github.com/open-gamma-ray-astro/gamma-astro-data-formats'    
-HDUVERS = '0.2     '                                                            
-HDUCLAS1= 'INDEX   '                                                            
-HDUCLAS2= 'HDU     '                                                            
 END                                                                             
 
 **********
